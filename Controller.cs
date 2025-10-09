@@ -1,0 +1,167 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Runtime.InteropServices;
+using System.Diagnostics;
+
+namespace ProQol
+{
+    internal class Controller
+    {
+        // Windows API imports for sending key events
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll")]
+        private static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        [DllImport("user32.dll")]
+        private static extern uint SendInput(uint nInputs, INPUT[] pInputs, int cbSize);
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetMessageExtraInfo();
+
+        [DllImport("user32.dll")]
+        private static extern uint MapVirtualKey(uint uCode, uint uMapType);
+
+        // Input structure for SendInput
+        [StructLayout(LayoutKind.Sequential)]
+        private struct INPUT
+        {
+            public uint type;
+            public InputUnion u;
+        }
+
+        [StructLayout(LayoutKind.Explicit)]
+        private struct InputUnion
+        {
+            [FieldOffset(0)]
+            public MOUSEINPUT mi;
+            [FieldOffset(0)]
+            public KEYBDINPUT ki;
+            [FieldOffset(0)]
+            public HARDWAREINPUT hi;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct KEYBDINPUT
+        {
+            public ushort wVk;
+            public ushort wScan;
+            public uint dwFlags;
+            public uint time;
+            public IntPtr dwExtraInfo;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct MOUSEINPUT
+        {
+            public int dx;
+            public int dy;
+            public uint mouseData;
+            public uint dwFlags;
+            public uint time;
+            public IntPtr dwExtraInfo;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct HARDWAREINPUT
+        {
+            public uint uMsg;
+            public ushort wParamL;
+            public ushort wParamH;
+        }
+
+        // Constants
+        private const uint INPUT_KEYBOARD = 1;
+        private const uint KEYEVENTF_EXTENDEDKEY = 0x0001;
+        private const uint KEYEVENTF_KEYUP = 0x0002;
+        private const uint KEYEVENTF_SCANCODE = 0x0008;
+        private const uint MAPVK_VK_TO_VSC = 0x00;
+
+        /// <summary>
+        /// Sends a key down event to the specified process using SendInput
+        /// This works better with Unity games and works in background
+        /// </summary>
+        /// <param name="process">The target process</param>
+        /// <param name="keyCode">The virtual key code to send</param>
+        /// <returns>True if the input was sent successfully</returns>
+        public static bool SendKeyDown(Process process, Keys keyCode)
+        {
+            if (process == null || process.HasExited)
+            {
+                return false;
+            }
+
+            // Bring window to foreground first
+            IntPtr hWnd = process.MainWindowHandle;
+            if (hWnd != IntPtr.Zero)
+            {
+                SetForegroundWindow(hWnd);
+            }
+
+            INPUT[] inputs = new INPUT[1];
+            inputs[0].type = INPUT_KEYBOARD;
+            inputs[0].u.ki.wVk = (ushort)keyCode;
+            inputs[0].u.ki.wScan = (ushort)MapVirtualKey((uint)keyCode, MAPVK_VK_TO_VSC);
+            inputs[0].u.ki.dwFlags = 0; // 0 for key down
+            inputs[0].u.ki.time = 0;
+            inputs[0].u.ki.dwExtraInfo = GetMessageExtraInfo();
+
+            uint result = SendInput(1, inputs, Marshal.SizeOf(typeof(INPUT)));
+            return result > 0;
+        }
+
+        /// <summary>
+        /// Sends a key up event to the specified process using SendInput
+        /// This works better with Unity games and works in background
+        /// </summary>
+        /// <param name="process">The target process</param>
+        /// <param name="keyCode">The virtual key code to send</param>
+        /// <returns>True if the input was sent successfully</returns>
+        public static bool SendKeyUp(Process process, Keys keyCode)
+        {
+            if (process == null || process.HasExited)
+            {
+                return false;
+            }
+
+            INPUT[] inputs = new INPUT[1];
+            inputs[0].type = INPUT_KEYBOARD;
+            inputs[0].u.ki.wVk = (ushort)keyCode;
+            inputs[0].u.ki.wScan = (ushort)MapVirtualKey((uint)keyCode, MAPVK_VK_TO_VSC);
+            inputs[0].u.ki.dwFlags = KEYEVENTF_KEYUP;
+            inputs[0].u.ki.time = 0;
+            inputs[0].u.ki.dwExtraInfo = GetMessageExtraInfo();
+
+            uint result = SendInput(1, inputs, Marshal.SizeOf(typeof(INPUT)));
+            return result > 0;
+        }
+
+        /// <summary>
+        /// Sends a complete key press (down + up) to the specified process
+        /// </summary>
+        /// <param name="process">The target process</param>
+        /// <param name="keyCode">The virtual key code to send</param>
+        /// <param name="delayMs">Optional delay between key down and key up in milliseconds</param>
+        /// <returns>True if both inputs were sent successfully</returns>
+        public static async Task<bool> SendKeyPress(Process process, Keys keyCode, int delayMs = 50)
+        {
+            bool keyDownSuccess = SendKeyDown(process, keyCode);
+            if (!keyDownSuccess)
+            {
+                return false;
+            }
+
+            if (delayMs > 0)
+            {
+                await Task.Delay(delayMs);
+            }
+
+            bool keyUpSuccess = SendKeyUp(process, keyCode);
+            return keyUpSuccess;
+        }
+    }
+}
