@@ -198,27 +198,28 @@ namespace Application
 
                     if (_curBotState == BotState.Catching)
                     {
+                        var encounterId = _memoryManager.GetCurrentEncounterId();
+                        var isSpecial = _memoryManager.GetIsSpecialEncounter();
+
+                        if (_encounterTime == null)
+                        {
+                            _encounterTime = DateTime.Now;
+                            _addNewEncounter(encounterId, isSpecial, _encounterTime.Value);
+                        }
+
+                        var matches = _pokemonTargetModel.MatchesTarget(encounterId, isSpecial);
+
+                        if (matches)
+                        {
+                            Debug.WriteLine($"Implement catching! Got a matching pokemon with id: {encounterId} at {_encounterTime}");
+                            Console.Beep();
+                        }
                         if (_memoryManager.GetIsNoMenuSelected())
                         {
-                            var encounterId = _memoryManager.GetCurrentEncounterId();
-                            var isSpecial = _memoryManager.GetIsSpecialEncounter();
-
-                            if (_encounterTime == null)
-                            {
-                                _encounterTime = DateTime.Now;
-                                _addNewEncounter(encounterId, isSpecial, _encounterTime.Value);
-                            }
-
-                            var matches = _pokemonTargetModel.MatchesTarget(encounterId, isSpecial);
                             if (!matches)
                             {
                                 Thread.Sleep(random.Next(30, 60));
                                 Controller.SendKeyPress(proc, (ushort)Keys.D4);
-                            }
-                            else
-                            {
-                                Debug.WriteLine($"Implement catching! Got a matching pokemon with id: {encounterId} at {_encounterTime}");
-                                Console.Beep();
                             }
                         }
                     }
