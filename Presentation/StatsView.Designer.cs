@@ -30,7 +30,7 @@
         {
             tableLayoutPanel5 = new TableLayoutPanel();
             timePerSpecialLabel = new Label();
-            itemMenuSelectedLabel = new Label();
+            encountersPerSpecialLabel = new Label();
             label1 = new Label();
             totalEncountersLabel = new Label();
             lablel = new Label();
@@ -48,7 +48,7 @@
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 64.5614F));
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35.4385948F));
             tableLayoutPanel5.Controls.Add(timePerSpecialLabel, 1, 4);
-            tableLayoutPanel5.Controls.Add(itemMenuSelectedLabel, 0, 4);
+            tableLayoutPanel5.Controls.Add(encountersPerSpecialLabel, 0, 4);
             tableLayoutPanel5.Controls.Add(label1, 0, 0);
             tableLayoutPanel5.Controls.Add(totalEncountersLabel, 1, 0);
             tableLayoutPanel5.Controls.Add(lablel, 0, 1);
@@ -82,18 +82,18 @@
             timePerSpecialLabel.Text = "0";
             timePerSpecialLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // itemMenuSelectedLabel
+            // encountersPerSpecialLabel
             // 
-            itemMenuSelectedLabel.AutoSize = true;
-            itemMenuSelectedLabel.Dock = DockStyle.Fill;
-            itemMenuSelectedLabel.Font = new Font("Segoe UI", 12F);
-            itemMenuSelectedLabel.ForeColor = SystemColors.ControlText;
-            itemMenuSelectedLabel.Location = new Point(3, 180);
-            itemMenuSelectedLabel.Name = "itemMenuSelectedLabel";
-            itemMenuSelectedLabel.Size = new Size(178, 49);
-            itemMenuSelectedLabel.TabIndex = 11;
-            itemMenuSelectedLabel.Text = "Avarage time per special:";
-            itemMenuSelectedLabel.TextAlign = ContentAlignment.MiddleCenter;
+            encountersPerSpecialLabel.AutoSize = true;
+            encountersPerSpecialLabel.Dock = DockStyle.Fill;
+            encountersPerSpecialLabel.Font = new Font("Segoe UI", 12F);
+            encountersPerSpecialLabel.ForeColor = SystemColors.ControlText;
+            encountersPerSpecialLabel.Location = new Point(3, 180);
+            encountersPerSpecialLabel.Name = "encountersPerSpecialLabel";
+            encountersPerSpecialLabel.Size = new Size(178, 49);
+            encountersPerSpecialLabel.TabIndex = 11;
+            encountersPerSpecialLabel.Text = "Avarage encounters per special:";
+            encountersPerSpecialLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
@@ -212,7 +212,7 @@
 
         private TableLayoutPanel tableLayoutPanel5;
         private Label timePerSpecialLabel;
-        private Label itemMenuSelectedLabel;
+        private Label encountersPerSpecialLabel;
         private Label label1;
         private Label totalEncountersLabel;
         private Label lablel;

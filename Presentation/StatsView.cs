@@ -66,24 +66,24 @@ namespace Presentation
 
 
             var specialEncounters = stats.Where(s => s.IsSpecial).ToList();
-            if (specialEncounters.Count() < 2)
+            var specialIndexes = specialEncounters.Select(s => stats.IndexOf(s)).ToList();
+            if (specialEncounters.Count() < 1)
             {
                 timePerSpecialLabel.Text = "N/A";
             }
             else
             {
-                double sum = 0;
-                int count = 0;
-                for (int i = 0; i < specialEncounters.Count() - 1; i++)
+                int sum = 0;
+                int lastIndx = 0;
+                for (int i = 0; i < specialIndexes.Count(); i++)
                 {
-                    var timespan = specialEncounters[i + 1].EncounterTime - specialEncounters[i].EncounterTime;
-                    sum += timespan.TotalSeconds;
-                    count++;
+                    var diff = specialIndexes[i] - lastIndx;
+                    sum += diff;
+                    lastIndx = specialIndexes[i];
                 }
-                var avarage = TimeSpan.FromSeconds(sum / count);
-                timePerSpecialLabel.Text = avarage.ToString("hh':'mm':'ss");
+                var avarage = sum / (double)(specialEncounters.Count());
+                timePerSpecialLabel.Text = avarage.ToString();
             }
-            Debug.WriteLine("test");
         }
 
         protected override void OnFormClosed(FormClosedEventArgs e)
