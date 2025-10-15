@@ -81,10 +81,11 @@ namespace Presentation
         {
             try
             {
-                if (_discordBot.IsConnected || _discordBot.IsConnected)
+                if (_discordBot.IsConnected || _discordBot.IsConnecting)
                 {
                     await _discordBot.StopAsync();
                 }
+
 
                 await _discordBot.StartAsync();
             }

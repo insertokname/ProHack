@@ -50,10 +50,11 @@
             textBox1.BackColor = Color.Lavender;
             textBox1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             textBox1.ForeColor = Color.MediumPurple;
-            textBox1.Location = new Point(12, 37);
+            textBox1.Location = new Point(17, 62);
+            textBox1.Margin = new Padding(4, 5, 4, 5);
             textBox1.Name = "textBox1";
             textBox1.PasswordChar = '*';
-            textBox1.Size = new Size(534, 25);
+            textBox1.Size = new Size(838, 34);
             textBox1.TabIndex = 0;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
@@ -62,9 +63,10 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold);
             label1.ForeColor = Color.MediumPurple;
-            label1.Location = new Point(12, 9);
+            label1.Location = new Point(17, 15);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(67, 25);
+            label1.Size = new Size(100, 40);
             label1.TabIndex = 1;
             label1.Text = "Token:";
             // 
@@ -75,9 +77,10 @@
             checkBox1.BackColor = Color.GhostWhite;
             checkBox1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             checkBox1.ForeColor = Color.MediumPurple;
-            checkBox1.Location = new Point(552, 38);
+            checkBox1.Location = new Point(868, 63);
+            checkBox1.Margin = new Padding(4, 5, 4, 5);
             checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(67, 23);
+            checkBox1.Size = new Size(94, 32);
             checkBox1.TabIndex = 2;
             checkBox1.Text = "Show ";
             checkBox1.UseVisualStyleBackColor = false;
@@ -86,12 +89,12 @@
             // label2
             // 
             label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold);
             label2.ForeColor = Color.Red;
-            label2.Location = new Point(468, 167);
+            label2.Location = new Point(673, 278);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(211, 25);
+            label2.Size = new Size(374, 40);
             label2.TabIndex = 3;
             label2.Text = "Discord bot not started";
             // 
@@ -102,9 +105,10 @@
             selectPokemonButton.FlatStyle = FlatStyle.Flat;
             selectPokemonButton.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             selectPokemonButton.ForeColor = Color.MediumPurple;
-            selectPokemonButton.Location = new Point(468, 206);
+            selectPokemonButton.Location = new Point(673, 343);
+            selectPokemonButton.Margin = new Padding(4, 5, 4, 5);
             selectPokemonButton.Name = "selectPokemonButton";
-            selectPokemonButton.Size = new Size(211, 53);
+            selectPokemonButton.Size = new Size(374, 88);
             selectPokemonButton.TabIndex = 22;
             selectPokemonButton.Text = "Restart bot";
             selectPokemonButton.UseVisualStyleBackColor = false;
@@ -121,11 +125,12 @@
             errorTextBox.BackColor = Color.Lavender;
             errorTextBox.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             errorTextBox.ForeColor = Color.Crimson;
-            errorTextBox.Location = new Point(12, 167);
+            errorTextBox.Location = new Point(17, 278);
+            errorTextBox.Margin = new Padding(4, 5, 4, 5);
             errorTextBox.Multiline = true;
             errorTextBox.Name = "errorTextBox";
             errorTextBox.ScrollBars = ScrollBars.Vertical;
-            errorTextBox.Size = new Size(450, 155);
+            errorTextBox.Size = new Size(648, 256);
             errorTextBox.TabIndex = 23;
             errorTextBox.Text = "Nothing yet";
             // 
@@ -134,9 +139,10 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold);
             label3.ForeColor = Color.MediumPurple;
-            label3.Location = new Point(12, 139);
+            label3.Location = new Point(17, 232);
+            label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(67, 25);
+            label3.Size = new Size(102, 40);
             label3.TabIndex = 24;
             label3.Text = "Errors:";
             // 
@@ -145,9 +151,10 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold);
             label4.ForeColor = Color.MediumPurple;
-            label4.Location = new Point(12, 65);
+            label4.Location = new Point(17, 108);
+            label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(174, 25);
+            label4.Size = new Size(265, 40);
             label4.TabIndex = 26;
             label4.Text = "Authorized user id:";
             // 
@@ -157,9 +164,10 @@
             textBox2.BackColor = Color.Lavender;
             textBox2.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             textBox2.ForeColor = Color.MediumPurple;
-            textBox2.Location = new Point(12, 93);
+            textBox2.Location = new Point(17, 155);
+            textBox2.Margin = new Padding(4, 5, 4, 5);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(607, 25);
+            textBox2.Size = new Size(942, 34);
             textBox2.TabIndex = 25;
             // 
             // button1
@@ -169,9 +177,10 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.MediumPurple;
-            button1.Location = new Point(625, 93);
+            button1.Location = new Point(970, 155);
+            button1.Margin = new Padding(4, 5, 4, 5);
             button1.Name = "button1";
-            button1.Size = new Size(54, 25);
+            button1.Size = new Size(77, 42);
             button1.TabIndex = 27;
             button1.Text = "Save";
             button1.UseVisualStyleBackColor = false;
@@ -184,9 +193,10 @@
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button2.ForeColor = Color.MediumPurple;
-            button2.Location = new Point(625, 37);
+            button2.Location = new Point(970, 62);
+            button2.Margin = new Padding(4, 5, 4, 5);
             button2.Name = "button2";
-            button2.Size = new Size(54, 25);
+            button2.Size = new Size(77, 42);
             button2.TabIndex = 28;
             button2.Text = "Save";
             button2.UseVisualStyleBackColor = false;
@@ -199,9 +209,10 @@
             button3.FlatStyle = FlatStyle.Flat;
             button3.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button3.ForeColor = Color.MediumPurple;
-            button3.Location = new Point(468, 269);
+            button3.Location = new Point(673, 448);
+            button3.Margin = new Padding(4, 5, 4, 5);
             button3.Name = "button3";
-            button3.Size = new Size(211, 53);
+            button3.Size = new Size(374, 88);
             button3.TabIndex = 29;
             button3.Text = "Send test message";
             button3.UseVisualStyleBackColor = false;
@@ -209,10 +220,10 @@
             // 
             // DiscordBotOptions
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.GhostWhite;
-            ClientSize = new Size(691, 334);
+            ClientSize = new Size(1064, 557);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -225,6 +236,7 @@
             Controls.Add(checkBox1);
             Controls.Add(label1);
             Controls.Add(textBox1);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "DiscordBotOptions";
             Text = "DiscordBotOptions";
             Load += DiscordBotOptions_Load;

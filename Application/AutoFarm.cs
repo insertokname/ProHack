@@ -222,14 +222,16 @@ namespace Application
                         {
                             Console.Beep();
                         }
+
+                        if (matches && !_sentDiscordDm)
+                        {
+                            Thread.Sleep(3000);
+                            _sentDiscordDm = true;
+                            _ = _discordBot.SendAnnouncement(new CaughtAnnouncement(isSpecial, encounterId));
+                        }
+
                         if (_memoryManager.GetIsNoMenuSelected())
                         {
-                            if (matches && !_sentDiscordDm)
-                            {
-                                _sentDiscordDm = true;
-                                _ = _discordBot.SendAnnouncement(new CaughtAnnouncement(isSpecial, encounterId));
-                            }
-
                             if (!matches)
                             {
                                 Thread.Sleep(random.Next(30, 60));

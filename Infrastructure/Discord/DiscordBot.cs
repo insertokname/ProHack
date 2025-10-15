@@ -35,9 +35,9 @@ namespace Infrastructure.Discord
             };
 
             _client = new DiscordSocketClient(config);
+            _client.MessageReceived += HandleCommandAsync;
             _commands = new CommandService();
             _serviceProvider = serviceProvider;
-            var memory = _serviceProvider.GetRequiredService<MemoryManager>();
         }
 
         public async Task InitCommandService()
@@ -62,8 +62,6 @@ namespace Infrastructure.Discord
 
             await _client.LoginAsync(TokenType.Bot, token);
             await _client.StartAsync();
-
-            _client.MessageReceived += HandleCommandAsync;
         }
 
         public async Task StopAsync()
