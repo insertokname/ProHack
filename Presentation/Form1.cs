@@ -1,5 +1,8 @@
 using Application;
 using Domain;
+using Infrastructure;
+using Infrastructure.Discord;
+using Microsoft.Extensions.DependencyInjection;
 using Presentation.Properties;
 using SimpleMem;
 using System.Diagnostics;
@@ -8,6 +11,7 @@ namespace Presentation
 {
     public partial class Form1 : Form
     {
+        private readonly IServiceProvider _serviceProvider;
         private readonly MemoryManager _memoryManager;
         private AutoFarm? _autoFarm = null;
         private readonly List<PointF> _registeredPositions = [];
@@ -15,10 +19,15 @@ namespace Presentation
         private StatsView? statsView = null;
         private DateTime _timeStarted = DateTime.Now;
 
-        public Form1()
+
+        public Form1(
+            IServiceProvider serviceProvider,
+            MemoryManager memoryManager)
         {
+            _serviceProvider = serviceProvider;
+            _memoryManager = memoryManager;
+
             InitializeComponent();
-            _memoryManager = new();
             Program.OnThreadException += HandleUncaughtException;
             ShortCutManager.RegisterHotKey(Handle, ShortCutManager.HOTKEY_ID, 2, (int)Keys.F8);
         }
@@ -225,6 +234,7 @@ namespace Presentation
             {
 
                 _autoFarm = new(
+                    _serviceProvider.GetRequiredService<DiscordBot>(),
                     _memoryManager,
                     GetPointComponentBySelectedAxis(_registeredPositions[0]),
                     GetPointComponentBySelectedAxis(_registeredPositions[1]),
@@ -326,6 +336,12 @@ namespace Presentation
         private void timeSinceStartedTimer_Tick(object sender, EventArgs e)
         {
             timeSinceStartLabel.Text = (_timeStarted - DateTime.Now).ToString("hh':'mm':'ss");
+        }
+
+        private void discordOptionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DiscordBotOptions botOptions = _serviceProvider.GetRequiredService<DiscordBotOptions>();
+            botOptions.ShowDialog();
         }
     }
 }

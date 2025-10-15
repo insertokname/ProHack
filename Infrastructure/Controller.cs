@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
+using Application;
 
-namespace Application
+namespace Infrastructure
 {
     public class Controller
     {

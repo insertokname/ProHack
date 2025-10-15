@@ -4,11 +4,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Application.Exceptions;
+using Infrastructure.Exceptions;
 using Domain;
 using SimpleMem;
 
-namespace Application
+namespace Infrastructure
 {
     public class MemoryManager
     {

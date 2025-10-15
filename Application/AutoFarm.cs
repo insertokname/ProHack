@@ -10,7 +10,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Domain;
 using Domain.Models;
+using Infrastructure;
 using Infrastructure.Database;
+using Infrastructure.Discord;
+using Infrastructure.Discord.Announcments;
 
 namespace Application
 {
@@ -19,6 +22,8 @@ namespace Application
         public bool IsRunning { get; private set; }
         public string? PauseReason { get; private set; } = null;
         public event EventHandler<string>? OnPause;
+
+        private readonly DiscordBot _discordBot;
 
         private readonly MemoryManager _memoryManager;
         private readonly float _startPos;
@@ -35,8 +40,10 @@ namespace Application
         private BotState _curBotState = BotState.Walking;
 
         private DateTime? _encounterTime = null;
+        private bool _sentDiscordDm = false;
 
         public AutoFarm(
+            DiscordBot discordBot,
             MemoryManager memoryManager,
             float StartPos,
             float EndPos,
@@ -44,6 +51,7 @@ namespace Application
             PokemonTargetModel? pokemonTargetModel = null,
             SynchronizationContext? synchronizationContext = null)
         {
+            _discordBot = discordBot;
             _memoryManager = memoryManager;
             if (StartPos > EndPos)
             {
@@ -194,6 +202,7 @@ namespace Application
                     {
                         _curBotState = BotState.Walking;
                         _encounterTime = null;
+                        _sentDiscordDm = false;
                     }
 
                     if (_curBotState == BotState.Catching)
@@ -211,11 +220,16 @@ namespace Application
 
                         if (matches)
                         {
-                            Debug.WriteLine($"Implement catching! Got a matching pokemon with id: {encounterId} at {_encounterTime}");
                             Console.Beep();
                         }
                         if (_memoryManager.GetIsNoMenuSelected())
                         {
+                            if (matches && !_sentDiscordDm)
+                            {
+                                _sentDiscordDm = true;
+                                _ = _discordBot.SendAnnouncement(new CaughtAnnouncement(isSpecial, encounterId));
+                            }
+
                             if (!matches)
                             {
                                 Thread.Sleep(random.Next(30, 60));

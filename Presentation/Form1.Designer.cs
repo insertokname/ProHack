@@ -62,6 +62,7 @@
             timeSinceStartLabel = new Label();
             timeSinceStartedTimer = new System.Windows.Forms.Timer(components);
             label2 = new Label();
+            discordOptionToolStripMenuItem = new ToolStripMenuItem();
             botStartLayoutPanel.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)selectAxisPicturebox).BeginInit();
@@ -452,7 +453,7 @@
             // menuStrip1
             // 
             menuStrip1.BackColor = Color.LavenderBlush;
-            menuStrip1.Items.AddRange(new ToolStripItem[] { test1ToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { test1ToolStripMenuItem, discordOptionToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(409, 24);
@@ -499,6 +500,15 @@
             label2.TabIndex = 24;
             label2.Text = "Session lenght:";
             label2.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // discordOptionToolStripMenuItem
+            // 
+            discordOptionToolStripMenuItem.BackColor = Color.Lavender;
+            discordOptionToolStripMenuItem.ForeColor = Color.MediumPurple;
+            discordOptionToolStripMenuItem.Name = "discordOptionToolStripMenuItem";
+            discordOptionToolStripMenuItem.Size = new Size(104, 20);
+            discordOptionToolStripMenuItem.Text = "Discord Options";
+            discordOptionToolStripMenuItem.Click += discordOptionToolStripMenuItem_Click;
             // 
             // Form1
             // 
@@ -572,5 +582,6 @@
         private Label timeSinceStartLabel;
         private System.Windows.Forms.Timer timeSinceStartedTimer;
         private Label label2;
+        private ToolStripMenuItem discordOptionToolStripMenuItem;
     }
 }
