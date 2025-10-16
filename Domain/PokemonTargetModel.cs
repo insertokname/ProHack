@@ -3,19 +3,30 @@
     public class PokemonTargetModel
     {
         public required int? Id { get; set; } // null = catch anything
-        public required bool MustBeSpecial { get; set; }
+        public required IsSpecialTargeting specialTargeting { get; set; }
 
-        public bool MatchesTarget(int targetId, bool targetIsSpecial)
+        public bool MatchesTarget(int otherId, bool isSpecial)
         {
             bool matchesId;
             if (Id == null)
                 matchesId = true;
             else
-                matchesId = targetId == Id;
+                matchesId = otherId == Id;
 
-            var matchesSpecial = targetIsSpecial == MustBeSpecial;
+            return specialTargeting switch
+            {
+                IsSpecialTargeting.CatchOnlyTargetedSpecials => matchesId && isSpecial,
+                IsSpecialTargeting.CatchTargetedNormalsAndTargetedSpecials => matchesId,
+                IsSpecialTargeting.CatchTargetedNormalsAndAnySpecial => matchesId || isSpecial,
+                _ => throw new ArgumentException("Invalid specialTarget selection!"),
+            };
+        }
 
-            return matchesSpecial && matchesId;
+        public enum IsSpecialTargeting
+        {
+            CatchOnlyTargetedSpecials,
+            CatchTargetedNormalsAndTargetedSpecials,
+            CatchTargetedNormalsAndAnySpecial,
         }
     }
 }

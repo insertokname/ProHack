@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,13 @@ namespace Presentation
 
         private void PokemonSelect_Load(object sender, EventArgs e)
         {
+            isSpecialComboBox.Items.Clear();
+            foreach (var value in Enum.GetValues(typeof(PokemonTargetModel.IsSpecialTargeting)))
+            {
+                isSpecialComboBox.Items.Add(value);
+            }
 
+            isSpecialComboBox.SelectedItem = Constants.PokemonTargetModel.DefaultTarget().specialTargeting;
         }
 
         protected override void OnClosed(EventArgs e)
@@ -59,7 +66,7 @@ namespace Presentation
             var output = new PokemonTargetModel()
             {
                 Id = id,
-                MustBeSpecial = mustBeSpecial.Checked,
+                specialTargeting = (PokemonTargetModel.IsSpecialTargeting)isSpecialComboBox.SelectedItem!,
             };
             return output;
         }
@@ -68,6 +75,16 @@ namespace Presentation
         {
             idLabel.Visible = !catchAnythingCheckbox.Checked;
             idNumeric.Visible = !catchAnythingCheckbox.Checked;
+        }
+
+        private void idNumeric_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void isSpecialComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

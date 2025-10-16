@@ -36,7 +36,7 @@ namespace Application
                 return new()
                 {
                     Id = null,
-                    MustBeSpecial = false,
+                    specialTargeting = Domain.PokemonTargetModel.IsSpecialTargeting.CatchTargetedNormalsAndAnySpecial,
                 };
             }
         }
