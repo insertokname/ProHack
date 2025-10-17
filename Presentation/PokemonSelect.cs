@@ -15,7 +15,9 @@ namespace Presentation
 {
     public partial class PokemonSelect : Form
     {
-        public PokemonTargetModel? PokemonTargetModel { get; set; } = null;
+        public List<PokemonTargetModel> PokemonTargetModels { get; set; } = [];
+
+        private List<PokemonSelectListItemControl> panelItems = [];
 
         public PokemonSelect()
         {
@@ -24,35 +26,31 @@ namespace Presentation
 
         private void PokemonSelect_Load(object sender, EventArgs e)
         {
-            isSpecialComboBox.Items.Clear();
-            foreach (var value in Enum.GetValues(typeof(PokemonTargetModel.IsSpecialTargeting)))
+            foreach (var model in PokemonTargetModels)
             {
-                isSpecialComboBox.Items.Add(value);
-            }
-
-            isSpecialComboBox.SelectedItem = Constants.PokemonTargetModel.DefaultTarget().specialTargeting;
-        }
-
-        protected override void OnClosed(EventArgs e)
-        {
-            if (PokemonTargetModel != null)
-            {
-                base.OnClosed(e);
-            }
-            else
-            {
-                var res = MessageBox.Show("Do you want to select the current pokemon?", "Warning", MessageBoxButtons.YesNo);
-                if (res == DialogResult.Yes)
-                {
-                    PokemonTargetModel = GetPokemonTargetModel();
-                }
-                base.OnClosed(e);
+                AddModelToList(model);
             }
         }
         private void retryButton_Click(object sender, EventArgs e)
         {
-            PokemonTargetModel = GetPokemonTargetModel();
-            Close();
+            var model = GetPokemonTargetModel();
+            PokemonTargetModels.Add(model);
+            AddModelToList(model);
+        }
+
+        private void AddModelToList(PokemonTargetModel model)
+        {
+            var newItem = new PokemonSelectListItemControl(model);
+            panelItems.Add(newItem);
+            newItem.Parent = flowLayoutPanel1;
+
+            newItem.button1.Click += (s, e) =>
+            {
+                var indx = panelItems.IndexOf(newItem);
+                PokemonTargetModels.RemoveAt(indx);
+                panelItems.RemoveAt(indx);
+                newItem.Dispose();
+            };
         }
 
         private PokemonTargetModel GetPokemonTargetModel()
@@ -66,8 +64,14 @@ namespace Presentation
             var output = new PokemonTargetModel()
             {
                 Id = id,
-                specialTargeting = (PokemonTargetModel.IsSpecialTargeting)isSpecialComboBox.SelectedItem!,
+                MustBeEvent = mustBeEventCheckbox.Checked,
+                MustBeShiny = mustBeShinyCheckbox.Checked,
             };
+
+            catchAnythingCheckbox.Checked = true;
+            mustBeEventCheckbox.Checked = false;
+            mustBeShinyCheckbox.Checked = false;
+
             return output;
         }
 
@@ -82,9 +86,21 @@ namespace Presentation
 
         }
 
-        private void isSpecialComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void mustBeEventCheckbox_CheckedChanged(object sender, EventArgs e)
         {
+            mustBeShinyCheckbox.Checked = false;
+            mustBeShinyCheckbox.Visible = !mustBeEventCheckbox.Checked;
+        }
 
+        private void mustBeShinyCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            mustBeEventCheckbox.Checked = false;
+            mustBeEventCheckbox.Visible = !mustBeShinyCheckbox.Checked;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

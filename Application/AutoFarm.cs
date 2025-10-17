@@ -29,7 +29,7 @@ namespace Application
         private readonly float _startPos;
         private readonly float _endPos;
         private readonly bool _isYAxis;
-        private readonly PokemonTargetModel _pokemonTargetModel;
+        private readonly List<PokemonTargetModel> _pokemonTargetModels;
         private readonly Thread _thread;
         private readonly SynchronizationContext? _syncContext;
         private readonly Random random = new();
@@ -47,8 +47,8 @@ namespace Application
             MemoryManager memoryManager,
             float StartPos,
             float EndPos,
+            List<PokemonTargetModel> pokemonTargetModel,
             bool IsYAxis = false,
-            PokemonTargetModel? pokemonTargetModel = null,
             SynchronizationContext? synchronizationContext = null)
         {
             _discordBot = discordBot;
@@ -69,7 +69,7 @@ namespace Application
             }
 
             _isYAxis = IsYAxis;
-            _pokemonTargetModel = pokemonTargetModel ?? Constants.PokemonTargetModel.DefaultTarget();
+            _pokemonTargetModels = pokemonTargetModel;
             _syncContext = synchronizationContext ?? SynchronizationContext.Current;
             _thread = new(ThreadWork);
             _thread.Start();
@@ -208,31 +208,32 @@ namespace Application
                     if (_curBotState == BotState.Catching)
                     {
                         var encounterId = _memoryManager.CurrentEncounterId;
-                        var isSpecial = _memoryManager.IsSpecial;
+                        var isShiny = _memoryManager.ShinyForm != 0;
+                        var isEvent = _memoryManager.EventForm != 0;
 
                         if (_encounterTime == null)
                         {
                             _encounterTime = DateTime.Now;
-                            _addNewEncounter(encounterId, isSpecial, _encounterTime.Value);
+                            _addNewEncounter(encounterId, isShiny || isEvent, _encounterTime.Value);
                         }
 
-                        var matches = _pokemonTargetModel.MatchesTarget(encounterId, isSpecial);
+                        var matchesAny = _pokemonTargetModels.Any(p => p.MatchesTarget(encounterId, isEvent, isShiny));
 
-                        if (matches)
+                        if (matchesAny)
                         {
                             Console.Beep();
                         }
 
-                        if (matches && !_sentDiscordDm)
+                        if (matchesAny && !_sentDiscordDm)
                         {
                             Thread.Sleep(3000);
                             _sentDiscordDm = true;
-                            _ = _discordBot.SendAnnouncement(new CaughtAnnouncement(isSpecial, encounterId));
+                            _ = _discordBot.SendAnnouncement(new CaughtAnnouncement(isShiny, encounterId));
                         }
 
                         if (_memoryManager.IsNoMenuSelected)
                         {
-                            if (!matches)
+                            if (!matchesAny)
                             {
                                 Thread.Sleep(random.Next(30, 60));
                                 Controller.SendKeyPress(proc, (ushort)Keys.D4);

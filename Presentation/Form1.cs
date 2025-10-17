@@ -15,7 +15,7 @@ namespace Presentation
         private readonly MemoryManager _memoryManager;
         private AutoFarm? _autoFarm = null;
         private readonly List<PointF> _registeredPositions = [];
-        private PokemonTargetModel? _pokemonTargetModel = null;
+        private List<PokemonTargetModel> _pokemonTargetModels = Constants.PokemonTargetModel.DefaultTarget();
         private StatsView? statsView = null;
         private DateTime _timeStarted = DateTime.Now;
 
@@ -101,10 +101,6 @@ namespace Presentation
             isBattlingLabel.Visible = isBattling;
         }
 
-        public void UpdateIsSpecial(bool isSpecial)
-        {
-            IsSpecialEncounter.Visible = isSpecial;
-        }
 
         public void UpdateRegisteredPoints()
         {
@@ -216,17 +212,6 @@ namespace Presentation
 
         private void StartBot()
         {
-            if (_pokemonTargetModel == null)
-            {
-                var res = MessageBox.Show(
-                    "No pokemon was selected! This means all encountered pokemon will be caught! Are you sure you want to continue?",
-                    "Warning",
-                    MessageBoxButtons.YesNo);
-                if (res != DialogResult.Yes)
-                {
-                    return;
-                }
-            }
             _autoFarm?.StopThread();
             _autoFarm = null;
 
@@ -238,8 +223,8 @@ namespace Presentation
                     _memoryManager,
                     GetPointComponentBySelectedAxis(_registeredPositions[0]),
                     GetPointComponentBySelectedAxis(_registeredPositions[1]),
-                    selectAxisCheckbox.Checked,
-                    _pokemonTargetModel);
+                    _pokemonTargetModels,
+                    selectAxisCheckbox.Checked);
                 _autoFarm.Start();
                 UpdateBot();
             }
@@ -272,16 +257,16 @@ namespace Presentation
             if (isBattling)
             {
                 currentEncounterIdLabel.Text = _memoryManager.CurrentEncounterId.ToString();
-                itemMenuSelectedLabel.Visible = _memoryManager.IsItemMenuSelected;
                 noMenuLabel.Visible = _memoryManager.IsNoMenuSelected;
-                UpdateIsSpecial(_memoryManager.IsSpecial);
+                isShiny.Visible = _memoryManager.ShinyForm != 0;
+                isEvent.Visible = _memoryManager.EventForm != 0;
             }
             else
             {
                 currentEncounterIdLabel.Text = Constants.Default.NO_CURRENT_ENCOUNTER;
-                itemMenuSelectedLabel.Visible = false;
                 noMenuLabel.Visible = false;
-                UpdateIsSpecial(false);
+                isShiny.Visible = false;
+                isEvent.Visible = false;
             }
         }
 
@@ -316,11 +301,9 @@ namespace Presentation
         private void button1_Click_2(object sender, EventArgs e)
         {
             PokemonSelect pokemonSelect = new();
+            pokemonSelect.PokemonTargetModels = _pokemonTargetModels;
             pokemonSelect.ShowDialog();
-            if (pokemonSelect.PokemonTargetModel != null)
-            {
-                _pokemonTargetModel = pokemonSelect.PokemonTargetModel;
-            }
+            //_pokemonTargetModels = pokemonSelect.PokemonTargetModels;
         }
 
         private void test1ToolStripMenuItem_Click(object sender, EventArgs e)

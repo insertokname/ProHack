@@ -9,6 +9,7 @@ namespace Domain
     // 47 = Fight (superboss)
     // 61 = Pokemon (superboss)
     // 52 = Item (superboss)
+    // Anything else = Can't interact (too many states to handle for example superboss, pvp, etc)
     public enum SelectedMenuEnum
     {
         OutSideOfFight,
@@ -32,7 +33,9 @@ namespace Domain
                 return SelectedMenuEnum.ItemsMenu;
             else if (x == 55)
                 return SelectedMenuEnum.PokemonMenu;
-            throw new ArgumentException($"Invalid state of {nameof(SelectedMenuEnum)}! Got invalid value: {x}!");
+            else
+                return SelectedMenuEnum.CantInteract;
+            //throw new ArgumentException($"Invalid state of {nameof(SelectedMenuEnum)}! Got invalid value: {x}!");
         }
     }
 }

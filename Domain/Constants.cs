@@ -31,13 +31,21 @@ namespace Application
 
         public static class PokemonTargetModel
         {
-            public static Domain.PokemonTargetModel DefaultTarget()
+            public static List<Domain.PokemonTargetModel> DefaultTarget()
             {
-                return new()
-                {
-                    Id = null,
-                    specialTargeting = Domain.PokemonTargetModel.IsSpecialTargeting.CatchTargetedNormalsAndAnySpecial,
-                };
+                return
+                [
+                    new Domain.PokemonTargetModel(){
+                        Id = null,
+                        MustBeShiny = true,
+                        MustBeEvent = false,
+                    },
+                    new Domain.PokemonTargetModel(){
+                        Id = null,
+                        MustBeShiny = false,
+                        MustBeEvent = true,
+                    }
+                ];
             }
         }
     }

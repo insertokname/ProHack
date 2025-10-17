@@ -3,9 +3,10 @@
     public class PokemonTargetModel
     {
         public required int? Id { get; set; } // null = catch anything
-        public required IsSpecialTargeting specialTargeting { get; set; }
+        public required bool MustBeShiny{ get; set; }
+        public required bool MustBeEvent { get; set; }
 
-        public bool MatchesTarget(int otherId, bool isSpecial)
+        public bool MatchesTarget(int otherId, bool isEvent, bool isShiny)
         {
             bool matchesId;
             if (Id == null)
@@ -13,20 +14,12 @@
             else
                 matchesId = otherId == Id;
 
-            return specialTargeting switch
-            {
-                IsSpecialTargeting.CatchOnlyTargetedSpecials => matchesId && isSpecial,
-                IsSpecialTargeting.CatchTargetedNormalsAndTargetedSpecials => matchesId,
-                IsSpecialTargeting.CatchTargetedNormalsAndAnySpecial => matchesId || isSpecial,
-                _ => throw new ArgumentException("Invalid specialTarget selection!"),
-            };
-        }
+            if (MustBeEvent)
+                return matchesId && isEvent;
+            if (MustBeShiny)
+                return matchesId && isShiny;
 
-        public enum IsSpecialTargeting
-        {
-            CatchOnlyTargetedSpecials,
-            CatchTargetedNormalsAndTargetedSpecials,
-            CatchTargetedNormalsAndAnySpecial,
+            return matchesId;
         }
     }
 }

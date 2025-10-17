@@ -39,7 +39,7 @@
             currentEncounterIdLabel = new Label();
             label4 = new Label();
             isBattlingLabel = new Label();
-            IsSpecialEncounter = new Label();
+            isEvent = new Label();
             startBotButton = new Button();
             registerPositionButton = new Button();
             botStartLayoutPanel = new TableLayoutPanel();
@@ -54,16 +54,16 @@
             stopButton = new Button();
             errorTextBox = new TextBox();
             tableLayoutPanel5 = new TableLayoutPanel();
+            isShiny = new Label();
             noMenuLabel = new Label();
-            itemMenuSelectedLabel = new Label();
             selectPokemonButton = new Button();
             menuStrip1 = new MenuStrip();
             test1ToolStripMenuItem = new ToolStripMenuItem();
             discordOptionToolStripMenuItem = new ToolStripMenuItem();
+            dialogueSettingsToolStripMenuItem = new ToolStripMenuItem();
             timeSinceStartLabel = new Label();
             timeSinceStartedTimer = new System.Windows.Forms.Timer(components);
             label2 = new Label();
-            dialogueSettingsToolStripMenuItem = new ToolStripMenuItem();
             botStartLayoutPanel.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)selectAxisPicturebox).BeginInit();
@@ -180,18 +180,18 @@
             isBattlingLabel.Text = "Is battling";
             isBattlingLabel.Visible = false;
             // 
-            // IsSpecialEncounter
+            // isEvent
             // 
-            IsSpecialEncounter.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            IsSpecialEncounter.AutoSize = true;
-            IsSpecialEncounter.Font = new Font("Segoe UI Semibold", 8.25F, FontStyle.Bold);
-            IsSpecialEncounter.ForeColor = Color.MediumPurple;
-            IsSpecialEncounter.Location = new Point(140, 66);
-            IsSpecialEncounter.Name = "IsSpecialEncounter";
-            IsSpecialEncounter.Size = new Size(43, 13);
-            IsSpecialEncounter.TabIndex = 10;
-            IsSpecialEncounter.Text = "Special";
-            IsSpecialEncounter.Visible = false;
+            isEvent.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            isEvent.AutoSize = true;
+            isEvent.Font = new Font("Segoe UI Semibold", 8.25F, FontStyle.Bold);
+            isEvent.ForeColor = Color.MediumPurple;
+            isEvent.Location = new Point(148, 66);
+            isEvent.Name = "isEvent";
+            isEvent.Size = new Size(35, 13);
+            isEvent.TabIndex = 10;
+            isEvent.Text = "Event";
+            isEvent.Visible = false;
             // 
             // startBotButton
             // 
@@ -380,6 +380,7 @@
             errorTextBox.Location = new Point(12, 441);
             errorTextBox.Multiline = true;
             errorTextBox.Name = "errorTextBox";
+            errorTextBox.ReadOnly = true;
             errorTextBox.ScrollBars = ScrollBars.Vertical;
             errorTextBox.Size = new Size(466, 78);
             errorTextBox.TabIndex = 19;
@@ -390,8 +391,6 @@
             tableLayoutPanel5.ColumnCount = 2;
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 69.3548355F));
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30.64516F));
-            tableLayoutPanel5.Controls.Add(noMenuLabel, 1, 4);
-            tableLayoutPanel5.Controls.Add(itemMenuSelectedLabel, 0, 4);
             tableLayoutPanel5.Controls.Add(label1, 0, 0);
             tableLayoutPanel5.Controls.Add(posXLabel, 1, 0);
             tableLayoutPanel5.Controls.Add(label3, 0, 1);
@@ -399,7 +398,9 @@
             tableLayoutPanel5.Controls.Add(currentEncounterIdLabel, 1, 2);
             tableLayoutPanel5.Controls.Add(label4, 0, 2);
             tableLayoutPanel5.Controls.Add(isBattlingLabel, 0, 3);
-            tableLayoutPanel5.Controls.Add(IsSpecialEncounter, 1, 3);
+            tableLayoutPanel5.Controls.Add(isEvent, 1, 3);
+            tableLayoutPanel5.Controls.Add(isShiny, 1, 4);
+            tableLayoutPanel5.Controls.Add(noMenuLabel, 0, 4);
             tableLayoutPanel5.Location = new Point(15, 59);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 5;
@@ -411,30 +412,30 @@
             tableLayoutPanel5.Size = new Size(186, 112);
             tableLayoutPanel5.TabIndex = 20;
             // 
+            // isShiny
+            // 
+            isShiny.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            isShiny.AutoSize = true;
+            isShiny.Font = new Font("Segoe UI Semibold", 8.25F, FontStyle.Bold);
+            isShiny.ForeColor = Color.MediumPurple;
+            isShiny.Location = new Point(149, 88);
+            isShiny.Name = "isShiny";
+            isShiny.Size = new Size(34, 13);
+            isShiny.TabIndex = 11;
+            isShiny.Text = "Shiny";
+            isShiny.Visible = false;
+            // 
             // noMenuLabel
             // 
-            noMenuLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             noMenuLabel.AutoSize = true;
             noMenuLabel.Font = new Font("Segoe UI Semibold", 7F, FontStyle.Bold);
             noMenuLabel.ForeColor = Color.Green;
-            noMenuLabel.Location = new Point(132, 88);
+            noMenuLabel.Location = new Point(3, 88);
             noMenuLabel.Name = "noMenuLabel";
-            noMenuLabel.Size = new Size(51, 24);
+            noMenuLabel.Size = new Size(88, 12);
             noMenuLabel.TabIndex = 12;
             noMenuLabel.Text = "No menu selected";
             noMenuLabel.Visible = false;
-            // 
-            // itemMenuSelectedLabel
-            // 
-            itemMenuSelectedLabel.AutoSize = true;
-            itemMenuSelectedLabel.Font = new Font("Segoe UI Semibold", 8.25F, FontStyle.Bold);
-            itemMenuSelectedLabel.ForeColor = Color.Green;
-            itemMenuSelectedLabel.Location = new Point(3, 88);
-            itemMenuSelectedLabel.Name = "itemMenuSelectedLabel";
-            itemMenuSelectedLabel.Size = new Size(106, 13);
-            itemMenuSelectedLabel.TabIndex = 11;
-            itemMenuSelectedLabel.Text = "Item menu selected";
-            itemMenuSelectedLabel.Visible = false;
             // 
             // selectPokemonButton
             // 
@@ -480,6 +481,14 @@
             discordOptionToolStripMenuItem.Text = "Discord Options";
             discordOptionToolStripMenuItem.Click += discordOptionToolStripMenuItem_Click;
             // 
+            // dialogueSettingsToolStripMenuItem
+            // 
+            dialogueSettingsToolStripMenuItem.ForeColor = Color.Crimson;
+            dialogueSettingsToolStripMenuItem.Name = "dialogueSettingsToolStripMenuItem";
+            dialogueSettingsToolStripMenuItem.Size = new Size(110, 20);
+            dialogueSettingsToolStripMenuItem.Text = "Dialogue settings";
+            dialogueSettingsToolStripMenuItem.Click += dialogueSettingsToolStripMenuItem_Click;
+            // 
             // timeSinceStartLabel
             // 
             timeSinceStartLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -510,14 +519,6 @@
             label2.TabIndex = 24;
             label2.Text = "Session lenght:";
             label2.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // dialogueSettingsToolStripMenuItem
-            // 
-            dialogueSettingsToolStripMenuItem.ForeColor = Color.Crimson;
-            dialogueSettingsToolStripMenuItem.Name = "dialogueSettingsToolStripMenuItem";
-            dialogueSettingsToolStripMenuItem.Size = new Size(110, 20);
-            dialogueSettingsToolStripMenuItem.Text = "Dialogue settings";
-            dialogueSettingsToolStripMenuItem.Click += dialogueSettingsToolStripMenuItem_Click;
             // 
             // Form1
             // 
@@ -568,7 +569,7 @@
         private Label currentEncounterIdLabel;
         private Label label4;
         private Label isBattlingLabel;
-        private Label IsSpecialEncounter;
+        private Label isEvent;
         private Button startBotButton;
         private Button registerPositionButton;
         private TableLayoutPanel botStartLayoutPanel;
@@ -584,7 +585,7 @@
         private TextBox errorTextBox;
         private TableLayoutPanel tableLayoutPanel5;
         private Button selectPokemonButton;
-        private Label itemMenuSelectedLabel;
+        private Label isShiny;
         private Label noMenuLabel;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem test1ToolStripMenuItem;
