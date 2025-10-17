@@ -73,15 +73,7 @@ namespace Presentation
             }
             else
             {
-                int sum = 0;
-                int lastIndx = 0;
-                for (int i = 0; i < specialIndexes.Count(); i++)
-                {
-                    var diff = specialIndexes[i] - lastIndx;
-                    sum += diff;
-                    lastIndx = specialIndexes[i];
-                }
-                var avarage = sum / (double)(specialEncounters.Count());
+                var avarage = stats.Count / (double)specialEncounters.Count;
                 timePerSpecialLabel.Text = avarage.ToString();
             }
         }
