@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Infrastructure.Exceptions;
 using Domain;
 using SimpleMem;
+using System.Runtime.CompilerServices;
+using System.Reflection;
 
 namespace Infrastructure
 {
@@ -18,20 +20,25 @@ namespace Infrastructure
             public static readonly MultiLevelPtr<float> PlayerYPos = new(0x01515A48, 0x20, 0x50, 0xB8, 0x0, 0x1A0);
             public static readonly MultiLevelPtr<int> CurrentEncounterId = new(0x01515A48, 0x20, 0x350, 0xB8, 0x0, 0x8B4);
             public static readonly MultiLevelPtr<int> IsBattling = new(0x01515A48, 0x20, 0x350, 0xB8, 0x0, 0x838);
-            public static readonly MultiLevelPtr<int> IsSpecial1 = new(0x01515A48, 0x20, 0x350, 0xB8, 0x0, 0x8C0);
-            public static readonly MultiLevelPtr<int> IsSpecial2 = new(0x01515A48, 0x20, 0x350, 0xB8, 0x0, 0x8C4);
+            public static readonly MultiLevelPtr<int> ShinyForm = new(0x01515A48, 0x20, 0x350, 0xB8, 0x0, 0x8C0);
+            public static readonly MultiLevelPtr<int> EventForm = new(0x01515A48, 0x20, 0x350, 0xB8, 0x0, 0x8C4);
             public static readonly MultiLevelPtr<int> SelectedMenu = new(0x0150E6C8, 0xB8, 0x0, 0xF0, 0xD0, 0X10, 0xDF8);
+            public static readonly MultiLevelPtr<float> TextSpeed = new(0x01625220, 0x108, 0x40);
         }
 
-        private Memory? _memory;
-        private Memory _getMemory()
-        {
-            if (_memory == null)
-            {
-                throw new MemoryAccessException("Game Was not loaded while accessed!");
-            }
-            return _memory;
-        }
+        public float PlayerXPos { get => _get<float>(); }
+        public float PlayerYPos { get => _get<float>(); }
+        public PointF PlayerPos { get => new(PlayerXPos, PlayerYPos); }
+        public int CurrentEncounterId { get => _get<int>(); }
+        public bool IsBattling { get => _get<int>() != 0; }
+        public int ShinyForm { get => _get<int>(); }
+        public int EventForm { get => _get<int>(); }
+        public bool IsSpecial { get => ShinyForm != 0 || EventForm != 0; }
+        public SelectedMenuEnum SelectedMenu { get => SelectedMenuTools.FromMemory(_get<int>()); }
+        public bool IsItemMenuSelected { get => SelectedMenu == SelectedMenuEnum.ItemsMenu; }
+        public bool IsNoMenuSelected { get => SelectedMenu == SelectedMenuEnum.FightOrNoneMenu; }
+        public float TextSpeed { get => _get<float>(); set => _set(value); }
+
         public bool IsGameOpened { get => _memory != null && !_memory.Process.HasExited; }
         public Process? Process { get => _memory?.Process; }
 
@@ -48,7 +55,7 @@ namespace Infrastructure
             }
         }
 
-        private T MemoryAccess<T>(Func<T> f, string accessorName, int tries = 3)
+        private T _memoryAccess<T>(Func<T> f, string accessorName, int tries = 3)
         {
             Exception lastE = null!;
             for (int i = 1; i <= tries; i++)
@@ -69,58 +76,41 @@ namespace Infrastructure
                 lastE);
         }
 
-        public float GetPlayerPosX()
+        private Memory? _memory;
+        private Memory _getMemory()
         {
-            return MemoryAccess(() => _getMemory().ReadValueFromMlPtr(Offsets.PlayerXPos), nameof(GetPlayerPosX));
-        }
-        public float GetPlayerPosY()
-        {
-            return MemoryAccess(() => _getMemory().ReadValueFromMlPtr(Offsets.PlayerYPos), nameof(GetPlayerPosY));
-        }
-
-        public PointF GetPlayerPos()
-        {
-            float x = GetPlayerPosX();
-            float y = GetPlayerPosY();
-
-            return new PointF(x, y);
+            if (_memory == null)
+                throw new MemoryAccessException("Game Was not loaded while accessed!");
+            return _memory;
         }
 
-        public int GetCurrentEncounterId()
+        private T _get<T>([CallerMemberName] string propertyName = "")
+        where T : struct =>
+            _memoryGetter(_resolvePtr<T>(propertyName));
+
+        private void _set<T>(T value, [CallerMemberName] string propertyName = "")
+        where T : struct =>
+            _memorySetter(_resolvePtr<T>(propertyName), value);
+
+        private static MultiLevelPtr<T> _resolvePtr<T>(string offsetName)
+        where T : struct
         {
-            return MemoryAccess(() => _getMemory().ReadValueFromMlPtr(Offsets.CurrentEncounterId), nameof(GetCurrentEncounterId));
+            var field = typeof(Offsets).GetField(offsetName, BindingFlags.Static
+                | BindingFlags.Public
+                | BindingFlags.NonPublic) ?? throw new ArgumentException($"No offset registered for {offsetName} ({typeof(Offsets)}).");
+
+            if (field.GetValue(null) is MultiLevelPtr<T> value)
+                return value;
+
+            throw new ArgumentException($"Offset {offsetName} was registered with incompatible type {field.FieldType}.");
         }
 
-        public bool GetIsBattling()
-        {
-            var res = MemoryAccess(() => _getMemory().ReadValueFromMlPtr(Offsets.IsBattling), nameof(GetIsBattling));
-            return res != 0;
-        }
+        private T _memoryGetter<T>(MultiLevelPtr<T> multiLevelPtr)
+        where T : struct =>
+            _memoryAccess(() => multiLevelPtr.ReadValue<T>(_getMemory()), nameof(multiLevelPtr));
 
-        public bool GetIsSpecialEncounter()
-        {
-            int res1 = MemoryAccess(() => _getMemory().ReadValueFromMlPtr(Offsets.IsSpecial1), nameof(Offsets.IsSpecial1));
-            int res2 = MemoryAccess(() => _getMemory().ReadValueFromMlPtr(Offsets.IsSpecial2), nameof(Offsets.IsSpecial2));
-            return res1 != 0
-                || res2 != 0;
-        }
-
-        public SelectedMenuEnum GetSelectedMenu()
-        {
-            return MemoryAccess(
-                () => SelectedMenuTools.FromMemory(_getMemory().ReadValueFromMlPtr(Offsets.SelectedMenu)), nameof(GetSelectedMenu));
-        }
-
-        public bool GetIsItemMenuSelected()
-        {
-            var res = GetSelectedMenu();
-            return res == SelectedMenuEnum.ItemsMenu;
-        }
-
-        public bool GetIsNoMenuSelected()
-        {
-            var res = GetSelectedMenu();
-            return res == SelectedMenuEnum.FightOrNoneMenu;
-        }
+        private void _memorySetter<T>(MultiLevelPtr<T> multiLevelPtr, T value)
+        where T : struct =>
+            _memoryAccess(() => multiLevelPtr.WriteValue<T>(_getMemory(), value), nameof(multiLevelPtr));
     }
 }

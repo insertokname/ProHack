@@ -123,7 +123,7 @@ namespace Application
 
         private float GetCurPos()
         {
-            return _isYAxis ? _memoryManager.GetPlayerPosY() : _memoryManager.GetPlayerPosX();
+            return _isYAxis ? _memoryManager.PlayerYPos : _memoryManager.PlayerXPos;
         }
 
         private Keys GetIncreasePosKey()
@@ -192,7 +192,7 @@ namespace Application
                         continue;
                     }
 
-                    if (_memoryManager.GetIsBattling())
+                    if (_memoryManager.IsBattling)
                     {
                         _curBotState = BotState.Catching;
                         _curDirection = 0;
@@ -207,8 +207,8 @@ namespace Application
 
                     if (_curBotState == BotState.Catching)
                     {
-                        var encounterId = _memoryManager.GetCurrentEncounterId();
-                        var isSpecial = _memoryManager.GetIsSpecialEncounter();
+                        var encounterId = _memoryManager.CurrentEncounterId;
+                        var isSpecial = _memoryManager.IsSpecial;
 
                         if (_encounterTime == null)
                         {
@@ -230,7 +230,7 @@ namespace Application
                             _ = _discordBot.SendAnnouncement(new CaughtAnnouncement(isSpecial, encounterId));
                         }
 
-                        if (_memoryManager.GetIsNoMenuSelected())
+                        if (_memoryManager.IsNoMenuSelected)
                         {
                             if (!matches)
                             {

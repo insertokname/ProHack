@@ -263,18 +263,18 @@ namespace Presentation
 
         private void renderTimer_Tick(object sender, EventArgs e)
         {
-            posXLabel.Text = _memoryManager.GetPlayerPosX().ToString();
-            posYLabel.Text = _memoryManager.GetPlayerPosY().ToString();
+            posXLabel.Text = _memoryManager.PlayerXPos.ToString();
+            posYLabel.Text = _memoryManager.PlayerYPos.ToString();
 
-            bool isBattling = _memoryManager.GetIsBattling();
+            bool isBattling = _memoryManager.IsBattling;
 
             UpdateIsBattling(isBattling);
             if (isBattling)
             {
-                currentEncounterIdLabel.Text = _memoryManager.GetCurrentEncounterId().ToString();
-                itemMenuSelectedLabel.Visible = _memoryManager.GetIsItemMenuSelected();
-                noMenuLabel.Visible = _memoryManager.GetIsNoMenuSelected();
-                UpdateIsSpecial(_memoryManager.GetIsSpecialEncounter());
+                currentEncounterIdLabel.Text = _memoryManager.CurrentEncounterId.ToString();
+                itemMenuSelectedLabel.Visible = _memoryManager.IsItemMenuSelected;
+                noMenuLabel.Visible = _memoryManager.IsNoMenuSelected;
+                UpdateIsSpecial(_memoryManager.IsSpecial);
             }
             else
             {
@@ -292,7 +292,7 @@ namespace Presentation
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var registeredPoint = _memoryManager.GetPlayerPos();
+            var registeredPoint = _memoryManager.PlayerPos;
             _registeredPositions.Add(registeredPoint);
             UpdateRegisteredPoints();
         }
