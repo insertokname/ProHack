@@ -74,7 +74,7 @@ namespace Presentation
             else
             {
                 var avarage = stats.Count / (double)specialEncounters.Count;
-                timePerSpecialLabel.Text = avarage.ToString();
+                timePerSpecialLabel.Text = avarage.ToString("n2");
             }
         }
 
