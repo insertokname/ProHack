@@ -343,5 +343,11 @@ namespace Presentation
             DiscordBotOptions botOptions = _serviceProvider.GetRequiredService<DiscordBotOptions>();
             botOptions.ShowDialog();
         }
+
+        private void dialogueSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogueSettings dialogueSettings = _serviceProvider.GetRequiredService<DialogueSettings>();
+            dialogueSettings.ShowDialog();
+        }
     }
 }

@@ -60,6 +60,7 @@ namespace Presentation
                 {
                     services.AddTransient<Form1>();
                     services.AddTransient<DiscordBotOptions>();
+                    services.AddTransient<DialogueSettings>();
 
                     services.AddSingleton<DiscordBot>();
                     services.AddSingleton<MemoryManager>();

@@ -59,10 +59,11 @@
             selectPokemonButton = new Button();
             menuStrip1 = new MenuStrip();
             test1ToolStripMenuItem = new ToolStripMenuItem();
+            discordOptionToolStripMenuItem = new ToolStripMenuItem();
             timeSinceStartLabel = new Label();
             timeSinceStartedTimer = new System.Windows.Forms.Timer(components);
             label2 = new Label();
-            discordOptionToolStripMenuItem = new ToolStripMenuItem();
+            dialogueSettingsToolStripMenuItem = new ToolStripMenuItem();
             botStartLayoutPanel.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)selectAxisPicturebox).BeginInit();
@@ -114,7 +115,7 @@
             retryButton.ForeColor = Color.Crimson;
             retryButton.Location = new Point(12, 613);
             retryButton.Name = "retryButton";
-            retryButton.Size = new Size(385, 77);
+            retryButton.Size = new Size(469, 77);
             retryButton.TabIndex = 4;
             retryButton.Text = "Retry find";
             retryButton.UseVisualStyleBackColor = false;
@@ -201,7 +202,7 @@
             startBotButton.ForeColor = Color.Crimson;
             startBotButton.Location = new Point(3, 3);
             startBotButton.Name = "startBotButton";
-            startBotButton.Size = new Size(294, 77);
+            startBotButton.Size = new Size(378, 77);
             startBotButton.TabIndex = 11;
             startBotButton.Text = "Start Bot";
             startBotButton.UseVisualStyleBackColor = false;
@@ -215,9 +216,9 @@
             registerPositionButton.FlatStyle = FlatStyle.Flat;
             registerPositionButton.Font = new Font("Segoe UI Semibold", 12.25F, FontStyle.Bold);
             registerPositionButton.ForeColor = Color.Crimson;
-            registerPositionButton.Location = new Point(195, 3);
+            registerPositionButton.Location = new Point(237, 3);
             registerPositionButton.Name = "registerPositionButton";
-            registerPositionButton.Size = new Size(187, 77);
+            registerPositionButton.Size = new Size(229, 77);
             registerPositionButton.TabIndex = 12;
             registerPositionButton.Text = "Register position";
             registerPositionButton.UseVisualStyleBackColor = false;
@@ -235,7 +236,7 @@
             botStartLayoutPanel.Name = "botStartLayoutPanel";
             botStartLayoutPanel.RowCount = 1;
             botStartLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            botStartLayoutPanel.Size = new Size(385, 83);
+            botStartLayoutPanel.Size = new Size(469, 83);
             botStartLayoutPanel.TabIndex = 13;
             // 
             // tableLayoutPanel3
@@ -244,7 +245,7 @@
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel3.Controls.Add(selectAxisCheckbox, 0, 0);
             tableLayoutPanel3.Controls.Add(selectAxisPicturebox, 0, 1);
-            tableLayoutPanel3.Location = new Point(303, 3);
+            tableLayoutPanel3.Location = new Point(387, 3);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 2;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 29F));
@@ -293,7 +294,7 @@
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel2.Size = new Size(385, 83);
+            tableLayoutPanel2.Size = new Size(469, 83);
             tableLayoutPanel2.TabIndex = 15;
             // 
             // registerPos2Label
@@ -301,9 +302,9 @@
             registerPos2Label.AutoSize = true;
             registerPos2Label.Dock = DockStyle.Fill;
             registerPos2Label.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold);
-            registerPos2Label.Location = new Point(195, 0);
+            registerPos2Label.Location = new Point(237, 0);
             registerPos2Label.Name = "registerPos2Label";
-            registerPos2Label.Size = new Size(187, 83);
+            registerPos2Label.Size = new Size(229, 83);
             registerPos2Label.TabIndex = 2;
             registerPos2Label.Text = "Position y:";
             registerPos2Label.TextAlign = ContentAlignment.MiddleCenter;
@@ -316,7 +317,7 @@
             registerPos1Label.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold);
             registerPos1Label.Location = new Point(3, 0);
             registerPos1Label.Name = "registerPos1Label";
-            registerPos1Label.Size = new Size(186, 83);
+            registerPos1Label.Size = new Size(228, 83);
             registerPos1Label.TabIndex = 1;
             registerPos1Label.Text = "Position x:";
             registerPos1Label.TextAlign = ContentAlignment.MiddleCenter;
@@ -331,7 +332,7 @@
             clearLastRegisterPositionButton.ForeColor = Color.Crimson;
             clearLastRegisterPositionButton.Location = new Point(3, 3);
             clearLastRegisterPositionButton.Name = "clearLastRegisterPositionButton";
-            clearLastRegisterPositionButton.Size = new Size(186, 77);
+            clearLastRegisterPositionButton.Size = new Size(228, 77);
             clearLastRegisterPositionButton.TabIndex = 16;
             clearLastRegisterPositionButton.Text = "Clear position";
             clearLastRegisterPositionButton.UseVisualStyleBackColor = false;
@@ -351,7 +352,7 @@
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Size = new Size(385, 83);
+            tableLayoutPanel1.Size = new Size(469, 83);
             tableLayoutPanel1.TabIndex = 17;
             // 
             // stopButton
@@ -363,7 +364,7 @@
             stopButton.ForeColor = Color.Crimson;
             stopButton.Location = new Point(12, 525);
             stopButton.Name = "stopButton";
-            stopButton.Size = new Size(382, 82);
+            stopButton.Size = new Size(466, 82);
             stopButton.TabIndex = 19;
             stopButton.Text = "Stop\r\n(Ctrl + F8)";
             stopButton.UseVisualStyleBackColor = false;
@@ -380,7 +381,7 @@
             errorTextBox.Multiline = true;
             errorTextBox.Name = "errorTextBox";
             errorTextBox.ScrollBars = ScrollBars.Vertical;
-            errorTextBox.Size = new Size(382, 78);
+            errorTextBox.Size = new Size(466, 78);
             errorTextBox.TabIndex = 19;
             errorTextBox.Visible = false;
             // 
@@ -444,7 +445,7 @@
             selectPokemonButton.ForeColor = Color.Crimson;
             selectPokemonButton.Location = new Point(207, 59);
             selectPokemonButton.Name = "selectPokemonButton";
-            selectPokemonButton.Size = new Size(190, 112);
+            selectPokemonButton.Size = new Size(274, 112);
             selectPokemonButton.TabIndex = 21;
             selectPokemonButton.Text = "Search mode";
             selectPokemonButton.UseVisualStyleBackColor = false;
@@ -453,10 +454,10 @@
             // menuStrip1
             // 
             menuStrip1.BackColor = Color.LavenderBlush;
-            menuStrip1.Items.AddRange(new ToolStripItem[] { test1ToolStripMenuItem, discordOptionToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { test1ToolStripMenuItem, discordOptionToolStripMenuItem, dialogueSettingsToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(409, 24);
+            menuStrip1.Size = new Size(493, 24);
             menuStrip1.TabIndex = 22;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -470,13 +471,22 @@
             test1ToolStripMenuItem.Text = "View Stats";
             test1ToolStripMenuItem.Click += test1ToolStripMenuItem_Click;
             // 
+            // discordOptionToolStripMenuItem
+            // 
+            discordOptionToolStripMenuItem.BackColor = Color.Lavender;
+            discordOptionToolStripMenuItem.ForeColor = Color.MediumPurple;
+            discordOptionToolStripMenuItem.Name = "discordOptionToolStripMenuItem";
+            discordOptionToolStripMenuItem.Size = new Size(104, 20);
+            discordOptionToolStripMenuItem.Text = "Discord Options";
+            discordOptionToolStripMenuItem.Click += discordOptionToolStripMenuItem_Click;
+            // 
             // timeSinceStartLabel
             // 
             timeSinceStartLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             timeSinceStartLabel.BackColor = Color.LavenderBlush;
             timeSinceStartLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             timeSinceStartLabel.ForeColor = Color.Red;
-            timeSinceStartLabel.Location = new Point(318, 4);
+            timeSinceStartLabel.Location = new Point(402, 4);
             timeSinceStartLabel.Name = "timeSinceStartLabel";
             timeSinceStartLabel.Size = new Size(81, 15);
             timeSinceStartLabel.TabIndex = 23;
@@ -494,27 +504,26 @@
             label2.BackColor = Color.LavenderBlush;
             label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             label2.ForeColor = Color.Red;
-            label2.Location = new Point(221, 4);
+            label2.Location = new Point(305, 4);
             label2.Name = "label2";
             label2.Size = new Size(88, 15);
             label2.TabIndex = 24;
             label2.Text = "Session lenght:";
             label2.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // discordOptionToolStripMenuItem
+            // dialogueSettingsToolStripMenuItem
             // 
-            discordOptionToolStripMenuItem.BackColor = Color.Lavender;
-            discordOptionToolStripMenuItem.ForeColor = Color.MediumPurple;
-            discordOptionToolStripMenuItem.Name = "discordOptionToolStripMenuItem";
-            discordOptionToolStripMenuItem.Size = new Size(104, 20);
-            discordOptionToolStripMenuItem.Text = "Discord Options";
-            discordOptionToolStripMenuItem.Click += discordOptionToolStripMenuItem_Click;
+            dialogueSettingsToolStripMenuItem.ForeColor = Color.Crimson;
+            dialogueSettingsToolStripMenuItem.Name = "dialogueSettingsToolStripMenuItem";
+            dialogueSettingsToolStripMenuItem.Size = new Size(110, 20);
+            dialogueSettingsToolStripMenuItem.Text = "Dialogue settings";
+            dialogueSettingsToolStripMenuItem.Click += dialogueSettingsToolStripMenuItem_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(409, 702);
+            ClientSize = new Size(493, 702);
             Controls.Add(label2);
             Controls.Add(timeSinceStartLabel);
             Controls.Add(stopButton);
@@ -583,5 +592,6 @@
         private System.Windows.Forms.Timer timeSinceStartedTimer;
         private Label label2;
         private ToolStripMenuItem discordOptionToolStripMenuItem;
+        private ToolStripMenuItem dialogueSettingsToolStripMenuItem;
     }
 }
