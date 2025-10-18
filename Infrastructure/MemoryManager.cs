@@ -23,7 +23,7 @@ namespace Infrastructure
             public static readonly MultiLevelPtr<int> ShinyForm = new(0x01515A48, 0x20, 0x350, 0xB8, 0x0, 0x8C0);
             public static readonly MultiLevelPtr<int> EventForm = new(0x01515A48, 0x20, 0x350, 0xB8, 0x0, 0x8C4);
             public static readonly MultiLevelPtr<int> SelectedMenu = new(0x0150E6C8, 0xB8, 0x0, 0xF0, 0xD0, 0X10, 0xDF8);
-            public static readonly MultiLevelPtr<float> TextSpeed = new(0x01625220, 0x108, 0x40);
+            public static readonly MultiLevelPtr<float> TextSpeed = new(0x01503DB8, 0x40, 0xB8, 0x20, 0xD0, 0x108, 0x40);
         }
 
         public float PlayerXPos { get => _get<float>(); }
