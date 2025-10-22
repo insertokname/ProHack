@@ -1,19 +1,9 @@
-﻿using Discord.Commands;
+﻿using Discord;
+using Discord.Commands;
 using Discord.WebSocket;
-using Discord;
-using Infrastructure.Discord;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
-using Infrastructure.Discord.Exceptions;
-using Newtonsoft.Json.Linq;
-using System.Diagnostics;
-using Infrastructure.Discord.Modules;
 using Infrastructure.Discord.Announcments;
+using Infrastructure.Discord.Exceptions;
+using Infrastructure.Discord.Modules;
 
 namespace Infrastructure.Discord
 {

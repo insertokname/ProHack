@@ -1,20 +1,11 @@
 ﻿using Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Presentation
 {
-    public partial class DialogueSettings : Form
+    public partial class DialogueSettingsForm : Form
     {
         private readonly MemoryManager _memoryManager;
-        public DialogueSettings(MemoryManager memoryManager)
+        public DialogueSettingsForm(MemoryManager memoryManager)
         {
             _memoryManager = memoryManager;
             InitializeComponent();

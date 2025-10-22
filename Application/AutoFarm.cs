@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Diagnostics.Tracing;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Domain;
+﻿using Domain;
 using Domain.Models;
 using Infrastructure;
 using Infrastructure.Database;
 using Infrastructure.Discord;
 using Infrastructure.Discord.Announcments;
+using System.Diagnostics;
 
 namespace Application
 {
@@ -36,7 +27,7 @@ namespace Application
         private readonly List<ushort> pressedKeys = [];
 
         private float _curPos;
-        public int _curDirection = 0;
+        private int _curDirection = 0;
         private BotState _curBotState = BotState.Walking;
 
         private DateTime? _encounterTime = null;

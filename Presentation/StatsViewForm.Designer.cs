@@ -1,6 +1,6 @@
 ﻿namespace Presentation
 {
-    partial class StatsView
+    partial class StatsViewForm
     {
         /// <summary>
         /// Required designer variable.

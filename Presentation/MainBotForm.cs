@@ -4,23 +4,21 @@ using Infrastructure;
 using Infrastructure.Discord;
 using Microsoft.Extensions.DependencyInjection;
 using Presentation.Properties;
-using SimpleMem;
-using System.Diagnostics;
 
 namespace Presentation
 {
-    public partial class Form1 : Form
+    public partial class MainBotForm : Form
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly MemoryManager _memoryManager;
         private AutoFarm? _autoFarm = null;
         private readonly List<PointF> _registeredPositions = [];
         private List<PokemonTargetModel> _pokemonTargetModels = Constants.PokemonTargetModel.DefaultTarget();
-        private StatsView? statsView = null;
+        private StatsViewForm? statsView = null;
         private DateTime _timeStarted = DateTime.Now;
 
 
-        public Form1(
+        public MainBotForm(
             IServiceProvider serviceProvider,
             MemoryManager memoryManager)
         {
@@ -300,17 +298,16 @@ namespace Presentation
 
         private void button1_Click_2(object sender, EventArgs e)
         {
-            PokemonSelect pokemonSelect = new();
+            PokemonSelectForm pokemonSelect = _serviceProvider.GetRequiredService<PokemonSelectForm>();
             pokemonSelect.PokemonTargetModels = _pokemonTargetModels;
             pokemonSelect.ShowDialog();
-            //_pokemonTargetModels = pokemonSelect.PokemonTargetModels;
         }
 
         private void test1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (statsView == null)
             {
-                statsView = new StatsView();
+                statsView = new StatsViewForm();
                 statsView.Show();
                 statsView.FormClosed += (s, e) => { statsView = null; };
             }
@@ -323,13 +320,13 @@ namespace Presentation
 
         private void discordOptionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DiscordBotOptions botOptions = _serviceProvider.GetRequiredService<DiscordBotOptions>();
+            DiscordBotOptionsForm botOptions = _serviceProvider.GetRequiredService<DiscordBotOptionsForm>();
             botOptions.ShowDialog();
         }
 
         private void dialogueSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogueSettings dialogueSettings = _serviceProvider.GetRequiredService<DialogueSettings>();
+            DialogueSettingsForm dialogueSettings = _serviceProvider.GetRequiredService<DialogueSettingsForm>();
             dialogueSettings.ShowDialog();
         }
     }

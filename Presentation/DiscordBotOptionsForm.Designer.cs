@@ -1,6 +1,6 @@
 ﻿namespace Presentation
 {
-    partial class DiscordBotOptions
+    partial class DiscordBotOptionsForm
     {
         /// <summary>
         /// Required designer variable.

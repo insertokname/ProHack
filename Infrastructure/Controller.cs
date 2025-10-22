@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.InteropServices;
+﻿using Application;
 using System.Diagnostics;
-using Application;
+using System.Runtime.InteropServices;
 
 namespace Infrastructure
 {

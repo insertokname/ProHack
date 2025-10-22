@@ -1,6 +1,6 @@
 ﻿namespace Presentation
 {
-    partial class Form1
+    partial class MainBotForm
     {
         /// <summary>
         ///  Required designer variable.

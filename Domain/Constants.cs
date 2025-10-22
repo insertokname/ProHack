@@ -1,6 +1,4 @@
-﻿
-using System.Data.Common;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace Application
 {

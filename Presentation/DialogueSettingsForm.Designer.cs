@@ -1,6 +1,6 @@
 ﻿namespace Presentation
 {
-    partial class DialogueSettings
+    partial class DialogueSettingsForm
     {
         /// <summary>
         /// Required designer variable.

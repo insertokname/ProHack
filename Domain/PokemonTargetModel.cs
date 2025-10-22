@@ -3,7 +3,7 @@
     public class PokemonTargetModel
     {
         public required int? Id { get; set; } // null = catch anything
-        public required bool MustBeShiny{ get; set; }
+        public required bool MustBeShiny { get; set; }
         public required bool MustBeEvent { get; set; }
 
         public bool MatchesTarget(int otherId, bool isEvent, bool isShiny)
