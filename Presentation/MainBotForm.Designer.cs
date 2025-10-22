@@ -487,6 +487,7 @@
             dialogueSettingsToolStripMenuItem.Name = "dialogueSettingsToolStripMenuItem";
             dialogueSettingsToolStripMenuItem.Size = new Size(110, 20);
             dialogueSettingsToolStripMenuItem.Text = "Dialogue settings";
+            dialogueSettingsToolStripMenuItem.Visible = false;
             dialogueSettingsToolStripMenuItem.Click += dialogueSettingsToolStripMenuItem_Click;
             // 
             // timeSinceStartLabel
@@ -520,7 +521,7 @@
             label2.Text = "Session lenght:";
             label2.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // Form1
+            // MainBotForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -539,7 +540,7 @@
             Controls.Add(menuStrip1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MainMenuStrip = menuStrip1;
-            Name = "Form1";
+            Name = "MainBotForm";
             Text = "ProHack";
             Load += Form1_Load;
             botStartLayoutPanel.ResumeLayout(false);
