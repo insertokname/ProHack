@@ -28,10 +28,6 @@ namespace Presentation
 
         private void PokemonSelect_Load(object sender, EventArgs e)
         {
-            foreach (var model in PokemonTargetModels)
-            {
-                AddModelToTargetList(model);
-            }
             InitializeTargetList();
             IdNumeric.Maximum = _pokedexManager.MaxIndex ?? 10000;
         }
