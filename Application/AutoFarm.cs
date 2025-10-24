@@ -21,7 +21,7 @@ namespace Application
         private readonly float _endPos;
         private readonly bool _isYAxis;
         private readonly List<PokemonTargetModel> _pokemonTargetModels;
-        private readonly Thread _thread;
+        private Thread? _thread;
         private readonly SynchronizationContext? _syncContext;
         private readonly Random random = new();
         private readonly List<ushort> pressedKeys = [];
@@ -62,8 +62,7 @@ namespace Application
             _isYAxis = IsYAxis;
             _pokemonTargetModels = pokemonTargetModel;
             _syncContext = synchronizationContext ?? SynchronizationContext.Current;
-            _thread = new(ThreadWork);
-            _thread.Start();
+            _thread = null;
         }
 
         public bool Start()
@@ -77,6 +76,11 @@ namespace Application
             _curPos = pos;
             IsRunning = true;
             PauseReason = null;
+            _thread = new(ThreadWork)
+            {
+                IsBackground = true
+            };
+            _thread.Start();
             return true;
         }
 
@@ -94,10 +98,21 @@ namespace Application
 
         public void StopThread()
         {
-            if (IsRunning)
+            IsRunning = false;
+            if (_thread != null)
             {
-                IsRunning = false;
-                _thread.Join();
+                try
+                {
+                    if (_thread.IsAlive)
+                    {
+                        _thread.Join();
+                    }
+                }
+                catch (ThreadStateException)
+                {
+                    // Thread may not have been started; ignore
+                }
+                _thread = null;
             }
             if (_memoryManager.Process != null)
             {
