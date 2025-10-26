@@ -8,7 +8,7 @@ Windows-only desktop app that automates encounter hunting, detects special forms
 
 <div align="center">
 	<a href="https://www.youtube.com/watch?v=RgbgajQRx8A" target="_blank">
-		<img alt="Watch the tutorial and the demo" src="https://img.youtube.com/vi/RgbgajQRx8A/maxresdefault.jpg" width="720" />
+		<img alt="Watch the tutorial and the demo" src="thumbnail-play.png" width="720" />
 	</a>
 </div>
 
