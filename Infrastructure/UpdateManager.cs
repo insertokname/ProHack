@@ -1,0 +1,138 @@
+﻿using System.Net.Http.Headers;
+using System.Text.Json;
+using System.Diagnostics;
+
+namespace Infrastructure
+{
+    public class UpdateManager : IDisposable
+    {
+        private readonly HttpClient client;
+
+        private const string _owner = "insertokname";
+        private const string _repo = "ProHack";
+        private const string _apiUrl = $"https://api.github.com/repos/{_owner}/{_repo}/releases/latest";
+
+        private readonly Task<string> _response;
+        private JsonDocument? _responseJson = null;
+
+        public UpdateManager(IHttpClientFactory httpClientFactory)
+        {
+            client = httpClientFactory.CreateClient();
+            client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("ProHack", VersionManager.GetVersionCode()));
+            _response = client.GetStringAsync(_apiUrl);
+        }
+        public void Dispose()
+        {
+            _responseJson?.Dispose();
+        }
+
+
+        public static async Task UpdateAndReboot(string curVersionPath, string newVersionPath)
+        {
+            var proc = Process.GetCurrentProcess();
+
+            Debug.WriteLine($"proc: {proc.Id}");
+
+            var processInfo = new ProcessStartInfo
+            {
+                LoadUserProfile = true,
+                FileName = "powershell.exe",
+                Arguments = $"-Command $ErrorActionPreference = 'Stop'; Stop-Process -Id {proc.Id} -Force; while (Get-Process -Id {proc.Id} -ErrorAction SilentlyContinue) {{ Start-Sleep -Seconds 1 }}; Remove-Item '{curVersionPath}'; Move-Item '{newVersionPath}' '{curVersionPath}'; Start-Process '{curVersionPath}'",
+                RedirectStandardOutput = false,
+                UseShellExecute = true,
+                CreateNoWindow = true,
+                WindowStyle = ProcessWindowStyle.Hidden
+            };
+
+            var _ = Process.Start(processInfo);
+            // The process will get killed by the update script.
+            await Task.Delay(5000);
+        }
+
+        public AvailableUpdateState CheckAvailableUpdate(UpdateInfo? updateInfo)
+        {
+            if (updateInfo == null)
+            {
+                return AvailableUpdateState.FetchError;
+            }
+            if (VersionManager.IsSmallerThan(VersionManager.GetVersionCode(), updateInfo.VersionCode))
+            {
+                return AvailableUpdateState.UpdateAvailable;
+            }
+            return AvailableUpdateState.LatestVersion;
+        }
+
+        public async Task<UpdateInfo?> GetDownloadInfo()
+        {
+            try
+            {
+                var root = (await GetJsonResponse()).RootElement;
+
+                var assets = root.GetProperty("assets");
+                if (assets.GetArrayLength() == 0)
+                {
+                    return null;
+                }
+
+                return new()
+                {
+                    DownloadUrl = assets[0].GetProperty("browser_download_url").GetString()!,
+                    VersionCode = root.GetProperty("tag_name").GetString()!,
+                    Body = root.GetProperty("body").GetString()!,
+                };
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public async Task<string?> DownloadNewVersion(UpdateInfo updateInfo)
+        {
+            var tempDir = Path.Combine(Environment.CurrentDirectory, "Temp");
+            if (!Directory.Exists(tempDir))
+            {
+                Directory.CreateDirectory(tempDir);
+            }
+
+            var targetPath = Path.Combine(tempDir, $"PROHack-{updateInfo.VersionCode}.exe");
+            using var response = await client.GetAsync(updateInfo.DownloadUrl, HttpCompletionOption.ResponseHeadersRead);
+            if (!response.IsSuccessStatusCode)
+                return null;
+
+            await using var source = await response.Content.ReadAsStreamAsync();
+
+            if (File.Exists(targetPath))
+            {
+                File.Delete(targetPath);
+            }
+
+            await using var destination = File.Create(targetPath);
+            await source.CopyToAsync(destination);
+
+            return targetPath;
+        }
+
+        private async Task<JsonDocument> GetJsonResponse()
+        {
+            _responseJson ??= JsonDocument.Parse(await _response);
+
+            return _responseJson;
+        }
+
+
+        public class UpdateInfo
+        {
+            public required string VersionCode { get; set; }
+            public required string DownloadUrl { get; set; }
+            public required string Body { get; set; }
+        }
+
+        public enum AvailableUpdateState
+        {
+            UpdateAvailable,
+            LatestVersion,
+            FetchError,
+        }
+    }
+}

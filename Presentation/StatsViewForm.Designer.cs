@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             tableLayoutPanel5 = new TableLayoutPanel();
             timePerSpecialLabel = new Label();
             encountersPerSpecialLabel = new Label();
@@ -39,14 +40,16 @@
             label4 = new Label();
             isBattlingLabel = new Label();
             lastSpecialLabel = new Label();
+            selectPokemonButton = new Button();
+            timer1 = new System.Windows.Forms.Timer(components);
             tableLayoutPanel5.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel5
             // 
             tableLayoutPanel5.ColumnCount = 2;
-            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 64.5614F));
-            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35.4385948F));
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 57.046978F));
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 42.953022F));
             tableLayoutPanel5.Controls.Add(timePerSpecialLabel, 1, 4);
             tableLayoutPanel5.Controls.Add(encountersPerSpecialLabel, 0, 4);
             tableLayoutPanel5.Controls.Add(label1, 0, 0);
@@ -57,7 +60,6 @@
             tableLayoutPanel5.Controls.Add(label4, 0, 2);
             tableLayoutPanel5.Controls.Add(isBattlingLabel, 0, 3);
             tableLayoutPanel5.Controls.Add(lastSpecialLabel, 1, 3);
-            tableLayoutPanel5.Dock = DockStyle.Fill;
             tableLayoutPanel5.Location = new Point(0, 0);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 5;
@@ -66,7 +68,7 @@
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            tableLayoutPanel5.Size = new Size(285, 229);
+            tableLayoutPanel5.Size = new Size(298, 229);
             tableLayoutPanel5.TabIndex = 21;
             // 
             // timePerSpecialLabel
@@ -75,9 +77,9 @@
             timePerSpecialLabel.Dock = DockStyle.Fill;
             timePerSpecialLabel.Font = new Font("Segoe UI", 12F);
             timePerSpecialLabel.ForeColor = SystemColors.ControlText;
-            timePerSpecialLabel.Location = new Point(187, 180);
+            timePerSpecialLabel.Location = new Point(173, 180);
             timePerSpecialLabel.Name = "timePerSpecialLabel";
-            timePerSpecialLabel.Size = new Size(95, 49);
+            timePerSpecialLabel.Size = new Size(122, 49);
             timePerSpecialLabel.TabIndex = 12;
             timePerSpecialLabel.Text = "0";
             timePerSpecialLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -90,7 +92,7 @@
             encountersPerSpecialLabel.ForeColor = SystemColors.ControlText;
             encountersPerSpecialLabel.Location = new Point(3, 180);
             encountersPerSpecialLabel.Name = "encountersPerSpecialLabel";
-            encountersPerSpecialLabel.Size = new Size(178, 49);
+            encountersPerSpecialLabel.Size = new Size(164, 49);
             encountersPerSpecialLabel.TabIndex = 11;
             encountersPerSpecialLabel.Text = "Avarage encounters per special:";
             encountersPerSpecialLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -102,7 +104,7 @@
             label1.Font = new Font("Segoe UI", 12F);
             label1.Location = new Point(3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(178, 45);
+            label1.Size = new Size(164, 45);
             label1.TabIndex = 0;
             label1.Text = "Total encounters:";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -112,9 +114,9 @@
             totalEncountersLabel.AutoSize = true;
             totalEncountersLabel.Dock = DockStyle.Fill;
             totalEncountersLabel.Font = new Font("Segoe UI", 12F);
-            totalEncountersLabel.Location = new Point(187, 0);
+            totalEncountersLabel.Location = new Point(173, 0);
             totalEncountersLabel.Name = "totalEncountersLabel";
-            totalEncountersLabel.Size = new Size(95, 45);
+            totalEncountersLabel.Size = new Size(122, 45);
             totalEncountersLabel.TabIndex = 3;
             totalEncountersLabel.Text = "0";
             totalEncountersLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -126,7 +128,7 @@
             lablel.Font = new Font("Segoe UI", 12F);
             lablel.Location = new Point(3, 45);
             lablel.Name = "lablel";
-            lablel.Size = new Size(178, 45);
+            lablel.Size = new Size(164, 45);
             lablel.TabIndex = 5;
             lablel.Text = "Encounters in last hour:";
             lablel.TextAlign = ContentAlignment.MiddleCenter;
@@ -136,9 +138,9 @@
             encountersInLastHourLabel.AutoSize = true;
             encountersInLastHourLabel.Dock = DockStyle.Fill;
             encountersInLastHourLabel.Font = new Font("Segoe UI", 12F);
-            encountersInLastHourLabel.Location = new Point(187, 45);
+            encountersInLastHourLabel.Location = new Point(173, 45);
             encountersInLastHourLabel.Name = "encountersInLastHourLabel";
-            encountersInLastHourLabel.Size = new Size(95, 45);
+            encountersInLastHourLabel.Size = new Size(122, 45);
             encountersInLastHourLabel.TabIndex = 6;
             encountersInLastHourLabel.Text = "0";
             encountersInLastHourLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -148,9 +150,9 @@
             encountersSinceLastSpecial.AutoSize = true;
             encountersSinceLastSpecial.Dock = DockStyle.Fill;
             encountersSinceLastSpecial.Font = new Font("Segoe UI", 12F);
-            encountersSinceLastSpecial.Location = new Point(187, 90);
+            encountersSinceLastSpecial.Location = new Point(173, 90);
             encountersSinceLastSpecial.Name = "encountersSinceLastSpecial";
-            encountersSinceLastSpecial.Size = new Size(95, 45);
+            encountersSinceLastSpecial.Size = new Size(122, 45);
             encountersSinceLastSpecial.TabIndex = 8;
             encountersSinceLastSpecial.Text = "0";
             encountersSinceLastSpecial.TextAlign = ContentAlignment.MiddleCenter;
@@ -162,7 +164,7 @@
             label4.Font = new Font("Segoe UI", 12F);
             label4.Location = new Point(3, 90);
             label4.Name = "label4";
-            label4.Size = new Size(178, 45);
+            label4.Size = new Size(164, 45);
             label4.TabIndex = 7;
             label4.Text = "Encounters since last special:";
             label4.TextAlign = ContentAlignment.MiddleCenter;
@@ -175,7 +177,7 @@
             isBattlingLabel.ForeColor = SystemColors.ControlText;
             isBattlingLabel.Location = new Point(3, 135);
             isBattlingLabel.Name = "isBattlingLabel";
-            isBattlingLabel.Size = new Size(178, 45);
+            isBattlingLabel.Size = new Size(164, 45);
             isBattlingLabel.TabIndex = 9;
             isBattlingLabel.Text = "last special seen:";
             isBattlingLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -186,22 +188,44 @@
             lastSpecialLabel.Dock = DockStyle.Fill;
             lastSpecialLabel.Font = new Font("Segoe UI", 12F);
             lastSpecialLabel.ForeColor = SystemColors.ControlText;
-            lastSpecialLabel.Location = new Point(187, 135);
+            lastSpecialLabel.Location = new Point(173, 135);
             lastSpecialLabel.Name = "lastSpecialLabel";
-            lastSpecialLabel.Size = new Size(95, 45);
+            lastSpecialLabel.Size = new Size(122, 45);
             lastSpecialLabel.TabIndex = 10;
             lastSpecialLabel.Text = "0";
             lastSpecialLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // StatsView
+            // selectPokemonButton
+            // 
+            selectPokemonButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            selectPokemonButton.BackColor = Color.LavenderBlush;
+            selectPokemonButton.FlatStyle = FlatStyle.Flat;
+            selectPokemonButton.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            selectPokemonButton.ForeColor = Color.Crimson;
+            selectPokemonButton.Location = new Point(3, 235);
+            selectPokemonButton.Name = "selectPokemonButton";
+            selectPokemonButton.Size = new Size(295, 44);
+            selectPokemonButton.TabIndex = 24;
+            selectPokemonButton.Text = "Reset stats";
+            selectPokemonButton.UseVisualStyleBackColor = false;
+            selectPokemonButton.Click += selectPokemonButton_Click;
+            // 
+            // timer1
+            // 
+            timer1.Enabled = true;
+            timer1.Interval = 5000;
+            timer1.Tick += timer1_Tick;
+            // 
+            // StatsViewForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(285, 229);
+            ClientSize = new Size(301, 282);
+            Controls.Add(selectPokemonButton);
             Controls.Add(tableLayoutPanel5);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Name = "StatsView";
-            Text = "StatsView";
+            Name = "StatsViewForm";
+            Text = "Stats";
             Load += StatsView_Load;
             tableLayoutPanel5.ResumeLayout(false);
             tableLayoutPanel5.PerformLayout();
@@ -221,5 +245,7 @@
         private Label label4;
         private Label isBattlingLabel;
         private Label lastSpecialLabel;
+        private Button selectPokemonButton;
+        private System.Windows.Forms.Timer timer1;
     }
 }

@@ -249,7 +249,7 @@
             saveTargetsToolStripMenuItem.Text = "Save targets";
             saveTargetsToolStripMenuItem.Click += sSaveTargetsToolStripMenuItem_Click;
             // 
-            // PokemonSelect
+            // PokemonSelectForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -270,8 +270,8 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             KeyPreview = true;
             MinimumSize = new Size(608, 521);
-            Name = "PokemonSelect";
-            Text = "PokemonSelect";
+            Name = "PokemonSelectForm";
+            Text = "Pokemon Select";
             Load += PokemonSelect_Load;
             KeyDown += PokemonSelect_KeyDown;
             ((System.ComponentModel.ISupportInitialize)IdNumeric).EndInit();

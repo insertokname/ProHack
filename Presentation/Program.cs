@@ -37,6 +37,10 @@ namespace Presentation
                     services.AddSingleton<DiscordBot>();
                     services.AddSingleton<MemoryManager>();
                     services.AddSingleton<PokedexManager>();
+
+                    //Services
+                    services.AddHttpClient();
+                    services.AddTransient<UpdateManager>();
                 });
         }
 

@@ -59,11 +59,17 @@
             selectPokemonButton = new Button();
             menuStrip1 = new MenuStrip();
             test1ToolStripMenuItem = new ToolStripMenuItem();
-            discordOptionToolStripMenuItem = new ToolStripMenuItem();
             dialogueSettingsToolStripMenuItem = new ToolStripMenuItem();
+            discordToolStripMenuItem = new ToolStripMenuItem();
+            dialogueSettingsToolStripMenuItem1 = new ToolStripMenuItem();
+            updateSettingsToolStripMenuItem = new ToolStripMenuItem();
+            donateToolStripMenuItem = new ToolStripMenuItem();
             timeSinceStartLabel = new Label();
             timeSinceStartedTimer = new System.Windows.Forms.Timer(components);
             label2 = new Label();
+            pictureBox1 = new PictureBox();
+            label5 = new Label();
+            dontShowBuyMeACoffeeButton = new Button();
             botStartLayoutPanel.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)selectAxisPicturebox).BeginInit();
@@ -71,6 +77,7 @@
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
             menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -108,7 +115,7 @@
             // 
             // retryButton
             // 
-            retryButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            retryButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             retryButton.BackColor = Color.LavenderBlush;
             retryButton.FlatStyle = FlatStyle.Flat;
             retryButton.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -226,7 +233,7 @@
             // 
             // botStartLayoutPanel
             // 
-            botStartLayoutPanel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            botStartLayoutPanel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             botStartLayoutPanel.ColumnCount = 2;
             botStartLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             botStartLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 85F));
@@ -241,6 +248,7 @@
             // 
             // tableLayoutPanel3
             // 
+            tableLayoutPanel3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel3.ColumnCount = 1;
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel3.Controls.Add(selectAxisCheckbox, 0, 0);
@@ -283,7 +291,7 @@
             // 
             // tableLayoutPanel2
             // 
-            tableLayoutPanel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel2.ColumnCount = 2;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
@@ -341,7 +349,7 @@
             // 
             // tableLayoutPanel1
             // 
-            tableLayoutPanel1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
@@ -357,7 +365,7 @@
             // 
             // stopButton
             // 
-            stopButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            stopButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             stopButton.BackColor = Color.LavenderBlush;
             stopButton.FlatStyle = FlatStyle.Flat;
             stopButton.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -373,7 +381,7 @@
             // 
             // errorTextBox
             // 
-            errorTextBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            errorTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             errorTextBox.BackColor = Color.LavenderBlush;
             errorTextBox.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
             errorTextBox.ForeColor = Color.Crimson;
@@ -455,7 +463,7 @@
             // menuStrip1
             // 
             menuStrip1.BackColor = Color.LavenderBlush;
-            menuStrip1.Items.AddRange(new ToolStripItem[] { test1ToolStripMenuItem, discordOptionToolStripMenuItem, dialogueSettingsToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { test1ToolStripMenuItem, dialogueSettingsToolStripMenuItem, donateToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(493, 24);
@@ -465,30 +473,60 @@
             // test1ToolStripMenuItem
             // 
             test1ToolStripMenuItem.BackColor = Color.LavenderBlush;
-            test1ToolStripMenuItem.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            test1ToolStripMenuItem.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             test1ToolStripMenuItem.ForeColor = Color.Crimson;
             test1ToolStripMenuItem.Name = "test1ToolStripMenuItem";
-            test1ToolStripMenuItem.Size = new Size(74, 20);
+            test1ToolStripMenuItem.Size = new Size(78, 20);
             test1ToolStripMenuItem.Text = "View Stats";
             test1ToolStripMenuItem.Click += test1ToolStripMenuItem_Click;
             // 
-            // discordOptionToolStripMenuItem
-            // 
-            discordOptionToolStripMenuItem.BackColor = Color.Lavender;
-            discordOptionToolStripMenuItem.ForeColor = Color.MediumPurple;
-            discordOptionToolStripMenuItem.Name = "discordOptionToolStripMenuItem";
-            discordOptionToolStripMenuItem.Size = new Size(104, 20);
-            discordOptionToolStripMenuItem.Text = "Discord Options";
-            discordOptionToolStripMenuItem.Click += discordOptionToolStripMenuItem_Click;
-            // 
             // dialogueSettingsToolStripMenuItem
             // 
+            dialogueSettingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { discordToolStripMenuItem, dialogueSettingsToolStripMenuItem1, updateSettingsToolStripMenuItem });
+            dialogueSettingsToolStripMenuItem.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dialogueSettingsToolStripMenuItem.ForeColor = Color.Crimson;
             dialogueSettingsToolStripMenuItem.Name = "dialogueSettingsToolStripMenuItem";
-            dialogueSettingsToolStripMenuItem.Size = new Size(110, 20);
-            dialogueSettingsToolStripMenuItem.Text = "Dialogue settings";
-            dialogueSettingsToolStripMenuItem.Visible = false;
+            dialogueSettingsToolStripMenuItem.Size = new Size(65, 20);
+            dialogueSettingsToolStripMenuItem.Text = "Settings";
             dialogueSettingsToolStripMenuItem.Click += dialogueSettingsToolStripMenuItem_Click;
+            // 
+            // discordToolStripMenuItem
+            // 
+            discordToolStripMenuItem.BackColor = Color.Lavender;
+            discordToolStripMenuItem.ForeColor = Color.MediumPurple;
+            discordToolStripMenuItem.Name = "discordToolStripMenuItem";
+            discordToolStripMenuItem.Size = new Size(170, 22);
+            discordToolStripMenuItem.Text = "Discord Settings";
+            discordToolStripMenuItem.Click += discordToolStripMenuItem_Click;
+            // 
+            // dialogueSettingsToolStripMenuItem1
+            // 
+            dialogueSettingsToolStripMenuItem1.BackColor = Color.LavenderBlush;
+            dialogueSettingsToolStripMenuItem1.ForeColor = Color.Crimson;
+            dialogueSettingsToolStripMenuItem1.Name = "dialogueSettingsToolStripMenuItem1";
+            dialogueSettingsToolStripMenuItem1.Size = new Size(170, 22);
+            dialogueSettingsToolStripMenuItem1.Text = "Dialogue settings";
+            dialogueSettingsToolStripMenuItem1.Visible = false;
+            dialogueSettingsToolStripMenuItem1.Click += dialogueSettingsToolStripMenuItem1_Click;
+            // 
+            // updateSettingsToolStripMenuItem
+            // 
+            updateSettingsToolStripMenuItem.BackColor = Color.LavenderBlush;
+            updateSettingsToolStripMenuItem.ForeColor = Color.Crimson;
+            updateSettingsToolStripMenuItem.Name = "updateSettingsToolStripMenuItem";
+            updateSettingsToolStripMenuItem.Size = new Size(170, 22);
+            updateSettingsToolStripMenuItem.Text = "Update settings";
+            updateSettingsToolStripMenuItem.Click += updateSettingsToolStripMenuItem_Click;
+            // 
+            // donateToolStripMenuItem
+            // 
+            donateToolStripMenuItem.BackColor = Color.LavenderBlush;
+            donateToolStripMenuItem.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            donateToolStripMenuItem.ForeColor = Color.Crimson;
+            donateToolStripMenuItem.Name = "donateToolStripMenuItem";
+            donateToolStripMenuItem.Size = new Size(85, 20);
+            donateToolStripMenuItem.Text = "Support me";
+            donateToolStripMenuItem.Click += donateToolStripMenuItem_Click;
             // 
             // timeSinceStartLabel
             // 
@@ -521,11 +559,49 @@
             label2.Text = "Session lenght:";
             label2.TextAlign = ContentAlignment.MiddleRight;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.buy_me_a_coffee;
+            pictureBox1.Location = new Point(279, 704);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(162, 42);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 25;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
+            // 
+            // label5
+            // 
+            label5.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            label5.ForeColor = Color.Black;
+            label5.Location = new Point(12, 704);
+            label5.Name = "label5";
+            label5.Size = new Size(273, 42);
+            label5.TabIndex = 26;
+            label5.Text = "If you enjoy using my app or it has helped you out please consider supporting me\r\n";
+            // 
+            // dontShowBuyMeACoffeeButton
+            // 
+            dontShowBuyMeACoffeeButton.FlatAppearance.BorderColor = SystemColors.Control;
+            dontShowBuyMeACoffeeButton.FlatAppearance.BorderSize = 0;
+            dontShowBuyMeACoffeeButton.FlatStyle = FlatStyle.Flat;
+            dontShowBuyMeACoffeeButton.Font = new Font("Segoe UI", 20F);
+            dontShowBuyMeACoffeeButton.Location = new Point(447, 704);
+            dontShowBuyMeACoffeeButton.Name = "dontShowBuyMeACoffeeButton";
+            dontShowBuyMeACoffeeButton.Size = new Size(34, 42);
+            dontShowBuyMeACoffeeButton.TabIndex = 27;
+            dontShowBuyMeACoffeeButton.Text = "X";
+            dontShowBuyMeACoffeeButton.UseVisualStyleBackColor = true;
+            dontShowBuyMeACoffeeButton.Click += button1_Click_3;
+            // 
             // MainBotForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(493, 702);
+            ClientSize = new Size(493, 755);
+            Controls.Add(dontShowBuyMeACoffeeButton);
+            Controls.Add(label5);
+            Controls.Add(pictureBox1);
             Controls.Add(label2);
             Controls.Add(timeSinceStartLabel);
             Controls.Add(stopButton);
@@ -554,6 +630,7 @@
             tableLayoutPanel5.PerformLayout();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -593,7 +670,13 @@
         private Label timeSinceStartLabel;
         private System.Windows.Forms.Timer timeSinceStartedTimer;
         private Label label2;
-        private ToolStripMenuItem discordOptionToolStripMenuItem;
         private ToolStripMenuItem dialogueSettingsToolStripMenuItem;
+        private PictureBox pictureBox1;
+        private Label label5;
+        private Button dontShowBuyMeACoffeeButton;
+        private ToolStripMenuItem dialogueSettingsToolStripMenuItem1;
+        private ToolStripMenuItem discordToolStripMenuItem;
+        private ToolStripMenuItem updateSettingsToolStripMenuItem;
+        private ToolStripMenuItem donateToolStripMenuItem;
     }
 }

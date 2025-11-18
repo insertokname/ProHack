@@ -207,7 +207,7 @@
             button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
-            // DiscordBotOptions
+            // DiscordBotOptionsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -225,8 +225,8 @@
             Controls.Add(checkBox1);
             Controls.Add(label1);
             Controls.Add(textBox1);
-            Name = "DiscordBotOptions";
-            Text = "DiscordBotOptions";
+            Name = "DiscordBotOptionsForm";
+            Text = "Discord Bot Settings";
             Load += DiscordBotOptions_Load;
             ResumeLayout(false);
             PerformLayout();

@@ -71,7 +71,7 @@
             label1.Text = "Current Value: 0";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // DialogueSettings
+            // DialogueSettingsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -81,8 +81,8 @@
             Controls.Add(trackBar1);
             Controls.Add(label2);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Name = "DialogueSettings";
-            Text = "DialogueSettings";
+            Name = "DialogueSettingsForm";
+            Text = "Dialogue Settings";
             Load += DialogueSettings_Load;
             ((System.ComponentModel.ISupportInitialize)trackBar1).EndInit();
             ResumeLayout(false);

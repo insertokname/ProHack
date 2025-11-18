@@ -52,7 +52,8 @@ namespace Presentation
             {
                 EncounterStatsModel lastSpecialEncounter = stats[lastSpecialEncounterIndex];
                 encountersSinceLastSpecial.Text = (stats.Count - lastSpecialEncounterIndex).ToString();
-                lastSpecialLabel.Text = (now - lastSpecialEncounter.EncounterTime).ToString("hh':'mm':'ss");
+                var delay = (now - lastSpecialEncounter.EncounterTime);
+                lastSpecialLabel.Text = formatDelay(delay);
             }
 
 
@@ -69,10 +70,36 @@ namespace Presentation
             }
         }
 
+        private string formatDelay(TimeSpan delay)
+        {
+            return $"{delay.TotalHours:0}h {delay.Minutes:0}m {delay.Seconds:0}s";
+        }
+
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
             Database.OnUpdate -= HandleDatabaseUpdate;
             base.OnFormClosed(e);
+        }
+
+        private void selectPokemonButton_Click(object sender, EventArgs e)
+        {
+            Database.Tables.EncounterStatsModels.Clear();
+            Database.Save();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            var now = DateTime.Now;
+            var stats = Database.Tables.EncounterStatsModels.OrderBy(s => s.EncounterTime).ToList();
+            int lastSpecialEncounterIndex = stats.FindLastIndex(s => s.IsSpecial);
+            if (lastSpecialEncounterIndex == -1)
+            {
+                lastSpecialLabel.Text = "N/A";
+                return;
+            }
+            EncounterStatsModel lastSpecialEncounter = stats[lastSpecialEncounterIndex];
+            var delay = (now - lastSpecialEncounter.EncounterTime);
+            lastSpecialLabel.Text = formatDelay(delay);
         }
     }
 }

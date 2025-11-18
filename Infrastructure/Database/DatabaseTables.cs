@@ -8,5 +8,10 @@ namespace Infrastructure.Database
         public string? DiscordBotToken { get; set; } = null;
         public ulong? AuthorizedUserId { get; set; } = null;
         public ulong? AnnouncementChannelId { get; set; } = null;
+        public bool ShowBuyMeACoffee { get; set; } = true;
+        public bool ShowWarningMessage { get; set; } = true;
+        public string? SkipUpdateVersion { get; set; } = null;
+        public bool CheckUpdates { get; set; } = true;
+        public bool AutomaticallyUpdate { get; set; } = false;
     }
 }

@@ -3,6 +3,7 @@ using Infrastructure.Database;
 using Infrastructure.Discord;
 using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics;
+using static Infrastructure.UpdateManager;
 
 namespace Presentation
 {
@@ -31,6 +32,7 @@ namespace Presentation
 
         private async Task InitializeAsync()
         {
+            label1.Text = "Loading database";
             await Task.Run(() =>
             {
                 try
@@ -42,7 +44,53 @@ namespace Presentation
                     Database.Tables = new DatabaseTables();
                 }
                 Database.Save();
+            });
 
+            if (Database.Tables.ShowWarningMessage)
+            {
+                WarningForm warningForm = new();
+                Hide();
+                warningForm.ShowDialog();
+                if (!warningForm.accepted)
+                {
+                    System.Windows.Forms.Application.Exit();
+                }
+                Show();
+            }
+
+            if (Database.Tables.CheckUpdates)
+            {
+                label1.Text = "Updating...";
+                UpdateManager updateManager = _serviceProvider.GetRequiredService<UpdateManager>();
+                var downloadInfo = await updateManager.GetDownloadInfo();
+                var updateState = updateManager.CheckAvailableUpdate(downloadInfo);
+                if (updateState == AvailableUpdateState.UpdateAvailable && downloadInfo != null && Database.Tables.SkipUpdateVersion != downloadInfo.VersionCode)
+                {
+                    bool wantsToUpdate = Database.Tables.AutomaticallyUpdate;
+                    if (!Database.Tables.AutomaticallyUpdate)
+                    {
+                        progressBar1.MarqueeAnimationSpeed = int.MaxValue;
+                        UpdateRequestForm updateRequestForm = new(downloadInfo, _serviceProvider);
+                        updateRequestForm.ShowDialog();
+                        progressBar1.MarqueeAnimationSpeed = 15;
+                        wantsToUpdate = updateRequestForm.WantsToUpdate;
+                    }
+                    if (wantsToUpdate)
+                    {
+                        var curVersionPath = Environment.ProcessPath;
+                        var newVersionPath = await updateManager.DownloadNewVersion(downloadInfo);
+                        if (newVersionPath != null && curVersionPath != null)
+                        {
+                            await UpdateAndReboot(curVersionPath, newVersionPath);
+                        }
+                    }
+                }
+                updateManager.Dispose();
+            }
+
+            label1.Text = "Loading pokedex";
+            await Task.Run(() =>
+            {
                 try
                 {
                     _serviceProvider.GetRequiredService<PokedexManager>().Load();
@@ -53,6 +101,7 @@ namespace Presentation
                 }
             });
 
+            label1.Text = "Starting discord bot";
             try
             {
                 var bot = _serviceProvider.GetRequiredService<DiscordBot>();

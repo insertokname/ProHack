@@ -1,9 +1,11 @@
 using Application;
 using Domain;
 using Infrastructure;
+using Infrastructure.Database;
 using Infrastructure.Discord;
 using Microsoft.Extensions.DependencyInjection;
 using Presentation.Properties;
+using System.Diagnostics;
 
 namespace Presentation
 {
@@ -33,6 +35,7 @@ namespace Presentation
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadGame();
+            UpdateShowBuyMeACoffeeButton();
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -60,6 +63,21 @@ namespace Presentation
         {
             UpdateGameLoaded(false, e.Exception.Message);
         }
+
+        public void UpdateShowBuyMeACoffeeButton()
+        {
+            dontShowBuyMeACoffeeButton.Visible = Database.Tables.ShowBuyMeACoffee;
+            dontShowBuyMeACoffeeButton.Enabled = Database.Tables.ShowBuyMeACoffee;
+            if (Database.Tables.ShowBuyMeACoffee)
+            {
+                Size = new Size(509, 794);
+            }
+            else
+            {
+                Size = new Size(509, 741);
+            }
+        }
+
 
         public void UpdateGameLoaded(bool isGameOpened, string? errorMessage = null)
         {
@@ -318,16 +336,51 @@ namespace Presentation
             timeSinceStartLabel.Text = (_timeStarted - DateTime.Now).ToString("hh':'mm':'ss");
         }
 
-        private void discordOptionToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void dialogueSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            ProcessStartInfo psi = new()
+            {
+                FileName = "https://www.buymeacoffee.com/insertokname",
+                UseShellExecute = true
+            };
+            Process.Start(psi);
+        }
+
+        private void button1_Click_3(object sender, EventArgs e)
+        {
+            Database.Tables.ShowBuyMeACoffee = false;
+            Database.Save();
+            UpdateShowBuyMeACoffeeButton();
+        }
+
+        private void dialogueSettingsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            DialogueSettingsForm dialogueSettings = _serviceProvider.GetRequiredService<DialogueSettingsForm>();
+            dialogueSettings.ShowDialog();
+        }
+
+        private void discordToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DiscordBotOptionsForm botOptions = _serviceProvider.GetRequiredService<DiscordBotOptionsForm>();
             botOptions.ShowDialog();
         }
 
-        private void dialogueSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void donateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogueSettingsForm dialogueSettings = _serviceProvider.GetRequiredService<DialogueSettingsForm>();
-            dialogueSettings.ShowDialog();
+            SupportMeForm supportMeForm = new();
+            supportMeForm.ShowDialog();
+        }
+
+        private void updateSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdateSettingsForm updateSettingsForm = new(_serviceProvider);
+            updateSettingsForm.ShowDialog();
         }
     }
 }
