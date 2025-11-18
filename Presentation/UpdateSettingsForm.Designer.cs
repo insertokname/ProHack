@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateSettingsForm));
             autoCheckUpdatesCheckbox = new CheckBox();
             autoUpdateCheckBox = new CheckBox();
             button1 = new Button();
@@ -107,6 +108,7 @@
             Controls.Add(autoUpdateCheckBox);
             Controls.Add(autoCheckUpdatesCheckbox);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "UpdateSettingsForm";
             Text = "Update Settings";
             Load += UpdateSettingsForm_Load;

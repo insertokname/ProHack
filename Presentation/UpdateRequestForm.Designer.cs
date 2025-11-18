@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateRequestForm));
             label1 = new Label();
             textBox1 = new TextBox();
             label2 = new Label();
             tableLayoutPanel1 = new TableLayoutPanel();
-            skipUpdateButton = new Button();
-            updateButton = new Button();
             button1 = new Button();
+            updateButton = new Button();
+            skipUpdateButton = new Button();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -92,20 +93,20 @@
             tableLayoutPanel1.Size = new Size(601, 50);
             tableLayoutPanel1.TabIndex = 20;
             // 
-            // skipUpdateButton
+            // button1
             // 
-            skipUpdateButton.BackColor = Color.LavenderBlush;
-            skipUpdateButton.Dock = DockStyle.Fill;
-            skipUpdateButton.FlatStyle = FlatStyle.Flat;
-            skipUpdateButton.Font = new Font("Segoe UI Semibold", 12.25F, FontStyle.Bold);
-            skipUpdateButton.ForeColor = Color.Crimson;
-            skipUpdateButton.Location = new Point(203, 3);
-            skipUpdateButton.Name = "skipUpdateButton";
-            skipUpdateButton.Size = new Size(194, 44);
-            skipUpdateButton.TabIndex = 16;
-            skipUpdateButton.Text = "Skip this update";
-            skipUpdateButton.UseVisualStyleBackColor = false;
-            skipUpdateButton.Click += skipUpdateButton_Click;
+            button1.BackColor = Color.LavenderBlush;
+            button1.Dock = DockStyle.Fill;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI Semibold", 12.25F, FontStyle.Bold);
+            button1.ForeColor = Color.Crimson;
+            button1.Location = new Point(3, 3);
+            button1.Name = "button1";
+            button1.Size = new Size(194, 44);
+            button1.TabIndex = 17;
+            button1.Text = "Update settings";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // updateButton
             // 
@@ -122,20 +123,20 @@
             updateButton.UseVisualStyleBackColor = false;
             updateButton.Click += updateButton_Click;
             // 
-            // button1
+            // skipUpdateButton
             // 
-            button1.BackColor = Color.LavenderBlush;
-            button1.Dock = DockStyle.Fill;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI Semibold", 12.25F, FontStyle.Bold);
-            button1.ForeColor = Color.Crimson;
-            button1.Location = new Point(3, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(194, 44);
-            button1.TabIndex = 17;
-            button1.Text = "Update settings";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            skipUpdateButton.BackColor = Color.LavenderBlush;
+            skipUpdateButton.Dock = DockStyle.Fill;
+            skipUpdateButton.FlatStyle = FlatStyle.Flat;
+            skipUpdateButton.Font = new Font("Segoe UI Semibold", 12.25F, FontStyle.Bold);
+            skipUpdateButton.ForeColor = Color.Crimson;
+            skipUpdateButton.Location = new Point(203, 3);
+            skipUpdateButton.Name = "skipUpdateButton";
+            skipUpdateButton.Size = new Size(194, 44);
+            skipUpdateButton.TabIndex = 16;
+            skipUpdateButton.Text = "Skip this update";
+            skipUpdateButton.UseVisualStyleBackColor = false;
+            skipUpdateButton.Click += skipUpdateButton_Click;
             // 
             // UpdateRequestForm
             // 
@@ -147,6 +148,7 @@
             Controls.Add(textBox1);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "UpdateRequestForm";
             Text = "Update Request";
             Load += UpdateRequestForm_Load;

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DiscordBotOptionsForm));
             textBox1 = new TextBox();
             label1 = new Label();
             checkBox1 = new CheckBox();
@@ -225,6 +226,7 @@
             Controls.Add(checkBox1);
             Controls.Add(label1);
             Controls.Add(textBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "DiscordBotOptionsForm";
             Text = "Discord Bot Settings";
             Load += DiscordBotOptions_Load;

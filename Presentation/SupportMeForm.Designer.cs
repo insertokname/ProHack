@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SupportMeForm));
             pictureBox1 = new PictureBox();
             gameLabel = new Label();
             label1 = new Label();
@@ -89,6 +90,7 @@
             Controls.Add(gameLabel);
             Controls.Add(pictureBox1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "SupportMeForm";
             Text = "Support Me";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

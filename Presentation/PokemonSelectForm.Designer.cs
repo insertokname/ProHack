@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PokemonSelectForm));
             IdNumeric = new NumericUpDown();
             idLabel = new Label();
             AddTargetButton = new Button();
@@ -268,6 +269,7 @@
             Controls.Add(IdNumeric);
             Controls.Add(menuStrip1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
             MinimumSize = new Size(608, 521);
             Name = "PokemonSelectForm";

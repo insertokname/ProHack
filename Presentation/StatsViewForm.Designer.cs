@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StatsViewForm));
             tableLayoutPanel5 = new TableLayoutPanel();
             timePerSpecialLabel = new Label();
             encountersPerSpecialLabel = new Label();
@@ -224,6 +225,7 @@
             Controls.Add(selectPokemonButton);
             Controls.Add(tableLayoutPanel5);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "StatsViewForm";
             Text = "Stats";
             Load += StatsView_Load;

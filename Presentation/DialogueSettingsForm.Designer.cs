@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DialogueSettingsForm));
             label2 = new Label();
             trackBar1 = new TrackBar();
             label1 = new Label();
@@ -81,6 +82,7 @@
             Controls.Add(trackBar1);
             Controls.Add(label2);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "DialogueSettingsForm";
             Text = "Dialogue Settings";
             Load += DialogueSettings_Load;

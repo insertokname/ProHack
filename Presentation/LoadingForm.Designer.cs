@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoadingForm));
             progressBar1 = new ProgressBar();
             label1 = new Label();
             SuspendLayout();
@@ -64,8 +65,9 @@
             Controls.Add(label1);
             Controls.Add(progressBar1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "LoadingForm";
-            Text = "Startup";
+            Text = "Loading";
             Load += Startup_Load;
             ResumeLayout(false);
         }
