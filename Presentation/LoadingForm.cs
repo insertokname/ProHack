@@ -1,8 +1,10 @@
 ﻿using Infrastructure;
 using Infrastructure.Database;
 using Infrastructure.Discord;
+using Infrastructure.Theme;
 using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics;
+using System.Xml;
 using static Infrastructure.UpdateManager;
 
 namespace Presentation
@@ -45,6 +47,8 @@ namespace Presentation
                 }
                 Database.Save();
             });
+
+            ThemeManager.SelectedTheme = ThemeManager.FromString(Database.Tables.CurrentTheme);
 
             if (Database.Tables.ShowWarningMessage)
             {

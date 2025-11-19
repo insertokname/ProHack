@@ -32,14 +32,16 @@
             label2 = new Label();
             trackBar1 = new TrackBar();
             label1 = new Label();
+            greenLimeThemeComponent1 = new Infrastructure.Theme.ThemeApplier();
             ((System.ComponentModel.ISupportInitialize)trackBar1).BeginInit();
             SuspendLayout();
             // 
             // label2
             // 
             label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label2.BackColor = Color.FromArgb(40, 40, 40);
             label2.Font = new Font("Segoe UI Semibold", 9.25F, FontStyle.Bold);
-            label2.ForeColor = Color.Crimson;
+            label2.ForeColor = Color.FromArgb(152, 151, 26);
             label2.Location = new Point(12, 9);
             label2.Name = "label2";
             label2.Size = new Size(531, 27);
@@ -50,6 +52,7 @@
             // trackBar1
             // 
             trackBar1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            trackBar1.BackColor = Color.FromArgb(40, 40, 40);
             trackBar1.LargeChange = 1;
             trackBar1.Location = new Point(12, 79);
             trackBar1.Maximum = 175;
@@ -63,8 +66,9 @@
             // label1
             // 
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label1.BackColor = Color.FromArgb(40, 40, 40);
             label1.Font = new Font("Segoe UI Semibold", 9.25F, FontStyle.Bold);
-            label1.ForeColor = Color.Crimson;
+            label1.ForeColor = Color.FromArgb(152, 151, 26);
             label1.Location = new Point(12, 49);
             label1.Name = "label1";
             label1.Size = new Size(531, 27);
@@ -72,15 +76,30 @@
             label1.Text = "Current Value: 0";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // greenLimeThemeComponent1
+            // 
+            greenLimeThemeComponent1.BackColor = Color.FromArgb(40, 40, 40);
+            greenLimeThemeComponent1.Enabled = false;
+            greenLimeThemeComponent1.ForeColor = Color.FromArgb(152, 151, 26);
+            greenLimeThemeComponent1.Location = new Point(0, 0);
+            greenLimeThemeComponent1.Name = "greenLimeThemeComponent1";
+            greenLimeThemeComponent1.Size = new Size(0, 0);
+            greenLimeThemeComponent1.TabIndex = 31;
+            greenLimeThemeComponent1.TabStop = false;
+            greenLimeThemeComponent1.Text = "greenLimeThemeComponent1";
+            greenLimeThemeComponent1.Visible = false;
+            // 
             // DialogueSettingsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.LavenderBlush;
+            BackColor = Color.FromArgb(40, 40, 40);
             ClientSize = new Size(555, 136);
+            Controls.Add(greenLimeThemeComponent1);
             Controls.Add(label1);
             Controls.Add(trackBar1);
             Controls.Add(label2);
+            ForeColor = Color.FromArgb(152, 151, 26);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "DialogueSettingsForm";
@@ -96,5 +115,6 @@
         private Label label2;
         private TrackBar trackBar1;
         private Label label1;
+        private Infrastructure.Theme.ThemeApplier greenLimeThemeComponent1;
     }
 }

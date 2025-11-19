@@ -1,5 +1,6 @@
 ﻿using Domain;
 using Infrastructure;
+using Infrastructure.Theme;
 using Presentation.Properties;
 using System.Xml.Serialization;
 
@@ -265,6 +266,7 @@ namespace Presentation
         public void AddModelToTargetList(PokemonTargetModel model)
         {
             var newItem = new PokemonSelectListItemControl(model);
+            ThemeApplier.ApplyThemeRecursive(newItem);
             _panelItems.Add(newItem);
             newItem.Parent = flowLayoutPanel1;
 

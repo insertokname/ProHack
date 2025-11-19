@@ -45,6 +45,7 @@
             fileToolStripMenuItem = new ToolStripMenuItem();
             openFileToolStripMenuItem = new ToolStripMenuItem();
             saveTargetsToolStripMenuItem = new ToolStripMenuItem();
+            greenLimeThemeComponent1 = new Infrastructure.Theme.ThemeApplier();
             ((System.ComponentModel.ISupportInitialize)IdNumeric).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             menuStrip1.SuspendLayout();
@@ -52,16 +53,18 @@
             // 
             // IdNumeric
             // 
+            IdNumeric.AllowDrop = true;
             IdNumeric.Anchor = AnchorStyles.Bottom;
-            IdNumeric.BackColor = Color.LavenderBlush;
-            IdNumeric.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            IdNumeric.ForeColor = Color.Crimson;
-            IdNumeric.Location = new Point(191, 97);
+            IdNumeric.BackColor = Color.FromArgb(40, 40, 40);
+            IdNumeric.Font = new Font("Cascadia Code", 18F, FontStyle.Bold);
+            IdNumeric.ForeColor = Color.FromArgb(152, 151, 26);
+            IdNumeric.Location = new Point(193, 94);
             IdNumeric.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             IdNumeric.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             IdNumeric.Name = "IdNumeric";
-            IdNumeric.Size = new Size(113, 29);
+            IdNumeric.Size = new Size(113, 35);
             IdNumeric.TabIndex = 0;
+            IdNumeric.Tag = "FontSize=L";
             IdNumeric.Value = new decimal(new int[] { 1, 0, 0, 0 });
             IdNumeric.Visible = false;
             IdNumeric.ValueChanged += IdNumeric_ValueChanged;
@@ -70,21 +73,25 @@
             // 
             idLabel.Anchor = AnchorStyles.Bottom;
             idLabel.AutoSize = true;
-            idLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            idLabel.BackColor = Color.FromArgb(40, 40, 40);
+            idLabel.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            idLabel.ForeColor = Color.FromArgb(152, 151, 26);
             idLabel.Location = new Point(155, 99);
             idLabel.Name = "idLabel";
-            idLabel.Size = new Size(29, 21);
+            idLabel.Size = new Size(32, 18);
             idLabel.TabIndex = 1;
+            idLabel.Tag = "FontSize=S";
             idLabel.Text = "Id:";
             idLabel.Visible = false;
             // 
             // AddTargetButton
             // 
             AddTargetButton.Anchor = AnchorStyles.Bottom;
-            AddTargetButton.BackColor = Color.LavenderBlush;
+            AddTargetButton.BackColor = Color.FromArgb(40, 40, 40);
+            AddTargetButton.FlatAppearance.BorderSize = 3;
             AddTargetButton.FlatStyle = FlatStyle.Flat;
-            AddTargetButton.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            AddTargetButton.ForeColor = Color.Crimson;
+            AddTargetButton.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            AddTargetButton.ForeColor = Color.FromArgb(152, 151, 26);
             AddTargetButton.Location = new Point(12, 669);
             AddTargetButton.Name = "AddTargetButton";
             AddTargetButton.Size = new Size(282, 77);
@@ -97,6 +104,9 @@
             // pictureBox1
             // 
             pictureBox1.Anchor = AnchorStyles.Bottom;
+            pictureBox1.BackColor = Color.FromArgb(40, 40, 40);
+            pictureBox1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            pictureBox1.ForeColor = Color.FromArgb(152, 151, 26);
             pictureBox1.Image = Properties.Resources.any;
             pictureBox1.Location = new Point(12, 132);
             pictureBox1.Name = "pictureBox1";
@@ -109,22 +119,28 @@
             // 
             CatchAnythingCheckbox.Anchor = AnchorStyles.Bottom;
             CatchAnythingCheckbox.AutoSize = true;
+            CatchAnythingCheckbox.BackColor = Color.FromArgb(40, 40, 40);
             CatchAnythingCheckbox.Checked = true;
             CatchAnythingCheckbox.CheckState = CheckState.Checked;
-            CatchAnythingCheckbox.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            CatchAnythingCheckbox.Location = new Point(12, 98);
+            CatchAnythingCheckbox.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            CatchAnythingCheckbox.ForeColor = Color.FromArgb(152, 151, 26);
+            CatchAnythingCheckbox.Location = new Point(12, 97);
             CatchAnythingCheckbox.Name = "CatchAnythingCheckbox";
-            CatchAnythingCheckbox.Size = new Size(137, 25);
+            CatchAnythingCheckbox.Size = new Size(139, 22);
             CatchAnythingCheckbox.TabIndex = 7;
             CatchAnythingCheckbox.TabStop = false;
+            CatchAnythingCheckbox.Tag = "FontSize=S";
             CatchAnythingCheckbox.Text = "Catch anything";
-            CatchAnythingCheckbox.UseVisualStyleBackColor = true;
+            CatchAnythingCheckbox.UseVisualStyleBackColor = false;
             CatchAnythingCheckbox.CheckedChanged += CatchAnythingCheckbox_CheckedChanged;
             // 
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.Anchor = AnchorStyles.Bottom;
             flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel1.BackColor = Color.FromArgb(40, 40, 40);
+            flowLayoutPanel1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            flowLayoutPanel1.ForeColor = Color.FromArgb(152, 151, 26);
             flowLayoutPanel1.Location = new Point(12, 528);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(568, 135);
@@ -135,37 +151,44 @@
             // 
             MustBeShinyCheckbox.Anchor = AnchorStyles.Bottom;
             MustBeShinyCheckbox.AutoSize = true;
-            MustBeShinyCheckbox.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            MustBeShinyCheckbox.Location = new Point(450, 98);
+            MustBeShinyCheckbox.BackColor = Color.FromArgb(40, 40, 40);
+            MustBeShinyCheckbox.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            MustBeShinyCheckbox.ForeColor = Color.FromArgb(152, 151, 26);
+            MustBeShinyCheckbox.Location = new Point(450, 101);
             MustBeShinyCheckbox.Name = "MustBeShinyCheckbox";
-            MustBeShinyCheckbox.Size = new Size(130, 25);
+            MustBeShinyCheckbox.Size = new Size(131, 22);
             MustBeShinyCheckbox.TabIndex = 10;
             MustBeShinyCheckbox.TabStop = false;
+            MustBeShinyCheckbox.Tag = "FontSize=S";
             MustBeShinyCheckbox.Text = "Must be shiny";
-            MustBeShinyCheckbox.UseVisualStyleBackColor = true;
+            MustBeShinyCheckbox.UseVisualStyleBackColor = false;
             MustBeShinyCheckbox.CheckedChanged += MustBeShinyCheckbox_CheckedChanged;
             // 
             // MustBeEventCheckbox
             // 
             MustBeEventCheckbox.Anchor = AnchorStyles.Bottom;
             MustBeEventCheckbox.AutoSize = true;
-            MustBeEventCheckbox.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            MustBeEventCheckbox.Location = new Point(310, 98);
+            MustBeEventCheckbox.BackColor = Color.FromArgb(40, 40, 40);
+            MustBeEventCheckbox.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            MustBeEventCheckbox.ForeColor = Color.FromArgb(152, 151, 26);
+            MustBeEventCheckbox.Location = new Point(310, 101);
             MustBeEventCheckbox.Name = "MustBeEventCheckbox";
-            MustBeEventCheckbox.Size = new Size(134, 25);
+            MustBeEventCheckbox.Size = new Size(131, 22);
             MustBeEventCheckbox.TabIndex = 11;
             MustBeEventCheckbox.TabStop = false;
+            MustBeEventCheckbox.Tag = "FontSize=S";
             MustBeEventCheckbox.Text = "Must be event";
-            MustBeEventCheckbox.UseVisualStyleBackColor = true;
+            MustBeEventCheckbox.UseVisualStyleBackColor = false;
             MustBeEventCheckbox.CheckedChanged += MustBeEventCheckbox_CheckedChanged;
             // 
             // CloseButton
             // 
             CloseButton.Anchor = AnchorStyles.Bottom;
-            CloseButton.BackColor = Color.LavenderBlush;
+            CloseButton.BackColor = Color.FromArgb(40, 40, 40);
+            CloseButton.FlatAppearance.BorderSize = 3;
             CloseButton.FlatStyle = FlatStyle.Flat;
-            CloseButton.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            CloseButton.ForeColor = Color.Crimson;
+            CloseButton.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            CloseButton.ForeColor = Color.FromArgb(152, 151, 26);
             CloseButton.Location = new Point(300, 669);
             CloseButton.Name = "CloseButton";
             CloseButton.Size = new Size(280, 77);
@@ -178,10 +201,11 @@
             // RightButton
             // 
             RightButton.Anchor = AnchorStyles.Bottom;
-            RightButton.BackColor = Color.LavenderBlush;
+            RightButton.BackColor = Color.FromArgb(40, 40, 40);
+            RightButton.FlatAppearance.BorderSize = 3;
             RightButton.FlatStyle = FlatStyle.Flat;
-            RightButton.Font = new Font("Segoe UI", 20F);
-            RightButton.ForeColor = Color.Crimson;
+            RightButton.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            RightButton.ForeColor = Color.FromArgb(152, 151, 26);
             RightButton.Location = new Point(525, 280);
             RightButton.Name = "RightButton";
             RightButton.Size = new Size(55, 87);
@@ -195,10 +219,11 @@
             // LeftButton
             // 
             LeftButton.Anchor = AnchorStyles.Bottom;
-            LeftButton.BackColor = Color.LavenderBlush;
+            LeftButton.BackColor = Color.FromArgb(40, 40, 40);
+            LeftButton.FlatAppearance.BorderSize = 3;
             LeftButton.FlatStyle = FlatStyle.Flat;
-            LeftButton.Font = new Font("Segoe UI", 20F);
-            LeftButton.ForeColor = Color.Crimson;
+            LeftButton.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            LeftButton.ForeColor = Color.FromArgb(152, 151, 26);
             LeftButton.Location = new Point(12, 280);
             LeftButton.Name = "LeftButton";
             LeftButton.Size = new Size(55, 87);
@@ -212,49 +237,82 @@
             // label1
             // 
             label1.Anchor = AnchorStyles.Bottom;
-            label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            label1.ForeColor = Color.Crimson;
+            label1.BackColor = Color.FromArgb(40, 40, 40);
+            label1.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            label1.ForeColor = Color.FromArgb(152, 151, 26);
             label1.Location = new Point(12, 23);
             label1.Name = "label1";
             label1.Size = new Size(568, 66);
             label1.TabIndex = 15;
+            label1.Tag = "FontSize=S";
             label1.Text = "If you don't find the right sprite here make sure you have the right version of the DATA folder! Check online for it. \r\nYou can use WASD shortcuts for switching pokemon forms and ids!\r\n";
             // 
             // menuStrip1
             // 
+            menuStrip1.BackColor = Color.FromArgb(40, 40, 40);
+            menuStrip1.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            menuStrip1.ForeColor = Color.FromArgb(152, 151, 26);
             menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(592, 24);
+            menuStrip1.Size = new Size(592, 26);
             menuStrip1.TabIndex = 16;
+            menuStrip1.Tag = "FontSize=S";
             menuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
+            fileToolStripMenuItem.BackColor = Color.FromArgb(40, 40, 40);
             fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openFileToolStripMenuItem, saveTargetsToolStripMenuItem });
+            fileToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            fileToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(37, 20);
+            fileToolStripMenuItem.Size = new Size(52, 22);
+            fileToolStripMenuItem.Tag = "FontSize=S";
             fileToolStripMenuItem.Text = "File";
             // 
             // openFileToolStripMenuItem
             // 
+            openFileToolStripMenuItem.BackColor = Color.FromArgb(40, 40, 40);
+            openFileToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            openFileToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
             openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            openFileToolStripMenuItem.Size = new Size(142, 22);
+            openFileToolStripMenuItem.Size = new Size(172, 22);
+            openFileToolStripMenuItem.Tag = "FontSize=S";
             openFileToolStripMenuItem.Text = "Open targets";
             openFileToolStripMenuItem.Click += OpenFileToolStripMenuItem_Click;
             // 
             // saveTargetsToolStripMenuItem
             // 
+            saveTargetsToolStripMenuItem.BackColor = Color.FromArgb(40, 40, 40);
+            saveTargetsToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            saveTargetsToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
             saveTargetsToolStripMenuItem.Name = "saveTargetsToolStripMenuItem";
-            saveTargetsToolStripMenuItem.Size = new Size(142, 22);
+            saveTargetsToolStripMenuItem.Size = new Size(172, 22);
+            saveTargetsToolStripMenuItem.Tag = "FontSize=S";
             saveTargetsToolStripMenuItem.Text = "Save targets";
             saveTargetsToolStripMenuItem.Click += sSaveTargetsToolStripMenuItem_Click;
             // 
+            // greenLimeThemeComponent1
+            // 
+            greenLimeThemeComponent1.BackColor = Color.FromArgb(40, 40, 40);
+            greenLimeThemeComponent1.Enabled = false;
+            greenLimeThemeComponent1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            greenLimeThemeComponent1.ForeColor = Color.FromArgb(152, 151, 26);
+            greenLimeThemeComponent1.Location = new Point(0, 0);
+            greenLimeThemeComponent1.Name = "greenLimeThemeComponent1";
+            greenLimeThemeComponent1.Size = new Size(0, 0);
+            greenLimeThemeComponent1.TabIndex = 30;
+            greenLimeThemeComponent1.TabStop = false;
+            greenLimeThemeComponent1.Text = "greenLimeThemeComponent1";
+            greenLimeThemeComponent1.Visible = false;
+            // 
             // PokemonSelectForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(592, 752);
+            Controls.Add(greenLimeThemeComponent1);
             Controls.Add(label1);
             Controls.Add(LeftButton);
             Controls.Add(RightButton);
@@ -268,6 +326,8 @@
             Controls.Add(idLabel);
             Controls.Add(IdNumeric);
             Controls.Add(menuStrip1);
+            Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            ForeColor = Color.FromArgb(152, 151, 26);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
@@ -302,5 +362,6 @@
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem openFileToolStripMenuItem;
         private ToolStripMenuItem saveTargetsToolStripMenuItem;
+        private Infrastructure.Theme.ThemeApplier greenLimeThemeComponent1;
     }
 }

@@ -35,40 +35,45 @@
             textBox1 = new TextBox();
             label1 = new Label();
             progressBar1 = new ProgressBar();
+            greenLimeThemeComponent1 = new Infrastructure.Theme.ThemeApplier();
             SuspendLayout();
             // 
             // autoCheckUpdatesCheckbox
             // 
             autoCheckUpdatesCheckbox.AutoSize = true;
-            autoCheckUpdatesCheckbox.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            autoCheckUpdatesCheckbox.ForeColor = Color.Crimson;
+            autoCheckUpdatesCheckbox.BackColor = Color.FromArgb(40, 40, 40);
+            autoCheckUpdatesCheckbox.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            autoCheckUpdatesCheckbox.ForeColor = Color.FromArgb(152, 151, 26);
             autoCheckUpdatesCheckbox.Location = new Point(12, 12);
             autoCheckUpdatesCheckbox.Name = "autoCheckUpdatesCheckbox";
-            autoCheckUpdatesCheckbox.Size = new Size(229, 23);
+            autoCheckUpdatesCheckbox.Size = new Size(259, 22);
             autoCheckUpdatesCheckbox.TabIndex = 1;
+            autoCheckUpdatesCheckbox.Tag = "FontSize=S";
             autoCheckUpdatesCheckbox.Text = "Check for updates when opened";
-            autoCheckUpdatesCheckbox.UseVisualStyleBackColor = true;
+            autoCheckUpdatesCheckbox.UseVisualStyleBackColor = false;
             autoCheckUpdatesCheckbox.CheckedChanged += autoCheckUpdatesCheckbox_CheckedChanged;
             // 
             // autoUpdateCheckBox
             // 
             autoUpdateCheckBox.AutoSize = true;
-            autoUpdateCheckBox.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            autoUpdateCheckBox.ForeColor = Color.Crimson;
+            autoUpdateCheckBox.BackColor = Color.FromArgb(40, 40, 40);
+            autoUpdateCheckBox.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            autoUpdateCheckBox.ForeColor = Color.FromArgb(152, 151, 26);
             autoUpdateCheckBox.Location = new Point(12, 41);
             autoUpdateCheckBox.Name = "autoUpdateCheckBox";
-            autoUpdateCheckBox.Size = new Size(259, 23);
+            autoUpdateCheckBox.Size = new Size(307, 22);
             autoUpdateCheckBox.TabIndex = 2;
+            autoUpdateCheckBox.Tag = "FontSize=XS";
             autoUpdateCheckBox.Text = "Automatically update when available";
-            autoUpdateCheckBox.UseVisualStyleBackColor = true;
+            autoUpdateCheckBox.UseVisualStyleBackColor = false;
             autoUpdateCheckBox.CheckedChanged += autoUpdateCheckBox_CheckedChanged;
             // 
             // button1
             // 
-            button1.BackColor = Color.LavenderBlush;
+            button1.BackColor = Color.FromArgb(40, 40, 40);
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI Semibold", 12.25F, FontStyle.Bold);
-            button1.ForeColor = Color.Crimson;
+            button1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            button1.ForeColor = Color.FromArgb(152, 151, 26);
             button1.Location = new Point(10, 95);
             button1.Name = "button1";
             button1.Size = new Size(261, 85);
@@ -79,43 +84,67 @@
             // 
             // textBox1
             // 
-            textBox1.BackColor = Color.LavenderBlush;
-            textBox1.ForeColor = Color.Crimson;
+            textBox1.BackColor = Color.FromArgb(40, 40, 40);
+            textBox1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            textBox1.ForeColor = Color.FromArgb(152, 151, 26);
             textBox1.Location = new Point(144, 66);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(127, 23);
+            textBox1.Size = new Size(127, 29);
             textBox1.TabIndex = 3;
+            textBox1.Tag = "FontSize=S";
             textBox1.TextChanged += textBox1_TextChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            label1.ForeColor = Color.Crimson;
+            label1.BackColor = Color.FromArgb(40, 40, 40);
+            label1.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            label1.ForeColor = Color.FromArgb(152, 151, 26);
             label1.Location = new Point(10, 67);
             label1.Name = "label1";
-            label1.Size = new Size(88, 19);
+            label1.Size = new Size(112, 18);
             label1.TabIndex = 27;
+            label1.Tag = "FontSize=S";
             label1.Text = "Skip version:";
             // 
             // progressBar1
             // 
+            progressBar1.BackColor = Color.FromArgb(40, 40, 40);
+            progressBar1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            progressBar1.ForeColor = Color.FromArgb(152, 151, 26);
             progressBar1.Location = new Point(8, 190);
             progressBar1.Name = "progressBar1";
             progressBar1.Size = new Size(264, 32);
             progressBar1.TabIndex = 28;
             // 
+            // greenLimeThemeComponent1
+            // 
+            greenLimeThemeComponent1.BackColor = Color.FromArgb(40, 40, 40);
+            greenLimeThemeComponent1.Enabled = false;
+            greenLimeThemeComponent1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            greenLimeThemeComponent1.ForeColor = Color.FromArgb(152, 151, 26);
+            greenLimeThemeComponent1.Location = new Point(12, -6);
+            greenLimeThemeComponent1.Name = "greenLimeThemeComponent1";
+            greenLimeThemeComponent1.Size = new Size(42, 12);
+            greenLimeThemeComponent1.TabIndex = 29;
+            greenLimeThemeComponent1.TabStop = false;
+            greenLimeThemeComponent1.Text = "greenLimeThemeComponent1";
+            greenLimeThemeComponent1.Visible = false;
+            // 
             // UpdateSettingsForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(278, 190);
+            Controls.Add(greenLimeThemeComponent1);
             Controls.Add(progressBar1);
             Controls.Add(label1);
             Controls.Add(textBox1);
             Controls.Add(button1);
             Controls.Add(autoUpdateCheckBox);
             Controls.Add(autoCheckUpdatesCheckbox);
+            Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            ForeColor = Color.FromArgb(152, 151, 26);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "UpdateSettingsForm";
@@ -133,5 +162,6 @@
         private TextBox textBox1;
         private Label label1;
         private ProgressBar progressBar1;
+        private Infrastructure.Theme.ThemeApplier greenLimeThemeComponent1;
     }
 }

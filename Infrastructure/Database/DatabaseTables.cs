@@ -13,5 +13,6 @@ namespace Infrastructure.Database
         public string? SkipUpdateVersion { get; set; } = null;
         public bool CheckUpdates { get; set; } = true;
         public bool AutomaticallyUpdate { get; set; } = false;
+        public string? CurrentTheme { get; set; } = null;
     }
 }

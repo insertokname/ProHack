@@ -61,6 +61,7 @@
             menuStrip1 = new MenuStrip();
             test1ToolStripMenuItem = new ToolStripMenuItem();
             dialogueSettingsToolStripMenuItem = new ToolStripMenuItem();
+            themeSettingsToolStripMenuItem = new ToolStripMenuItem();
             discordToolStripMenuItem = new ToolStripMenuItem();
             dialogueSettingsToolStripMenuItem1 = new ToolStripMenuItem();
             updateSettingsToolStripMenuItem = new ToolStripMenuItem();
@@ -71,6 +72,7 @@
             pictureBox1 = new PictureBox();
             label5 = new Label();
             dontShowBuyMeACoffeeButton = new Button();
+            greenLimeThemeComponent1 = new Infrastructure.Theme.ThemeApplier();
             botStartLayoutPanel.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)selectAxisPicturebox).BeginInit();
@@ -84,22 +86,26 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 8.25F, FontStyle.Bold);
+            label1.BackColor = Color.FromArgb(40, 40, 40);
+            label1.Font = new Font("Cascadia Code", 8F, FontStyle.Bold);
+            label1.ForeColor = Color.FromArgb(152, 151, 26);
             label1.Location = new Point(3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(60, 13);
+            label1.Size = new Size(73, 15);
             label1.TabIndex = 0;
+            label1.Tag = "FontSize=XS";
             label1.Text = "Position x:";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // gameLabel
             // 
             gameLabel.AutoSize = true;
-            gameLabel.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            gameLabel.ForeColor = Color.Red;
-            gameLabel.Location = new Point(12, 24);
+            gameLabel.BackColor = Color.FromArgb(40, 40, 40);
+            gameLabel.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            gameLabel.ForeColor = Color.FromArgb(152, 151, 26);
+            gameLabel.Location = new Point(15, 24);
             gameLabel.Name = "gameLabel";
-            gameLabel.Size = new Size(193, 32);
+            gameLabel.Size = new Size(166, 25);
             gameLabel.TabIndex = 1;
             gameLabel.Text = "Game not found";
             // 
@@ -107,24 +113,29 @@
             // 
             posXLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             posXLabel.AutoSize = true;
-            posXLabel.Font = new Font("Segoe UI Semibold", 8.25F, FontStyle.Bold);
-            posXLabel.Location = new Point(156, 0);
+            posXLabel.BackColor = Color.FromArgb(40, 40, 40);
+            posXLabel.Font = new Font("Cascadia Code", 8F, FontStyle.Bold);
+            posXLabel.ForeColor = Color.FromArgb(152, 151, 26);
+            posXLabel.Location = new Point(158, 0);
             posXLabel.Name = "posXLabel";
-            posXLabel.Size = new Size(27, 13);
+            posXLabel.Size = new Size(25, 15);
             posXLabel.TabIndex = 3;
+            posXLabel.Tag = "FontSize=XS";
             posXLabel.Text = "N/A";
             // 
             // retryButton
             // 
             retryButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            retryButton.BackColor = Color.LavenderBlush;
+            retryButton.BackColor = Color.FromArgb(40, 40, 40);
+            retryButton.FlatAppearance.BorderSize = 3;
             retryButton.FlatStyle = FlatStyle.Flat;
-            retryButton.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            retryButton.ForeColor = Color.Crimson;
+            retryButton.Font = new Font("Cascadia Code", 18F, FontStyle.Bold);
+            retryButton.ForeColor = Color.FromArgb(152, 151, 26);
             retryButton.Location = new Point(12, 613);
             retryButton.Name = "retryButton";
-            retryButton.Size = new Size(469, 77);
+            retryButton.Size = new Size(514, 77);
             retryButton.TabIndex = 4;
+            retryButton.Tag = "FontSize=L";
             retryButton.Text = "Retry find";
             retryButton.UseVisualStyleBackColor = false;
             retryButton.Click += button1_Click;
@@ -138,53 +149,67 @@
             // 
             posYLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             posYLabel.AutoSize = true;
-            posYLabel.Font = new Font("Segoe UI Semibold", 8.25F, FontStyle.Bold);
-            posYLabel.Location = new Point(156, 22);
+            posYLabel.BackColor = Color.FromArgb(40, 40, 40);
+            posYLabel.Font = new Font("Cascadia Code", 8F, FontStyle.Bold);
+            posYLabel.ForeColor = Color.FromArgb(152, 151, 26);
+            posYLabel.Location = new Point(158, 22);
             posYLabel.Name = "posYLabel";
-            posYLabel.Size = new Size(27, 13);
+            posYLabel.Size = new Size(25, 15);
             posYLabel.TabIndex = 6;
+            posYLabel.Tag = "FontSize=XS";
             posYLabel.Text = "N/A";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 8.25F, FontStyle.Bold);
+            label3.BackColor = Color.FromArgb(40, 40, 40);
+            label3.Font = new Font("Cascadia Code", 8F, FontStyle.Bold);
+            label3.ForeColor = Color.FromArgb(152, 151, 26);
             label3.Location = new Point(3, 22);
             label3.Name = "label3";
-            label3.Size = new Size(60, 13);
+            label3.Size = new Size(73, 15);
             label3.TabIndex = 5;
+            label3.Tag = "FontSize=XS";
             label3.Text = "Position y:";
             // 
             // currentEncounterIdLabel
             // 
             currentEncounterIdLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             currentEncounterIdLabel.AutoSize = true;
-            currentEncounterIdLabel.Font = new Font("Segoe UI Semibold", 8.25F, FontStyle.Bold);
-            currentEncounterIdLabel.Location = new Point(156, 44);
+            currentEncounterIdLabel.BackColor = Color.FromArgb(40, 40, 40);
+            currentEncounterIdLabel.Font = new Font("Cascadia Code", 8F, FontStyle.Bold);
+            currentEncounterIdLabel.ForeColor = Color.FromArgb(152, 151, 26);
+            currentEncounterIdLabel.Location = new Point(158, 44);
             currentEncounterIdLabel.Name = "currentEncounterIdLabel";
-            currentEncounterIdLabel.Size = new Size(27, 13);
+            currentEncounterIdLabel.Size = new Size(25, 15);
             currentEncounterIdLabel.TabIndex = 8;
+            currentEncounterIdLabel.Tag = "FontSize=XS";
             currentEncounterIdLabel.Text = "N/A";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI Semibold", 8.25F, FontStyle.Bold);
+            label4.BackColor = Color.FromArgb(40, 40, 40);
+            label4.Font = new Font("Cascadia Code", 8F, FontStyle.Bold);
+            label4.ForeColor = Color.FromArgb(152, 151, 26);
             label4.Location = new Point(3, 44);
             label4.Name = "label4";
-            label4.Size = new Size(113, 13);
+            label4.Size = new Size(115, 22);
             label4.TabIndex = 7;
+            label4.Tag = "FontSize=XS";
             label4.Text = "Current encounter id:";
             // 
             // isBattlingLabel
             // 
             isBattlingLabel.AutoSize = true;
-            isBattlingLabel.Font = new Font("Segoe UI Semibold", 8.25F, FontStyle.Bold);
-            isBattlingLabel.ForeColor = Color.Green;
+            isBattlingLabel.BackColor = Color.FromArgb(40, 40, 40);
+            isBattlingLabel.Font = new Font("Cascadia Code", 8F, FontStyle.Bold);
+            isBattlingLabel.ForeColor = Color.FromArgb(152, 151, 26);
             isBattlingLabel.Location = new Point(3, 66);
             isBattlingLabel.Name = "isBattlingLabel";
-            isBattlingLabel.Size = new Size(58, 13);
+            isBattlingLabel.Size = new Size(73, 15);
             isBattlingLabel.TabIndex = 9;
+            isBattlingLabel.Tag = "FontSize=XS";
             isBattlingLabel.Text = "Is battling";
             isBattlingLabel.Visible = false;
             // 
@@ -192,26 +217,30 @@
             // 
             isEvent.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             isEvent.AutoSize = true;
-            isEvent.Font = new Font("Segoe UI Semibold", 8.25F, FontStyle.Bold);
-            isEvent.ForeColor = Color.MediumPurple;
-            isEvent.Location = new Point(148, 66);
+            isEvent.BackColor = Color.FromArgb(40, 40, 40);
+            isEvent.Font = new Font("Cascadia Code", 8F, FontStyle.Bold);
+            isEvent.ForeColor = Color.FromArgb(152, 151, 26);
+            isEvent.Location = new Point(146, 66);
             isEvent.Name = "isEvent";
-            isEvent.Size = new Size(35, 13);
+            isEvent.Size = new Size(37, 15);
             isEvent.TabIndex = 10;
+            isEvent.Tag = "FontSize=XS";
             isEvent.Text = "Event";
             isEvent.Visible = false;
             // 
             // startBotButton
             // 
-            startBotButton.BackColor = Color.LavenderBlush;
+            startBotButton.BackColor = Color.FromArgb(40, 40, 40);
             startBotButton.Dock = DockStyle.Fill;
+            startBotButton.FlatAppearance.BorderSize = 3;
             startBotButton.FlatStyle = FlatStyle.Flat;
-            startBotButton.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            startBotButton.ForeColor = Color.Crimson;
+            startBotButton.Font = new Font("Cascadia Code", 18F, FontStyle.Bold);
+            startBotButton.ForeColor = Color.FromArgb(152, 151, 26);
             startBotButton.Location = new Point(3, 3);
             startBotButton.Name = "startBotButton";
-            startBotButton.Size = new Size(378, 77);
+            startBotButton.Size = new Size(423, 77);
             startBotButton.TabIndex = 11;
+            startBotButton.Tag = "FontSize=L";
             startBotButton.Text = "Start Bot";
             startBotButton.UseVisualStyleBackColor = false;
             startBotButton.Visible = false;
@@ -219,15 +248,17 @@
             // 
             // registerPositionButton
             // 
-            registerPositionButton.BackColor = Color.LavenderBlush;
+            registerPositionButton.BackColor = Color.FromArgb(40, 40, 40);
             registerPositionButton.Dock = DockStyle.Fill;
+            registerPositionButton.FlatAppearance.BorderSize = 3;
             registerPositionButton.FlatStyle = FlatStyle.Flat;
-            registerPositionButton.Font = new Font("Segoe UI Semibold", 12.25F, FontStyle.Bold);
-            registerPositionButton.ForeColor = Color.Crimson;
-            registerPositionButton.Location = new Point(237, 3);
+            registerPositionButton.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            registerPositionButton.ForeColor = Color.FromArgb(152, 151, 26);
+            registerPositionButton.Location = new Point(260, 3);
             registerPositionButton.Name = "registerPositionButton";
-            registerPositionButton.Size = new Size(229, 77);
+            registerPositionButton.Size = new Size(251, 77);
             registerPositionButton.TabIndex = 12;
+            registerPositionButton.Tag = "FontSize=M";
             registerPositionButton.Text = "Register position";
             registerPositionButton.UseVisualStyleBackColor = false;
             registerPositionButton.Click += button2_Click;
@@ -235,26 +266,32 @@
             // botStartLayoutPanel
             // 
             botStartLayoutPanel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            botStartLayoutPanel.BackColor = Color.FromArgb(40, 40, 40);
             botStartLayoutPanel.ColumnCount = 2;
             botStartLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             botStartLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 85F));
             botStartLayoutPanel.Controls.Add(startBotButton, 0, 0);
             botStartLayoutPanel.Controls.Add(tableLayoutPanel3, 1, 0);
+            botStartLayoutPanel.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            botStartLayoutPanel.ForeColor = Color.FromArgb(152, 151, 26);
             botStartLayoutPanel.Location = new Point(12, 352);
             botStartLayoutPanel.Name = "botStartLayoutPanel";
             botStartLayoutPanel.RowCount = 1;
             botStartLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            botStartLayoutPanel.Size = new Size(469, 83);
+            botStartLayoutPanel.Size = new Size(514, 83);
             botStartLayoutPanel.TabIndex = 13;
             // 
             // tableLayoutPanel3
             // 
             tableLayoutPanel3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel3.BackColor = Color.FromArgb(40, 40, 40);
             tableLayoutPanel3.ColumnCount = 1;
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel3.Controls.Add(selectAxisCheckbox, 0, 0);
             tableLayoutPanel3.Controls.Add(selectAxisPicturebox, 0, 1);
-            tableLayoutPanel3.Location = new Point(387, 3);
+            tableLayoutPanel3.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            tableLayoutPanel3.ForeColor = Color.FromArgb(152, 151, 26);
+            tableLayoutPanel3.Location = new Point(432, 3);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 2;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 29F));
@@ -265,22 +302,28 @@
             // selectAxisCheckbox
             // 
             selectAxisCheckbox.AutoSize = true;
+            selectAxisCheckbox.BackColor = Color.FromArgb(40, 40, 40);
             selectAxisCheckbox.BackgroundImageLayout = ImageLayout.Stretch;
             selectAxisCheckbox.Dock = DockStyle.Fill;
             selectAxisCheckbox.FlatStyle = FlatStyle.Flat;
-            selectAxisCheckbox.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            selectAxisCheckbox.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            selectAxisCheckbox.ForeColor = Color.FromArgb(152, 151, 26);
             selectAxisCheckbox.Location = new Point(3, 3);
             selectAxisCheckbox.Name = "selectAxisCheckbox";
             selectAxisCheckbox.Size = new Size(73, 23);
             selectAxisCheckbox.TabIndex = 12;
+            selectAxisCheckbox.Tag = "FontSize=S";
             selectAxisCheckbox.Text = "Y axis";
-            selectAxisCheckbox.UseVisualStyleBackColor = true;
+            selectAxisCheckbox.UseVisualStyleBackColor = false;
             selectAxisCheckbox.Visible = false;
             selectAxisCheckbox.CheckedChanged += selectAxisCheckbox_CheckedChanged;
             // 
             // selectAxisPicturebox
             // 
+            selectAxisPicturebox.BackColor = Color.FromArgb(40, 40, 40);
             selectAxisPicturebox.Dock = DockStyle.Fill;
+            selectAxisPicturebox.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            selectAxisPicturebox.ForeColor = Color.FromArgb(152, 151, 26);
             selectAxisPicturebox.Image = Properties.Resources.yDirection;
             selectAxisPicturebox.Location = new Point(3, 32);
             selectAxisPicturebox.Name = "selectAxisPicturebox";
@@ -293,28 +336,34 @@
             // tableLayoutPanel2
             // 
             tableLayoutPanel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel2.BackColor = Color.FromArgb(40, 40, 40);
             tableLayoutPanel2.ColumnCount = 2;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.Controls.Add(registerPos2Label, 1, 0);
             tableLayoutPanel2.Controls.Add(registerPos1Label, 0, 0);
+            tableLayoutPanel2.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            tableLayoutPanel2.ForeColor = Color.FromArgb(152, 151, 26);
             tableLayoutPanel2.Location = new Point(12, 177);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel2.Size = new Size(469, 83);
+            tableLayoutPanel2.Size = new Size(514, 83);
             tableLayoutPanel2.TabIndex = 15;
             // 
             // registerPos2Label
             // 
             registerPos2Label.AutoSize = true;
+            registerPos2Label.BackColor = Color.FromArgb(40, 40, 40);
             registerPos2Label.Dock = DockStyle.Fill;
-            registerPos2Label.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold);
-            registerPos2Label.Location = new Point(237, 0);
+            registerPos2Label.Font = new Font("Cascadia Code", 18F, FontStyle.Bold);
+            registerPos2Label.ForeColor = Color.FromArgb(152, 151, 26);
+            registerPos2Label.Location = new Point(260, 0);
             registerPos2Label.Name = "registerPos2Label";
-            registerPos2Label.Size = new Size(229, 83);
+            registerPos2Label.Size = new Size(251, 83);
             registerPos2Label.TabIndex = 2;
+            registerPos2Label.Tag = "FontSize=L";
             registerPos2Label.Text = "Position y:";
             registerPos2Label.TextAlign = ContentAlignment.MiddleCenter;
             registerPos2Label.Visible = false;
@@ -322,27 +371,32 @@
             // registerPos1Label
             // 
             registerPos1Label.AutoSize = true;
+            registerPos1Label.BackColor = Color.FromArgb(40, 40, 40);
             registerPos1Label.Dock = DockStyle.Fill;
-            registerPos1Label.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold);
+            registerPos1Label.Font = new Font("Cascadia Code", 24F, FontStyle.Bold);
+            registerPos1Label.ForeColor = Color.FromArgb(152, 151, 26);
             registerPos1Label.Location = new Point(3, 0);
             registerPos1Label.Name = "registerPos1Label";
-            registerPos1Label.Size = new Size(228, 83);
+            registerPos1Label.Size = new Size(251, 83);
             registerPos1Label.TabIndex = 1;
+            registerPos1Label.Tag = "FontSize=XL";
             registerPos1Label.Text = "Position x:";
             registerPos1Label.TextAlign = ContentAlignment.MiddleCenter;
             registerPos1Label.Visible = false;
             // 
             // clearLastRegisterPositionButton
             // 
-            clearLastRegisterPositionButton.BackColor = Color.LavenderBlush;
+            clearLastRegisterPositionButton.BackColor = Color.FromArgb(40, 40, 40);
             clearLastRegisterPositionButton.Dock = DockStyle.Fill;
+            clearLastRegisterPositionButton.FlatAppearance.BorderSize = 3;
             clearLastRegisterPositionButton.FlatStyle = FlatStyle.Flat;
-            clearLastRegisterPositionButton.Font = new Font("Segoe UI Semibold", 12.25F, FontStyle.Bold);
-            clearLastRegisterPositionButton.ForeColor = Color.Crimson;
+            clearLastRegisterPositionButton.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            clearLastRegisterPositionButton.ForeColor = Color.FromArgb(152, 151, 26);
             clearLastRegisterPositionButton.Location = new Point(3, 3);
             clearLastRegisterPositionButton.Name = "clearLastRegisterPositionButton";
-            clearLastRegisterPositionButton.Size = new Size(228, 77);
+            clearLastRegisterPositionButton.Size = new Size(251, 77);
             clearLastRegisterPositionButton.TabIndex = 16;
+            clearLastRegisterPositionButton.Tag = "FontSize=M";
             clearLastRegisterPositionButton.Text = "Clear position";
             clearLastRegisterPositionButton.UseVisualStyleBackColor = false;
             clearLastRegisterPositionButton.Visible = false;
@@ -351,30 +405,35 @@
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel1.BackColor = Color.FromArgb(40, 40, 40);
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.Controls.Add(clearLastRegisterPositionButton, 0, 0);
             tableLayoutPanel1.Controls.Add(registerPositionButton, 1, 0);
+            tableLayoutPanel1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            tableLayoutPanel1.ForeColor = Color.FromArgb(152, 151, 26);
             tableLayoutPanel1.Location = new Point(12, 266);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Size = new Size(469, 83);
+            tableLayoutPanel1.Size = new Size(514, 83);
             tableLayoutPanel1.TabIndex = 17;
             // 
             // stopButton
             // 
             stopButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            stopButton.BackColor = Color.LavenderBlush;
+            stopButton.BackColor = Color.FromArgb(40, 40, 40);
+            stopButton.FlatAppearance.BorderSize = 3;
             stopButton.FlatStyle = FlatStyle.Flat;
-            stopButton.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            stopButton.ForeColor = Color.Crimson;
+            stopButton.Font = new Font("Cascadia Code", 18F, FontStyle.Bold);
+            stopButton.ForeColor = Color.FromArgb(152, 151, 26);
             stopButton.Location = new Point(12, 525);
             stopButton.Name = "stopButton";
-            stopButton.Size = new Size(466, 82);
+            stopButton.Size = new Size(511, 82);
             stopButton.TabIndex = 19;
+            stopButton.Tag = "FontSize=L";
             stopButton.Text = "Stop\r\n(Ctrl + F8)";
             stopButton.UseVisualStyleBackColor = false;
             stopButton.Visible = false;
@@ -383,20 +442,21 @@
             // errorTextBox
             // 
             errorTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            errorTextBox.BackColor = Color.LavenderBlush;
-            errorTextBox.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            errorTextBox.ForeColor = Color.Crimson;
+            errorTextBox.BackColor = Color.FromArgb(40, 40, 40);
+            errorTextBox.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            errorTextBox.ForeColor = Color.FromArgb(152, 151, 26);
             errorTextBox.Location = new Point(12, 441);
             errorTextBox.Multiline = true;
             errorTextBox.Name = "errorTextBox";
             errorTextBox.ReadOnly = true;
             errorTextBox.ScrollBars = ScrollBars.Vertical;
-            errorTextBox.Size = new Size(466, 78);
+            errorTextBox.Size = new Size(511, 78);
             errorTextBox.TabIndex = 19;
             errorTextBox.Visible = false;
             // 
             // tableLayoutPanel5
             // 
+            tableLayoutPanel5.BackColor = Color.FromArgb(40, 40, 40);
             tableLayoutPanel5.ColumnCount = 2;
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 69.3548355F));
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30.64516F));
@@ -410,6 +470,8 @@
             tableLayoutPanel5.Controls.Add(isEvent, 1, 3);
             tableLayoutPanel5.Controls.Add(isShiny, 1, 4);
             tableLayoutPanel5.Controls.Add(noMenuLabel, 0, 4);
+            tableLayoutPanel5.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            tableLayoutPanel5.ForeColor = Color.FromArgb(152, 151, 26);
             tableLayoutPanel5.Location = new Point(15, 59);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 5;
@@ -425,120 +487,151 @@
             // 
             isShiny.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             isShiny.AutoSize = true;
-            isShiny.Font = new Font("Segoe UI Semibold", 8.25F, FontStyle.Bold);
-            isShiny.ForeColor = Color.MediumPurple;
-            isShiny.Location = new Point(149, 88);
+            isShiny.BackColor = Color.FromArgb(40, 40, 40);
+            isShiny.Font = new Font("Cascadia Code", 8F, FontStyle.Bold);
+            isShiny.ForeColor = Color.FromArgb(152, 151, 26);
+            isShiny.Location = new Point(146, 88);
             isShiny.Name = "isShiny";
-            isShiny.Size = new Size(34, 13);
+            isShiny.Size = new Size(37, 15);
             isShiny.TabIndex = 11;
+            isShiny.Tag = "FontSize=XS";
             isShiny.Text = "Shiny";
             isShiny.Visible = false;
             // 
             // noMenuLabel
             // 
             noMenuLabel.AutoSize = true;
-            noMenuLabel.Font = new Font("Segoe UI Semibold", 7F, FontStyle.Bold);
-            noMenuLabel.ForeColor = Color.Green;
+            noMenuLabel.BackColor = Color.FromArgb(40, 40, 40);
+            noMenuLabel.Font = new Font("Cascadia Code", 8F, FontStyle.Bold);
+            noMenuLabel.ForeColor = Color.FromArgb(152, 151, 26);
             noMenuLabel.Location = new Point(3, 88);
             noMenuLabel.Name = "noMenuLabel";
-            noMenuLabel.Size = new Size(88, 12);
+            noMenuLabel.Size = new Size(103, 15);
             noMenuLabel.TabIndex = 12;
+            noMenuLabel.Tag = "FontSize=XS";
             noMenuLabel.Text = "No menu selected";
             noMenuLabel.Visible = false;
             // 
             // selectPokemonButton
             // 
             selectPokemonButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            selectPokemonButton.BackColor = Color.LavenderBlush;
+            selectPokemonButton.BackColor = Color.FromArgb(40, 40, 40);
+            selectPokemonButton.FlatAppearance.BorderSize = 3;
             selectPokemonButton.FlatStyle = FlatStyle.Flat;
-            selectPokemonButton.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            selectPokemonButton.ForeColor = Color.Crimson;
+            selectPokemonButton.Font = new Font("Cascadia Code", 18F, FontStyle.Bold);
+            selectPokemonButton.ForeColor = Color.FromArgb(152, 151, 26);
             selectPokemonButton.Location = new Point(207, 59);
             selectPokemonButton.Name = "selectPokemonButton";
-            selectPokemonButton.Size = new Size(274, 112);
+            selectPokemonButton.Size = new Size(319, 112);
             selectPokemonButton.TabIndex = 21;
+            selectPokemonButton.Tag = "FontSize=L";
             selectPokemonButton.Text = "Search mode";
             selectPokemonButton.UseVisualStyleBackColor = false;
             selectPokemonButton.Click += button1_Click_2;
             // 
             // menuStrip1
             // 
-            menuStrip1.BackColor = Color.LavenderBlush;
+            menuStrip1.BackColor = Color.FromArgb(40, 40, 40);
+            menuStrip1.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            menuStrip1.ForeColor = Color.FromArgb(152, 151, 26);
             menuStrip1.Items.AddRange(new ToolStripItem[] { test1ToolStripMenuItem, dialogueSettingsToolStripMenuItem, donateToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(493, 24);
+            menuStrip1.Size = new Size(538, 26);
             menuStrip1.TabIndex = 22;
+            menuStrip1.Tag = "FontSize=S";
             menuStrip1.Text = "menuStrip1";
             // 
             // test1ToolStripMenuItem
             // 
-            test1ToolStripMenuItem.BackColor = Color.LavenderBlush;
-            test1ToolStripMenuItem.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            test1ToolStripMenuItem.ForeColor = Color.Crimson;
+            test1ToolStripMenuItem.BackColor = Color.FromArgb(40, 40, 40);
+            test1ToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            test1ToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
             test1ToolStripMenuItem.Name = "test1ToolStripMenuItem";
-            test1ToolStripMenuItem.Size = new Size(78, 20);
+            test1ToolStripMenuItem.Size = new Size(100, 22);
+            test1ToolStripMenuItem.Tag = "FontSize=S";
             test1ToolStripMenuItem.Text = "View Stats";
             test1ToolStripMenuItem.Click += test1ToolStripMenuItem_Click;
             // 
             // dialogueSettingsToolStripMenuItem
             // 
-            dialogueSettingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { discordToolStripMenuItem, dialogueSettingsToolStripMenuItem1, updateSettingsToolStripMenuItem });
-            dialogueSettingsToolStripMenuItem.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dialogueSettingsToolStripMenuItem.ForeColor = Color.Crimson;
+            dialogueSettingsToolStripMenuItem.BackColor = Color.FromArgb(40, 40, 40);
+            dialogueSettingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { themeSettingsToolStripMenuItem, discordToolStripMenuItem, dialogueSettingsToolStripMenuItem1, updateSettingsToolStripMenuItem });
+            dialogueSettingsToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            dialogueSettingsToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
             dialogueSettingsToolStripMenuItem.Name = "dialogueSettingsToolStripMenuItem";
-            dialogueSettingsToolStripMenuItem.Size = new Size(65, 20);
+            dialogueSettingsToolStripMenuItem.Size = new Size(84, 22);
+            dialogueSettingsToolStripMenuItem.Tag = "FontSize=S";
             dialogueSettingsToolStripMenuItem.Text = "Settings";
             dialogueSettingsToolStripMenuItem.Click += dialogueSettingsToolStripMenuItem_Click;
             // 
+            // themeSettingsToolStripMenuItem
+            // 
+            themeSettingsToolStripMenuItem.BackColor = Color.FromArgb(40, 40, 40);
+            themeSettingsToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            themeSettingsToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
+            themeSettingsToolStripMenuItem.Name = "themeSettingsToolStripMenuItem";
+            themeSettingsToolStripMenuItem.Size = new Size(212, 22);
+            themeSettingsToolStripMenuItem.Tag = "FontSize=S";
+            themeSettingsToolStripMenuItem.Text = "Theme settings";
+            themeSettingsToolStripMenuItem.Click += themeSettingsToolStripMenuItem_Click;
+            // 
             // discordToolStripMenuItem
             // 
-            discordToolStripMenuItem.BackColor = Color.Lavender;
+            discordToolStripMenuItem.BackColor = Color.FromArgb(40, 40, 40);
+            discordToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             discordToolStripMenuItem.ForeColor = Color.MediumPurple;
             discordToolStripMenuItem.Name = "discordToolStripMenuItem";
-            discordToolStripMenuItem.Size = new Size(170, 22);
+            discordToolStripMenuItem.Size = new Size(212, 22);
+            discordToolStripMenuItem.Tag = "FontSize=S;ForeColor=Override;";
             discordToolStripMenuItem.Text = "Discord Settings";
             discordToolStripMenuItem.Click += discordToolStripMenuItem_Click;
             // 
             // dialogueSettingsToolStripMenuItem1
             // 
-            dialogueSettingsToolStripMenuItem1.BackColor = Color.LavenderBlush;
-            dialogueSettingsToolStripMenuItem1.ForeColor = Color.Crimson;
+            dialogueSettingsToolStripMenuItem1.BackColor = Color.FromArgb(40, 40, 40);
+            dialogueSettingsToolStripMenuItem1.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            dialogueSettingsToolStripMenuItem1.ForeColor = Color.FromArgb(152, 151, 26);
             dialogueSettingsToolStripMenuItem1.Name = "dialogueSettingsToolStripMenuItem1";
-            dialogueSettingsToolStripMenuItem1.Size = new Size(170, 22);
+            dialogueSettingsToolStripMenuItem1.Size = new Size(212, 22);
+            dialogueSettingsToolStripMenuItem1.Tag = "FontSize=S";
             dialogueSettingsToolStripMenuItem1.Text = "Dialogue settings";
             dialogueSettingsToolStripMenuItem1.Visible = false;
             dialogueSettingsToolStripMenuItem1.Click += dialogueSettingsToolStripMenuItem1_Click;
             // 
             // updateSettingsToolStripMenuItem
             // 
-            updateSettingsToolStripMenuItem.BackColor = Color.LavenderBlush;
-            updateSettingsToolStripMenuItem.ForeColor = Color.Crimson;
+            updateSettingsToolStripMenuItem.BackColor = Color.FromArgb(40, 40, 40);
+            updateSettingsToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            updateSettingsToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
             updateSettingsToolStripMenuItem.Name = "updateSettingsToolStripMenuItem";
-            updateSettingsToolStripMenuItem.Size = new Size(170, 22);
+            updateSettingsToolStripMenuItem.Size = new Size(212, 22);
+            updateSettingsToolStripMenuItem.Tag = "FontSize=S";
             updateSettingsToolStripMenuItem.Text = "Update settings";
             updateSettingsToolStripMenuItem.Click += updateSettingsToolStripMenuItem_Click;
             // 
             // donateToolStripMenuItem
             // 
-            donateToolStripMenuItem.BackColor = Color.LavenderBlush;
-            donateToolStripMenuItem.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            donateToolStripMenuItem.ForeColor = Color.Crimson;
+            donateToolStripMenuItem.BackColor = Color.FromArgb(40, 40, 40);
+            donateToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            donateToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
             donateToolStripMenuItem.Name = "donateToolStripMenuItem";
-            donateToolStripMenuItem.Size = new Size(85, 20);
+            donateToolStripMenuItem.Size = new Size(100, 22);
+            donateToolStripMenuItem.Tag = "FontSize=S";
             donateToolStripMenuItem.Text = "Support me";
             donateToolStripMenuItem.Click += donateToolStripMenuItem_Click;
             // 
             // timeSinceStartLabel
             // 
             timeSinceStartLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            timeSinceStartLabel.BackColor = Color.LavenderBlush;
-            timeSinceStartLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            timeSinceStartLabel.ForeColor = Color.Red;
-            timeSinceStartLabel.Location = new Point(402, 4);
+            timeSinceStartLabel.BackColor = Color.FromArgb(40, 40, 40);
+            timeSinceStartLabel.Font = new Font("Cascadia Code", 8F, FontStyle.Bold);
+            timeSinceStartLabel.ForeColor = Color.FromArgb(152, 151, 26);
+            timeSinceStartLabel.Location = new Point(450, 4);
             timeSinceStartLabel.Name = "timeSinceStartLabel";
-            timeSinceStartLabel.Size = new Size(81, 15);
+            timeSinceStartLabel.Size = new Size(78, 22);
             timeSinceStartLabel.TabIndex = 23;
+            timeSinceStartLabel.Tag = "FontSize=XS";
             timeSinceStartLabel.Text = "00:00:00";
             timeSinceStartLabel.TextAlign = ContentAlignment.MiddleRight;
             // 
@@ -550,22 +643,26 @@
             // label2
             // 
             label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label2.BackColor = Color.LavenderBlush;
-            label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            label2.ForeColor = Color.Red;
-            label2.Location = new Point(305, 4);
+            label2.BackColor = Color.FromArgb(40, 40, 40);
+            label2.Font = new Font("Cascadia Code", 8F, FontStyle.Bold);
+            label2.ForeColor = Color.FromArgb(152, 151, 26);
+            label2.Location = new Point(345, 3);
             label2.Name = "label2";
-            label2.Size = new Size(88, 15);
+            label2.Size = new Size(104, 22);
             label2.TabIndex = 24;
+            label2.Tag = "FontSize=XS";
             label2.Text = "Session lenght:";
             label2.TextAlign = ContentAlignment.MiddleRight;
             // 
             // pictureBox1
             // 
+            pictureBox1.BackColor = Color.FromArgb(40, 40, 40);
+            pictureBox1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            pictureBox1.ForeColor = Color.FromArgb(152, 151, 26);
             pictureBox1.Image = Properties.Resources.buy_me_a_coffee;
-            pictureBox1.Location = new Point(279, 704);
+            pictureBox1.Location = new Point(358, 704);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(162, 42);
+            pictureBox1.Size = new Size(154, 42);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 25;
             pictureBox1.TabStop = false;
@@ -573,36 +670,57 @@
             // 
             // label5
             // 
-            label5.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            label5.ForeColor = Color.Black;
+            label5.BackColor = Color.FromArgb(40, 40, 40);
+            label5.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            label5.ForeColor = Color.FromArgb(152, 151, 26);
             label5.Location = new Point(12, 704);
             label5.Name = "label5";
-            label5.Size = new Size(273, 42);
+            label5.Size = new Size(347, 42);
             label5.TabIndex = 26;
+            label5.Tag = "FontSize=S;";
             label5.Text = "If you enjoy using my app or it has helped you out please consider supporting me\r\n";
             // 
             // dontShowBuyMeACoffeeButton
             // 
+            dontShowBuyMeACoffeeButton.BackColor = Color.FromArgb(40, 40, 40);
             dontShowBuyMeACoffeeButton.FlatAppearance.BorderColor = SystemColors.Control;
             dontShowBuyMeACoffeeButton.FlatAppearance.BorderSize = 0;
             dontShowBuyMeACoffeeButton.FlatStyle = FlatStyle.Flat;
-            dontShowBuyMeACoffeeButton.Font = new Font("Segoe UI", 20F);
-            dontShowBuyMeACoffeeButton.Location = new Point(447, 704);
+            dontShowBuyMeACoffeeButton.Font = new Font("Cascadia Code", 18F, FontStyle.Bold);
+            dontShowBuyMeACoffeeButton.ForeColor = Color.FromArgb(152, 151, 26);
+            dontShowBuyMeACoffeeButton.Location = new Point(510, 702);
+            dontShowBuyMeACoffeeButton.Margin = new Padding(0);
             dontShowBuyMeACoffeeButton.Name = "dontShowBuyMeACoffeeButton";
             dontShowBuyMeACoffeeButton.Size = new Size(34, 42);
             dontShowBuyMeACoffeeButton.TabIndex = 27;
+            dontShowBuyMeACoffeeButton.Tag = "FontSize=L";
             dontShowBuyMeACoffeeButton.Text = "X";
-            dontShowBuyMeACoffeeButton.UseVisualStyleBackColor = true;
+            dontShowBuyMeACoffeeButton.UseVisualStyleBackColor = false;
             dontShowBuyMeACoffeeButton.Click += button1_Click_3;
+            // 
+            // greenLimeThemeComponent1
+            // 
+            greenLimeThemeComponent1.BackColor = Color.FromArgb(40, 40, 40);
+            greenLimeThemeComponent1.Enabled = false;
+            greenLimeThemeComponent1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            greenLimeThemeComponent1.ForeColor = Color.FromArgb(152, 151, 26);
+            greenLimeThemeComponent1.Location = new Point(0, 0);
+            greenLimeThemeComponent1.Name = "greenLimeThemeComponent1";
+            greenLimeThemeComponent1.Size = new Size(0, 0);
+            greenLimeThemeComponent1.TabIndex = 30;
+            greenLimeThemeComponent1.TabStop = false;
+            greenLimeThemeComponent1.Text = "greenLimeThemeComponent1";
+            greenLimeThemeComponent1.Visible = false;
             // 
             // MainBotForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(493, 755);
+            ClientSize = new Size(538, 755);
+            Controls.Add(pictureBox1);
+            Controls.Add(greenLimeThemeComponent1);
             Controls.Add(dontShowBuyMeACoffeeButton);
             Controls.Add(label5);
-            Controls.Add(pictureBox1);
             Controls.Add(label2);
             Controls.Add(timeSinceStartLabel);
             Controls.Add(stopButton);
@@ -615,11 +733,13 @@
             Controls.Add(botStartLayoutPanel);
             Controls.Add(gameLabel);
             Controls.Add(menuStrip1);
+            Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold);
+            ForeColor = Color.FromArgb(152, 151, 26);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             Name = "MainBotForm";
-            Text = "ProHack";
+            Text = "PROHack";
             Load += Form1_Load;
             botStartLayoutPanel.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
@@ -680,5 +800,7 @@
         private ToolStripMenuItem discordToolStripMenuItem;
         private ToolStripMenuItem updateSettingsToolStripMenuItem;
         private ToolStripMenuItem donateToolStripMenuItem;
+        private Infrastructure.Theme.ThemeApplier greenLimeThemeComponent1;
+        private ToolStripMenuItem themeSettingsToolStripMenuItem;
     }
 }

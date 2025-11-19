@@ -20,7 +20,7 @@ namespace Presentation
         private void UpdateRequestForm_Load(object sender, EventArgs e)
         {
             label1.Text = $"New update available: {_updateInfo.VersionCode}";
-            textBox1.Text = _updateInfo.Body;
+            richTextBox1.Text = _updateInfo.Body;
         }
 
         private void updateButton_Click(object sender, EventArgs e)

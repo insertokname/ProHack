@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
-    <Version>1.1.1</Version>
-    <FileVersion>1.1.1</FileVersion>
-    <AssemblyVersion>1.1.1</AssemblyVersion>
+    <Version>1.2.0</Version>
+    <FileVersion>1.2.0</FileVersion>
+    <AssemblyVersion>1.2.0</AssemblyVersion>
   </PropertyGroup>
 </Project>

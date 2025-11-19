@@ -70,11 +70,11 @@ namespace Presentation
             dontShowBuyMeACoffeeButton.Enabled = Database.Tables.ShowBuyMeACoffee;
             if (Database.Tables.ShowBuyMeACoffee)
             {
-                Size = new Size(509, 794);
+                Size = new Size(554, 794);
             }
             else
             {
-                Size = new Size(509, 741);
+                Size = new Size(554, 741);
             }
         }
 
@@ -381,6 +381,12 @@ namespace Presentation
         {
             UpdateSettingsForm updateSettingsForm = new(_serviceProvider);
             updateSettingsForm.ShowDialog();
+        }
+
+        private void themeSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ThemeSettingsForm themeSettingsForm = new();
+            themeSettingsForm.ShowDialog();
         }
     }
 }
