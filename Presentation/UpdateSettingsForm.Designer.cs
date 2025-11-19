@@ -34,6 +34,7 @@
             button1 = new Button();
             textBox1 = new TextBox();
             label1 = new Label();
+            progressBar1 = new ProgressBar();
             SuspendLayout();
             // 
             // autoCheckUpdatesCheckbox
@@ -97,11 +98,19 @@
             label1.TabIndex = 27;
             label1.Text = "Skip version:";
             // 
+            // progressBar1
+            // 
+            progressBar1.Location = new Point(8, 190);
+            progressBar1.Name = "progressBar1";
+            progressBar1.Size = new Size(264, 32);
+            progressBar1.TabIndex = 28;
+            // 
             // UpdateSettingsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(278, 191);
+            ClientSize = new Size(278, 190);
+            Controls.Add(progressBar1);
             Controls.Add(label1);
             Controls.Add(textBox1);
             Controls.Add(button1);
@@ -123,5 +132,6 @@
         private Button button1;
         private TextBox textBox1;
         private Label label1;
+        private ProgressBar progressBar1;
     }
 }

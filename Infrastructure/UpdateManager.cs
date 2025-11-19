@@ -2,6 +2,7 @@
 using System.Text.Json;
 using System.Diagnostics;
 
+
 namespace Infrastructure
 {
     public class UpdateManager : IDisposable
@@ -87,7 +88,7 @@ namespace Infrastructure
             }
         }
 
-        public async Task<string?> DownloadNewVersion(UpdateInfo updateInfo)
+        public async Task<string?> DownloadNewVersion(UpdateInfo updateInfo, IProgress<double>? progress = null)
         {
             var tempDir = Path.Combine(Environment.CurrentDirectory, "Temp");
             if (!Directory.Exists(tempDir))
@@ -100,6 +101,7 @@ namespace Infrastructure
             if (!response.IsSuccessStatusCode)
                 return null;
 
+            var contentLength = response.Content.Headers.ContentLength ?? -1L;
             await using var source = await response.Content.ReadAsStreamAsync();
 
             if (File.Exists(targetPath))
@@ -108,14 +110,27 @@ namespace Infrastructure
             }
 
             await using var destination = File.Create(targetPath);
-            await source.CopyToAsync(destination);
 
+            var buffer = new byte[81920];
+            long totalRead = 0;
+            int read;
+            while ((read = await source.ReadAsync(buffer, 0, buffer.Length)) > 0)
+            {
+                await destination.WriteAsync(buffer.AsMemory(0, read));
+                totalRead += read;
+
+                if (contentLength > 0)
+                    progress?.Report((double)totalRead / contentLength);
+            }
+
+            progress?.Report(1);
             return targetPath;
         }
 
         private async Task<JsonDocument> GetJsonResponse()
         {
-            _responseJson ??= JsonDocument.Parse(await _response);
+            var res = await _response;
+            _responseJson ??= JsonDocument.Parse(res);
 
             return _responseJson;
         }

@@ -78,7 +78,21 @@ namespace Presentation
                     if (wantsToUpdate)
                     {
                         var curVersionPath = Environment.ProcessPath;
-                        var newVersionPath = await updateManager.DownloadNewVersion(downloadInfo);
+
+                        progressBar1.Value = 0;
+                        progressBar1.Style = ProgressBarStyle.Continuous;
+                        var progress = new Progress<double>(value =>
+                        {
+                            var percent = Math.Max(0, Math.Min(100, (int)(value * 100)));
+                            if (progressBar1.InvokeRequired)
+                                progressBar1.Invoke(() => progressBar1.Value = percent);
+                            else
+                                progressBar1.Value = percent;
+                        });
+
+                        var newVersionPath = await updateManager.DownloadNewVersion(downloadInfo, progress);
+                        progressBar1.Style = ProgressBarStyle.Marquee;
+                        progressBar1.Value = 50;
                         if (newVersionPath != null && curVersionPath != null)
                         {
                             await UpdateAndReboot(curVersionPath, newVersionPath);

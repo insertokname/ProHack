@@ -43,7 +43,18 @@ namespace Presentation
                     goto Cleanup;
                 }
             }
-            var newVersionPath = await updateManager.DownloadNewVersion(downloadInfo);
+            Size = new Size(294, 269);
+            progressBar1.Value = 0;
+            progressBar1.Style = ProgressBarStyle.Continuous;
+            var progress = new Progress<double>(value =>
+            {
+                var percent = Math.Max(0, Math.Min(100, (int)(value * 100)));
+                if (progressBar1.InvokeRequired)
+                    progressBar1.Invoke(() => progressBar1.Value = percent);
+                else
+                    progressBar1.Value = percent;
+            });
+            var newVersionPath = await updateManager.DownloadNewVersion(downloadInfo, progress);
             if (newVersionPath == null)
             {
                 MessageBox.Show("An error occured while downloading the newest version! Try again later!");
@@ -59,6 +70,7 @@ namespace Presentation
             await UpdateAndReboot(curVersionPath, newVersionPath);
 
         Cleanup:
+            Size = new Size(294, 229);
             updateManager.Dispose();
             button1.Enabled = true;
             isUpdating = false;
