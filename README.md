@@ -4,7 +4,7 @@
 
 Windows-only desktop app that automates encounter hunting, detects special forms (shiny/event), logs encounter stats, and optionally notifies you over Discord.
 
-<b>Supported OS:</b> Windows 10/11 64‑bit • <b>Target:</b> .NET 8 Windows • <b>Status:</b> Works as of 13/10/2025 <b>(game updates may break offsets)</b>
+<b>Supported OS:</b> Windows 10/11 64‑bit • <b>Target:</b> .NET 8 Windows • <b>Status:</b> Works as of 21/11/2025 <b>(game updates may break offsets)</b>
 
 <div align="center">
 	<a href="https://www.youtube.com/watch?v=bRrDVfWxVKc" target="_blank">
