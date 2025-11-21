@@ -66,9 +66,10 @@ namespace Presentation
 
         public void UpdateShowBuyMeACoffeeButton()
         {
-            dontShowBuyMeACoffeeButton.Visible = Database.Tables.ShowBuyMeACoffee;
-            dontShowBuyMeACoffeeButton.Enabled = Database.Tables.ShowBuyMeACoffee;
-            if (Database.Tables.ShowBuyMeACoffee)
+            var show = Database.Tables.ShowBuyMeACoffee && Database.Tables.LoginCount > 4;
+            dontShowBuyMeACoffeeButton.Visible = show;
+            dontShowBuyMeACoffeeButton.Enabled = show;
+            if (show)
             {
                 Size = new Size(554, 794);
             }
@@ -387,6 +388,12 @@ namespace Presentation
         {
             ThemeSettingsForm themeSettingsForm = new();
             themeSettingsForm.ShowDialog();
+        }
+
+        private void dataFolderSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataFolderSettings dataFolderSettings = new();
+            dataFolderSettings.ShowDialog();
         }
     }
 }

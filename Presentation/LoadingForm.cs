@@ -34,6 +34,15 @@ namespace Presentation
 
         private async Task InitializeAsync()
         {
+            var progress = new Progress<double>(value =>
+            {
+                var percent = Math.Max(0, Math.Min(100, (int)(value * 100)));
+                if (progressBar1.InvokeRequired)
+                    progressBar1.Invoke(() => progressBar1.Value = percent);
+                else
+                    progressBar1.Value = percent;
+            });
+
             label1.Text = "Loading database";
             await Task.Run(() =>
             {
@@ -47,6 +56,21 @@ namespace Presentation
                 }
                 Database.Save();
             });
+
+            label1.Text = "Updating data folder";
+            progressBar1.Value = 0;
+            progressBar1.Style = ProgressBarStyle.Continuous;
+            try
+            {
+                var updateDataManager = _serviceProvider.GetRequiredService<UpdateDataManager>();
+                await updateDataManager.DownloadLatestIfAvailable(progress);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Failed to update data: {ex}");
+            }
+            progressBar1.Style = ProgressBarStyle.Marquee;
+            progressBar1.Value = 50;
 
             ThemeManager.SelectedTheme = ThemeManager.FromString(Database.Tables.CurrentTheme);
 
@@ -85,14 +109,6 @@ namespace Presentation
 
                         progressBar1.Value = 0;
                         progressBar1.Style = ProgressBarStyle.Continuous;
-                        var progress = new Progress<double>(value =>
-                        {
-                            var percent = Math.Max(0, Math.Min(100, (int)(value * 100)));
-                            if (progressBar1.InvokeRequired)
-                                progressBar1.Invoke(() => progressBar1.Value = percent);
-                            else
-                                progressBar1.Value = percent;
-                        });
 
                         var newVersionPath = await updateManager.DownloadNewVersion(downloadInfo, progress);
                         progressBar1.Style = ProgressBarStyle.Marquee;
@@ -130,6 +146,9 @@ namespace Presentation
             {
                 Debug.WriteLine($"Failed to start Discord bot: {ex}");
             }
+
+            Database.Tables.LoginCount += 1;
+            Database.Save();
         }
     }
 }

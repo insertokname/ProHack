@@ -36,6 +36,7 @@
             label1 = new Label();
             progressBar1 = new ProgressBar();
             greenLimeThemeComponent1 = new Infrastructure.Theme.ThemeApplier();
+            button2 = new Button();
             SuspendLayout();
             // 
             // autoCheckUpdatesCheckbox
@@ -63,7 +64,7 @@
             autoUpdateCheckBox.Name = "autoUpdateCheckBox";
             autoUpdateCheckBox.Size = new Size(307, 22);
             autoUpdateCheckBox.TabIndex = 2;
-            autoUpdateCheckBox.Tag = "FontSize=XS";
+            autoUpdateCheckBox.Tag = "FontSize=S";
             autoUpdateCheckBox.Text = "Automatically update when available";
             autoUpdateCheckBox.UseVisualStyleBackColor = false;
             autoUpdateCheckBox.CheckedChanged += autoUpdateCheckBox_CheckedChanged;
@@ -74,9 +75,9 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
             button1.ForeColor = Color.FromArgb(152, 151, 26);
-            button1.Location = new Point(10, 95);
+            button1.Location = new Point(12, 113);
             button1.Name = "button1";
-            button1.Size = new Size(261, 85);
+            button1.Size = new Size(307, 102);
             button1.TabIndex = 4;
             button1.Text = "Check for updates";
             button1.UseVisualStyleBackColor = false;
@@ -85,11 +86,11 @@
             // textBox1
             // 
             textBox1.BackColor = Color.FromArgb(40, 40, 40);
-            textBox1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            textBox1.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             textBox1.ForeColor = Color.FromArgb(152, 151, 26);
-            textBox1.Location = new Point(144, 66);
+            textBox1.Location = new Point(130, 74);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(127, 29);
+            textBox1.Size = new Size(129, 23);
             textBox1.TabIndex = 3;
             textBox1.Tag = "FontSize=S";
             textBox1.TextChanged += textBox1_TextChanged;
@@ -100,7 +101,7 @@
             label1.BackColor = Color.FromArgb(40, 40, 40);
             label1.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             label1.ForeColor = Color.FromArgb(152, 151, 26);
-            label1.Location = new Point(10, 67);
+            label1.Location = new Point(12, 74);
             label1.Name = "label1";
             label1.Size = new Size(112, 18);
             label1.TabIndex = 27;
@@ -112,9 +113,9 @@
             progressBar1.BackColor = Color.FromArgb(40, 40, 40);
             progressBar1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
             progressBar1.ForeColor = Color.FromArgb(152, 151, 26);
-            progressBar1.Location = new Point(8, 190);
+            progressBar1.Location = new Point(12, 226);
             progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(264, 32);
+            progressBar1.Size = new Size(307, 32);
             progressBar1.TabIndex = 28;
             // 
             // greenLimeThemeComponent1
@@ -123,19 +124,34 @@
             greenLimeThemeComponent1.Enabled = false;
             greenLimeThemeComponent1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
             greenLimeThemeComponent1.ForeColor = Color.FromArgb(152, 151, 26);
-            greenLimeThemeComponent1.Location = new Point(12, -6);
+            greenLimeThemeComponent1.Location = new Point(-8, -6);
             greenLimeThemeComponent1.Name = "greenLimeThemeComponent1";
-            greenLimeThemeComponent1.Size = new Size(42, 12);
+            greenLimeThemeComponent1.Size = new Size(155, 19);
             greenLimeThemeComponent1.TabIndex = 29;
             greenLimeThemeComponent1.TabStop = false;
             greenLimeThemeComponent1.Text = "greenLimeThemeComponent1";
             greenLimeThemeComponent1.Visible = false;
             // 
+            // button2
+            // 
+            button2.BackColor = Color.FromArgb(40, 40, 40);
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Cascadia Code", 8F, FontStyle.Bold);
+            button2.ForeColor = Color.FromArgb(152, 151, 26);
+            button2.Location = new Point(265, 74);
+            button2.Name = "button2";
+            button2.Size = new Size(54, 23);
+            button2.TabIndex = 30;
+            button2.Tag = "FontSize=XS";
+            button2.Text = "Save";
+            button2.UseVisualStyleBackColor = false;
+            // 
             // UpdateSettingsForm
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(278, 190);
+            ClientSize = new Size(326, 224);
+            Controls.Add(button2);
             Controls.Add(greenLimeThemeComponent1);
             Controls.Add(progressBar1);
             Controls.Add(label1);
@@ -163,5 +179,6 @@
         private Label label1;
         private ProgressBar progressBar1;
         private Infrastructure.Theme.ThemeApplier greenLimeThemeComponent1;
+        private Button button2;
     }
 }

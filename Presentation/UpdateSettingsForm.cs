@@ -43,7 +43,7 @@ namespace Presentation
                     goto Cleanup;
                 }
             }
-            Size = new Size(294, 269);
+            Size = new Size(342, 306);
             progressBar1.Value = 0;
             progressBar1.Style = ProgressBarStyle.Continuous;
             var progress = new Progress<double>(value =>
@@ -70,7 +70,7 @@ namespace Presentation
             await UpdateAndReboot(curVersionPath, newVersionPath);
 
         Cleanup:
-            Size = new Size(294, 229);
+            Size = new Size(342, 263);
             updateManager.Dispose();
             button1.Enabled = true;
             isUpdating = false;

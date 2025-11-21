@@ -50,12 +50,12 @@
             // 
             textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBox1.BackColor = Color.FromArgb(40, 40, 40);
-            textBox1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            textBox1.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             textBox1.ForeColor = Color.FromArgb(152, 151, 26);
             textBox1.Location = new Point(12, 37);
             textBox1.Name = "textBox1";
             textBox1.PasswordChar = '*';
-            textBox1.Size = new Size(588, 29);
+            textBox1.Size = new Size(588, 23);
             textBox1.TabIndex = 0;
             textBox1.Tag = "FontSize=S";
             textBox1.TextChanged += textBox1_TextChanged;
@@ -77,11 +77,11 @@
             checkBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             checkBox1.AutoSize = true;
             checkBox1.BackColor = Color.FromArgb(40, 40, 40);
-            checkBox1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            checkBox1.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             checkBox1.ForeColor = Color.FromArgb(152, 151, 26);
-            checkBox1.Location = new Point(588, 38);
+            checkBox1.Location = new Point(607, 38);
             checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(86, 29);
+            checkBox1.Size = new Size(67, 22);
             checkBox1.TabIndex = 2;
             checkBox1.Tag = "FontSize=S";
             checkBox1.Text = "Show ";
@@ -163,11 +163,11 @@
             // 
             textBox2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBox2.BackColor = Color.FromArgb(40, 40, 40);
-            textBox2.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            textBox2.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             textBox2.ForeColor = Color.FromArgb(152, 151, 26);
             textBox2.Location = new Point(12, 93);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(661, 29);
+            textBox2.Size = new Size(661, 23);
             textBox2.TabIndex = 25;
             textBox2.Tag = "FontSize=S";
             // 
@@ -176,13 +176,13 @@
             button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             button1.BackColor = Color.FromArgb(40, 40, 40);
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            button1.Font = new Font("Cascadia Code", 8F, FontStyle.Bold);
             button1.ForeColor = Color.FromArgb(152, 151, 26);
             button1.Location = new Point(679, 93);
             button1.Name = "button1";
             button1.Size = new Size(54, 25);
             button1.TabIndex = 27;
-            button1.Tag = "FontSize=S";
+            button1.Tag = "FontSize=XS";
             button1.Text = "Save";
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
@@ -192,13 +192,13 @@
             button2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             button2.BackColor = Color.FromArgb(40, 40, 40);
             button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            button2.Font = new Font("Cascadia Code", 8F, FontStyle.Bold);
             button2.ForeColor = Color.FromArgb(152, 151, 26);
             button2.Location = new Point(679, 37);
             button2.Name = "button2";
             button2.Size = new Size(54, 25);
             button2.TabIndex = 28;
-            button2.Tag = "FontSize=S";
+            button2.Tag = "FontSize=XS";
             button2.Text = "Save";
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
@@ -224,9 +224,9 @@
             greenLimeThemeComponent1.Enabled = false;
             greenLimeThemeComponent1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
             greenLimeThemeComponent1.ForeColor = Color.FromArgb(152, 151, 26);
-            greenLimeThemeComponent1.Location = new Point(0, 0);
+            greenLimeThemeComponent1.Location = new Point(-41, -13);
             greenLimeThemeComponent1.Name = "greenLimeThemeComponent1";
-            greenLimeThemeComponent1.Size = new Size(0, 0);
+            greenLimeThemeComponent1.Size = new Size(142, 29);
             greenLimeThemeComponent1.TabIndex = 31;
             greenLimeThemeComponent1.TabStop = false;
             greenLimeThemeComponent1.Text = "greenLimeThemeComponent1";

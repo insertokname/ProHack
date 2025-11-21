@@ -90,13 +90,9 @@ namespace Infrastructure
 
         public async Task<string?> DownloadNewVersion(UpdateInfo updateInfo, IProgress<double>? progress = null)
         {
-            var tempDir = Path.Combine(Environment.CurrentDirectory, "Temp");
-            if (!Directory.Exists(tempDir))
-            {
-                Directory.CreateDirectory(tempDir);
-            }
+            var localDownloadsDir = FolderManager.LocalDownloads();
 
-            var targetPath = Path.Combine(tempDir, $"PROHack-{updateInfo.VersionCode}.exe");
+            var targetPath = Path.Combine(localDownloadsDir, $"PROHack-{updateInfo.VersionCode}.exe");
             using var response = await client.GetAsync(updateInfo.DownloadUrl, HttpCompletionOption.ResponseHeadersRead);
             if (!response.IsSuccessStatusCode)
                 return null;

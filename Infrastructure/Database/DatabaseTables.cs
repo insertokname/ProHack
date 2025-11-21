@@ -14,5 +14,7 @@ namespace Infrastructure.Database
         public bool CheckUpdates { get; set; } = true;
         public bool AutomaticallyUpdate { get; set; } = false;
         public string? CurrentTheme { get; set; } = null;
+        public string? DataDownloadUrl { get; set; } = null;
+        public int LoginCount { get; set; } = 0;
     }
 }

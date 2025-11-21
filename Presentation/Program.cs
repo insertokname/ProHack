@@ -41,6 +41,7 @@ namespace Presentation
                     //Services
                     services.AddHttpClient();
                     services.AddTransient<UpdateManager>();
+                    services.AddTransient<UpdateDataManager>();
                 });
         }
 
