@@ -61,11 +61,11 @@
             menuStrip1 = new MenuStrip();
             test1ToolStripMenuItem = new ToolStripMenuItem();
             dialogueSettingsToolStripMenuItem = new ToolStripMenuItem();
-            themeSettingsToolStripMenuItem = new ToolStripMenuItem();
-            discordToolStripMenuItem = new ToolStripMenuItem();
-            dialogueSettingsToolStripMenuItem1 = new ToolStripMenuItem();
-            updateSettingsToolStripMenuItem = new ToolStripMenuItem();
             dataFolderSettingsToolStripMenuItem = new ToolStripMenuItem();
+            dialogueSettingsToolStripMenuItem1 = new ToolStripMenuItem();
+            themeSettingsToolStripMenuItem = new ToolStripMenuItem();
+            updateSettingsToolStripMenuItem = new ToolStripMenuItem();
+            discordToolStripMenuItem = new ToolStripMenuItem();
             donateToolStripMenuItem = new ToolStripMenuItem();
             timeSinceStartLabel = new Label();
             timeSinceStartedTimer = new System.Windows.Forms.Timer(components);
@@ -380,7 +380,7 @@
             registerPos1Label.Name = "registerPos1Label";
             registerPos1Label.Size = new Size(251, 83);
             registerPos1Label.TabIndex = 1;
-            registerPos1Label.Tag = "FontSize=XL";
+            registerPos1Label.Tag = "FontSize=L";
             registerPos1Label.Text = "Position x:";
             registerPos1Label.TextAlign = ContentAlignment.MiddleCenter;
             registerPos1Label.Visible = false;
@@ -566,27 +566,16 @@
             dialogueSettingsToolStripMenuItem.Text = "Settings";
             dialogueSettingsToolStripMenuItem.Click += dialogueSettingsToolStripMenuItem_Click;
             // 
-            // themeSettingsToolStripMenuItem
+            // dataFolderSettingsToolStripMenuItem
             // 
-            themeSettingsToolStripMenuItem.BackColor = Color.FromArgb(40, 40, 40);
-            themeSettingsToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
-            themeSettingsToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
-            themeSettingsToolStripMenuItem.Name = "themeSettingsToolStripMenuItem";
-            themeSettingsToolStripMenuItem.Size = new Size(236, 22);
-            themeSettingsToolStripMenuItem.Tag = "FontSize=S";
-            themeSettingsToolStripMenuItem.Text = "Theme settings";
-            themeSettingsToolStripMenuItem.Click += themeSettingsToolStripMenuItem_Click;
-            // 
-            // discordToolStripMenuItem
-            // 
-            discordToolStripMenuItem.BackColor = Color.FromArgb(40, 40, 40);
-            discordToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
-            discordToolStripMenuItem.ForeColor = Color.MediumPurple;
-            discordToolStripMenuItem.Name = "discordToolStripMenuItem";
-            discordToolStripMenuItem.Size = new Size(236, 22);
-            discordToolStripMenuItem.Tag = "FontSize=S;ForeColor=Override;";
-            discordToolStripMenuItem.Text = "Discord Settings";
-            discordToolStripMenuItem.Click += discordToolStripMenuItem_Click;
+            dataFolderSettingsToolStripMenuItem.BackColor = Color.FromArgb(40, 40, 40);
+            dataFolderSettingsToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            dataFolderSettingsToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
+            dataFolderSettingsToolStripMenuItem.Name = "dataFolderSettingsToolStripMenuItem";
+            dataFolderSettingsToolStripMenuItem.Size = new Size(236, 22);
+            dataFolderSettingsToolStripMenuItem.Tag = "FontSize=S";
+            dataFolderSettingsToolStripMenuItem.Text = "Data folder settings";
+            dataFolderSettingsToolStripMenuItem.Click += dataFolderSettingsToolStripMenuItem_Click;
             // 
             // dialogueSettingsToolStripMenuItem1
             // 
@@ -600,6 +589,17 @@
             dialogueSettingsToolStripMenuItem1.Visible = false;
             dialogueSettingsToolStripMenuItem1.Click += dialogueSettingsToolStripMenuItem1_Click;
             // 
+            // themeSettingsToolStripMenuItem
+            // 
+            themeSettingsToolStripMenuItem.BackColor = Color.FromArgb(40, 40, 40);
+            themeSettingsToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            themeSettingsToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
+            themeSettingsToolStripMenuItem.Name = "themeSettingsToolStripMenuItem";
+            themeSettingsToolStripMenuItem.Size = new Size(236, 22);
+            themeSettingsToolStripMenuItem.Tag = "FontSize=S";
+            themeSettingsToolStripMenuItem.Text = "Theme settings";
+            themeSettingsToolStripMenuItem.Click += themeSettingsToolStripMenuItem_Click;
+            // 
             // updateSettingsToolStripMenuItem
             // 
             updateSettingsToolStripMenuItem.BackColor = Color.FromArgb(40, 40, 40);
@@ -611,16 +611,16 @@
             updateSettingsToolStripMenuItem.Text = "Update settings";
             updateSettingsToolStripMenuItem.Click += updateSettingsToolStripMenuItem_Click;
             // 
-            // dataFolderSettingsToolStripMenuItem
+            // discordToolStripMenuItem
             // 
-            dataFolderSettingsToolStripMenuItem.BackColor = Color.FromArgb(40, 40, 40);
-            dataFolderSettingsToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
-            dataFolderSettingsToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
-            dataFolderSettingsToolStripMenuItem.Name = "dataFolderSettingsToolStripMenuItem";
-            dataFolderSettingsToolStripMenuItem.Size = new Size(236, 22);
-            dataFolderSettingsToolStripMenuItem.Tag = "FontSize=S";
-            dataFolderSettingsToolStripMenuItem.Text = "Data folder settings";
-            dataFolderSettingsToolStripMenuItem.Click += dataFolderSettingsToolStripMenuItem_Click;
+            discordToolStripMenuItem.BackColor = Color.FromArgb(40, 40, 40);
+            discordToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            discordToolStripMenuItem.ForeColor = Color.MediumPurple;
+            discordToolStripMenuItem.Name = "discordToolStripMenuItem";
+            discordToolStripMenuItem.Size = new Size(236, 22);
+            discordToolStripMenuItem.Tag = "FontSize=S;ForeColor=Override;";
+            discordToolStripMenuItem.Text = "Discord Settings";
+            discordToolStripMenuItem.Click += discordToolStripMenuItem_Click;
             // 
             // donateToolStripMenuItem
             // 
