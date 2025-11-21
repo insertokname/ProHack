@@ -7,7 +7,7 @@ Windows-only desktop app that automates encounter hunting, detects special forms
 <b>Supported OS:</b> Windows 10/11 64‑bit • <b>Target:</b> .NET 8 Windows • <b>Status:</b> Works as of 13/10/2025 <b>(game updates may break offsets)</b>
 
 <div align="center">
-	<a href="https://www.youtube.com/watch?v=RgbgajQRx8A" target="_blank">
+	<a href="https://www.youtube.com/watch?v=bRrDVfWxVKc" target="_blank">
 		<img alt="Watch the tutorial and the demo" src="thumbnail-play.png" width="720" />
 	</a>
 </div>
