@@ -240,9 +240,9 @@
             label1.BackColor = Color.FromArgb(40, 40, 40);
             label1.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             label1.ForeColor = Color.FromArgb(152, 151, 26);
-            label1.Location = new Point(12, 23);
+            label1.Location = new Point(12, 33);
             label1.Name = "label1";
-            label1.Size = new Size(568, 66);
+            label1.Size = new Size(568, 58);
             label1.TabIndex = 15;
             label1.Tag = "FontSize=S";
             label1.Text = "If you don't find the right sprite here make sure you have the right version of the DATA folder! Check online for it. \r\nYou can use WASD shortcuts for switching pokemon forms and ids!\r\n";
@@ -277,7 +277,7 @@
             openFileToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             openFileToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
             openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            openFileToolStripMenuItem.Size = new Size(172, 22);
+            openFileToolStripMenuItem.Size = new Size(180, 22);
             openFileToolStripMenuItem.Tag = "FontSize=S";
             openFileToolStripMenuItem.Text = "Open targets";
             openFileToolStripMenuItem.Click += OpenFileToolStripMenuItem_Click;
@@ -288,7 +288,7 @@
             saveTargetsToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             saveTargetsToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
             saveTargetsToolStripMenuItem.Name = "saveTargetsToolStripMenuItem";
-            saveTargetsToolStripMenuItem.Size = new Size(172, 22);
+            saveTargetsToolStripMenuItem.Size = new Size(180, 22);
             saveTargetsToolStripMenuItem.Tag = "FontSize=S";
             saveTargetsToolStripMenuItem.Text = "Save targets";
             saveTargetsToolStripMenuItem.Click += sSaveTargetsToolStripMenuItem_Click;
