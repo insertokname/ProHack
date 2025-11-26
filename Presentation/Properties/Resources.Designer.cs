@@ -81,6 +81,25 @@ namespace Presentation.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ## Privacy Policy
+        ///
+        ///**Effective date:** 25 November 2025
+        ///
+        ///Welcome to PROHack (&quot;we&quot;, &quot;our&quot; or &quot;us&quot;). This Privacy Policy explains what information we collect when you use the PROHack desktop application, why we collect it, how we use it, and the choices that are available to you.
+        ///
+        ///### 1. Information We Collect
+        ///
+        ///We only collect the information strictly necessary to understand basic usage patterns:
+        ///
+        ///- **Hashed IP address** (a one-way cryptographic hash of your IP address, used to estimate unique users [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string privacy_policy {
+            get {
+                return ResourceManager.GetString("privacy-policy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap star_github {

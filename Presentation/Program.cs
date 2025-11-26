@@ -42,6 +42,7 @@ namespace Presentation
                     services.AddHttpClient();
                     services.AddTransient<UpdateManager>();
                     services.AddTransient<UpdateDataManager>();
+                    services.AddTransient<LoginTrackerManager>();
                 });
         }
 

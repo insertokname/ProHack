@@ -57,6 +57,18 @@ namespace Presentation
                 Database.Save();
             });
 
+            if (!Database.Tables.AgreedToPrivacyPolicy)
+            {
+                PrivacyPolicyForm form = new();
+                Hide();
+                form.ShowDialog();
+                if (!form.accepted)
+                {
+                    System.Windows.Forms.Application.Exit();
+                }
+                Show();
+            }
+
             label1.Text = "Updating data folder";
             progressBar1.Value = 0;
             progressBar1.Style = ProgressBarStyle.Continuous;
@@ -146,6 +158,10 @@ namespace Presentation
             {
                 Debug.WriteLine($"Failed to start Discord bot: {ex}");
             }
+
+
+            var tracker = _serviceProvider.GetRequiredService<LoginTrackerManager>();
+            _ = Task.Run(tracker.TrackLogin);
 
             Database.Tables.LoginCount += 1;
             Database.Save();

@@ -2,8 +2,9 @@
 - [X] reset stats
 - [X] warning message when opening the client
 - [X] client auto updates
-- [ ] icon
-- [ ] themes
+- [X] icon
+- [X] themes
+- [ ] rename controls to match functionality
 less priority/maybe impossible:
 - iv/nature read
 - Future position predictor
