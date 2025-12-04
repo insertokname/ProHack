@@ -254,6 +254,7 @@
             Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
             ForeColor = Color.FromArgb(152, 151, 26);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "DiscordBotOptionsForm";
             Text = "Discord Bot Settings";
             Load += DiscordBotOptions_Load;

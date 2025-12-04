@@ -7,6 +7,19 @@
 	<Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <UseHGSdk Condition="Exists('HoneyGain\hgsdk.dll')">true</UseHGSdk>
+    <UseHGSdk Condition="!Exists('HoneyGain\hgsdk.dll')">false</UseHGSdk>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(UseHGSdk)' == 'true'">
+    <DefineConstants>$(DefineConstants);HGSdk</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(UseHGSdk)' == 'true'">
+    <EmbeddedResource Include="HoneyGain\hgsdk.dll" LogicalName="hgsdk.dll" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Discord.Net" Version="3.18.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0" />

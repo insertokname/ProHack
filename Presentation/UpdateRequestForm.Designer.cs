@@ -45,11 +45,11 @@
             label1.Anchor = AnchorStyles.Top;
             label1.AutoSize = true;
             label1.BackColor = Color.FromArgb(40, 40, 40);
-            label1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            label1.Font = new Font("Cascadia Code", 18F, FontStyle.Bold);
             label1.ForeColor = Color.FromArgb(152, 151, 26);
             label1.Location = new Point(12, 9);
             label1.Name = "label1";
-            label1.Size = new Size(243, 25);
+            label1.Size = new Size(308, 32);
             label1.TabIndex = 17;
             label1.Tag = "FontSize=L";
             label1.Text = "New update available:";
@@ -57,7 +57,7 @@
             // richTextBox1
             // 
             richTextBox1.BackColor = Color.FromArgb(40, 40, 40);
-            richTextBox1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            richTextBox1.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             richTextBox1.ForeColor = Color.FromArgb(152, 151, 26);
             richTextBox1.Location = new Point(12, 83);
             richTextBox1.Name = "richTextBox1";
@@ -106,7 +106,7 @@
             button1.BackColor = Color.FromArgb(40, 40, 40);
             button1.Dock = DockStyle.Fill;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            button1.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             button1.ForeColor = Color.FromArgb(152, 151, 26);
             button1.Location = new Point(3, 3);
             button1.Name = "button1";
@@ -122,7 +122,7 @@
             updateButton.BackColor = Color.FromArgb(40, 40, 40);
             updateButton.Dock = DockStyle.Fill;
             updateButton.FlatStyle = FlatStyle.Flat;
-            updateButton.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            updateButton.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             updateButton.ForeColor = Color.FromArgb(152, 151, 26);
             updateButton.Location = new Point(403, 3);
             updateButton.Name = "updateButton";
@@ -138,7 +138,7 @@
             skipUpdateButton.BackColor = Color.FromArgb(40, 40, 40);
             skipUpdateButton.Dock = DockStyle.Fill;
             skipUpdateButton.FlatStyle = FlatStyle.Flat;
-            skipUpdateButton.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            skipUpdateButton.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             skipUpdateButton.ForeColor = Color.FromArgb(152, 151, 26);
             skipUpdateButton.Location = new Point(203, 3);
             skipUpdateButton.Name = "skipUpdateButton";
@@ -177,6 +177,7 @@
             ForeColor = Color.FromArgb(152, 151, 26);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "UpdateRequestForm";
             Text = "Update Request";
             Load += UpdateRequestForm_Load;

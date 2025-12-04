@@ -18,6 +18,7 @@ namespace Infrastructure.Theme
                 Secondary,
                 Secondary1,
                 Danger,
+                Ok,
             }
 
             public enum FontSize

@@ -56,7 +56,7 @@
             // 
             label2.Anchor = AnchorStyles.Top;
             label2.BackColor = Color.FromArgb(40, 40, 40);
-            label2.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            label2.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
             label2.ForeColor = Color.FromArgb(152, 151, 26);
             label2.Location = new Point(12, 92);
             label2.Name = "label2";
@@ -137,6 +137,7 @@
             ForeColor = Color.FromArgb(152, 151, 26);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "WarningForm";
             Text = "WARNING";
             ResumeLayout(false);

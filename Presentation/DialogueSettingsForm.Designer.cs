@@ -40,7 +40,7 @@
             // 
             label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label2.BackColor = Color.FromArgb(40, 40, 40);
-            label2.Font = new Font("Segoe UI Semibold", 9.25F, FontStyle.Bold);
+            label2.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
             label2.ForeColor = Color.FromArgb(152, 151, 26);
             label2.Location = new Point(12, 9);
             label2.Name = "label2";
@@ -53,6 +53,7 @@
             // 
             trackBar1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             trackBar1.BackColor = Color.FromArgb(40, 40, 40);
+            trackBar1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
             trackBar1.LargeChange = 1;
             trackBar1.Location = new Point(12, 79);
             trackBar1.Maximum = 175;
@@ -67,7 +68,7 @@
             // 
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label1.BackColor = Color.FromArgb(40, 40, 40);
-            label1.Font = new Font("Segoe UI Semibold", 9.25F, FontStyle.Bold);
+            label1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
             label1.ForeColor = Color.FromArgb(152, 151, 26);
             label1.Location = new Point(12, 49);
             label1.Name = "label1";
@@ -80,6 +81,7 @@
             // 
             greenLimeThemeComponent1.BackColor = Color.FromArgb(40, 40, 40);
             greenLimeThemeComponent1.Enabled = false;
+            greenLimeThemeComponent1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
             greenLimeThemeComponent1.ForeColor = Color.FromArgb(152, 151, 26);
             greenLimeThemeComponent1.Location = new Point(0, 0);
             greenLimeThemeComponent1.Name = "greenLimeThemeComponent1";
@@ -91,7 +93,7 @@
             // 
             // DialogueSettingsForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 40, 40);
             ClientSize = new Size(555, 136);
@@ -99,9 +101,11 @@
             Controls.Add(label1);
             Controls.Add(trackBar1);
             Controls.Add(label2);
+            Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
             ForeColor = Color.FromArgb(152, 151, 26);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "DialogueSettingsForm";
             Text = "Dialogue Settings";
             Load += DialogueSettings_Load;

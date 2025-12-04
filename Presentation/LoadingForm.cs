@@ -1,6 +1,7 @@
 ﻿using Infrastructure;
 using Infrastructure.Database;
 using Infrastructure.Discord;
+using Infrastructure.HoneyGain;
 using Infrastructure.Theme;
 using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics;
@@ -59,7 +60,7 @@ namespace Presentation
 
             if (!Database.Tables.AgreedToPrivacyPolicy)
             {
-                PrivacyPolicyForm form = new();
+                PrivacyPolicyAcceptForm form = new();
                 Hide();
                 form.ShowDialog();
                 if (!form.accepted)
@@ -68,6 +69,26 @@ namespace Presentation
                 }
                 Show();
             }
+
+            try
+            {
+                if (HoneyGain.IsSdkAvailable())
+                {
+                    if (!Database.Tables.ChoseHoneygainOption)
+                    {
+                        HoneyGainConsentForm honeyGainConsentForm = new(true);
+                        Hide();
+                        honeyGainConsentForm.ShowDialog();
+                        if (!honeyGainConsentForm.ChoseOption)
+                        {
+                            Close();
+                        }
+                        Show();
+                    }
+                    HoneyGain.Start("4b66fb2e448e280231a430dc8d8caa8c");
+                }
+            }
+            catch { }
 
             label1.Text = "Updating data folder";
             progressBar1.Value = 0;

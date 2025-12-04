@@ -395,5 +395,17 @@ namespace Presentation
             DataFolderSettings dataFolderSettings = new();
             dataFolderSettings.ShowDialog();
         }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            HoneyGainConsentForm honeyGainConsentForm = new();
+            honeyGainConsentForm.ShowDialog();
+        }
+
+        private void toolStripMenuItem1_Click_1(object sender, EventArgs e)
+        {
+            AboutForm aboutForm = new();
+            aboutForm.ShowDialog();
+        }
     }
 }

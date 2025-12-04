@@ -1,5 +1,6 @@
 using Infrastructure;
 using Infrastructure.Discord;
+using Infrastructure.HoneyGain;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 

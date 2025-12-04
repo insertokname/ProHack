@@ -21,12 +21,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="PrivacyPolicyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Update="PrivacyPolicyForm.cs">
+    <Compile Update="PrivacyPolicyAcceptForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="HoneyGainConsentForm.cs" />
+    <Compile Update="AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

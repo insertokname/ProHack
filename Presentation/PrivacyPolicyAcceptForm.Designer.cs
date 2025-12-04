@@ -1,6 +1,6 @@
 ﻿namespace Presentation
 {
-    partial class PrivacyPolicyForm
+    partial class PrivacyPolicyAcceptForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrivacyPolicyForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrivacyPolicyAcceptForm));
             label1 = new Label();
-            greenLimeThemeComponent1 = new Infrastructure.Theme.ThemeApplier();
+            continueButton = new Button();
             textBox1 = new TextBox();
+            greenLimeThemeComponent1 = new Infrastructure.Theme.ThemeApplier();
             SuspendLayout();
             // 
             // label1
@@ -49,19 +50,20 @@
             label1.Text = "Privacy policy";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // greenLimeThemeComponent1
+            // continueButton
             // 
-            greenLimeThemeComponent1.BackColor = Color.FromArgb(40, 40, 40);
-            greenLimeThemeComponent1.Enabled = false;
-            greenLimeThemeComponent1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
-            greenLimeThemeComponent1.ForeColor = Color.FromArgb(152, 151, 26);
-            greenLimeThemeComponent1.Location = new Point(12, 6);
-            greenLimeThemeComponent1.Name = "greenLimeThemeComponent1";
-            greenLimeThemeComponent1.Size = new Size(95, 80);
-            greenLimeThemeComponent1.TabIndex = 29;
-            greenLimeThemeComponent1.TabStop = false;
-            greenLimeThemeComponent1.Text = "greenLimeThemeComponent1";
-            greenLimeThemeComponent1.Visible = false;
+            continueButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            continueButton.BackColor = Color.FromArgb(40, 40, 40);
+            continueButton.FlatStyle = FlatStyle.Flat;
+            continueButton.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            continueButton.ForeColor = Color.FromArgb(152, 151, 26);
+            continueButton.Location = new Point(240, 423);
+            continueButton.Name = "continueButton";
+            continueButton.Size = new Size(209, 44);
+            continueButton.TabIndex = 23;
+            continueButton.Text = "I Agree";
+            continueButton.UseVisualStyleBackColor = false;
+            continueButton.Click += button_Click;
             // 
             // textBox1
             // 
@@ -78,20 +80,35 @@
             textBox1.TabStop = false;
             textBox1.Tag = "FontSize=S";
             // 
-            // PrivacyPolicyForm
+            // greenLimeThemeComponent1
+            // 
+            greenLimeThemeComponent1.BackColor = Color.FromArgb(40, 40, 40);
+            greenLimeThemeComponent1.Enabled = false;
+            greenLimeThemeComponent1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            greenLimeThemeComponent1.ForeColor = Color.FromArgb(152, 151, 26);
+            greenLimeThemeComponent1.Location = new Point(28, 359);
+            greenLimeThemeComponent1.Name = "greenLimeThemeComponent1";
+            greenLimeThemeComponent1.Size = new Size(95, 80);
+            greenLimeThemeComponent1.TabIndex = 29;
+            greenLimeThemeComponent1.TabStop = false;
+            greenLimeThemeComponent1.Text = "greenLimeThemeComponent1";
+            greenLimeThemeComponent1.Visible = false;
+            // 
+            // PrivacyPolicyAcceptForm
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(461, 368);
+            ClientSize = new Size(461, 479);
             Controls.Add(textBox1);
             Controls.Add(greenLimeThemeComponent1);
+            Controls.Add(continueButton);
             Controls.Add(label1);
             Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
             ForeColor = Color.FromArgb(152, 151, 26);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
-            Name = "PrivacyPolicyForm";
+            Name = "PrivacyPolicyAcceptForm";
             Text = "Privacy Policy";
             Load += PrivacyPolicyForm_Load;
             ResumeLayout(false);
@@ -101,7 +118,8 @@
         #endregion
 
         private Label label1;
-        private Infrastructure.Theme.ThemeApplier greenLimeThemeComponent1;
+        private Button continueButton;
         private TextBox textBox1;
+        private Infrastructure.Theme.ThemeApplier greenLimeThemeComponent1;
     }
 }

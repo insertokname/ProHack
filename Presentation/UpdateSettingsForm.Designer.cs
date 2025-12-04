@@ -163,6 +163,7 @@
             ForeColor = Color.FromArgb(152, 151, 26);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "UpdateSettingsForm";
             Text = "Update Settings";
             Load += UpdateSettingsForm_Load;

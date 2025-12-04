@@ -108,6 +108,7 @@
             ForeColor = Color.FromArgb(152, 151, 26);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(5);
+            MaximizeBox = false;
             Name = "ThemeSettingsForm";
             Text = "Theme Settings";
             Load += ThemeSettingsForm_Load;

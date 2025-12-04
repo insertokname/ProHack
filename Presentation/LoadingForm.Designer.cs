@@ -88,6 +88,7 @@
             ForeColor = Color.FromArgb(152, 151, 26);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "LoadingForm";
             Text = "Loading";
             Load += Startup_Load;

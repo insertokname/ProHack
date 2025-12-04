@@ -81,7 +81,7 @@
             timePerSpecialLabel.AutoSize = true;
             timePerSpecialLabel.BackColor = Color.FromArgb(40, 40, 40);
             timePerSpecialLabel.Dock = DockStyle.Fill;
-            timePerSpecialLabel.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            timePerSpecialLabel.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             timePerSpecialLabel.ForeColor = Color.FromArgb(152, 151, 26);
             timePerSpecialLabel.Location = new Point(173, 180);
             timePerSpecialLabel.Name = "timePerSpecialLabel";
@@ -96,7 +96,7 @@
             encountersPerSpecialLabel.AutoSize = true;
             encountersPerSpecialLabel.BackColor = Color.FromArgb(40, 40, 40);
             encountersPerSpecialLabel.Dock = DockStyle.Fill;
-            encountersPerSpecialLabel.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            encountersPerSpecialLabel.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             encountersPerSpecialLabel.ForeColor = Color.FromArgb(152, 151, 26);
             encountersPerSpecialLabel.Location = new Point(3, 180);
             encountersPerSpecialLabel.Name = "encountersPerSpecialLabel";
@@ -111,7 +111,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.FromArgb(40, 40, 40);
             label1.Dock = DockStyle.Fill;
-            label1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            label1.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             label1.ForeColor = Color.FromArgb(152, 151, 26);
             label1.Location = new Point(3, 0);
             label1.Name = "label1";
@@ -126,7 +126,7 @@
             totalEncountersLabel.AutoSize = true;
             totalEncountersLabel.BackColor = Color.FromArgb(40, 40, 40);
             totalEncountersLabel.Dock = DockStyle.Fill;
-            totalEncountersLabel.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            totalEncountersLabel.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             totalEncountersLabel.ForeColor = Color.FromArgb(152, 151, 26);
             totalEncountersLabel.Location = new Point(173, 0);
             totalEncountersLabel.Name = "totalEncountersLabel";
@@ -141,7 +141,7 @@
             lablel.AutoSize = true;
             lablel.BackColor = Color.FromArgb(40, 40, 40);
             lablel.Dock = DockStyle.Fill;
-            lablel.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            lablel.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             lablel.ForeColor = Color.FromArgb(152, 151, 26);
             lablel.Location = new Point(3, 45);
             lablel.Name = "lablel";
@@ -156,7 +156,7 @@
             encountersInLastHourLabel.AutoSize = true;
             encountersInLastHourLabel.BackColor = Color.FromArgb(40, 40, 40);
             encountersInLastHourLabel.Dock = DockStyle.Fill;
-            encountersInLastHourLabel.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            encountersInLastHourLabel.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             encountersInLastHourLabel.ForeColor = Color.FromArgb(152, 151, 26);
             encountersInLastHourLabel.Location = new Point(173, 45);
             encountersInLastHourLabel.Name = "encountersInLastHourLabel";
@@ -171,7 +171,7 @@
             encountersSinceLastSpecial.AutoSize = true;
             encountersSinceLastSpecial.BackColor = Color.FromArgb(40, 40, 40);
             encountersSinceLastSpecial.Dock = DockStyle.Fill;
-            encountersSinceLastSpecial.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            encountersSinceLastSpecial.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             encountersSinceLastSpecial.ForeColor = Color.FromArgb(152, 151, 26);
             encountersSinceLastSpecial.Location = new Point(173, 90);
             encountersSinceLastSpecial.Name = "encountersSinceLastSpecial";
@@ -186,7 +186,7 @@
             label4.AutoSize = true;
             label4.BackColor = Color.FromArgb(40, 40, 40);
             label4.Dock = DockStyle.Fill;
-            label4.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            label4.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             label4.ForeColor = Color.FromArgb(152, 151, 26);
             label4.Location = new Point(3, 90);
             label4.Name = "label4";
@@ -201,7 +201,7 @@
             isBattlingLabel.AutoSize = true;
             isBattlingLabel.BackColor = Color.FromArgb(40, 40, 40);
             isBattlingLabel.Dock = DockStyle.Fill;
-            isBattlingLabel.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            isBattlingLabel.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             isBattlingLabel.ForeColor = Color.FromArgb(152, 151, 26);
             isBattlingLabel.Location = new Point(3, 135);
             isBattlingLabel.Name = "isBattlingLabel";
@@ -216,7 +216,7 @@
             lastSpecialLabel.AutoSize = true;
             lastSpecialLabel.BackColor = Color.FromArgb(40, 40, 40);
             lastSpecialLabel.Dock = DockStyle.Fill;
-            lastSpecialLabel.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            lastSpecialLabel.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             lastSpecialLabel.ForeColor = Color.FromArgb(152, 151, 26);
             lastSpecialLabel.Location = new Point(173, 135);
             lastSpecialLabel.Name = "lastSpecialLabel";
@@ -273,6 +273,7 @@
             ForeColor = Color.FromArgb(152, 151, 26);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "StatsViewForm";
             Text = "Stats";
             Load += StatsView_Load;

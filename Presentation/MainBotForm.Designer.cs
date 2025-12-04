@@ -65,8 +65,10 @@
             dialogueSettingsToolStripMenuItem1 = new ToolStripMenuItem();
             themeSettingsToolStripMenuItem = new ToolStripMenuItem();
             updateSettingsToolStripMenuItem = new ToolStripMenuItem();
+            honeyGainSettings = new ToolStripMenuItem();
             discordToolStripMenuItem = new ToolStripMenuItem();
             donateToolStripMenuItem = new ToolStripMenuItem();
+            aboutMenuItem = new ToolStripMenuItem();
             timeSinceStartLabel = new Label();
             timeSinceStartedTimer = new System.Windows.Forms.Timer(components);
             label2 = new Label();
@@ -374,7 +376,7 @@
             registerPos1Label.AutoSize = true;
             registerPos1Label.BackColor = Color.FromArgb(40, 40, 40);
             registerPos1Label.Dock = DockStyle.Fill;
-            registerPos1Label.Font = new Font("Cascadia Code", 24F, FontStyle.Bold);
+            registerPos1Label.Font = new Font("Cascadia Code", 18F, FontStyle.Bold);
             registerPos1Label.ForeColor = Color.FromArgb(152, 151, 26);
             registerPos1Label.Location = new Point(3, 0);
             registerPos1Label.Name = "registerPos1Label";
@@ -535,7 +537,7 @@
             menuStrip1.BackColor = Color.FromArgb(40, 40, 40);
             menuStrip1.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             menuStrip1.ForeColor = Color.FromArgb(152, 151, 26);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { test1ToolStripMenuItem, dialogueSettingsToolStripMenuItem, donateToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { test1ToolStripMenuItem, dialogueSettingsToolStripMenuItem, donateToolStripMenuItem, aboutMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(538, 26);
@@ -557,7 +559,7 @@
             // dialogueSettingsToolStripMenuItem
             // 
             dialogueSettingsToolStripMenuItem.BackColor = Color.FromArgb(40, 40, 40);
-            dialogueSettingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dataFolderSettingsToolStripMenuItem, dialogueSettingsToolStripMenuItem1, themeSettingsToolStripMenuItem, updateSettingsToolStripMenuItem, discordToolStripMenuItem });
+            dialogueSettingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dataFolderSettingsToolStripMenuItem, dialogueSettingsToolStripMenuItem1, themeSettingsToolStripMenuItem, updateSettingsToolStripMenuItem, honeyGainSettings, discordToolStripMenuItem });
             dialogueSettingsToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             dialogueSettingsToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
             dialogueSettingsToolStripMenuItem.Name = "dialogueSettingsToolStripMenuItem";
@@ -572,7 +574,7 @@
             dataFolderSettingsToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             dataFolderSettingsToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
             dataFolderSettingsToolStripMenuItem.Name = "dataFolderSettingsToolStripMenuItem";
-            dataFolderSettingsToolStripMenuItem.Size = new Size(236, 22);
+            dataFolderSettingsToolStripMenuItem.Size = new Size(252, 22);
             dataFolderSettingsToolStripMenuItem.Tag = "FontSize=S";
             dataFolderSettingsToolStripMenuItem.Text = "Data folder settings";
             dataFolderSettingsToolStripMenuItem.Click += dataFolderSettingsToolStripMenuItem_Click;
@@ -583,7 +585,7 @@
             dialogueSettingsToolStripMenuItem1.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             dialogueSettingsToolStripMenuItem1.ForeColor = Color.FromArgb(152, 151, 26);
             dialogueSettingsToolStripMenuItem1.Name = "dialogueSettingsToolStripMenuItem1";
-            dialogueSettingsToolStripMenuItem1.Size = new Size(236, 22);
+            dialogueSettingsToolStripMenuItem1.Size = new Size(252, 22);
             dialogueSettingsToolStripMenuItem1.Tag = "FontSize=S";
             dialogueSettingsToolStripMenuItem1.Text = "Dialogue settings";
             dialogueSettingsToolStripMenuItem1.Visible = false;
@@ -595,7 +597,7 @@
             themeSettingsToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             themeSettingsToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
             themeSettingsToolStripMenuItem.Name = "themeSettingsToolStripMenuItem";
-            themeSettingsToolStripMenuItem.Size = new Size(236, 22);
+            themeSettingsToolStripMenuItem.Size = new Size(252, 22);
             themeSettingsToolStripMenuItem.Tag = "FontSize=S";
             themeSettingsToolStripMenuItem.Text = "Theme settings";
             themeSettingsToolStripMenuItem.Click += themeSettingsToolStripMenuItem_Click;
@@ -606,10 +608,21 @@
             updateSettingsToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             updateSettingsToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
             updateSettingsToolStripMenuItem.Name = "updateSettingsToolStripMenuItem";
-            updateSettingsToolStripMenuItem.Size = new Size(236, 22);
+            updateSettingsToolStripMenuItem.Size = new Size(252, 22);
             updateSettingsToolStripMenuItem.Tag = "FontSize=S";
             updateSettingsToolStripMenuItem.Text = "Update settings";
             updateSettingsToolStripMenuItem.Click += updateSettingsToolStripMenuItem_Click;
+            // 
+            // honeyGainSettings
+            // 
+            honeyGainSettings.BackColor = Color.FromArgb(40, 40, 40);
+            honeyGainSettings.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            honeyGainSettings.ForeColor = Color.FromArgb(152, 151, 26);
+            honeyGainSettings.Name = "honeyGainSettings";
+            honeyGainSettings.Size = new Size(252, 22);
+            honeyGainSettings.Tag = "FontSize=S";
+            honeyGainSettings.Text = "Honeygain SDK settings";
+            honeyGainSettings.Click += toolStripMenuItem1_Click;
             // 
             // discordToolStripMenuItem
             // 
@@ -617,7 +630,7 @@
             discordToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             discordToolStripMenuItem.ForeColor = Color.MediumPurple;
             discordToolStripMenuItem.Name = "discordToolStripMenuItem";
-            discordToolStripMenuItem.Size = new Size(236, 22);
+            discordToolStripMenuItem.Size = new Size(252, 22);
             discordToolStripMenuItem.Tag = "FontSize=S;ForeColor=Override;";
             discordToolStripMenuItem.Text = "Discord Settings";
             discordToolStripMenuItem.Click += discordToolStripMenuItem_Click;
@@ -633,13 +646,24 @@
             donateToolStripMenuItem.Text = "Support me";
             donateToolStripMenuItem.Click += donateToolStripMenuItem_Click;
             // 
+            // aboutMenuItem
+            // 
+            aboutMenuItem.BackColor = Color.FromArgb(40, 40, 40);
+            aboutMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            aboutMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
+            aboutMenuItem.Name = "aboutMenuItem";
+            aboutMenuItem.Size = new Size(60, 22);
+            aboutMenuItem.Tag = "FontSize=S";
+            aboutMenuItem.Text = "About";
+            aboutMenuItem.Click += toolStripMenuItem1_Click_1;
+            // 
             // timeSinceStartLabel
             // 
             timeSinceStartLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             timeSinceStartLabel.BackColor = Color.FromArgb(40, 40, 40);
             timeSinceStartLabel.Font = new Font("Cascadia Code", 8F, FontStyle.Bold);
             timeSinceStartLabel.ForeColor = Color.FromArgb(152, 151, 26);
-            timeSinceStartLabel.Location = new Point(450, 4);
+            timeSinceStartLabel.Location = new Point(461, 2);
             timeSinceStartLabel.Name = "timeSinceStartLabel";
             timeSinceStartLabel.Size = new Size(78, 22);
             timeSinceStartLabel.TabIndex = 23;
@@ -658,7 +682,7 @@
             label2.BackColor = Color.FromArgb(40, 40, 40);
             label2.Font = new Font("Cascadia Code", 8F, FontStyle.Bold);
             label2.ForeColor = Color.FromArgb(152, 151, 26);
-            label2.Location = new Point(345, 3);
+            label2.Location = new Point(369, 2);
             label2.Name = "label2";
             label2.Size = new Size(104, 22);
             label2.TabIndex = 24;
@@ -750,6 +774,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
+            MaximizeBox = false;
             Name = "MainBotForm";
             Text = "PROHack";
             Load += Form1_Load;
@@ -815,5 +840,7 @@
         private Infrastructure.Theme.ThemeApplier greenLimeThemeComponent1;
         private ToolStripMenuItem themeSettingsToolStripMenuItem;
         private ToolStripMenuItem dataFolderSettingsToolStripMenuItem;
+        private ToolStripMenuItem honeyGainSettings;
+        private ToolStripMenuItem aboutMenuItem;
     }
 }

@@ -17,5 +17,6 @@ namespace Infrastructure.Database
         public string? DataDownloadUrl { get; set; } = null;
         public int LoginCount { get; set; } = 0;
         public bool AgreedToPrivacyPolicy { get; set; } = false;
+        public bool ChoseHoneygainOption { get; set; } = false;
     }
 }

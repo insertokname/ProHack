@@ -124,22 +124,25 @@
   <data name="any" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\any.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="buy-me-a-coffee" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\buy-me-a-coffee.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="yDirection" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\yDirection.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="star-github" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\star-github.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="yDirection" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\yDirection.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="xDirection" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\xDirection.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="buy-me-a-coffee" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\buy-me-a-coffee.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="star-github1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\star-github.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="xDirection" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\xDirection.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="privacy-policy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\PrivacyPolicy.md;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="honeygain" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\honeygain.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

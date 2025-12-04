@@ -1,10 +1,11 @@
-﻿using System.Diagnostics;
+﻿using Infrastructure;
+using System.Diagnostics;
 
 namespace Presentation
 {
-    public partial class SupportMeForm : Form
+    public partial class AboutForm : Form
     {
-        public SupportMeForm()
+        public AboutForm()
         {
             InitializeComponent();
         }
@@ -37,7 +38,18 @@ namespace Presentation
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void AboutForm_Load(object sender, EventArgs e)
+        {
+            label1.Text = $"App version: {VersionManager.GetVersionCode()}";
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            PrivacyPolicyForm privacyPolicyForm= new();
+            privacyPolicyForm.ShowDialog();
         }
     }
 }

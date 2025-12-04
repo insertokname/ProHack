@@ -65,6 +65,7 @@ namespace Infrastructure.Theme
                     ThemeData.Tags.Color.Secondary => ColorTranslator.FromHtml("#282828"),
                     ThemeData.Tags.Color.Secondary1 => ColorTranslator.FromHtml("#32302f"),
                     ThemeData.Tags.Color.Danger => ColorTranslator.FromHtml("#cc241d"),
+                    ThemeData.Tags.Color.Ok => Color.Green,
                     _ => null
                 };
             }
@@ -80,6 +81,7 @@ namespace Infrastructure.Theme
                     ThemeData.Tags.Color.Secondary => ColorTranslator.FromHtml("#fbf1c7"),
                     ThemeData.Tags.Color.Secondary1 => ColorTranslator.FromHtml("#f2e5bc"),
                     ThemeData.Tags.Color.Danger => ColorTranslator.FromHtml("#cc241d"),
+                    ThemeData.Tags.Color.Ok => Color.Green,
                     _ => null
                 };
             }
@@ -94,6 +96,8 @@ namespace Infrastructure.Theme
                     ThemeData.Tags.Color.Primary => Color.Crimson,
                     ThemeData.Tags.Color.Secondary => Color.LavenderBlush,
                     ThemeData.Tags.Color.Secondary1 => Color.Pink,
+                    ThemeData.Tags.Color.Danger => Color.Crimson,
+                    ThemeData.Tags.Color.Ok => Color.Green,
                     _ => null
                 };
             }
