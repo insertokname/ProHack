@@ -108,7 +108,7 @@ namespace Infrastructure
                     var bmp = new Bitmap(fileName);
                     output.Add(entry, bmp);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     badEntries.Add(entry);
                 }

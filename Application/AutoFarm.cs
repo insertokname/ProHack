@@ -4,6 +4,7 @@ using Infrastructure;
 using Infrastructure.Database;
 using Infrastructure.Discord;
 using Infrastructure.Discord.Announcments;
+using Infrastructure.Memory;
 using System.Diagnostics;
 
 namespace Application
@@ -16,7 +17,7 @@ namespace Application
 
         private readonly DiscordBot _discordBot;
 
-        private readonly MemoryManager _memoryManager;
+        private readonly PROMemoryManager _proMemoryManager;
         private readonly float _startPos;
         private readonly float _endPos;
         private readonly bool _isYAxis;
@@ -35,7 +36,7 @@ namespace Application
 
         public AutoFarm(
             DiscordBot discordBot,
-            MemoryManager memoryManager,
+            PROMemoryManager memoryManager,
             float StartPos,
             float EndPos,
             List<PokemonTargetModel> pokemonTargetModel,
@@ -43,7 +44,7 @@ namespace Application
             SynchronizationContext? synchronizationContext = null)
         {
             _discordBot = discordBot;
-            _memoryManager = memoryManager;
+            _proMemoryManager = memoryManager;
             if (StartPos > EndPos)
             {
                 _startPos = EndPos;
@@ -88,7 +89,7 @@ namespace Application
         {
             IsRunning = false;
             PauseReason = reason;
-            var proc = _memoryManager.Process;
+            var proc = _proMemoryManager.Process;
             if (proc != null)
             {
                 ReleaseAllKeys(proc);
@@ -114,9 +115,9 @@ namespace Application
                 }
                 _thread = null;
             }
-            if (_memoryManager.Process != null)
+            if (_proMemoryManager.Process != null)
             {
-                ReleaseAllKeys(_memoryManager.Process);
+                ReleaseAllKeys(_proMemoryManager.Process);
             }
         }
 
@@ -129,7 +130,7 @@ namespace Application
 
         private float GetCurPos()
         {
-            return _isYAxis ? _memoryManager.PlayerYPos : _memoryManager.PlayerXPos;
+            return _isYAxis ? _proMemoryManager.PlayerYPos : _proMemoryManager.PlayerXPos;
         }
 
         private Keys GetIncreasePosKey()
@@ -191,14 +192,14 @@ namespace Application
             {
                 while (IsRunning)
                 {
-                    var proc = _memoryManager.Process;
+                    var proc = _proMemoryManager.Process;
                     if (proc == null)
                     {
                         Pause("Couldn't access process.");
                         continue;
                     }
 
-                    if (_memoryManager.IsBattling)
+                    if (_proMemoryManager.IsBattling)
                     {
                         _curBotState = BotState.Catching;
                         _curDirection = 0;
@@ -213,9 +214,9 @@ namespace Application
 
                     if (_curBotState == BotState.Catching)
                     {
-                        var encounterId = _memoryManager.CurrentEncounterId;
-                        var isShiny = _memoryManager.ShinyForm != 0;
-                        var isEvent = _memoryManager.EventForm != 0;
+                        var encounterId = _proMemoryManager.CurrentEncounterId;
+                        var isShiny = _proMemoryManager.ShinyForm != 0;
+                        var isEvent = _proMemoryManager.EventForm != 0;
 
                         if (_encounterTime == null)
                         {
@@ -237,7 +238,7 @@ namespace Application
                             _ = _discordBot.SendAnnouncement(new CaughtAnnouncement(isShiny, encounterId));
                         }
 
-                        if (_memoryManager.IsNoMenuSelected)
+                        if (_proMemoryManager.IsNoMenuSelected)
                         {
                             if (!matchesAny)
                             {

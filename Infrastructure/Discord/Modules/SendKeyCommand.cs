@@ -1,9 +1,10 @@
 ﻿using Discord.Commands;
+using Infrastructure.Memory;
 
 namespace Infrastructure.Discord.Modules
 {
 
-    internal class SendKeyCommand(MemoryManager _memoryManager) : ModuleBase<SocketCommandContext>
+    internal class SendKeyCommand(PROMemoryManager _proMemoryManager) : ModuleBase<SocketCommandContext>
     {
         [Command("send-key")]
         [Summary("Send a key press to the game. use !help send-key for a list of keys")]
@@ -15,13 +16,13 @@ namespace Infrastructure.Discord.Modules
                 return;
             }
 
-            if (_memoryManager.Process == null)
+            if (_proMemoryManager.Process == null)
             {
                 await ReplyAsync("PRO isn't running or wasn't found!");
                 return;
             }
 
-            Controller.SendKeyPress(_memoryManager.Process, (ushort)key);
+            Controller.SendKeyPress(_proMemoryManager.Process, (ushort)key);
             await ReplyAsync("Sent the key");
         }
     }

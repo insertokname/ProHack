@@ -1,20 +1,20 @@
-﻿using Infrastructure;
+﻿using Infrastructure.Memory;
 
 namespace Presentation
 {
     public partial class DialogueSettingsForm : Form
     {
-        private readonly MemoryManager _memoryManager;
-        public DialogueSettingsForm(MemoryManager memoryManager)
+        private readonly PROMemoryManager _proMemoryManager;
+        public DialogueSettingsForm(PROMemoryManager memoryManager)
         {
-            _memoryManager = memoryManager;
+            _proMemoryManager = memoryManager;
             InitializeComponent();
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             UpdateCurValue();
-            _memoryManager.TextSpeed = IntToFloatTextSpeed(trackBar1.Value);
+            _proMemoryManager.TextSpeed = IntToFloatTextSpeed(trackBar1.Value);
         }
 
         private void UpdateCurValue()
@@ -24,7 +24,7 @@ namespace Presentation
 
         private void DialogueSettings_Load(object sender, EventArgs e)
         {
-            trackBar1.Value = FloatToIntTextSpeed(_memoryManager.TextSpeed);
+            trackBar1.Value = FloatToIntTextSpeed(_proMemoryManager.TextSpeed);
             UpdateCurValue();
         }
 

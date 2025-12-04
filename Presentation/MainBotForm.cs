@@ -1,8 +1,8 @@
 using Application;
 using Domain;
-using Infrastructure;
 using Infrastructure.Database;
 using Infrastructure.Discord;
+using Infrastructure.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using Presentation.Properties;
 using System.Diagnostics;
@@ -12,7 +12,7 @@ namespace Presentation
     public partial class MainBotForm : Form
     {
         private readonly IServiceProvider _serviceProvider;
-        private readonly MemoryManager _memoryManager;
+        private readonly PROMemoryManager _proMemoryManager;
         private AutoFarm? _autoFarm = null;
         private readonly List<PointF> _registeredPositions = [];
         private List<PokemonTargetModel> _pokemonTargetModels = Constants.PokemonTargetModel.DefaultTarget();
@@ -22,10 +22,10 @@ namespace Presentation
 
         public MainBotForm(
             IServiceProvider serviceProvider,
-            MemoryManager memoryManager)
+            PROMemoryManager memoryManager)
         {
             _serviceProvider = serviceProvider;
-            _memoryManager = memoryManager;
+            _proMemoryManager = memoryManager;
 
             InitializeComponent();
             Program.OnThreadException += HandleUncaughtException;
@@ -56,7 +56,7 @@ namespace Presentation
 
         private void LoadGame()
         {
-            UpdateGameLoaded(_memoryManager.LoadGame());
+            UpdateGameLoaded(_proMemoryManager.LoadGame());
         }
 
         private void HandleUncaughtException(object? sender, ThreadExceptionEventArgs e)
@@ -237,7 +237,7 @@ namespace Presentation
 
                 _autoFarm = new(
                     _serviceProvider.GetRequiredService<DiscordBot>(),
-                    _memoryManager,
+                    _proMemoryManager,
                     GetPointComponentBySelectedAxis(_registeredPositions[0]),
                     GetPointComponentBySelectedAxis(_registeredPositions[1]),
                     _pokemonTargetModels,
@@ -265,18 +265,18 @@ namespace Presentation
 
         private void renderTimer_Tick(object sender, EventArgs e)
         {
-            posXLabel.Text = _memoryManager.PlayerXPos.ToString();
-            posYLabel.Text = _memoryManager.PlayerYPos.ToString();
+            posXLabel.Text = _proMemoryManager.PlayerXPos.ToString();
+            posYLabel.Text = _proMemoryManager.PlayerYPos.ToString();
 
-            bool isBattling = _memoryManager.IsBattling;
+            bool isBattling = _proMemoryManager.IsBattling;
 
             UpdateIsBattling(isBattling);
             if (isBattling)
             {
-                currentEncounterIdLabel.Text = _memoryManager.CurrentEncounterId.ToString();
-                noMenuLabel.Visible = _memoryManager.IsNoMenuSelected;
-                isShiny.Visible = _memoryManager.ShinyForm != 0;
-                isEvent.Visible = _memoryManager.EventForm != 0;
+                currentEncounterIdLabel.Text = _proMemoryManager.CurrentEncounterId.ToString();
+                noMenuLabel.Visible = _proMemoryManager.IsNoMenuSelected;
+                isShiny.Visible = _proMemoryManager.ShinyForm != 0;
+                isEvent.Visible = _proMemoryManager.EventForm != 0;
             }
             else
             {
@@ -294,7 +294,7 @@ namespace Presentation
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var registeredPoint = _memoryManager.PlayerPos;
+            var registeredPoint = _proMemoryManager.PlayerPos;
             _registeredPositions.Add(registeredPoint);
             UpdateRegisteredPoints();
         }
