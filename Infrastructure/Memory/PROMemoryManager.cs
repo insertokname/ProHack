@@ -59,11 +59,11 @@ namespace Infrastructure.Memory
 
         private T _get<T>([CallerMemberName] string propertyName = "")
         where T : struct =>
-            _memoryGetter<T>(_resolvePtr<T>(propertyName));
+            _memoryGetter<T>(_resolvePtr<T>(propertyName), propertyName);
 
         private void _set<T>(T value, [CallerMemberName] string propertyName = "")
         where T : struct =>
-            _memorySetter<T>(_resolvePtr<T>(propertyName), value);
+            _memorySetter<T>(_resolvePtr<T>(propertyName), value, propertyName);
 
         private static long[] _resolvePtr<T>(string offsetName)
         where T : struct
@@ -78,7 +78,7 @@ namespace Infrastructure.Memory
             throw new ArgumentException($"Offset {offsetName} was registered with incompatible type {field.FieldType}.");
         }
 
-        private T _memoryGetter<T>(long[] pointerChain)
+        private T _memoryGetter<T>(long[] pointerChain, string offsetName)
         where T : struct
         {
             var tries = 3;
@@ -97,10 +97,10 @@ namespace Infrastructure.Memory
             }
             _processMemory = null;
             throw new MemoryAccessException(
-                $"Got error while accessing memory with {nameof(pointerChain)}! Make sure you are logged in and on the latest version of ProHack! Error was {lastE}", lastE);
+                $"Got error while accessing memory for '{offsetName}'! Make sure you are logged in and on the latest version of ProHack! Error was {lastE}", lastE);
         }
 
-        private void _memorySetter<T>(long[] pointerChain, T value)
+        private void _memorySetter<T>(long[] pointerChain, T value, string offsetName)
         where T : struct
         {
             var tries = 3;
@@ -119,7 +119,7 @@ namespace Infrastructure.Memory
             }
             _processMemory = null;
             throw new MemoryAccessException(
-                $"Got error while accessing memory with {nameof(pointerChain)}! Make sure you are logged in and on the latest version of ProHack! Error was {lastE}", lastE);
+                $"Got error while accessing memory for '{offsetName}'! Make sure you are logged in and on the latest version of ProHack! Error was {lastE}", lastE);
         }
     }
 }
