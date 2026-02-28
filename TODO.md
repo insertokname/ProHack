@@ -1,4 +1,5 @@
 - [ ] repel support
+- [ ] pokemon select by name  
 - [ ] random name on startup
 - [ ] hgsdk update
 - [ ] fighting + pc
