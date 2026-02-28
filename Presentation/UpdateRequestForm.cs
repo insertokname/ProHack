@@ -5,6 +5,7 @@ namespace Presentation
 {
     public partial class UpdateRequestForm : Form
     {
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public bool WantsToUpdate { get; set; } = false;
 
         private readonly UpdateInfo _updateInfo;

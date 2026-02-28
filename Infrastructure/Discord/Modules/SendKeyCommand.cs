@@ -1,10 +1,10 @@
 ﻿using Discord.Commands;
-using Infrastructure.Memory;
+using Infrastructure.Il2Cpp;
 
 namespace Infrastructure.Discord.Modules
 {
 
-    internal class SendKeyCommand(PROMemoryManager _proMemoryManager) : ModuleBase<SocketCommandContext>
+    internal class SendKeyCommand(PROIl2CppManager _proMemoryManager) : ModuleBase<SocketCommandContext>
     {
         [Command("send-key")]
         [Summary("Send a key press to the game. use !help send-key for a list of keys")]

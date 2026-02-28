@@ -8,6 +8,7 @@ namespace Presentation
 {
     public partial class PokemonSelectForm : Form
     {
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public List<PokemonTargetModel> PokemonTargetModels { get; set; } = [];
 
         private readonly XmlSerializer _serializer = new(typeof(List<PokemonTargetModel>));

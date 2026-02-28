@@ -4,7 +4,7 @@ using Infrastructure;
 using Infrastructure.Database;
 using Infrastructure.Discord;
 using Infrastructure.Discord.Announcments;
-using Infrastructure.Memory;
+using Infrastructure.Il2Cpp;
 using System.Diagnostics;
 
 namespace Application
@@ -17,7 +17,7 @@ namespace Application
 
         private readonly DiscordBot _discordBot;
 
-        private readonly PROMemoryManager _proMemoryManager;
+        private readonly PROIl2CppManager _proMemoryManager;
         private readonly float _startPos;
         private readonly float _endPos;
         private readonly bool _isYAxis;
@@ -36,7 +36,7 @@ namespace Application
 
         public AutoFarm(
             DiscordBot discordBot,
-            PROMemoryManager memoryManager,
+            PROIl2CppManager memoryManager,
             float StartPos,
             float EndPos,
             List<PokemonTargetModel> pokemonTargetModel,

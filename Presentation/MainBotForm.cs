@@ -2,7 +2,7 @@ using Application;
 using Domain;
 using Infrastructure.Database;
 using Infrastructure.Discord;
-using Infrastructure.Memory;
+using Infrastructure.Il2Cpp;
 using Microsoft.Extensions.DependencyInjection;
 using Presentation.Properties;
 using System.Diagnostics;
@@ -12,7 +12,7 @@ namespace Presentation
     public partial class MainBotForm : Form
     {
         private readonly IServiceProvider _serviceProvider;
-        private readonly PROMemoryManager _proMemoryManager;
+        private readonly PROIl2CppManager _proMemoryManager;
         private AutoFarm? _autoFarm = null;
         private readonly List<PointF> _registeredPositions = [];
         private List<PokemonTargetModel> _pokemonTargetModels = Constants.PokemonTargetModel.DefaultTarget();
@@ -22,7 +22,7 @@ namespace Presentation
 
         public MainBotForm(
             IServiceProvider serviceProvider,
-            PROMemoryManager memoryManager)
+            PROIl2CppManager memoryManager)
         {
             _serviceProvider = serviceProvider;
             _proMemoryManager = memoryManager;

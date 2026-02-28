@@ -1,6 +1,6 @@
 using Infrastructure;
 using Infrastructure.Discord;
-using Infrastructure.Memory;
+using Infrastructure.Il2Cpp;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -36,7 +36,7 @@ namespace Presentation
 
                     //Singletons
                     services.AddSingleton<DiscordBot>();
-                    services.AddSingleton<PROMemoryManager>();
+                    services.AddSingleton<PROIl2CppManager>();
                     services.AddSingleton<PokedexManager>();
 
                     //Services
