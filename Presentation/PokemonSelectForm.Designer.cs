@@ -45,7 +45,8 @@
             fileToolStripMenuItem = new ToolStripMenuItem();
             openFileToolStripMenuItem = new ToolStripMenuItem();
             saveTargetsToolStripMenuItem = new ToolStripMenuItem();
-            label2 = new Label();
+            PokemonNameLabel = new Label();
+            PokemonNameComboBox = new ComboBox();
             greenLimeThemeComponent1 = new Infrastructure.Theme.ThemeApplier();
             ((System.ComponentModel.ISupportInitialize)IdNumeric).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -57,15 +58,15 @@
             IdNumeric.AllowDrop = true;
             IdNumeric.Anchor = AnchorStyles.Bottom;
             IdNumeric.BackColor = Color.FromArgb(40, 40, 40);
-            IdNumeric.Font = new Font("Segoe UI Emoji", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            IdNumeric.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             IdNumeric.ForeColor = Color.FromArgb(152, 151, 26);
-            IdNumeric.Location = new Point(229, 97);
+            IdNumeric.Location = new Point(345, 99);
             IdNumeric.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             IdNumeric.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             IdNumeric.Name = "IdNumeric";
-            IdNumeric.Size = new Size(113, 29);
+            IdNumeric.Size = new Size(80, 23);
             IdNumeric.TabIndex = 0;
-            IdNumeric.Tag = "FontSize=Override;Font=Override";
+            IdNumeric.Tag = "FontSize=S;";
             IdNumeric.Value = new decimal(new int[] { 1, 0, 0, 0 });
             IdNumeric.Visible = false;
             IdNumeric.ValueChanged += IdNumeric_ValueChanged;
@@ -77,7 +78,7 @@
             idLabel.BackColor = Color.FromArgb(40, 40, 40);
             idLabel.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             idLabel.ForeColor = Color.FromArgb(152, 151, 26);
-            idLabel.Location = new Point(191, 102);
+            idLabel.Location = new Point(191, 99);
             idLabel.Name = "idLabel";
             idLabel.Size = new Size(32, 18);
             idLabel.TabIndex = 1;
@@ -155,7 +156,7 @@
             MustBeShinyCheckbox.BackColor = Color.FromArgb(40, 40, 40);
             MustBeShinyCheckbox.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             MustBeShinyCheckbox.ForeColor = Color.FromArgb(152, 151, 26);
-            MustBeShinyCheckbox.Location = new Point(12, 158);
+            MustBeShinyCheckbox.Location = new Point(12, 153);
             MustBeShinyCheckbox.Name = "MustBeShinyCheckbox";
             MustBeShinyCheckbox.Size = new Size(131, 22);
             MustBeShinyCheckbox.TabIndex = 10;
@@ -278,7 +279,7 @@
             openFileToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             openFileToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
             openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            openFileToolStripMenuItem.Size = new Size(180, 22);
+            openFileToolStripMenuItem.Size = new Size(172, 22);
             openFileToolStripMenuItem.Tag = "FontSize=S";
             openFileToolStripMenuItem.Text = "Open targets";
             openFileToolStripMenuItem.Click += OpenFileToolStripMenuItem_Click;
@@ -289,25 +290,41 @@
             saveTargetsToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             saveTargetsToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
             saveTargetsToolStripMenuItem.Name = "saveTargetsToolStripMenuItem";
-            saveTargetsToolStripMenuItem.Size = new Size(180, 22);
+            saveTargetsToolStripMenuItem.Size = new Size(172, 22);
             saveTargetsToolStripMenuItem.Tag = "FontSize=S";
             saveTargetsToolStripMenuItem.Text = "Save targets";
             saveTargetsToolStripMenuItem.Click += sSaveTargetsToolStripMenuItem_Click;
             // 
-            // label2
+            // PokemonNameLabel
             // 
-            label2.Anchor = AnchorStyles.Bottom;
-            label2.AutoSize = true;
-            label2.BackColor = Color.FromArgb(40, 40, 40);
-            label2.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
-            label2.ForeColor = Color.FromArgb(152, 151, 26);
-            label2.Location = new Point(191, 160);
-            label2.Name = "label2";
-            label2.Size = new Size(32, 18);
-            label2.TabIndex = 31;
-            label2.Tag = "FontSize=S";
-            label2.Text = "Id:";
-            label2.Visible = false;
+            PokemonNameLabel.Anchor = AnchorStyles.Bottom;
+            PokemonNameLabel.AutoSize = true;
+            PokemonNameLabel.BackColor = Color.FromArgb(40, 40, 40);
+            PokemonNameLabel.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            PokemonNameLabel.ForeColor = Color.FromArgb(152, 151, 26);
+            PokemonNameLabel.Location = new Point(191, 155);
+            PokemonNameLabel.Name = "PokemonNameLabel";
+            PokemonNameLabel.Size = new Size(112, 18);
+            PokemonNameLabel.TabIndex = 31;
+            PokemonNameLabel.Tag = "FontSize=S";
+            PokemonNameLabel.Text = "Pokemon name:";
+            PokemonNameLabel.Visible = false;
+            // 
+            // PokemonNameComboBox
+            // 
+            PokemonNameComboBox.BackColor = Color.FromArgb(40, 40, 40);
+            PokemonNameComboBox.FlatStyle = FlatStyle.Flat;
+            PokemonNameComboBox.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            PokemonNameComboBox.ForeColor = Color.FromArgb(152, 151, 26);
+            PokemonNameComboBox.FormattingEnabled = true;
+            PokemonNameComboBox.Location = new Point(345, 152);
+            PokemonNameComboBox.Name = "PokemonNameComboBox";
+            PokemonNameComboBox.Size = new Size(235, 25);
+            PokemonNameComboBox.TabIndex = 32;
+            PokemonNameComboBox.Tag = "FontSize=S;";
+            PokemonNameComboBox.Visible = false;
+            PokemonNameComboBox.SelectedIndexChanged += PokemonNameComboBox_SelectedIndexChanged;
+            PokemonNameComboBox.Click += PokemonNameComboBox_Click;
             // 
             // greenLimeThemeComponent1
             // 
@@ -317,7 +334,7 @@
             greenLimeThemeComponent1.ForeColor = Color.FromArgb(152, 151, 26);
             greenLimeThemeComponent1.Location = new Point(0, 0);
             greenLimeThemeComponent1.Name = "greenLimeThemeComponent1";
-            greenLimeThemeComponent1.Size = new Size(0, 0);
+            greenLimeThemeComponent1.Size = new Size(10, 10);
             greenLimeThemeComponent1.TabIndex = 30;
             greenLimeThemeComponent1.TabStop = false;
             greenLimeThemeComponent1.Text = "greenLimeThemeComponent1";
@@ -328,7 +345,8 @@
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(592, 811);
-            Controls.Add(label2);
+            Controls.Add(PokemonNameComboBox);
+            Controls.Add(PokemonNameLabel);
             Controls.Add(greenLimeThemeComponent1);
             Controls.Add(label1);
             Controls.Add(LeftButton);
@@ -380,7 +398,8 @@
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem openFileToolStripMenuItem;
         private ToolStripMenuItem saveTargetsToolStripMenuItem;
-        private Label label2;
+        private Label PokemonNameLabel;
+        private ComboBox PokemonNameComboBox;
         private Infrastructure.Theme.ThemeApplier greenLimeThemeComponent1;
     }
 }

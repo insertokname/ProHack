@@ -32,6 +32,8 @@ namespace Presentation
         {
             InitializeTargetList();
             IdNumeric.Maximum = _pokedexManager.MaxIndex ?? 10000;
+            PokemonNameComboBox.DataSource = _pokedexManager.Pokedex?.Entries ?? [];
+            PokemonNameComboBox.DisplayMember = "Name";
         }
 
         private void AddTargetButton_Click(object sender, EventArgs e)
@@ -45,6 +47,8 @@ namespace Presentation
         {
             idLabel.Visible = !CatchAnythingCheckbox.Checked;
             IdNumeric.Visible = !CatchAnythingCheckbox.Checked;
+            PokemonNameLabel.Visible = !CatchAnythingCheckbox.Checked;
+            PokemonNameComboBox.Visible = !CatchAnythingCheckbox.Checked;
             UpdateDisplay();
         }
 
@@ -71,6 +75,23 @@ namespace Presentation
             }
 
             UpdateDisplay();
+        }
+
+        private void PokemonNameComboBox_Click(object sender, EventArgs e)
+        {
+            PokemonNameComboBox.DroppedDown = true;
+        }
+
+        private void PokemonNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_pokedexManager.Pokedex != null)
+            {
+                var tmp = (PokedexModel.PokedexEntryModel?)PokemonNameComboBox.SelectedItem;
+                if (tmp != null && IdNumeric.Value != tmp.ID)
+                {
+                    IdNumeric.Value = tmp.ID;
+                }
+            }
         }
 
         private void MustBeEventCheckbox_CheckedChanged(object sender, EventArgs e)
@@ -106,30 +127,30 @@ namespace Presentation
 
         private void PokemonSelect_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.A)
-            {
-                _carouselIndex += 1;
-                UpdateCarouselIndex();
-            }
-            if (e.KeyCode == Keys.D)
-            {
-                _carouselIndex -= 1;
-                UpdateCarouselIndex();
-            }
-            if (e.KeyCode == Keys.W)
-            {
-                if (!CatchAnythingCheckbox.Checked)
-                {
-                    IdNumeric.Value++;
-                }
-            }
-            if (e.KeyCode == Keys.S)
-            {
-                if (!CatchAnythingCheckbox.Checked)
-                {
-                    IdNumeric.Value--;
-                }
-            }
+            //if (e.KeyCode == Keys.A)
+            //{
+            //    _carouselIndex += 1;
+            //    UpdateCarouselIndex();
+            //}
+            //if (e.KeyCode == Keys.D)
+            //{
+            //    _carouselIndex -= 1;
+            //    UpdateCarouselIndex();
+            //}
+            //if (e.KeyCode == Keys.W)
+            //{
+            //    if (!CatchAnythingCheckbox.Checked)
+            //    {
+            //        IdNumeric.Value++;
+            //    }
+            //}
+            //if (e.KeyCode == Keys.S)
+            //{
+            //    if (!CatchAnythingCheckbox.Checked)
+            //    {
+            //        IdNumeric.Value--;
+            //    }
+            //}
         }
 
         private void OpenFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -219,6 +240,7 @@ namespace Presentation
                 pictureBox1.Image = Resources.unknown;
                 return;
             }
+            PokemonNameComboBox.SelectedItem = entry;
 
             if (MustBeEventCheckbox.Checked || MustBeShinyCheckbox.Checked)
             {
@@ -267,7 +289,7 @@ namespace Presentation
         public void AddModelToTargetList(PokemonTargetModel model)
         {
             var newItem = new PokemonSelectListItemControl(model);
-            ThemeApplier.ApplyThemeRecursive(newItem);
+            ThemeApplier.ApplyThemeToChildrenRecursive(newItem);
             _panelItems.Add(newItem);
             newItem.Parent = flowLayoutPanel1;
 
@@ -303,5 +325,6 @@ namespace Presentation
             return output;
         }
         #endregion
+
     }
 }

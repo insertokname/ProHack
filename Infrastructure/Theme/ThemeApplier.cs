@@ -21,7 +21,7 @@ namespace Infrastructure.Theme
             Visible = false;
             Enabled = false;
             Size = Size.Empty;
-            ThemeManager.ThemeChanged += () => { ApplyThemeRecursive(_currentParent); };
+            ThemeManager.ThemeChanged += () => { ApplyThemeToChildrenRecursive(_currentParent); };
         }
 
         protected override void OnParentChanged(EventArgs e)
@@ -38,7 +38,7 @@ namespace Infrastructure.Theme
             if (_currentParent != null)
             {
                 _currentParent.ControlAdded += OnParentControlAdded;
-                ApplyThemeRecursive(_currentParent);
+                ApplyThemeToChildrenRecursive(_currentParent);
             }
         }
 
@@ -46,80 +46,73 @@ namespace Infrastructure.Theme
         {
             if (e.Control != null)
             {
-                ApplyThemeRecursive(e.Control);
+                ApplyThemeToChildrenRecursive(e.Control);
             }
         }
 
-        public static void ApplyThemeRecursive(object? obj)
+        public static void ApplyThemeToChildrenRecursive(object? obj, ThemeData? parentTheme = null)
         {
-
             if (obj is Control control)
             {
-                ApplyThemeColors(
-                    control.Tag,
-                    color => control.ForeColor = color,
-                    color => control.BackColor = color,
-                    font => control.Font = font);
+                ThemeData theme = MergeThemeData(parentTheme, ThemeSerializer.Deserialize(control.Tag));
+                ApplyTheme(theme, control);
 
                 foreach (Control child in control.Controls)
                 {
-                    ApplyThemeRecursive(child);
+                    ApplyThemeToChildrenRecursive(child, theme);
                 }
 
                 if (control is MenuStrip menuStrip)
                 {
                     foreach (ToolStripItem menuItem in menuStrip.Items)
                     {
-                        ApplyThemeRecursive(menuItem);
+                        ApplyThemeToChildrenRecursive(menuItem, theme);
                     }
                 }
-
                 return;
             }
 
             if (obj is ToolStripItem item)
             {
-                ApplyThemeColors(
-                    item.Tag,
-                    color => item.ForeColor = color,
-                    color => item.BackColor = color,
-                    font => item.Font = font);
+                ThemeData theme = MergeThemeData(parentTheme, ThemeSerializer.Deserialize(item.Tag));
+                ApplyTheme(
+                    theme,
+                    item);
 
                 if (item is ToolStripDropDownItem dropDown && dropDown.HasDropDownItems)
                 {
                     foreach (ToolStripItem child in dropDown.DropDownItems)
                     {
-                        ApplyThemeRecursive(child);
+                        ApplyThemeToChildrenRecursive(child, theme);
                     }
                 }
+                return;
             }
         }
 
-        private static void ApplyThemeColors(
-            object? tag,
-            Action<Color> setForeColor,
-            Action<Color> setBackColor,
-            Action<Font> setFont)
+        private static ThemeData MergeThemeData(ThemeData? parentTheme, ThemeData childTheme)
         {
-            ThemeData? theme = ThemeSerializer.Deserialize(tag);
-
-            var foreColor = ThemeManager.SelectedTheme.GetColor(theme?.ForeColor);
-            var backColor = ThemeManager.SelectedTheme.GetColor(theme?.BackColor);
-            var font = ThemeManager.SelectedTheme.GetFont(theme?.Font, theme?.FontSize);
-
-            if (foreColor.HasValue)
+            return new ThemeData()
             {
-                setForeColor(foreColor.Value);
-            }
+                BackColor = parentTheme?.BackColor ?? childTheme.BackColor,
+                ForeColor = parentTheme?.ForeColor ?? childTheme.ForeColor,
+                Font = parentTheme?.Font ?? childTheme.Font,
+                FontSize = parentTheme?.FontSize ?? childTheme.FontSize
+            };
+        }
 
-            if (backColor.HasValue)
+        private static void ApplyTheme(
+            ThemeData theme,
+            dynamic target)
+        {
+            if (target is Control || target is ToolStripItem)
             {
-                setBackColor(backColor.Value);
-            }
+                target.ForeColor = ThemeManager.SelectedTheme.GetColor(theme.ForeColor ?? ThemeData.DEFAULT_FORE_COLOR) ?? target.ForeColor;
+                target.BackColor = ThemeManager.SelectedTheme.GetColor(theme.BackColor ?? ThemeData.DEFAULT_BACK_COLOR) ?? target.BackColor;
 
-            if (font != null)
-            {
-                setFont(font!);
+                var fontSize = ThemeManager.SelectedTheme.GetFontSize(theme.FontSize ?? ThemeData.DEFAULT_FONT_SIZE) ?? target.Font.Size;
+                var font = ThemeManager.SelectedTheme.GetFont(theme.Font ?? ThemeData.DEFAULT_FONT) ?? target.Font;
+                target.Font = new Font(font.FontFamily, fontSize, font.Style);
             }
         }
 

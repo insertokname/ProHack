@@ -18,7 +18,13 @@ namespace Infrastructure.Theme
         /// </summary>
         public static ThemeData Deserialize(object? serializedObj)
         {
-            var theme = new ThemeData();
+            var theme = new ThemeData()
+            {
+                BackColor = null,
+                Font = null,
+                FontSize = null,
+                ForeColor = null
+            };
 
             if (serializedObj == null || !(serializedObj is string))
             {

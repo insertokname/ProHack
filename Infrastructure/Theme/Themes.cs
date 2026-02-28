@@ -5,7 +5,7 @@ namespace Infrastructure.Theme
     {
         public interface IDefaultFontSizes : ITheme
         {
-            float? ITheme.GetFontSize(ThemeData.Tags.FontSize? fontSize)
+            float? ITheme.GetFontSize(ThemeData.Tags.FontSize fontSize)
             {
                 return fontSize switch
                 {
@@ -14,6 +14,7 @@ namespace Infrastructure.Theme
                     ThemeData.Tags.FontSize.M => 14F,
                     ThemeData.Tags.FontSize.L => 18F,
                     ThemeData.Tags.FontSize.XL => 24F,
+                    ThemeData.Tags.FontSize.Override => null,
                     _ => null,
                 };
             }
@@ -21,17 +22,12 @@ namespace Infrastructure.Theme
 
         public interface IMonoTheme : ITheme
         {
-            Font? ITheme.GetFont(ThemeData.Tags.Font? font, ThemeData.Tags.FontSize? fontSize)
+            Font? ITheme.GetFont(ThemeData.Tags.Font font)
             {
-                var fontSizeF = GetFontSize(fontSize);
-                if (fontSizeF == null)
-                {
-                    return null;
-                }
-
                 return font switch
                 {
-                    ThemeData.Tags.Font.Normal => new Font("Cascadia Code", fontSizeF.Value, FontStyle.Bold),
+                    ThemeData.Tags.Font.Normal => new Font("Cascadia Code", 10F, FontStyle.Bold),
+                    ThemeData.Tags.Font.Override => null,
                     _ => null
                 };
             }
@@ -39,25 +35,20 @@ namespace Infrastructure.Theme
 
         public interface ISegoeUITheme : ITheme
         {
-            Font? ITheme.GetFont(ThemeData.Tags.Font? font, ThemeData.Tags.FontSize? fontSize)
+            Font? ITheme.GetFont(ThemeData.Tags.Font font)
             {
-                var fontSizeF = GetFontSize(fontSize);
-                if (fontSizeF == null)
-                {
-                    return null;
-                }
-
                 return font switch
                 {
-                    ThemeData.Tags.Font.Normal => new Font("Segoe UI Semibold", fontSizeF.Value, FontStyle.Bold),
-                    _ => null
+                    ThemeData.Tags.Font.Normal => new Font("Segoe UI Semibold", 10F, FontStyle.Bold),
+                    ThemeData.Tags.Font.Override => null,
+                    _ => null,
                 };
             }
         }
 
         public class Gruvbox : IMonoTheme, IDefaultFontSizes
         {
-            public Color? GetColor(ThemeData.Tags.Color? color)
+            public Color? GetColor(ThemeData.Tags.Color color)
             {
                 return color switch
                 {
@@ -66,14 +57,15 @@ namespace Infrastructure.Theme
                     ThemeData.Tags.Color.Secondary1 => ColorTranslator.FromHtml("#32302f"),
                     ThemeData.Tags.Color.Danger => ColorTranslator.FromHtml("#cc241d"),
                     ThemeData.Tags.Color.Ok => Color.Green,
-                    _ => null
+                    ThemeData.Tags.Color.Override => null,
+                    _ => null,
                 };
             }
         }
 
         public class GruvboxLight : IMonoTheme, IDefaultFontSizes
         {
-            public Color? GetColor(ThemeData.Tags.Color? color)
+            public Color? GetColor(ThemeData.Tags.Color color)
             {
                 return color switch
                 {
@@ -82,14 +74,15 @@ namespace Infrastructure.Theme
                     ThemeData.Tags.Color.Secondary1 => ColorTranslator.FromHtml("#f2e5bc"),
                     ThemeData.Tags.Color.Danger => ColorTranslator.FromHtml("#cc241d"),
                     ThemeData.Tags.Color.Ok => Color.Green,
-                    _ => null
+                    ThemeData.Tags.Color.Override => null,
+                    _ => null,
                 };
             }
         }
 
         public class Classic : ISegoeUITheme, IDefaultFontSizes
         {
-            public Color? GetColor(ThemeData.Tags.Color? color)
+            public Color? GetColor(ThemeData.Tags.Color color)
             {
                 return color switch
                 {
@@ -98,7 +91,8 @@ namespace Infrastructure.Theme
                     ThemeData.Tags.Color.Secondary1 => Color.Pink,
                     ThemeData.Tags.Color.Danger => Color.Crimson,
                     ThemeData.Tags.Color.Ok => Color.Green,
-                    _ => null
+                    ThemeData.Tags.Color.Override => null,
+                    _ => null,
                 };
             }
         }
