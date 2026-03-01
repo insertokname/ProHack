@@ -38,4 +38,33 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
+  <!--
+    Embed Frida.dll (mixed-mode C++/CLI, from FridaCLR) inside Infrastructure.dll so the
+    single-file publish is truly standalone.  FridaChannel extracts it to LocalDownloads
+    on first launch and uses AppDomain.AssemblyResolve to hand it to .NET's loader.
+
+    No version number is hardcoded here: the glob '*' matches whichever FridaCLR version
+    NuGet restore pinned (it is a transitive dependency of FridaNet).  If you somehow end
+    up with multiple FridaCLR versions in the global cache and the build errors with
+    "resource identifier 'Frida.dll' has already been used", clear the cache with
+    'dotnet nuget locals global-packages -c' and restore again.
+  -->
+  <PropertyGroup>
+    <_FridaDllGlob>$(NuGetPackageRoot)fridaclr\*\lib\net9.0\Frida.dll</_FridaDllGlob>
+  </PropertyGroup>
+
+  <!-- Collect matching files at evaluation time (glob expansion). -->
+  <ItemGroup>
+    <_FridaDllCandidates Include="$(_FridaDllGlob)" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'@(_FridaDllCandidates)' != ''">
+    <EmbeddedResource Include="@(_FridaDllCandidates)" LogicalName="Frida.dll" />
+  </ItemGroup>
+
+  <Target Name="CheckFridaDllEmbedded" BeforeTargets="Build">
+    <Warning Condition="'@(_FridaDllCandidates)' == ''"
+             Text="Frida.dll not found in the NuGet global cache ('$(_FridaDllGlob)'). Run 'dotnet restore'." />
+  </Target>
+
 </Project>

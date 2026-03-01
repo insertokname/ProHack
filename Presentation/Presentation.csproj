@@ -47,4 +47,23 @@
     </EmbeddedResource>
   </ItemGroup>
 
+
+  <!--
+    Frida.dll (FridaCLR native x64) is embedded inside Infrastructure.dll as a resource
+    (see the EmbedFridaDllAsResource target in Infrastructure.csproj).  FridaChannel
+    extracts and loads it at startup, so no loose Frida.dll is needed next to the exe.
+
+    This target removes the standalone Frida.dll entry from ResolvedFileToPublish so it
+    is neither bundled a second time inside PROHack.exe (wasting 65 MB) nor copied as a
+    loose file to the publish folder.
+  -->
+  <Target Name="ExcludeFridaDllFromSingleFile"
+          BeforeTargets="_ComputeResolvedFilesToPublishTypes;_ComputeFilesToBundle"
+          Condition="'$(PublishSingleFile)' == 'true'">
+    <ItemGroup>
+      <ResolvedFileToPublish Remove="@(ResolvedFileToPublish)"
+                             Condition="'%(Filename)%(Extension)' == 'Frida.dll'" />
+    </ItemGroup>
+  </Target>
+
 </Project>

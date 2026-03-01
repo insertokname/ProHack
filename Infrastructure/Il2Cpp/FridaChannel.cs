@@ -43,6 +43,68 @@ namespace Infrastructure.Il2Cpp;
 /// </remarks>
 internal sealed class FridaChannel : IAsyncDisposable
 {
+    // ── Mixed-mode assembly resolver ─────────────────────────────────────────
+    // Frida.dll (FridaCLR 17.x) is a mixed-mode C++/CLI assembly: .NET loads it
+    // as a managed assembly. In a single-file
+    // publish it is not bundled in the exe (excluded by the Presentation.csproj
+    // target), so we embed it inside Infrastructure.dll as an EmbeddedResource and
+    // extract it to LocalDownloads on first launch.  The AssemblyResolve hook
+    // intercepts .NET's "I can't find Frida" failure and supplies the on-disk copy.
+    static FridaChannel()
+    {
+        AppDomain.CurrentDomain.AssemblyResolve += (_, args) =>
+        {
+            string simpleName = new AssemblyName(args.Name).Name ?? string.Empty;
+            if (!simpleName.Equals("Frida", StringComparison.OrdinalIgnoreCase))
+                return null;
+
+            string? path = TryExtractEmbeddedFrida();
+            return path is not null ? Assembly.LoadFrom(path) : null;
+        };
+    }
+
+    /// <summary>
+    /// Extracts <c>Frida.dll</c> from this assembly's embedded resources to
+    /// <see cref="FolderManager.LocalDownloads"/> so .NET can load it as a
+    /// mixed-mode C++/CLI managed assembly.
+    /// </summary>
+    /// <returns>
+    ///   The absolute path to the extracted file, or <see langword="null"/> on
+    ///   failure (a diagnostic log is written to
+    ///   <c>LocalDownloads\frida-extract.log</c>).
+    /// </returns>
+    private static string? TryExtractEmbeddedFrida()
+    {
+        try
+        {
+            Assembly asm = typeof(FridaChannel).Assembly; // Infrastructure.dll
+            using Stream? src = asm.GetManifestResourceStream("Frida.dll");
+            if (src is null) return null;
+
+            string path = Path.Combine(FolderManager.LocalDownloads(), "Frida.dll");
+
+            if (!File.Exists(path))
+            {
+                using FileStream dst = File.Open(
+                    path, FileMode.Create, FileAccess.Write, FileShare.ReadWrite);
+                src.CopyTo(dst);
+            }
+
+            return path;
+        }
+        catch (Exception ex)
+        {
+            try
+            {
+                File.WriteAllText(
+                    Path.Combine(FolderManager.LocalDownloads(), "frida-extract.log"),
+                    ex.ToString());
+            }
+            catch { }
+            return null;
+        }
+    }
+
     private static readonly string[] _moduleNamePool =
     [
         "Insertokname.dll",
