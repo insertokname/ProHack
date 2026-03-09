@@ -4,32 +4,33 @@
  * Il2CppRpcAgent.js — Persistent IL2CPP game-state reader agent for ProHack.
  *
  * Lifecycle:
- *   1. Discovers all class/field offsets by name via the IL2CPP reflection API.
+ *   1. Discovers stable class/field offsets by name via the IL2CPP reflection API;
+ *      uses hardcoded offsets for obfuscated (mangled) fields that change name
+ *      every game patch.
  *   2. Sends {cmd:"ready", ok:true} to signal that C# may start issuing reads.
  *   3. Stays resident.  Each {id:<n>, cmd:"read"} request from C# is handled
  *      immediately; the agent reads game memory in-process and replies with
  *      {id:<n>, ok:true, data:{...}} or {id:<n>, ok:false, error:"..."}.
  *
- * ── What is discovered (all by NAME, no hardcoded offsets) ──────────────────
+ * ── Stable fields (discovered by NAME at runtime) ───────────────────────────
+ *   DSSock.Console      → ChatInput*     (SelectedMenu chain start)
+ *   DSSock.OtherPoke    → gw struct      (encounter data base)
+ *   DSSock.TargetPos    → Vector3        (PlayerX at +0, PlayerY at +4)
+ *   ChatInput.TextList  → UITextList*
+ *   UIWidget.onChange   → delegate*      (contains SelectedMenu)
  *
- *   DSSock class
- *     Console      → ChatInput*        (SelectedMenu chain start)
- *     OtherPoke    → gw struct start   (CurrentEncounterId/ShinyForm/EventForm)
- *     ply          → Boolean           (IsBattling)
- *     TargetPos    → Vector3           (PlayerX at +0, PlayerY at +4)
+ * ── Obfuscated fields (HARDCODED offsets — immune to name mangling) ─────────
+ *   DSSock + 0x750      → Boolean        (IsBattling)
+ *   DSSock + 0x7D0      → Int32          (CurrentEncounterId)
+ *   DSSock + 0x7E0      → Boolean/Int    (ShinyForm)
+ *   DSSock + 0x7E4      → Int32          (EventForm)
  *
- *   gw class  (value type embedded inline at DSSock.OtherPoke)
- *     oyu          → Int32             (CurrentEncounterId)
- *     oyy          → Boolean           (ShinyForm)
- *     oyz          → Int32             (EventForm)
+ *   These offsets are effective DSSock-relative positions. They remain stable
+ *   across patches even when the obfuscator renames the fields. Only a struct
+ *   layout change (fields added/removed/reordered) would break them — this is
+ *   rare and detectable via verify_layout.js.
  *
- *   ChatInput class
- *     TextList     → UITextList*
- *
- *   UIWidget class  (onChange inherited by UITextList)
- *     onChange     → UIWidget.di*      (delegate containing SelectedMenu)
- *
- * ── One remaining hardcoded constant ────────────────────────────────────────
+ * ── Hardcoded delegate constant ─────────────────────────────────────────────
  *   DELEGATE_SELECTED_MENU_OFFSET = 0xA8
  *   Position of the SelectedMenu int inside a UIWidget.di (System.MulticastDelegate
  *   internal — stable across game patches, only changes on Unity major-version upgrade).
@@ -37,35 +38,49 @@
  *
  * ── Update procedure ─────────────────────────────────────────────────────────
  *   See Infrastructure/Il2Cpp/UPDATE.md.
- *   Short version: if a class or field is renamed, update the string literal in
- *   CLASS_NAMES or FIELD_NAMES below.  No other code changes are needed.
+ *   If only obfuscated field names changed → NO code changes needed.
+ *   If a stable field or class is renamed  → update NAMED_FIELDS / CLASS_NAMES.
+ *   If struct layout changed (offsets shifted) → update HARDCODED_OFFSETS.
  */
 
-// ── [1] Class and field name constants ────────────────────────────────────────
-// Update ONLY these string values when the game renames a class or field.
-// Everything else in the file references these constants.
+// ── [1] Constants ─────────────────────────────────────────────────────────────
+//
+// CLASS_NAMES   – classes looked up by name at runtime (all have stable names).
+// NAMED_FIELDS  – fields with stable, human-readable names, discovered by name.
+// HARDCODED_OFFSETS – effective DSSock-relative offsets for fields whose names
+//                    are mangled by the obfuscator every patch.  Using offsets
+//                    instead of names means **no code change** is needed when
+//                    the obfuscator renames them.  Only update these if the
+//                    struct layout itself changes (fields added/removed/reordered).
+//
+// Run Diagnostics/verify_layout.js after each game patch to confirm all
+// offsets still match.
 
 const CLASS_NAMES = {
     DSSock:    'DSSock',
-    gw:        'gw',        // value type: OtherPoke struct (CurrentEncounterId/ShinyForm/EventForm)
     ChatInput: 'ChatInput',
     UIWidget:  'UIWidget',  // onChange field is inherited by UITextList
 };
 
-const FIELD_NAMES = {
-    // DSSock instance fields
+const NAMED_FIELDS = {
+    // DSSock instance fields (stable names)
     console:   'Console',
     otherPoke: 'OtherPoke',
-    ply:       'pmh',
     targetPos: 'TargetPos', // UnityEngine.Vector3 — x at +0, y at +4 (standard struct layout)
-    // gw (value type) fields
-    oyu:       'ozd',   // Int32   = CurrentEncounterId
-    oyy:       'ozh',   // Boolean = ShinyForm flag
-    oyz:       'ozi',   // Int32   = EventForm flag
     // ChatInput fields
     textList:  'TextList',
     // UIWidget fields
     onChange:  'onChange',
+};
+
+// Effective DSSock-relative offsets for obfuscated fields.
+// These survive name mangling — only a struct-layout change can break them.
+// Verify with: frida -p <PID> -l .\Infrastructure\Il2Cpp\Diagnostics\verify_layout.js
+const HARDCODED_OFFSETS = {
+    isBattling:         0x750,  // System.Boolean (was: ply → pmh → …)
+    currentEncounterId: 0x7D0,  // System.Int32   (effective: OtherPoke+0x10−0x10)
+    shinyForm:          0x7E0,  // System.Boolean (effective: OtherPoke+0x20−0x10)
+    eventForm:          0x7E4,  // System.Int32   (effective: OtherPoke+0x24−0x10)
 };
 
 // Offset of the SelectedMenu int within the UIWidget.di delegate object.
@@ -73,11 +88,6 @@ const FIELD_NAMES = {
 // Stable across game patches — run Diagnostics/find_onChange_delegate_fields.js to re-verify
 // after a Unity engine major-version upgrade.
 const DELEGATE_SELECTED_MENU_OFFSET = 0xA8;
-
-// il2cpp_field_get_offset adds a fake 16-byte IL2CppObject header (vtable + monitor)
-// when reporting field offsets for value types. We subtract it when computing
-// the effective DSSock offset for gw fields.
-const IL2CPP_OBJ_HEADER = 0x10;
 
 
 // ── [2]] IL2CPP API bindings ───────────────────────────────────────────────────
@@ -222,7 +232,6 @@ function _fieldOffset(klass, fieldName) {
 
 function _discoverLayout() {
     const dsKlass        = _findClass(CLASS_NAMES.DSSock);
-    const gwKlass        = _findClass(CLASS_NAMES.gw);
     const chatInputKlass = _findClass(CLASS_NAMES.ChatInput);
     const uiWidgetKlass  = _findClass(CLASS_NAMES.UIWidget);
 
@@ -231,35 +240,22 @@ function _discoverLayout() {
     if (!staticDataAddr || staticDataAddr.isNull())
         throw new Error('DSSock static field data is null — game not fully loaded?');
 
-    const offsetOtherPoke = _fieldOffset(dsKlass, FIELD_NAMES.otherPoke);
-
-    // gw is a value type.  il2cpp_field_get_offset includes a fake IL2CppObject header
-    // (0x10 bytes) for value types.  We strip it to get the real DSSock-relative offset.
-    const gwOyuOff = _fieldOffset(gwKlass, FIELD_NAMES.oyu);
-    const gwOyyOff = _fieldOffset(gwKlass, FIELD_NAMES.oyy);
-    const gwOyzOff = _fieldOffset(gwKlass, FIELD_NAMES.oyz);
-
     return {
         // NativePointer: dereference to get the DSSock singleton pointer.
         staticDataAddr,
 
-        // DSSock instance offsets
-        offsetConsole: _fieldOffset(dsKlass, FIELD_NAMES.console),
-        offsetPly:     _fieldOffset(dsKlass, FIELD_NAMES.ply),
+        // ── Stable fields (discovered by name) ────────────────────────────────
+        offsetConsole:   _fieldOffset(dsKlass,        NAMED_FIELDS.console),
+        offsetTextList:  _fieldOffset(chatInputKlass, NAMED_FIELDS.textList),
+        offsetOnChange:  _fieldOffset(uiWidgetKlass,  NAMED_FIELDS.onChange),
+        offsetTargetPos: _fieldOffset(dsKlass,        NAMED_FIELDS.targetPos),
 
-        // Effective DSSock offsets for gw (value-type) fields.
-        // Formula: offsetOtherPoke + gwFieldOffset − IL2CPP_OBJ_HEADER
-        effOyu: offsetOtherPoke + gwOyuOff - IL2CPP_OBJ_HEADER,
-        effOyy: offsetOtherPoke + gwOyyOff - IL2CPP_OBJ_HEADER,
-        effOyz: offsetOtherPoke + gwOyzOff - IL2CPP_OBJ_HEADER,
-
-        // ChatInput → UITextList → onChange chain
-        offsetTextList: _fieldOffset(chatInputKlass, FIELD_NAMES.textList),
-        offsetOnChange: _fieldOffset(uiWidgetKlass,  FIELD_NAMES.onChange),
-
-        // DSSock.TargetPos — inline UnityEngine.Vector3 (tile grid position).
-        // x component is at offsetTargetPos+0, y at +4 (standard 4-byte float stride).
-        offsetTargetPos: _fieldOffset(dsKlass, FIELD_NAMES.targetPos),
+        // ── Obfuscated fields (hardcoded offsets — immune to name mangling) ───
+        // These are effective DSSock-relative offsets. No gw class lookup needed.
+        offsetPly:  HARDCODED_OFFSETS.isBattling,
+        effOyu:     HARDCODED_OFFSETS.currentEncounterId,
+        effOyy:     HARDCODED_OFFSETS.shinyForm,
+        effOyz:     HARDCODED_OFFSETS.eventForm,
     };
 }
 

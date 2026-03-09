@@ -3,32 +3,45 @@
 'use strict';
 /**
  * verify_layout.js — Run this after every game update to confirm that all
- * class/field names used by Il2CppRpcAgent.js still resolve correctly.
+ * offsets used by Il2CppRpcAgent.js are still correct.
+ *
+ * The agent uses a HYBRID approach:
+ *   • Stable fields (Console, OtherPoke, TargetPos, TextList, onChange) are
+ *     discovered by name at runtime — self-healing if their offsets shift.
+ *   • Obfuscated fields (IsBattling, CurrentEncounterId, ShinyForm, EventForm)
+ *     use HARDCODED DSSock-relative offsets — immune to name mangling.
+ *
+ * This script verifies BOTH:
+ *   1. That the stable field names still resolve and their offsets match.
+ *   2. That the hardcoded offsets still point to the correct data by
+ *      cross-referencing with whatever obfuscated names are currently in use.
  *
  * Usage:
  *   frida -p <PROClient_PID> -l .\verify_layout.js
  *
- * Expected output (if nothing has changed):
- *   [+] DSSock       found
- *   [+] gw           found
- *   [+] ChatInput    found
- *   [+] UIWidget     found
- *   [+] DSSock.Console       offset = 0x458
- *   [+] DSSock.OtherPoke     offset = 0x7D0
- *   [+] DSSock.pmh           offset = 0x750
- *   [+] gw.ozd               offset = 0x10   → effective DS offset = 0x7D0
- *   [+] gw.ozh               offset = 0x20   → effective DS offset = 0x7E0
- *   [+] gw.ozi               offset = 0x24   → effective DS offset = 0x7E4
- *   [+] ChatInput.TextList   offset = 0x30
- *   [+] UIWidget.onChange    offset = 0xB0
- *   ... live read of all values ...
- *
- * If any line shows [-] instead of [+], update the CLASS_NAMES / FIELD_NAMES
- * constants in Il2CppRpcAgent.js and re-run until all pass.
- * Then rebuild the C# project so the new agent is embedded.
+ * If all hardcoded offsets match → no code change needed, just rebuild.
+ * If a stable field name changed → update NAMED_FIELDS in Il2CppRpcAgent.js.
+ * If struct layout shifted       → update HARDCODED_OFFSETS in Il2CppRpcAgent.js.
  *
  * See UPDATE.md for the full procedure.
  */
+
+// ── Hardcoded offsets (must match Il2CppRpcAgent.js HARDCODED_OFFSETS) ─────────
+const EXPECTED = {
+    // Stable fields (discovered by name, but we verify offsets haven't shifted)
+    'DSSock.Console':   0x458,
+    'DSSock.OtherPoke': 0x7D0,
+    'DSSock.TargetPos': 0x1A4,
+    'ChatInput.TextList': 0x30,
+    'UIWidget.onChange': 0xB0,
+    // Hardcoded offsets for obfuscated fields (effective DSSock-relative)
+    'DSSock+IsBattling':         0x750,
+    'DSSock+CurrentEncounterId': 0x7D0,
+    'DSSock+ShinyForm':          0x7E0,
+    'DSSock+EventForm':          0x7E4,
+    // Delegate internal
+    'Delegate+SelectedMenu':     0xA8,
+};
 
 const _mod  = Process.getModuleByName('GameAssembly.dll');
 const _IL2CPP_OBJECT_HEADER_SIZE = 0x10;
@@ -43,7 +56,6 @@ const _api = {
     classGetFields:      new NativeFunction(_mod.getExportByName('il2cpp_class_get_fields'),            'pointer', ['pointer', 'pointer']),
     fieldGetName:        new NativeFunction(_mod.getExportByName('il2cpp_field_get_name'),              'pointer', ['pointer']),
     fieldGetOffset:      new NativeFunction(_mod.getExportByName('il2cpp_field_get_offset'),            'uint',    ['pointer']),
-    fieldStaticGet:      new NativeFunction(_mod.getExportByName('il2cpp_field_static_get_value'),      'void',    ['pointer', 'pointer']),
     classGetStaticData:  new NativeFunction(_mod.getExportByName('il2cpp_class_get_static_field_data'), 'pointer', ['pointer']),
 };
 
@@ -65,7 +77,7 @@ function _findClass(name) {
     return null;
 }
 
-function _findField(klass, name) {
+function _findFieldByName(klass, name) {
     const iter=Memory.alloc(Process.pointerSize); iter.writePointer(ptr(0));
     let f;
     while(!(f=_api.classGetFields(klass,iter)).isNull())
@@ -73,90 +85,143 @@ function _findField(klass, name) {
     return null;
 }
 
-function ok(msg)  { console.log('[+] ' + msg); }
-function fail(msg){ console.log('[-] ' + msg); }
-function hdr(msg) { console.log('\n=== ' + msg + ' ==='); }
+/** Find a field by its expected offset within a class. Returns {name, offset} or null. */
+function _findFieldByOffset(klass, targetOffset) {
+    const iter=Memory.alloc(Process.pointerSize); iter.writePointer(ptr(0));
+    let f;
+    while(!(f=_api.classGetFields(klass,iter)).isNull()) {
+        const off = _api.fieldGetOffset(f);
+        if (off === targetOffset) {
+            return { name: _utf8(_api.fieldGetName(f)), offset: off };
+        }
+    }
+    return null;
+}
+
+function ok(msg)   { console.log('[+] ' + msg); }
+function fail(msg) { console.log('[-] ' + msg); }
+function warn(msg) { console.log('[!] ' + msg); }
+function hdr(msg)  { console.log('\n=== ' + msg + ' ==='); }
+function hex(v)    { return '0x' + v.toString(16).toUpperCase(); }
 
 // ── Class checks ─────────────────────────────────────────────────────────────
 
 hdr('Class resolution');
-const dsKlass        = _findClass('DSSock');    dsKlass        ? ok('DSSock')    : fail('DSSock — UPDATE CLASS_NAMES.DSSock');
-const gwKlass        = _findClass('gw');        gwKlass        ? ok('gw')        : fail('gw — UPDATE CLASS_NAMES.gw');
-const chatInputKlass = _findClass('ChatInput'); chatInputKlass ? ok('ChatInput') : fail('ChatInput — UPDATE CLASS_NAMES.ChatInput');
-const uiWidgetKlass  = _findClass('UIWidget');  uiWidgetKlass  ? ok('UIWidget')  : fail('UIWidget — UPDATE CLASS_NAMES.UIWidget');
+const dsKlass        = _findClass('DSSock');    dsKlass        ? ok('DSSock       found') : fail('DSSock — UPDATE CLASS_NAMES.DSSock');
+const gwKlass        = _findClass('gw');        gwKlass        ? ok('gw           found') : warn('gw not found (OK — agent uses hardcoded offsets, no gw lookup needed)');
+const chatInputKlass = _findClass('ChatInput'); chatInputKlass ? ok('ChatInput    found') : fail('ChatInput — UPDATE CLASS_NAMES.ChatInput');
+const uiWidgetKlass  = _findClass('UIWidget');  uiWidgetKlass  ? ok('UIWidget     found') : fail('UIWidget — UPDATE CLASS_NAMES.UIWidget');
 
-// ── Field offset checks ───────────────────────────────────────────────────────
+// ── Stable field checks (discovered by name at runtime) ───────────────────────
 
-hdr('Field offsets');
+hdr('Stable fields (name-based — used by the agent at runtime)');
 
-function checkField(klass, className, fieldName, expectedOffset) {
+function checkNamedField(klass, className, fieldName, expectedOffset) {
     if (!klass) { fail(`${className}.${fieldName} — class not found`); return null; }
-    const f = _findField(klass, fieldName);
-    if (!f) { fail(`${className}.${fieldName} — FIELD NOT FOUND, UPDATE FIELD_NAMES`); return null; }
+    const f = _findFieldByName(klass, fieldName);
+    if (!f) { fail(`${className}.${fieldName} — FIELD NOT FOUND → update NAMED_FIELDS in Il2CppRpcAgent.js`); return null; }
     const off = _api.fieldGetOffset(f);
     const match = (expectedOffset == null || off === expectedOffset);
-    ok(`${className}.${fieldName}  offset = 0x${off.toString(16).toUpperCase()}` +
-       (expectedOffset != null ? (match ? '  ✓' : `  !! expected 0x${expectedOffset.toString(16).toUpperCase()}`) : ''));
+    const status = match ? '✓' : `!! SHIFTED — expected ${hex(expectedOffset)}, got ${hex(off)} → update HARDCODED_OFFSETS if affected`;
+    ok(`${className}.${fieldName}  offset = ${hex(off)}  ${status}`);
     return off;
 }
 
-const offsetConsole   = checkField(dsKlass,        'DSSock',    'Console',   0x458);
-const offsetOtherPoke = checkField(dsKlass,        'DSSock',    'OtherPoke', 0x7D0);
-const offsetPly       = checkField(dsKlass,        'DSSock',    'pmh',       0x750);
-const gwOyuOff        = checkField(gwKlass,        'gw',        'ozd',       0x10);
-const gwOyyOff        = checkField(gwKlass,        'gw',        'ozh',       0x20);
-const gwOyzOff        = checkField(gwKlass,        'gw',        'ozi',       0x24);
-const offsetTextList  = checkField(chatInputKlass, 'ChatInput', 'TextList',  0x30);
-const offsetOnChange  = checkField(uiWidgetKlass,  'UIWidget',  'onChange',  0xB0);
+const offsetConsole   = checkNamedField(dsKlass,        'DSSock',    'Console',   0x458);
+const offsetOtherPoke = checkNamedField(dsKlass,        'DSSock',    'OtherPoke', 0x7D0);
+const offsetTargetPos = checkNamedField(dsKlass,        'DSSock',    'TargetPos', 0x1A4);
+const offsetTextList  = checkNamedField(chatInputKlass, 'ChatInput', 'TextList',  0x30);
+const offsetOnChange  = checkNamedField(uiWidgetKlass,  'UIWidget',  'onChange',  0xB0);
 
-if (gwOyuOff != null && offsetOtherPoke != null) {
-    const eff = offsetOtherPoke + gwOyuOff - _IL2CPP_OBJECT_HEADER_SIZE;
-    ok(`gw.ozd → effective DS offset = 0x${eff.toString(16).toUpperCase()} (expect 0x7D0)`);
-}
-if (gwOyyOff != null && offsetOtherPoke != null) {
-    const eff = offsetOtherPoke + gwOyyOff - _IL2CPP_OBJECT_HEADER_SIZE;
-    ok(`gw.ozh → effective DS offset = 0x${eff.toString(16).toUpperCase()} (expect 0x7E0)`);
-}
-if (gwOyzOff != null && offsetOtherPoke != null) {
-    const eff = offsetOtherPoke + gwOyzOff - _IL2CPP_OBJECT_HEADER_SIZE;
-    ok(`gw.ozi → effective DS offset = 0x${eff.toString(16).toUpperCase()} (expect 0x7E4)`)
+// ── Hardcoded offset verification (obfuscated fields) ─────────────────────────
+
+hdr('Hardcoded offsets (obfuscated fields — agent uses these directly)');
+console.log('Cross-referencing hardcoded DSSock-relative offsets against actual fields...');
+console.log('');
+
+function verifyHardcodedOffset(klass, className, hardcodedOffset, description) {
+    if (!klass) { warn(`${className} class not found — cannot verify ${description} at ${hex(hardcodedOffset)}`); return; }
+    const found = _findFieldByOffset(klass, hardcodedOffset);
+    if (found) {
+        ok(`${description}  @ ${hex(hardcodedOffset)}  ✓  (current name: "${found.name}")`);
+    } else {
+        fail(`${description}  @ ${hex(hardcodedOffset)}  — NO FIELD AT THIS OFFSET → struct layout changed! Update HARDCODED_OFFSETS.`);
+    }
 }
 
-// ── Live value read ───────────────────────────────────────────────────────────
+// IsBattling is a direct DSSock field at 0x750
+verifyHardcodedOffset(dsKlass, 'DSSock', EXPECTED['DSSock+IsBattling'], 'DSSock.IsBattling');
 
-hdr('Live value read (must be in-game / logged in)');
+// gw fields: the effective DSSock offsets are computed as OtherPoke + gwFieldOff - 0x10.
+// To verify, we check the gw class (if available) for fields at the expected gw-internal offsets.
+// gw-internal offset = effectiveDSSockOffset - OtherPoke + IL2CPP_OBJECT_HEADER
+if (gwKlass && offsetOtherPoke != null) {
+    const otherPoke = offsetOtherPoke;
+    function verifyGwField(effOffset, description) {
+        const gwInternalOff = effOffset - otherPoke + _IL2CPP_OBJECT_HEADER_SIZE;
+        const found = _findFieldByOffset(gwKlass, gwInternalOff);
+        if (found) {
+            ok(`${description}  @ DSSock+${hex(effOffset)} (gw+${hex(gwInternalOff)})  ✓  (current name: "${found.name}")`);
+        } else {
+            fail(`${description}  @ DSSock+${hex(effOffset)} (gw+${hex(gwInternalOff)})  — NO FIELD → struct layout changed! Update HARDCODED_OFFSETS.`);
+        }
+    }
+    verifyGwField(EXPECTED['DSSock+CurrentEncounterId'], 'CurrentEncounterId');
+    verifyGwField(EXPECTED['DSSock+ShinyForm'],          'ShinyForm');
+    verifyGwField(EXPECTED['DSSock+EventForm'],          'EventForm');
+} else {
+    warn('Cannot verify gw hardcoded offsets (gw class or OtherPoke not found).');
+    console.log('  Using hardcoded values — live read will confirm if they work.');
+}
+
+// ── Live value read (uses hardcoded offsets, just like the agent) ──────────────
+
+hdr('Live value read (uses hardcoded offsets — must be in-game / logged in)');
 
 try {
-    if (!dsKlass || !offsetConsole || !offsetOtherPoke || !offsetPly ||
-        !gwOyuOff || !gwOyyOff || !gwOyzOff || !offsetTextList || !offsetOnChange) {
-        console.log('[!] Skipping live read — one or more lookups failed above.');
+    if (!dsKlass) {
+        console.log('[!] Skipping live read — DSSock class not found.');
     } else {
-        // Read DSSock singleton
         const staticData = _api.classGetStaticData(dsKlass);
         const ds = staticData.readPointer();
         if (ds.isNull()) { console.log('[!] DSSock singleton is null — not logged in.'); }
         else {
             ok('DSSock singleton @ ' + ds);
 
-            const encId    = ds.add(offsetOtherPoke + gwOyuOff  - _IL2CPP_OBJECT_HEADER_SIZE).readS32();
-            const ply      = ds.add(offsetPly).readS32();
-            const shiny    = ds.add(offsetOtherPoke + gwOyyOff  - _IL2CPP_OBJECT_HEADER_SIZE).readS32();
-            const event_   = ds.add(offsetOtherPoke + gwOyzOff  - _IL2CPP_OBJECT_HEADER_SIZE).readS32();
-
-            const chatInput = ds.add(offsetConsole).readPointer();
-            const textList  = chatInput.add(offsetTextList).readPointer();
-            const onChange  = textList.add(offsetOnChange).readPointer();
-            const selMenu   = onChange.add(0xA8).readS32();
+            // Read using HARDCODED offsets (same as the agent)
+            const encId  = ds.add(EXPECTED['DSSock+CurrentEncounterId']).readS32();
+            const battle = ds.add(EXPECTED['DSSock+IsBattling']).readU8();
+            const shiny  = ds.add(EXPECTED['DSSock+ShinyForm']).readU8();
+            const event_ = ds.add(EXPECTED['DSSock+EventForm']).readS32();
 
             console.log(`  CurrentEncounterId = ${encId}`);
-            console.log(`  IsBattling (ply)   = ${ply !== 0} (raw ${ply})`);
-            console.log(`  ShinyForm  (ozh)   = ${shiny}`);
-            console.log(`  EventForm  (ozi)   = ${event_}`);
-            console.log(`  SelectedMenu       = ${selMenu}`);
+            console.log(`  IsBattling         = ${battle !== 0} (raw ${battle})`);
+            console.log(`  ShinyForm          = ${shiny}`);
+            console.log(`  EventForm          = ${event_}`);
+
+            // SelectedMenu chain uses name-discovered offsets for the pointer chain
+            if (offsetConsole != null && offsetTextList != null && offsetOnChange != null) {
+                const chatInput = ds.add(offsetConsole).readPointer();
+                const textList  = chatInput.add(offsetTextList).readPointer();
+                const onChange  = textList.add(offsetOnChange).readPointer();
+                const selMenu   = onChange.add(EXPECTED['Delegate+SelectedMenu']).readS32();
+                console.log(`  SelectedMenu       = ${selMenu}`);
+            } else {
+                warn('Skipping SelectedMenu — one or more pointer-chain fields not found.');
+            }
+
+            if (offsetTargetPos != null) {
+                const px = ds.add(offsetTargetPos).readFloat();
+                const py = ds.add(offsetTargetPos + 4).readFloat();
+                console.log(`  PlayerPos          = (${px}, ${py})`);
+            }
+
             console.log('');
             console.log('[+] All values read successfully — layout is valid!');
         }
     }
 } catch(e) {
     console.log('[-] Live read failed: ' + e.message);
+    console.log('    If obfuscated field values look wrong, the struct layout may have changed.');
+    console.log('    Update HARDCODED_OFFSETS in Il2CppRpcAgent.js.');
 }
