@@ -36,10 +36,10 @@ const CLASS_NAMES = {
 const FIELD_NAMES = {
     Console: "Console",
     OtherPoke: "OtherPoke",
-    ply: "ply",
-    oyu: "oyu", // CurrentEncounterId
-    oyy: "oyy", // ShinyForm
-    oyz: "oyz", // EventForm
+    ply: "pmh",
+    oyu: "ozd", // CurrentEncounterId
+    oyy: "ozh", // ShinyForm
+    oyz: "ozi", // EventForm
     TextList: "TextList",
     onChange: "onChange",
 };
@@ -113,10 +113,10 @@ These are the values `verify_layout.js` checks against. If they match, no update
 | ------------- | ------------------------------ | ------------------------------------ |
 | `DSSock`      | `Console`                      | `0x458`                              |
 | `DSSock`      | `OtherPoke`                    | `0x7D0`                              |
-| `DSSock`      | `ply`                          | `0x750`                              |
-| `gw`          | `oyu`                          | `0x10` → effective DS offset `0x7D0` |
-| `gw`          | `oyy`                          | `0x20` → effective DS offset `0x7E0` |
-| `gw`          | `oyz`                          | `0x24` → effective DS offset `0x7E4` |
+| `DSSock`      | `pmh`                          | `0x750`                              |
+| `gw`          | `ozd`                          | `0x10` → effective DS offset `0x7D0` |
+| `gw`          | `ozh`                          | `0x20` → effective DS offset `0x7E0` |
+| `gw`          | `ozi`                          | `0x24` → effective DS offset `0x7E4` |
 | `ChatInput`   | `TextList`                     | `0x30`                               |
 | `UIWidget`    | `onChange`                     | `0xB0`                               |
 | `UIWidget.di` | _(MulticastDelegate internal)_ | `0xA8`                               |

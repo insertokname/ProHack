@@ -56,12 +56,12 @@ const FIELD_NAMES = {
     // DSSock instance fields
     console:   'Console',
     otherPoke: 'OtherPoke',
-    ply:       'ply',
+    ply:       'pmh',
     targetPos: 'TargetPos', // UnityEngine.Vector3 — x at +0, y at +4 (standard struct layout)
     // gw (value type) fields
-    oyu:       'oyu',   // Int32   = CurrentEncounterId
-    oyy:       'oyy',   // Boolean = ShinyForm flag
-    oyz:       'oyz',   // Int32   = EventForm flag
+    oyu:       'ozd',   // Int32   = CurrentEncounterId
+    oyy:       'ozh',   // Boolean = ShinyForm flag
+    oyz:       'ozi',   // Int32   = EventForm flag
     // ChatInput fields
     textList:  'TextList',
     // UIWidget fields

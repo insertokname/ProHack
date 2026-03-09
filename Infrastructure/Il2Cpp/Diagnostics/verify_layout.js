@@ -15,10 +15,10 @@
  *   [+] UIWidget     found
  *   [+] DSSock.Console       offset = 0x458
  *   [+] DSSock.OtherPoke     offset = 0x7D0
- *   [+] DSSock.ply           offset = 0x750
- *   [+] gw.oyu               offset = 0x10   → effective DS offset = 0x7D0
- *   [+] gw.oyy               offset = 0x20   → effective DS offset = 0x7E0
- *   [+] gw.oyz               offset = 0x24   → effective DS offset = 0x7E4
+ *   [+] DSSock.pmh           offset = 0x750
+ *   [+] gw.ozd               offset = 0x10   → effective DS offset = 0x7D0
+ *   [+] gw.ozh               offset = 0x20   → effective DS offset = 0x7E0
+ *   [+] gw.ozi               offset = 0x24   → effective DS offset = 0x7E4
  *   [+] ChatInput.TextList   offset = 0x30
  *   [+] UIWidget.onChange    offset = 0xB0
  *   ... live read of all values ...
@@ -102,24 +102,24 @@ function checkField(klass, className, fieldName, expectedOffset) {
 
 const offsetConsole   = checkField(dsKlass,        'DSSock',    'Console',   0x458);
 const offsetOtherPoke = checkField(dsKlass,        'DSSock',    'OtherPoke', 0x7D0);
-const offsetPly       = checkField(dsKlass,        'DSSock',    'ply',       0x750);
-const gwOyuOff        = checkField(gwKlass,        'gw',        'oyu',       0x10);
-const gwOyyOff        = checkField(gwKlass,        'gw',        'oyy',       0x20);
-const gwOyzOff        = checkField(gwKlass,        'gw',        'oyz',       0x24);
+const offsetPly       = checkField(dsKlass,        'DSSock',    'pmh',       0x750);
+const gwOyuOff        = checkField(gwKlass,        'gw',        'ozd',       0x10);
+const gwOyyOff        = checkField(gwKlass,        'gw',        'ozh',       0x20);
+const gwOyzOff        = checkField(gwKlass,        'gw',        'ozi',       0x24);
 const offsetTextList  = checkField(chatInputKlass, 'ChatInput', 'TextList',  0x30);
 const offsetOnChange  = checkField(uiWidgetKlass,  'UIWidget',  'onChange',  0xB0);
 
 if (gwOyuOff != null && offsetOtherPoke != null) {
     const eff = offsetOtherPoke + gwOyuOff - _IL2CPP_OBJECT_HEADER_SIZE;
-    ok(`gw.oyu → effective DS offset = 0x${eff.toString(16).toUpperCase()} (expect 0x7D0)`);
+    ok(`gw.ozd → effective DS offset = 0x${eff.toString(16).toUpperCase()} (expect 0x7D0)`);
 }
 if (gwOyyOff != null && offsetOtherPoke != null) {
     const eff = offsetOtherPoke + gwOyyOff - _IL2CPP_OBJECT_HEADER_SIZE;
-    ok(`gw.oyy → effective DS offset = 0x${eff.toString(16).toUpperCase()} (expect 0x7E0)`);
+    ok(`gw.ozh → effective DS offset = 0x${eff.toString(16).toUpperCase()} (expect 0x7E0)`);
 }
 if (gwOyzOff != null && offsetOtherPoke != null) {
     const eff = offsetOtherPoke + gwOyzOff - _IL2CPP_OBJECT_HEADER_SIZE;
-    ok(`gw.oyz → effective DS offset = 0x${eff.toString(16).toUpperCase()} (expect 0x7E4)`);
+    ok(`gw.ozi → effective DS offset = 0x${eff.toString(16).toUpperCase()} (expect 0x7E4)`)
 }
 
 // ── Live value read ───────────────────────────────────────────────────────────
@@ -150,8 +150,8 @@ try {
 
             console.log(`  CurrentEncounterId = ${encId}`);
             console.log(`  IsBattling (ply)   = ${ply !== 0} (raw ${ply})`);
-            console.log(`  ShinyForm  (oyy)   = ${shiny}`);
-            console.log(`  EventForm  (oyz)   = ${event_}`);
+            console.log(`  ShinyForm  (ozh)   = ${shiny}`);
+            console.log(`  EventForm  (ozi)   = ${event_}`);
             console.log(`  SelectedMenu       = ${selMenu}`);
             console.log('');
             console.log('[+] All values read successfully — layout is valid!');

@@ -1,1626 +1,1667 @@
-254e1e7ef20 : DSSock
-    static fields
-        0 : <pjm>k__BackingField (type: DSSock)
-        8 : RndInst (type: System.Random)
-        10 : pjy (type: System.Int32[][])
-        18 : ple (type: System.Single)
-    fields
-        20 : Version (type: System.String)
-        28 : VersionLabel (type: UILabel)
-        30 : DevSuffix (type: System.String)
-        38 : BattleTitleIcon (type: UISprite)
-        40 : TimeScale (type: System.Single)
-        44 : MaxDialogueSpeed (type: System.Int32)
-        48 : MinDialogueSpeed (type: System.Int32)
-        50 : Currencies (type: UILabel)
-        58 : StaffRole (type: ps)
-        60 : mailHandler (type: MailHandling.MailHandler)
-        68 : Inspect (type: PlayerInspect)
-        70 : Hazards (type: UnityEngine.GameObject[])
-        78 : isGirl (type: System.Boolean)
-        80 : ContextIconHandler (type: ContextIconHandler)
-        88 : GLM (type: GuildLogo.GuildLogoManager)
-        90 : HandleCoinShop (type: CoinShopHandler)
-        98 : MoveRelearner (type: MoveRelearn)
-        a0 : KeyManager (type: KeyToLabel)
-        a8 : Enc (type: System.Text.Encoding)
-        b0 : PvpWindowHandler (type: PVPWindowHandler)
-        b8 : LootBoxOpenPanel (type: LootBoxOpenPanel)
-        c0 : GMOTD (type: UILabel)
-        c8 : GINFO (type: UILabel)
-        d0 : GLog (type: UITexture)
-        d8 : ShinySparkle (type: UnityEngine.GameObject)
-        e0 : XmasSparkle (type: UnityEngine.GameObject)
-        e8 : OnStatus (type: UILabel)
-        f0 : PlayerEmote (type: ShowEmote)
-        f8 : TrainerCardBody (type: UITexture[])
-        100 : Wearables (type: UITexture[])
-        108 : Pokedex (type: Pokedex)
-        110 : PokeCard (type: PokemonInfo)
-        118 : ChatLinkPoke (type: PokemonInfo)
-        120 : CaughtPokePreview (type: PokemonInfo)
-        128 : PokePreviewDelete (type: UnityEngine.GameObject)
-        130 : SelectPokePrefab (type: NPCDialogueSystem.PokeSelect)
-        138 : SelectMovePrefab (type: NPCDialogueSystem.PokeMoveSelect)
-        140 : IVAdder (type: IVAdder)
-        148 : StartScreen (type: StartScreenHandler)
-        150 : MusicPlayer (type: MusicPlayer)
-        158 : Network (type: DSSockNetwork)
-        160 : Load (type: LoadingScreenHandler)
-        168 : Pokemons (type: System.Collections.Generic.List<cPokemon>)
-        170 : Items (type: System.Collections.Generic.List<DSSock.hd>)
-        178 : OnItemUpdate (type: System.Collections.Generic.List<EventDelegate>)
-        180 : PlayerObjects (type: System.Collections.Generic.List<UnityEngine.GameObject>)
-        188 : MessageText (type: System.String)
-        190 : MessageTimer (type: System.Single)
-        198 : NameplateHolder (type: UnityEngine.Transform)
-        1a0 : Standing (type: System.Boolean)
-        1a1 : PlayerDir (type: System.Byte)
-        1a4 : TargetPos (type: UnityEngine.Vector3)
-        1b0 : ViewDistance (type: System.Int32)
-        1b8 : pjn (type: System.String)
-        1c0 : pjo (type: System.Threading.CancellationTokenSource)
-        1c8 : CurrentPokeTimeHour (type: System.Int32)
-        1d0 : GameCamera (type: UnityEngine.Camera)
-        1d8 : GuiCamera (type: UnityEngine.Camera)
-        1e0 : Settings (type: GameSettings)
-        1e8 : MapCreator (type: MapCreator)
-        1f0 : LoadingMap (type: System.Boolean)
-        1f8 : SpawnHandler (type: SpawnListHandler)
-        200 : TrainerStats (type: UILabel)
-        208 : HairColors (type: UnityEngine.Color[])
-        210 : pjp (type: System.Collections.Generic.Dictionary<System.UInt64,System.Int32>)
-        218 : OnGround (type: System.Boolean)
-        220 : Style (type: CharStyle)
-        228 : MagicMirror (type: CharDesigner)
-        230 : FollowPoke (type: FPoke)
-        238 : Players (type: DSSock.he)
-        280 : Player (type: UnityEngine.Transform)
-        288 : PlayerPrefab (type: UnityEngine.GameObject)
-        290 : PokeFollowerPrefab (type: FPoke)
-        298 : TimeLabel (type: UILabel)
-        2a0 : pjq (type: DSSock.hf)
-        2a8 : DestroyOnLogout (type: System.Collections.Generic.List<UnityEngine.GameObject>)
-        2b0 : pjr (type: System.Int32)
-        2b8 : GameMenuSprite (type: UISprite)
-        2c0 : LoginStatusText (type: FadeTextAfter)
-        2c8 : User (type: UIInput)
-        2d0 : Pass (type: UIInput)
-        2d8 : Uname (type: System.String)
-        2e0 : UnameC (type: System.String)
-        2e8 : LoggedIn (type: System.Boolean)
-        2f0 : CurrentServer (type: System.String)
-        2f8 : Blank (type: UnityEngine.Texture2D)
-        300 : pjs (type: UnityEngine.Vector2)
-        308 : pjt (type: ha)
-        30c : pju (type: System.Int32)
-        310 : pjv (type: System.Int32[])
-        318 : pjw (type: SwearFilter)
-        320 : pjx (type: System.Int32)
-        328 : FootstepAniVals (type: System.Int32[])
-        330 : pjz (type: System.Collections.Generic.HashSet<System.UInt32>)
-        338 : pka (type: System.Collections.Generic.HashSet<System.UInt32>)
-        340 : LightSource (type: UnityEngine.Light)
-        348 : MorningColor (type: UnityEngine.Color)
-        358 : NightColor (type: UnityEngine.Color)
-        368 : AfternoonColor (type: UnityEngine.Color)
-        378 : AfternoonColor2 (type: UnityEngine.Color)
-        388 : MText (type: UILabel)
-        390 : TouchMove (type: gz)
-        398 : AF (type: AnimationFramePickerSystem)
-        3a0 : pkb (type: System.Single)
-        3a4 : pkc (type: System.Int32)
-        3a8 : pkd (type: System.UInt32)
-        3ac : pke (type: System.Single)
-        3b0 : pkf (type: System.String)
-        3b8 : pkg (type: System.Int32)
-        3bc : pkh (type: System.Int32)
-        3c0 : pki (type: System.Boolean)
-        3c8 : GrassObject (type: UnityEngine.GameObject)
-        3d0 : pkj (type: System.UInt32[])
-        3d8 : pkk (type: System.UInt32[])
-        3e0 : pkl (type: System.UInt32[])
-        3e8 : pkm (type: System.UInt32[])
-        3f0 : pkn (type: System.UInt32[])
-        3f8 : pko (type: System.UInt32[])
-        400 : pkp (type: System.UInt32[])
-        408 : pkq (type: UnityEngine.Color)
-        418 : pkr (type: UnityEngine.Color)
-        428 : pks (type: UnityEngine.Color)
-        438 : pkt (type: UnityEngine.Color)
-        448 : pku (type: System.Single)
-        450 : TeamPreview (type: TeamPreview)
-        458 : Console (type: ChatInput)
-        460 : Chat (type: ChatInput)
-        468 : ConSongName (type: UILabel)
-        470 : RebindingKey (type: System.Boolean)
-        471 : ScriptMusic (type: System.Boolean)
-        472 : IgnoreEnterNextFrame (type: System.Boolean)
-        478 : IgnoreEnterWhenFocussed (type: System.Collections.Generic.List<UnityEngine.GameObject>)
-        480 : pkv (type: System.Single)
-        484 : pkw (type: System.Single)
-        488 : UniqueMsgBoxes (type: System.Collections.Generic.HashSet<System.String>)
-        490 : pkx (type: System.Collections.Generic.List<UIWindow>)
-        498 : ScriptHandler (type: NPCDialogueSystem.ScriptHandler)
-        4a0 : NPCsTriggeredOnCurrentSquare (type: System.Collections.Generic.HashSet<System.UInt32>)
-        4a8 : MoveSpeed (type: Utils.ux)
-        4b0 : SaySpeed (type: Utils.ux)
-        4b8 : pky (type: Mount)
-        4c0 : pkz (type: mx)
-        4c8 : Badges (type: UnityEngine.GameObject)
-        4d0 : pla (type: Badge[])
-        4d8 : plb (type: System.Collections.Generic.HashSet<System.String>)
-        4e0 : Day (type: UnityEngine.GameObject)
-        4e8 : Night (type: UnityEngine.GameObject)
-        4f0 : Morning (type: UnityEngine.GameObject)
-        4f8 : Afternoon (type: UnityEngine.GameObject)
-        500 : Money (type: UILabel)
-        508 : MessageBox (type: UnityEngine.GameObject)
-        510 : NewMessageBox (type: UnityEngine.GameObject)
-        518 : InputBox (type: UnityEngine.GameObject)
-        520 : PmObject (type: UnityEngine.GameObject)
-        528 : LinkConfirmBox (type: UnityEngine.GameObject)
-        530 : PMs (type: System.Collections.Generic.Dictionary<System.Collections.Generic.HashSet<System.String>,UnityEngine.GameObject>)
-        538 : QueuedSteps (type: System.Collections.Generic.Queue<System.String>)
-        540 : EvoScreen (type: Evolution)
-        548 : LevelUpEventHandler (type: mk)
-        550 : Trade (type: TradeHandling.TradeManager)
-        558 : ChatGlobalTabButton (type: UIButton)
-        560 : plc (type: System.String)
-        568 : pld (type: cPokemon)
-        570 : NPCs (type: System.Collections.Generic.Dictionary<System.UInt32,cNPC>)
-        578 : NPCObject (type: UnityEngine.GameObject)
-        580 : NPCHolder (type: UnityEngine.GameObject)
-        588 : ShowNpcIDs (type: System.Boolean)
-        590 : GameGUI (type: UnityEngine.GameObject)
-        598 : loginGUI (type: UnityEngine.GameObject)
-        5a0 : optionsGUI (type: UnityEngine.GameObject)
-        5a8 : menuGUI (type: UnityEngine.GameObject)
-        5b0 : RememberPass (type: UIToggle)
-        5b8 : ChatBox (type: UIInput)
-        5c0 : ChatOpen (type: System.Boolean)
-        5c1 : ShortcutHotKeyOverride (type: System.Boolean)
-        5c8 : Lighting (type: UnityEngine.Light)
-        5d0 : Darkness (type: FlashDarkBg)
-        5d8 : plf (type: System.Single)
-        5dc : plg (type: System.Single)
-        5e0 : plh (type: System.Boolean)
-        5e1 : pli (type: System.Byte)
-        5e8 : plj (type: UnityEngine.Material)
-        5f0 : plk (type: System.Int32)
-        5f4 : SFXVolume (type: System.Single)
-        5f8 : OpenConsoleButton (type: UnityEngine.GameObject)
-        600 : bagGUI (type: UnityEngine.GameObject)
-        608 : PokeBoxManager (type: PokeBox.PokeBoxManager)
-        610 : trainerGUI (type: UnityEngine.GameObject)
-        618 : ShortcutTexture (type: UITexture[])
-        620 : ShortcutIDs (type: System.Int32[])
-        628 : ShortcutLockButton (type: UnityEngine.GameObject)
-        630 : pll (type: System.Boolean)
-        638 : plm (type: System.Collections.Generic.Dictionary<System.Int32,System.Single>)
-        640 : LastUsedRepel (type: System.Int32)
-        648 : pln (type: System.Int32[])
-        650 : plo (type: System.Int32)
-        658 : emotes (type: UnityEngine.Transform)
-        660 : BattleItemPrefab (type: InventoryButton)
-        668 : InvItemPrefab (type: InventoryButton)
-        670 : BagLabel (type: UILabel)
-        678 : BagButtons (type: UnityEngine.GameObject)
-        680 : InvSearchInput (type: UIInput)
-        688 : InvItemGrid (type: UIGrid)
-        690 : InvLoadLabel (type: UnityEngine.GameObject)
-        698 : plp (type: UIButton)
-        6a0 : plq (type: UIButton)
-        6a8 : plr (type: UIButton)
-        6b0 : pls (type: System.Threading.CancellationTokenSource)
-        6b8 : plu (type: System.Collections.Generic.List<DSSock.hd>)
-        6c0 : plv (type: System.Collections.Generic.List<DSSock.hd>)
-        6c8 : SocialHandler (type: SocialHandler)
-        6d0 : friendsGUI (type: UnityEngine.GameObject)
-        6d8 : FriendsScroll (type: UnityEngine.GameObject)
-        6e0 : RosterList (type: UITextList)
-        6e8 : Roster (type: System.Collections.Generic.Dictionary<System.String,kx>)
-        6f0 : ChatPrefab (type: UnityEngine.GameObject)
-        6f8 : ChannelButtons (type: System.Collections.Generic.List<UnityEngine.GameObject>)
-        700 : TabParent (type: UnityEngine.Transform)
-        708 : ChannelPrefab (type: UnityEngine.GameObject)
-        710 : ChannelManagerObject (type: UnityEngine.GameObject)
-        718 : ChannelManagerPanel (type: UnityEngine.GameObject)
-        720 : ChannelHandler (type: JoinChannel)
-        728 : plw (type: System.Int32)
-        730 : SavedChat (type: System.Collections.Generic.Queue<System.ValueTuple<System.String,System.String>>)
-        738 : plx (type: System.Collections.Generic.List<System.ValueTuple<System.String,System.String>>)
-        740 : FSObject (type: FootStep)
-        748 : BikeStepObject (type: FootStep)
-        750 : ply (type: System.Boolean)
-        758 : plz (type: System.Threading.CancellationTokenSource)
-        760 : InTrade (type: System.Boolean)
-        768 : ShopManager (type: ShopManager)
-        770 : BattleType (type: hb)
-        774 : InBattleReplay (type: System.Boolean)
-        778 : PlayerBattleSide (type: System.Int32)
-        780 : ReplayHandler (type: ReplayHandler)
-        788 : ReplayListManager (type: ReplaySystem.ReplayListManager)
-        790 : TagManager (type: PokeBox.TagManager)
-        798 : BattleTitle (type: UILabel)
-        7a0 : BattleLog (type: BattleLog)
-        7a8 : BattleExpBar (type: ExpBarAni)
-        7b0 : UserHpBar (type: HpBarAni)
-        7b8 : FoeHpBar (type: HpBarAni)
-        7c0 : RunButtonText (type: UILabel)
-        7c8 : pma (type: System.Int32)
-        7cc : pmb (type: System.Int32)
-        7d0 : OtherPoke (type: gw)
-        808 : pmc (type: System.Single)
-        80c : pmd (type: System.Single)
-        810 : FoePoke (type: UITexture)
-        818 : FoePokeAlt (type: UITexture)
-        820 : UserPoke (type: UITexture)
-        828 : UserPokeAlt (type: UITexture)
-        830 : BattleBack (type: UITexture)
-        838 : BattleBackAni (type: SheetAni)
-        840 : Backgrounds (type: UnityEngine.Texture2D[])
-        848 : ActiveTerrain (type: UITexture)
-        850 : Terrains (type: UnityEngine.Texture2D[])
-        858 : BlockBattleOptions (type: UIWidget)
-        860 : MegaToggle (type: ToggleUIButton)
-        868 : ZMoveToggle (type: ToggleUIButton)
-        870 : BaseZBlink (type: TweenColor)
-        878 : ChooseAttackText (type: UILabel)
-        880 : CancelMoveButton (type: UIButton)
-        888 : EnemyTeamBar (type: BattleEnemyTeamSideBar)
-        890 : pme (type: YesNoBox)
-        898 : pmf (type: Utils.ux)
-        8a0 : pmg (type: System.Boolean)
-        8a8 : UserBattleAni (type: UnityEngine.Animator)
-        8b0 : FoeBattleAni (type: UnityEngine.Animator)
-        8b8 : pmh (type: System.Boolean)
-        8bc : pmi (type: System.Int32)
-        8c0 : pmj (type: System.Boolean)
-        8c8 : PokeBalls (type: UnityEngine.GameObject[])
-        8d0 : CaughtBall (type: UnityEngine.GameObject)
-        8d8 : BattlePanel (type: UnityEngine.GameObject)
-        8e0 : BattleBlanker (type: UISprite)
-        8e8 : UserStats (type: UIWidget)
-        8f0 : FoeStats (type: UIWidget)
-        8f8 : UserPokeName (type: UILabel)
-        900 : FoePokeName (type: UILabel)
-        908 : UserPokeLvl (type: UILabel)
-        910 : FoePokeLvl (type: UILabel)
-        918 : BattleButtons (type: UIButton[])
-        920 : AttackButtons (type: UIButton[])
-        928 : ReplayNavigation (type: UnityEngine.GameObject)
-        930 : PvPTimer (type: PvPBattleTimer)
-        938 : pmk (type: System.Int32)
-        93c : pml (type: System.Int32)
-        940 : AIVisualizer (type: BattleAIVisualizer.BattleAIVisualizer)
-        948 : LendingTradeListing (type: ActiveLendingTradeListing)
-        950 : PokeStatus (type: UISprite[])
-        958 : CurrentBattleWeather (type: hc)
-        960 : BattleWeatherTex (type: SheetAni)
-        968 : BattleWeatherRoundCountLabel (type: UILabel)
-        970 : pmm (type: System.Int32)
-        978 : HitSound (type: System.String)
-        980 : RunningBattleStep (type: Cysharp.Threading.Tasks.crn)
-        990 : LastBattleItemId (type: System.Int32)
-        998 : ThrowHandSpr (type: UISprite)
-        9a0 : CatchThrowHandSpr (type: UISprite)
-        9a8 : UserBallType (type: UnityEngine.Renderer)
-        9b0 : FoeBallType (type: UnityEngine.Renderer)
-        9b8 : Pokeball (type: Pokeball)
-        9c0 : BattleEnding (type: System.Boolean)
-        9c1 : BattlePending (type: System.Boolean)
-        9c2 : pmn (type: System.Nullable<System.Boolean>)
-        9c8 : AttackObject (type: UnityEngine.GameObject)
-        9d0 : PokemonObject (type: UnityEngine.GameObject)
-        9d8 : BattleInventory (type: UnityEngine.GameObject)
-        9e0 : BattleItemParent (type: UnityEngine.Transform)
-        9e8 : AttackNames (type: UILabel[])
-        9f0 : AttackElement (type: UISprite[])
-        9f8 : AttackType (type: UISprite[])
-        a00 : AttackAcc (type: UILabel[])
-        a08 : AttackPwr (type: UILabel[])
-        a10 : AttackDesc (type: UILabel[])
-        a18 : AttackDisabledTooltip (type: UILabel[])
-        a20 : AttackPP (type: UILabel[])
-        a28 : PokemonNames (type: UITexture[])
-        a30 : pmo (type: UIButton[])
-        a38 : pmp (type: System.Boolean)
-        a40 : IsZ (type: System.Boolean[])
-        a48 : pmq (type: System.Boolean)
-        a50 : pmr (type: Attack[])
-        a58 : pms (type: System.String[])
-        a60 : LearnMove (type: LearnMove)
-        a68 : MoveEffect (type: UnityEngine.GameObject)
-        a70 : ShowBattleFoeLevel (type: System.Boolean)
-    methods
-        254e1e89d78 : .cctor ():System.Void
-        254e1e89d20 : .ctor ():System.Void
-        254e1e85a70 : Awake ():System.Void
-        254e1e89958 : BattlePokeSelect (index: System.Int32):System.Void
-        254e1e89900 : CancelMovePvP ():System.Void
-        254e1e87c20 : CloseBag ():System.Void
-        254e1e88930 : CreateChannel ():System.Void
-        254e1e89cc8 : DeleteRecentlyCaught ():System.Void
-        254e1e883b0 : FilterItems (input: UIInput):System.Void
-        254e1e88778 : GetTags (uname: System.String):System.String
-        254e1e88a38 : HideChatManager ():System.Void
-        254e1e858b8 : HideMessage (obj: UnityEngine.GameObject):System.Void
-        254e1e87d28 : LockUnlockShortcutBar ():System.Void
-        254e1e85b78 : Logout ():System.Void
-        254e1e87858 : OnApplicationQuit ():System.Void
-        254e1e87bc8 : OpenBag ():System.Void
-        254e1e89170 : PlayCry (id: System.Int32; delay: System.Single):System.Void
-        254e1e878b0 : Quit ():System.Void
-        254e1e86468 : RemoveClothe ():System.Void
-        254e1e863b8 : RemoveFace ():System.Void
-        254e1e86360 : RemoveHat ():System.Void
-        254e1e86410 : RemoveWings ():System.Void
-        254e1e88408 : ResetInvFilter (input: UIInput):System.Void
-        254e1e89850 : RunAway ():System.Void
-        254e1e88250 : SetBag (sender: UIButton):System.Void
-        254e1e88040 : SetShortcut (shortcut: System.Int32; itemName: System.String):System.Void
-        254e1e89748 : ShowAttacks ():System.Void
-        254e1e89698 : ShowBattleItems ():System.Void
-        254e1e88a90 : ShowChatManager ():System.Void
-        254e1e897a0 : ShowPokemon ():System.Void
-        254e1e85ac8 : Start ():System.Void
-        254e1e88f08 : ThrowBall ():Cysharp.Threading.Tasks.crn
-        254e1e864c0 : ToggleConsole ():System.Void
-        254e1e885c0 : ToggleSocial ():System.Void
-        254e1e86518 : Update ():System.Void
-        254e1e87b18 : UpdateDynamicWeather ():System.Void
-        254e1e87cd0 : UseShortcut (ele: UnityEngine.GameObject):System.Void
-        254e1e87a10 : closeMenu ():System.Void
-        254e1e85758 : few ():DSSock
-        254e1e857b0 : fex (a: DSSock):System.Void
-        254e1e85808 : fey ():DiscordScript
-        254e1e85860 : fez ():System.Boolean
-        254e1e85910 : ffa (a: DSSock.hf):System.Void
-        254e1e85968 : ffb (a: DSSock.hf):System.Void
-        254e1e859c0 : ffc ():System.Boolean
-        254e1e85a18 : ffd (a: System.Boolean):System.Void
-        254e1e85b20 : ffe ():System.ValueTuple<System.String,System.String>
-        254e1e85bd0 : fff ():System.Void
-        254e1e85c28 : ffg ():UnityEngine.Vector2
-        254e1e85c80 : ffh (a: UnityEngine.Vector2):System.Void
-        254e1e85cd8 : ffi ():ha
-        254e1e85d30 : ffj (a: ha):System.Void
-        254e1e85d88 : ffk (a: UnityEngine.Vector2):System.Boolean
-        254e1e85de0 : ffl (a: UnityEngine.Vector2):System.Boolean
-        254e1e85e38 : ffm (a: UnityEngine.Vector2):UnityEngine.Vector2
-        254e1e85e90 : ffn ():System.Void
-        254e1e85ee8 : ffo (a: System.Int32):System.Int32
-        254e1e85f40 : ffp (a: System.String; b: System.Int32):System.Void
-        254e1e85f98 : ffq (a: UnityEngine.Vector3; b: System.Int32; c: System.Int32):System.Void
-        254e1e85ff0 : ffr (a: UnityEngine.Vector2):System.Int32
-        254e1e86048 : ffs (a: UnityEngine.Vector3; b: UnityEngine.Vector2; c: UnityEngine.Vector2):System.Void
-        254e1e860a0 : fft (a: UnityEngine.Vector2):System.Boolean
-        254e1e860f8 : ffu (a: System.UInt32):System.Boolean
-        254e1e86150 : ffv (a: System.String):System.String
-        254e1e861a8 : ffw (a: System.String):System.Void
-        254e1e86200 : ffx ():System.Void
-        254e1e86258 : ffy ():System.Void
-        254e1e862b0 : ffz ():System.Void
-        254e1e86308 : fga (a: UnityEngine.Vector3):System.Boolean
-        254e1e86570 : fgb (a: UnityEngine.Vector2):UnityEngine.Vector2
-        254e1e865c8 : fgc ():System.Void
-        254e1e86620 : fgd ():System.Void
-        254e1e86678 : fge ():System.Boolean
-        254e1e866d0 : fgf ():System.Boolean
-        254e1e86728 : fgg ():System.Boolean
-        254e1e86780 : fgh ():System.Boolean
-        254e1e867d8 : fgi (a: System.Int32):System.String
-        254e1e86830 : fgj (a: System.Int32):System.String
-        254e1e86888 : fgk (a: System.String):System.Byte
-        254e1e868e0 : fgl ():UnityEngine.Vector3
-        254e1e86938 : fgm (a: System.Int32):UnityEngine.Vector3
-        254e1e86990 : fgn (a: System.Int32):UnityEngine.Vector3
-        254e1e869e8 : fgo ():UnityEngine.Vector3
-        254e1e86a40 : fgp (a: UnityEngine.Vector3; b: UnityEngine.Vector3):UnityEngine.Vector3
-        254e1e86a98 : fgq (a: UnityEngine.Vector2):System.Byte
-        254e1e86af0 : fgr (a: System.String):UnityEngine.Vector3
-        254e1e86b48 : fgs (a: UnityEngine.Vector2):System.Boolean
-        254e1e86ba0 : fgt (a: UnityEngine.Vector3; b: System.Boolean):System.Boolean
-        254e1e86bf8 : fgu ():System.Void
-        254e1e86c50 : fgv (a: cNPC):System.Void
-        254e1e86ca8 : fgw ():System.Boolean
-        254e1e86d00 : fgx ():System.Void
-        254e1e86d58 : fgy (a: System.String):Cysharp.Threading.Tasks.crn
-        254e1e86db0 : fgz (a: System.String):Cysharp.Threading.Tasks.crn
-        254e1e86e08 : fha (a: System.String; b: System.Int32; c: System.Int32; d: System.Boolean):System.Void
-        254e1e86e60 : fhb (a: System.String; b: System.Int32; c: System.Int32; d: System.Boolean; e: System.Boolean):System.Void
-        254e1e86eb8 : fhc ():System.Void
-        254e1e86f10 : fhd (a: UnityEngine.Vector3; b: System.Int32; c: System.Boolean):UnityEngine.Vector3
-        254e1e86f68 : fhe (a: System.String; b: System.Int32; c: System.Int32; d: System.String; e: CharStyle; f: System.Byte; g: System.Byte; h: System.Int32; i: System.Boolean; j: System.Byte; k: System.Boolean; l: System.Int32; m: System.Int32; n: System.String):System.Void
-        254e1e86fc0 : fhf (a: System.String):System.Void
-        254e1e87018 : fhg ():System.Void
-        254e1e87070 : fhh (a: System.String):System.Void
-        254e1e870c8 : fhi (a: System.Int32; b: System.Int32; c: lj):System.Void
-        254e1e87120 : fhj (a: System.String):System.Void
-        254e1e87178 : fhk (a: System.String):System.Void
-        254e1e871d0 : fhl (a: System.Single; b: System.Single):System.Int32
-        254e1e87228 : fhm ():System.Void
-        254e1e87280 : fhn ():System.Void
-        254e1e872d8 : fho (a: System.Int32):System.String
-        254e1e87330 : fhp (a: System.Int32; b: System.Boolean):System.String
-        254e1e87388 : fhq ():System.Void
-        254e1e873e0 : fhr ():System.Void
-        254e1e87438 : fhs (a: System.String):System.Void
-        254e1e87490 : fht (a: System.String):System.Void
-        254e1e874e8 : fhu (a: UnityEngine.Vector2):System.Boolean
-        254e1e87540 : fhv ():System.Collections.Generic.IEnumerable<cNPC>
-        254e1e87598 : fhw (a: UnityEngine.Vector2; b: UnityEngine.Vector2):System.Boolean
-        254e1e875f0 : fhx ():System.Void
-        254e1e87648 : fhy (a: System.UInt32):System.Void
-        254e1e876a0 : fhz ():System.Void
-        254e1e876f8 : fia ():System.Void
-        254e1e87750 : fib ():System.Void
-        254e1e877a8 : fic (a: System.String):NpcData
-        254e1e87800 : fid (a: NpcData):System.Void
-        254e1e87908 : fie ():System.Void
-        254e1e87960 : fif ():System.Boolean
-        254e1e879b8 : fig ():System.Boolean
-        254e1e87ac0 : fih ():System.Void
-        254e1e87b70 : fii (a: cPokemon):System.Boolean
-        254e1e87c78 : fij (a: System.Int32):System.Void
-        254e1e87d80 : fik (a: System.Int32):System.Void
-        254e1e87dd8 : fil (a: System.Int32):System.Boolean
-        254e1e87e30 : fim (a: System.Int32; b: System.Int32):System.Boolean
-        254e1e87e88 : fin (a: DSSock.hd; b: System.Int32):System.Boolean
-        254e1e87ee0 : fio (a: System.UInt64; b: System.Int32):System.Void
-        254e1e87f38 : fip (a: System.UInt64):System.Void
-        254e1e87f90 : fiq ():System.Void
-        254e1e87fe8 : fir (a: System.Int32; b: System.Int32):System.Void
-        254e1e88098 : fis (a: System.Int32):System.Void
-        254e1e880f0 : fit ():System.Void
-        254e1e88148 : fiu (a: System.Int32):System.Int32
-        254e1e881a0 : fiv (a: System.String; b: System.Int32; c: System.Boolean):Cysharp.Threading.Tasks.crn
-        254e1e881f8 : fiw (a: System.String; b: System.Int32; c: System.UInt64):Cysharp.Threading.Tasks.crn
-        254e1e882a8 : fix ():System.Void
-        254e1e88300 : fiy (a: System.Collections.Generic.IEnumerable<DSSock.hd>):Cysharp.Threading.Tasks.crn
-        254e1e88358 : fiz (a: System.Collections.Generic.IEnumerable<DSSock.hd>; b: System.Threading.CancellationToken):Cysharp.Threading.Tasks.crn
-        254e1e88460 : fja ():System.Boolean
-        254e1e884b8 : fjb (a: System.UInt64; b: System.UInt64):System.Void
-        254e1e88510 : fjc (a: System.Int32; b: System.Int32):System.Void
-        254e1e88618 : fjd (a: System.String):System.Void
-        254e1e88670 : fje ():System.Void
-        254e1e886c8 : fjf (a: System.String):System.String
-        254e1e88720 : fjg (a: System.String; b: System.String; c: System.String):System.String
-        254e1e887d0 : fjh ():System.Int32
-        254e1e88828 : fji (a: System.Int32):System.Void
-        254e1e88880 : fjj (a: System.String; b: System.String):System.Void
-        254e1e888d8 : fjk ():System.Void
-        254e1e88988 : fjl ():System.Void
-        254e1e889e0 : fjm (a: System.String):Cysharp.Threading.Tasks.cuu
-        254e1e88ae8 : fjn ():System.Boolean
-        254e1e88b40 : fjo (a: System.Boolean):System.Void
-        254e1e88b98 : fjp ():cPokemon
-        254e1e88bf0 : fjq (a: System.String; b: System.Int32):System.Int32
-        254e1e88c48 : fjr (a: System.ReadOnlySpan<System.Char>):System.Int32
-        254e1e88ca0 : fjs ():System.Single
-        254e1e88cf8 : fjt (a: System.Single):System.Void
-        254e1e88d50 : fju (a: System.String):Cysharp.Threading.Tasks.crn
-        254e1e88da8 : fjv (a: System.String):System.Void
-        254e1e88e00 : fjw ():System.Void
-        254e1e88e58 : fjx (a: System.String; b: System.Single):Cysharp.Threading.Tasks.crn
-        254e1e88eb0 : fjy (a: System.String; b: System.Single):Cysharp.Threading.Tasks.crn
-        254e1e88f60 : fjz (a: System.Boolean):System.Void
-        254e1e88fb8 : fka ():System.Void
-        254e1e89010 : fkb (a: System.Boolean):System.Void
-        254e1e89068 : fkc ():Cysharp.Threading.Tasks.crn
-        254e1e890c0 : fkd ():Cysharp.Threading.Tasks.crn
-        254e1e89118 : fke ():System.Void
-        254e1e891c8 : fkf (a: System.Int32; b: System.Single):System.Collections.IEnumerator
-        254e1e89220 : fkg (a: UnityEngine.Transform; b: UnityEngine.Vector3; c: System.Single; d: System.Boolean):System.Void
-        254e1e89278 : fkh ():Cysharp.Threading.Tasks.crn
-        254e1e892d0 : fki ():Cysharp.Threading.Tasks.crn
-        254e1e89328 : fkj ():System.Void
-        254e1e89380 : fkk (a: System.Threading.CancellationToken):Cysharp.Threading.Tasks.crn
-        254e1e893d8 : fkl ():System.Void
-        254e1e89430 : fkm (a: System.Int32; b: System.String):System.Void
-        254e1e89488 : fkn (a: System.Func<Cysharp.Threading.Tasks.crn>):System.Void
-        254e1e894e0 : fko (a: System.Action):System.Void
-        254e1e89538 : fkp ():System.Void
-        254e1e89590 : fkq (a: System.String):Cysharp.Threading.Tasks.crn
-        254e1e895e8 : fkr (a: System.String; b: System.Boolean; c: System.Threading.CancellationToken):Cysharp.Threading.Tasks.crs<System.Boolean>
-        254e1e89640 : fks (a: System.Int32; b: System.Int32):System.Boolean
-        254e1e896f0 : fkt ():System.Boolean
-        254e1e897f8 : fku (a: System.Collections.Generic.IReadOnlyList<System.Boolean>):System.Void
-        254e1e898a8 : fkv (a: System.Int32; b: System.Boolean):System.Void
-        254e1e899b0 : fkw (a: System.Int32; b: System.String):System.Void
-        254e1e89a08 : fkx (a: System.String):PMBox
-        254e1e89a60 : fky (a: System.Collections.Generic.HashSet<System.String>):PMBox
-        254e1e89ab8 : fkz (a: System.String; b: System.String; c: System.Boolean; d: System.Boolean; e: UIWindow):System.ValueTuple<Cysharp.Threading.Tasks.crn,UnityEngine.GameObject>
-        254e1e89b10 : fla (a: System.String):System.Boolean
-        254e1e89b68 : flb (a: ShowEmote; b: System.String):System.Boolean
-        254e1e89bc0 : flc (a: System.UInt64):System.Void
-        254e1e89c18 : fld (a: System.Collections.Generic.IEnumerable<System.UInt64>):System.Void
-        254e1e89c70 : fle ():System.Void
-        254e1e89dd0 : flf (a: YesNoBox; b: System.Boolean):System.Void
-        254e1e89e28 : flg (a: YesNoBox):System.Void
-        254e1e89e80 : flh ():System.Boolean
-        254e1e89ed8 : fli ():System.String
-        254e1e89f30 : flj ? - (System.ValueTuple<System.String,System.String>):System.Boolean
-        254e1e89f88 : flk ():System.Boolean
-        254e1e89fe0 : fll ():System.Boolean
-        254e1e8a038 : flm ():Cysharp.Threading.Tasks.crn
-        254e1e8a090 : fln (a: System.String):DSSock.hd
-        254e1e8a0e8 : flo (a: cPokemon):System.Boolean
-        254e1e87a68 : openMenu ():System.Void
-        254e1e88568 : openTrainer ():System.Void
-    base class
-255611347e0 : DSSock.<>c
-    static fields
-        0 : <>9 (type: DSSock.<>c)
-        8 : <>9__185_0 (type: System.Func<System.ValueTuple<System.Single,UnityEngine.Vector2>,System.Single>)
-        10 : <>9__189_0 (type: System.Func<DSSock.hd,System.Boolean>)
-        18 : <>9__189_1 (type: System.Func<DSSock.hd,System.Boolean>)
-        20 : <>9__189_2 (type: System.Func<cPokemon,System.Collections.Generic.IEnumerable<Attack>>)
-        28 : <>9__189_3 (type: System.Func<Attack,System.Boolean>)
-        30 : <>9__190_0 (type: System.Func<DSSock.hd,System.Boolean>)
-        38 : <>9__190_1 (type: System.Func<cPokemon,System.Collections.Generic.IEnumerable<Attack>>)
-        40 : <>9__190_2 (type: System.Func<Attack,System.Boolean>)
-        48 : <>9__191_0 (type: System.Func<cPokemon,System.Collections.Generic.IEnumerable<Attack>>)
-        50 : <>9__191_1 (type: System.Func<Attack,System.Boolean>)
-        58 : <>9__192_0 (type: System.Func<DSSock.hd,System.Boolean>)
-        60 : <>9__192_1 (type: System.Func<DSSock.hd,System.Boolean>)
-        68 : <>9__192_2 (type: System.Func<cPokemon,System.Collections.Generic.IEnumerable<Attack>>)
-        70 : <>9__192_3 (type: System.Func<Attack,System.Boolean>)
-        78 : <>9__208_2 (type: System.Func<cNPC,System.Boolean>)
-        80 : <>9__230_0 (type: System.Func<DSSock.hd,System.Boolean>)
-        88 : <>9__230_1 (type: System.Func<DSSock.hd,System.String>)
-        90 : <>9__247_0 (type: System.Func<UnityEngine.GameObject,System.Boolean>)
-        98 : <>9__261_5 (type: System.Func<System.String,System.Boolean>)
-        a0 : <>9__261_6 (type: System.Func<System.String,System.ValueTuple<System.String,System.String,System.String>>)
-        a8 : <>9__261_7 (type: System.Func<DSSock.hd,System.Boolean>)
-        b0 : <>9__270_0 (type: System.Func<cNPC,System.Boolean>)
-        b8 : <>9__319_1 (type: System.Func<UITexture,DragNDropHandling.Draggables.DragShortcut>)
-        c0 : <>9__348_0 (type: System.Func<DSSock.hd,System.Boolean>)
-        c8 : <>9__350_0 (type: System.Comparison<UnityEngine.Transform>)
-        d0 : <>9__394_0 (type: System.Func<UnityEngine.GameObject,Channel>)
-        d8 : <>9__446_2 (type: System.Func<cPokemon,System.Boolean>)
-        e0 : <>9__510_0 (type: System.Func<System.Char,System.Boolean>)
-        e8 : <>9__510_5 (type: System.Func<System.String,System.Boolean>)
-        f0 : <>9__517_1 (type: System.Func<DSSock.hd,System.Boolean>)
-        f8 : <>9__517_2 (type: System.Func<DSSock.hd,System.Boolean>)
-        100 : <>9__517_3 (type: System.Func<DSSock.hd,System.String>)
-        108 : <>9__535_0 (type: System.Func<Attack,System.Boolean>)
-        110 : <>9__538_0 (type: System.Func<UIButton,UIButtonColor.bh>)
-        118 : <>9__538_2 (type: System.Func<UIButton,UIButtonColor.bh,System.ValueTuple<UIButton,UIButtonColor.bh>>)
-    fields
-    methods
-        254e2a68078 : .cctor ():System.Void
-        254e2a680d0 : .ctor ():System.Void
-        254e2a68128 : fbo ? - (System.ValueTuple<System.Single,UnityEngine.Vector2>):System.Single
-        254e2a68180 : fbp (a: DSSock.hd):System.Boolean
-        254e2a681d8 : fbq (a: DSSock.hd):System.Boolean
-        254e2a68230 : fbr (a: cPokemon):System.Collections.Generic.IEnumerable<Attack>
-        254e2a68288 : fbs (a: Attack):System.Boolean
-        254e2a682e0 : fbt (a: DSSock.hd):System.Boolean
-        254e2a68338 : fbu (a: cPokemon):System.Collections.Generic.IEnumerable<Attack>
-        254e2a68390 : fbv (a: Attack):System.Boolean
-        254e2a683e8 : fbw (a: cPokemon):System.Collections.Generic.IEnumerable<Attack>
-        254e2a68440 : fbx (a: Attack):System.Boolean
-        254e2a68498 : fby (a: DSSock.hd):System.Boolean
-        254e2a684f0 : fbz (a: DSSock.hd):System.Boolean
-        254e2a68548 : fca (a: cPokemon):System.Collections.Generic.IEnumerable<Attack>
-        254e2a685a0 : fcb (a: Attack):System.Boolean
-        254e2a685f8 : fcc (a: cNPC):System.Boolean
-        254e2a68650 : fcd (a: DSSock.hd):System.Boolean
-        254e2a686a8 : fce (a: DSSock.hd):System.String
-        254e2a68700 : fcf (a: UnityEngine.GameObject):System.Boolean
-        254e2a68758 : fcg (a: System.String):System.Boolean
-        254e2a687b0 : fch (a: System.String):System.ValueTuple<System.String,System.String,System.String>
-        254e2a68808 : fci (a: DSSock.hd):System.Boolean
-        254e2a68860 : fcj (a: cNPC):System.Boolean
-        254e2a688b8 : fck (a: UITexture):DragNDropHandling.Draggables.DragShortcut
-        254e2a68910 : fcl (a: DSSock.hd):System.Boolean
-        254e2a68968 : fcm (a: UnityEngine.Transform; b: UnityEngine.Transform):System.Int32
-        254e2a689c0 : fcn (a: UnityEngine.GameObject):Channel
-        254e2a68a18 : fco (a: cPokemon):System.Boolean
-        254e2a68a70 : fcp (a: System.Char):System.Boolean
-        254e2a68ac8 : fcq (a: System.String):System.Boolean
-        254e2a68b20 : fcr (a: DSSock.hd):System.Boolean
-        254e2a68b78 : fcs (a: DSSock.hd):System.Boolean
-        254e2a68bd0 : fct (a: DSSock.hd):System.String
-        254e2a68c28 : fcu (a: Attack):System.Boolean
-        254e2a68c80 : fcv (a: UIButton):UIButtonColor.bh
-        254e2a68cd8 : fcw (a: UIButton; b: UIButtonColor.bh):System.ValueTuple<UIButton,UIButtonColor.bh>
-    base class
-255611344d0 : DSSock.SlideStateStorage
-    static fields
-    fields
-        10 : Type (type: ha)
-        14 : Dir (type: System.ValueTuple<System.Int32,System.Int32>)
-        1c : Pos (type: System.ValueTuple<System.Int32,System.Int32>)
-        28 : MapName (type: System.String)
-    methods
-    base class
-2556110bd40 : DSSock.hd
-    static fields
-    fields
-        10 : pau (type: System.String)
-        18 : pav (type: System.String)
-        20 : paw (type: System.Int32)
-        24 : pax (type: lj)
-        28 : pay (type: System.Int32)
-    methods
-        2556116d140 : .ctor ():System.Void
-    base class
-2556110b230 : DSSock.he
-    static fields
-    fields
-        10 : paz (type: System.Int32)
-        14 : pba (type: System.Int32)
-        18 : pbb (type: System.Int32)
-        1c : pbc (type: System.Int32)
-        20 : pbd (type: System.Int32)
-        24 : pbe (type: System.Int32)
-        28 : pbf (type: System.Int32)
-        2c : pbg (type: System.Int32)
-        30 : pbh (type: System.String)
-        38 : pbi (type: System.Int32)
-        40 : pbj (type: System.String)
-        48 : pbk (type: System.Int32)
-        4c : pbl (type: System.Int32)
-        50 : pbm (type: System.Int32)
-    methods
-    base class
-255611342e0 : DSSock.hf
-    static fields
-    fields
-    methods
-        255619b1d80 : .ctor (a: System.Object; b: System.IntPtr):System.Void
-        255619b1dd8 : Invoke ():System.Void
-    base class
-25561134650 : DSSock.hg
-    static fields
-    fields
-    methods
-        255619b1ea8 : .ctor ():System.Void
-        255619b1e50 : Compare (a: DSSock.hd; b: DSSock.hd):System.Int32
-    base class
-25561134960 : DSSock.hh
-    static fields
-    fields
-        10 : pbn (type: System.Int32)
-    methods
-        255619b1f20 : .ctor ():System.Void
-        255619b1f78 : fcx (a: DSSock.hd):System.Boolean
-    base class
-25561134ae0 : DSSock.hk
-    static fields
-    fields
-        10 : pbw (type: DSSock)
-        18 : pbx (type: System.String[])
-        20 : pby (type: System.String)
-    methods
-        254e58e2b08 : .ctor ():System.Void
-        254e58e2b60 : fcy (a: YesNoBox; b: System.Boolean):System.Void
-        254e58e2bb8 : fcz ():System.Void
-        254e58e2c10 : fda ():System.Boolean
-        254e58e2c68 : fdb ():System.Void
-        254e58e2cc0 : fdc ():Cysharp.Threading.Tasks.crn
-        254e58e2d18 : fdd ():Cysharp.Threading.Tasks.crn
-        254e58e2d70 : fde (a: DSSock.hd):System.Boolean
-        254e58e2dc8 : fdf (a: YesNoBox; b: System.Boolean):System.Void
-        254e58e2e20 : fdg (a: System.String):System.Boolean
-        254e58e2e78 : fdh (a: System.Boolean):System.Void
-    base class
-254e5891ca0 : DSSock.hk.hi
-    static fields
-    fields
-        10 : pbo (type: System.Int32)
-        18 : pbp (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : pbq (type: DSSock.hk)
-        30 : pbr (type: Cysharp.Threading.Tasks.crn.cok)
-    methods
-        255619b1fe8 : MoveNext ():System.Void
-        255619b2040 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-254e5891e40 : DSSock.hk.hj
-    static fields
-    fields
-        10 : pbs (type: System.Int32)
-        18 : pbt (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : pbu (type: DSSock.hk)
-        30 : pbv (type: Cysharp.Threading.Tasks.crn.cok)
-    methods
-        255619b20b0 : MoveNext ():System.Void
-        255619b2108 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-25561134c60 : DSSock.hl
-    static fields
-    fields
-        10 : pbz (type: System.String)
-    methods
-        254e58e2f98 : .ctor ():System.Void
-        254e58e2ff0 : fdi (a: UnityEngine.GameObject):System.Boolean
-    base class
-25561134de0 : DSSock.hm
-    static fields
-    fields
-        10 : pca (type: System.String)
-    methods
-        254e58e3090 : .ctor ():System.Void
-        254e58e30e8 : fdj (a: UnityEngine.GameObject):System.Boolean
-    base class
-25561134f60 : DSSock.hn
-    static fields
-    fields
-        10 : pcb (type: UnityEngine.Vector2)
-    methods
-        254e8e53508 : .ctor ():System.Void
-        254e8e53560 : fdk (a: cNPC):System.Boolean
-    base class
-255611350e0 : DSSock.ho
-    static fields
-    fields
-        10 : pcc (type: DSSock)
-        18 : pcd (type: UnityEngine.Vector3)
-    methods
-        255619b2178 : .ctor ():System.Void
-        255619b21d0 : fdl (a: cNPC):System.Boolean
-    base class
-25561135260 : DSSock.hq
-    static fields
-    fields
-        10 : pce (type: cPokemon)
-        18 : pcf (type: DSSock)
-    methods
-        255619b2248 : .ctor ():System.Void
-        255619b22a0 : fdm (a: Badge):System.Boolean
-        255619b22f8 : fdn (a: Badge):System.Boolean
-    base class
-255611353e0 : DSSock.hr
-    static fields
-    fields
-        10 : pcg (type: System.Int32)
-        18 : pch (type: DSSock)
-        20 : pci (type: DSSock.hd)
-    methods
-        255619b2378 : .ctor ():System.Void
-        255619b23d0 : fdo (a: DSSock.hd):System.Boolean
-        255619b2428 : fdp (a: YesNoBox; b: System.Boolean):System.Void
-    base class
-25561135560 : DSSock.hs
-    static fields
-    fields
-        10 : pcj (type: DSSock)
-        18 : pck (type: DSSock.hd)
-        20 : pcl (type: System.Int32)
-    methods
-        255619b24b8 : .ctor ():System.Void
-        255619b2510 : fdq (a: YesNoBox):System.Void
-        255619b2568 : fdr ():System.Boolean
-        255619b25c0 : fds ? - (System.ValueTuple<System.Boolean,CharStyle>):System.Void
-    base class
-255611356e0 : DSSock.ht
-    static fields
-    fields
-        10 : pcm (type: System.String)
-        18 : pcn (type: System.Func<DSSock.hd,System.Boolean>)
-    methods
-        255619b2638 : .ctor ():System.Void
-        255619b2690 : fdt (a: DSSock.hd):System.Boolean
-    base class
-25561135860 : DSSock.hu
-    static fields
-    fields
-        10 : pco (type: System.UInt64)
-    methods
-        255619b2700 : .ctor ():System.Void
-        255619b2758 : fdu (a: cPokemon):System.Boolean
-    base class
-255611359e0 : DSSock.hv
-    static fields
-    fields
-        10 : pcp (type: lj[])
-    methods
-        255619b27c8 : .ctor ():System.Void
-        255619b2820 : fdv (a: DSSock.hd):System.Boolean
-    base class
-25561135b60 : DSSock.hw
-    static fields
-    fields
-        10 : pcq (type: UIInput)
-        18 : pcr (type: DSSock)
-        20 : pcs (type: System.Func<DSSock.hd,System.Boolean>)
-        28 : pct (type: System.Func<DSSock.hd,System.Boolean>)
-    methods
-        255619b2898 : .ctor ():System.Void
-        255619b28f0 : fdw (a: DSSock.hd):System.Boolean
-        255619b2948 : fdx (a: DSSock.hd):System.Boolean
-    base class
-25561135ce0 : DSSock.hx
-    static fields
-    fields
-        10 : pcu (type: System.String)
-    methods
-        255619b29c0 : .ctor ():System.Void
-        255619b2a18 : fdy (a: System.Char):System.Int32
-    base class
-25561135e60 : DSSock.hy
-    static fields
-    fields
-        10 : pcv (type: System.UInt64)
-        18 : pcw (type: System.String)
-        20 : pcx (type: DSSock)
-    methods
-        255619b2a90 : .ctor ():System.Void
-        255619b2ae8 : fdz (a: cPokemon):System.Boolean
-        255619b2b40 : fea ():System.Void
-    base class
-25561135fe0 : DSSock.hz
-    static fields
-    fields
-        10 : pcy (type: DSSock)
-        18 : pcz (type: UnityEngine.GameObject)
-    methods
-        255619b2bb0 : .ctor ():System.Void
-        255619b2c08 : feb (a: System.Int32):System.Void
-    base class
-25561136160 : DSSock.ia
-    static fields
-    fields
-        10 : pda (type: DSSock)
-        18 : pdb (type: System.Int32)
-    methods
-        255619b2c80 : .ctor ():System.Void
-        255619b2cd8 : fec ():System.Boolean
-        255619b2d30 : fed ():System.Boolean
-    base class
-255611362e0 : DSSock.ib
-    static fields
-    fields
-        10 : pdc (type: System.UInt64)
-        18 : pdd (type: System.Int32)
-    methods
-        255619b2da0 : .ctor ():System.Void
-        255619b2df8 : fee (a: cPokemon):System.Boolean
-        255619b2e50 : fef (a: DSSock.hd):System.Boolean
-    base class
-25561136460 : DSSock.ie
-    static fields
-    fields
-        10 : pdj (type: System.Func<Cysharp.Threading.Tasks.crn>)
-    methods
-        255619b2f90 : .ctor ():System.Void
-        255619b2fe8 : feg ():Cysharp.Threading.Tasks.crn
-    base class
-25561a24030 : DSSock.ie.ic
-    static fields
-    fields
-        10 : pde (type: System.Int32)
-        18 : pdf (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : pdg (type: DSSock.ie)
-        30 : pdh (type: Cysharp.Threading.Tasks.crv.cru)
-        38 : pdi (type: Cysharp.Threading.Tasks.crn.cok)
-    methods
-        255619b2ec8 : MoveNext ():System.Void
-        255619b2f20 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-255611365e0 : DSSock.ig
-    static fields
-    fields
-        10 : pdo (type: System.Action)
-    methods
-        255619b3118 : .ctor ():System.Void
-        255619b3170 : feh ():Cysharp.Threading.Tasks.crn
-    base class
-25561a241d0 : DSSock.ig.if
-    static fields
-    fields
-        10 : pdk (type: System.Int32)
-        18 : pdl (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : pdm (type: DSSock.ig)
-        30 : pdn (type: Cysharp.Threading.Tasks.crv.cru)
-    methods
-        255619b3050 : MoveNext ():System.Void
-        255619b30a8 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-25561136760 : DSSock.ih
-    static fields
-    fields
-        10 : pdp (type: System.String[])
-        18 : pdq (type: DSSock)
-    methods
-        255619b31d8 : .ctor ():System.Void
-        255619b3230 : fei (a: DSSock.ii&):System.String
-    base class
-255611368e0 : DSSock.ii
-    static fields
-    fields
-        10 : pdr (type: System.Int32)
-    methods
-    base class
-25561136a60 : DSSock.ij
-    static fields
-    fields
-        10 : pds (type: System.UInt64)
-        18 : pdt (type: cPokemon)
-    methods
-        255619b32a8 : .ctor ():System.Void
-        255619b3300 : fej (a: cPokemon):System.Boolean
-        255619b3358 : fek ():System.Int32
-    base class
-25561136be0 : DSSock.ik
-    static fields
-    fields
-        10 : pdu (type: cPokemon)
-    methods
-        255619b33c8 : .ctor ():System.Void
-        255619b3420 : fel (a: cPokemon):System.Boolean
-    base class
-25561136d60 : DSSock.il
-    static fields
-    fields
-        10 : pdv (type: System.UInt64)
-    methods
-        255619b3490 : .ctor ():System.Void
-        255619b34e8 : fem (a: cPokemon):System.Boolean
-    base class
-25561136ee0 : DSSock.im
-    static fields
-    fields
-        10 : pdw (type: System.Single)
-        14 : pdx (type: System.Boolean)
-        15 : pdy (type: System.Boolean)
-        16 : pdz (type: System.Boolean)
-        18 : pea (type: DSSock.ih)
-    methods
-        255619b3558 : .ctor ():System.Void
-        255619b35b0 : fen ():System.Void
-    base class
-25561137060 : DSSock.in
-    static fields
-    fields
-        10 : peb (type: System.String)
-    methods
-        255619b3618 : .ctor ():System.Void
-        255619b3670 : feo (a: DSSock.hd):System.Boolean
-    base class
-255611371e0 : DSSock.io
-    static fields
-    fields
-        10 : pec (type: DSSock)
-        18 : ped (type: UIButtonColor.bh[])
-    methods
-        255619b36e0 : .ctor ():System.Void
-        255619b3738 : fep (a: YesNoBox; b: System.Boolean):System.Void
-    base class
-25561137360 : DSSock.iq
-    static fields
-    fields
-        10 : pee (type: DSSock)
-        18 : pef (type: System.String)
-    methods
-        255619b37b0 : .ctor ():System.Void
-        255619b3808 : feq ():System.Boolean
-    base class
-255611374e0 : DSSock.ir
-    static fields
-    fields
-        10 : peg (type: System.Int32)
-        18 : peh (type: DSSock)
-    methods
-        254e29e8c30 : .ctor ():System.Void
-        254e29e8c88 : fer ():System.Void
-    base class
-25561137660 : DSSock.is
-    static fields
-    fields
-        10 : pei (type: System.Int32)
-        18 : pej (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : pek (type: DSSock)
-        30 : pel (type: UIPanel)
-        38 : pem (type: System.Single)
-        3c : pen (type: Cysharp.Threading.Tasks.crv.cru)
-    methods
-        255619b3870 : MoveNext ():System.Void
-        255619b38c8 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-25561137800 : DSSock.it
-    static fields
-    fields
-        10 : peo (type: System.Int32)
-        18 : pep (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : peq (type: DSSock)
-        30 : per (type: UIPanel)
-        38 : pes (type: System.Single)
-        3c : pet (type: Cysharp.Threading.Tasks.crv.cru)
-    methods
-        255619b3938 : MoveNext ():System.Void
-        255619b3990 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-255611379a0 : DSSock.iu
-    static fields
-    fields
-        10 : peu (type: System.Int32)
-        18 : pev (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : pew (type: DSSock)
-        30 : pex (type: System.String)
-        38 : pey (type: DSSock.ih)
-        40 : pez (type: DSSock.ii)
-        48 : pfa (type: DSSock.ij)
-        50 : pfb (type: DSSock.il)
-        58 : pfc (type: System.Boolean)
-        59 : pfd (type: System.Boolean)
-        5a : pfe (type: System.Boolean)
-        60 : pff (type: Cysharp.Threading.Tasks.crn.cok)
-        70 : pfg (type: UnityEngine.Transform)
-        78 : pfh (type: System.String[])
-        80 : pfi (type: System.Int32)
-        84 : pfj (type: System.Int32)
-        88 : pfk (type: Cysharp.Threading.Tasks.crs.crr<System.Threading.CancellationTokenSource>)
-        a0 : pfl (type: Cysharp.Threading.Tasks.crs.crr<System.Boolean>)
-    methods
-        255619b3a00 : MoveNext ():System.Void
-        255619b3a58 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-25561137b40 : DSSock.iv
-    static fields
-    fields
-        10 : pfm (type: System.Int32)
-        18 : pfn (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : pfo (type: DSSock)
-        30 : pfp (type: Cysharp.Threading.Tasks.crn.cok)
-    methods
-        255619b3ac8 : MoveNext ():System.Void
-        255619b3b20 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-25561137ce0 : DSSock.iw
-    static fields
-    fields
-        10 : pfq (type: System.Int32)
-        18 : pfr (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : pfs (type: DSSock)
-        30 : pft (type: System.String)
-        38 : pfu (type: Cysharp.Threading.Tasks.crn.cok)
-    methods
-        254e86c78b8 : MoveNext ():System.Void
-        254e86c7910 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-2556113c030 : DSSock.ix
-    static fields
-    fields
-        10 : pfv (type: System.Int32)
-        18 : pfw (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : pfx (type: DSSock)
-        30 : pfy (type: System.String)
-        38 : pfz (type: Cysharp.Threading.Tasks.crn.cok)
-        48 : pga (type: Cysharp.Threading.Tasks.crs.crr<System.String>)
-    methods
-        254e86c7e68 : MoveNext ():System.Void
-        254e86c7ec0 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-2556113c1d0 : DSSock.iy
-    static fields
-    fields
-        10 : pgb (type: System.Int32)
-        18 : pgc (type: Cysharp.Threading.Tasks.CompilerServices.czy)
-        20 : pgd (type: System.String)
-        28 : pge (type: DSSock)
-        30 : pgf (type: UIScrollView)
-        38 : pgg (type: UIGrid)
-        40 : pgh (type: Cysharp.Threading.Tasks.crv.cru)
-    methods
-        254e86c5c88 : MoveNext ():System.Void
-        254e86c5ce0 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-2556113c370 : DSSock.iz
-    static fields
-    fields
-        10 : pgi (type: System.Int32)
-        18 : pgj (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : pgk (type: DSSock)
-        30 : pgl (type: System.String)
-        38 : pgm (type: System.Single)
-        40 : pgn (type: Cysharp.Threading.Tasks.crn.cok)
-        50 : pgo (type: Cysharp.Threading.Tasks.crv.cru)
-    methods
-        255619b3b90 : MoveNext ():System.Void
-        255619b3be8 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-2556113c510 : DSSock.ja
-    static fields
-    fields
-        10 : pgp (type: System.Int32)
-        18 : pgq (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : pgr (type: DSSock)
-        30 : pgs (type: DSSock.ia)
-        38 : pgt (type: System.String)
-        40 : pgu (type: System.Single)
-        48 : pgv (type: Cysharp.Threading.Tasks.crn.cok)
-        58 : pgw (type: Cysharp.Threading.Tasks.crv.cru)
-    methods
-        255619b3c58 : MoveNext ():System.Void
-        255619b3cb0 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-2556113c6b0 : DSSock.jb
-    static fields
-    fields
-        10 : pgx (type: System.Int32)
-        18 : pgy (type: System.Object)
-        20 : pgz (type: System.Single)
-        28 : pha (type: DSSock)
-        30 : phb (type: System.Int32)
-    methods
-        255619b3d38 : .ctor (a: System.Int32):System.Void
-        255619b3de8 : MoveNext ():System.Boolean
-        255619b3d90 : fes ():System.Void
-        255619b3e40 : fet ():System.Object
-        255619b3e98 : fev ():System.Object
-    base class
-2556113c870 : DSSock.jc
-    static fields
-    fields
-        10 : phc (type: System.Int32)
-        18 : phd (type: Cysharp.Threading.Tasks.CompilerServices.czx<System.Boolean>)
-        30 : phe (type: DSSock)
-        38 : phf (type: System.String)
-        40 : phg (type: System.Boolean)
-        48 : phh (type: System.Threading.CancellationToken)
-        50 : phi (type: Cysharp.Threading.Tasks.crs.crr<System.Boolean>)
-    methods
-        255619b3f08 : MoveNext ():System.Void
-        255619b3f60 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-2556113ca10 : DSSock.jd
-    static fields
-    fields
-        10 : phj (type: System.Int32)
-        18 : phk (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : phl (type: DSSock)
-        30 : phm (type: System.Collections.Generic.List<System.String>)
-        38 : phn (type: System.Collections.Generic.Dictionary.Enumerator<System.UInt64,System.Int32>)
-        60 : pho (type: Cysharp.Threading.Tasks.crn.cok)
-    methods
-        255619b3fd0 : MoveNext ():System.Void
-        255619b4028 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-2556113cbb0 : DSSock.je
-    static fields
-    fields
-        10 : php (type: System.Int32)
-        18 : phq (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : phr (type: DSSock)
-        30 : phs (type: System.Threading.CancellationToken)
-        38 : pht (type: Cysharp.Threading.Tasks.crs.crr<System.String>)
-    methods
-        255619b4098 : MoveNext ():System.Void
-        255619b40f0 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-2556113cd50 : DSSock.jf
-    static fields
-    fields
-        10 : phu (type: System.Int32)
-        18 : phv (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : phw (type: DSSock)
-        30 : phx (type: System.String)
-        38 : phy (type: DSSock.hy)
-        40 : phz (type: System.String[])
-        48 : pia (type: Cysharp.Threading.Tasks.crn.cok)
-    methods
-        255619b4160 : MoveNext ():System.Void
-        255619b41b8 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-2556113cef0 : DSSock.jg
-    static fields
-    fields
-        10 : pib (type: System.Int32)
-        18 : pic (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : pid (type: DSSock)
-        30 : pie (type: Cysharp.Threading.Tasks.crn.cok)
-    methods
-        255619b4228 : MoveNext ():System.Void
-        255619b4280 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-2556113d090 : DSSock.jh
-    static fields
-    fields
-        10 : pif (type: System.Int32)
-        18 : pig (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : pih (type: DSSock)
-        30 : pii (type: System.Collections.Generic.IEnumerable<DSSock.hd>)
-        38 : pij (type: System.Threading.CancellationToken)
-        40 : pik (type: DSSock.hd[])
-        48 : pil (type: System.Int32)
-        50 : pim (type: UIScrollView)
-        58 : pin (type: System.Int32)
-        60 : pio (type: Cysharp.Threading.Tasks.crn.cok)
-    methods
-        255619b42f0 : MoveNext ():System.Void
-        255619b4348 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-2556113d230 : DSSock.ji
-    static fields
-    fields
-        10 : pip (type: System.Int32)
-        18 : piq (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : pir (type: DSSock)
-        30 : pis (type: System.Collections.Generic.IEnumerable<DSSock.hd>)
-        38 : pit (type: Cysharp.Threading.Tasks.crn.cok)
-    methods
-        255619b43b8 : MoveNext ():System.Void
-        255619b4410 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-2556113d3d0 : DSSock.jj
-    static fields
-    fields
-        10 : piu (type: System.Int32)
-        18 : piv (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : piw (type: System.UInt64)
-        30 : pix (type: DSSock)
-        38 : piy (type: System.String)
-        40 : piz (type: System.Int32)
-        48 : pja (type: DSSock.hu)
-        50 : pjb (type: Cysharp.Threading.Tasks.crs.crr<System.Nullable<System.Int32>>)
-        68 : pjc (type: Cysharp.Threading.Tasks.crs.crr<System.String>)
-        80 : pjd (type: Cysharp.Threading.Tasks.crn.cok)
-    methods
-        255619b4480 : MoveNext ():System.Void
-        255619b44d8 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-2556113d570 : DSSock.jk
-    static fields
-    fields
-        10 : pje (type: System.Int32)
-        18 : pjf (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : pjg (type: DSSock)
-        30 : pjh (type: System.String)
-        38 : pji (type: System.Boolean)
-        3c : pjj (type: System.Int32)
-        40 : pjk (type: Cysharp.Threading.Tasks.crs.crr<System.Nullable<System.UInt64>>)
-        60 : pjl (type: Cysharp.Threading.Tasks.crn.cok)
-    methods
-        255619b4548 : MoveNext ():System.Void
-        255619b45a0 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-254e1e24af0 : DSSockNetwork
-    static fields
-        0 : pqz (type: System.TimeSpan)
-        8 : pra (type: System.Byte[])
-        10 : psc (type: System.Single)
-    fields
-        20 : LoginProgress (type: UnityEngine.GameObject)
-        28 : LoginProgressTxt (type: UILabel)
-        30 : LoginProgressLog (type: UILabel)
-        38 : LoginRetryButton (type: UnityEngine.GameObject)
-        40 : LoginCancelButton (type: UnityEngine.GameObject)
-        48 : LoginCloseButton (type: UnityEngine.GameObject)
-        50 : ReconnectIconHandler (type: ReconnectIconHandler)
-        58 : FakeDcInput (type: UIInput)
-        60 : <prb>k__BackingField (type: System.Net.IPAddress)
-        68 : <prc>k__BackingField (type: System.String)
-        70 : <prd>k__BackingField (type: System.Int32)
-        78 : pre (type: System.Net.Sockets.TcpClient)
-        80 : prf (type: System.Net.Sockets.NetworkStream)
-        88 : prg (type: System.Threading.CancellationTokenSource)
-        90 : prh (type: Utils.vh)
-        98 : pri (type: System.Threading.CancellationTokenSource)
-        a0 : prj (type: System.String)
-        a8 : prk (type: System.Single)
-        b0 : prl (type: System.Collections.Generic.Queue<System.ValueTuple<System.UInt64,System.Single,System.Byte[],System.Int32>>)
-        b8 : prm (type: System.UInt64)
-        c0 : prn (type: System.UInt64)
-        c8 : pro (type: System.UInt64)
-        d0 : prp (type: System.Single)
-        d4 : prq (type: System.Boolean)
-        d8 : prr (type: System.Collections.Generic.List<System.String>)
-        e0 : prs (type: DSSockNetwork.jl)
-        e8 : prt (type: System.Threading.CancellationTokenSource)
-        f0 : pru (type: System.Int32)
-        f4 : prv (type: System.Boolean)
-        f8 : prw (type: System.Text.RegularExpressions.Regex)
-        100 : prx (type: System.Diagnostics.Stopwatch)
-        108 : pry (type: Cysharp.Threading.Tasks.crn)
-        118 : prz (type: System.Threading.CancellationTokenSource)
-        120 : psa (type: System.Collections.Generic.Dictionary<System.String,Cysharp.Threading.Tasks.ctb<System.String>>[])
-        128 : Chunk (type: ml)
-        130 : <psb>k__BackingField (type: System.Single)
-    methods
-        254e1e13a30 : .cctor ():System.Void
-        254e1e139d8 : .ctor ():System.Void
-        254e1e128a8 : Awake ():System.Void
-        254e1e13770 : CancelLoginButton ():System.Void
-        254e1e137c8 : CloseLoginWindow ():System.Void
-        254e1e12fe0 : FakeDC_NGUI ():System.Void
-        254e1e12c18 : LoginGold ():System.Void
-        254e1e12d20 : LoginLocal ():System.Void
-        254e1e12d78 : LoginRetry ():System.Void
-        254e1e12bc0 : LoginSilver ():System.Void
-        254e1e12c70 : LoginTest ():System.Void
-        254e1e12cc8 : LoginTest2 ():System.Void
-        254e1e133a8 : SendPacket (str: Utils.uz):System.Void
-        254e1e12900 : Start ():System.Void
-        254e1e12488 : fly ():DSSock
-        254e1e124e0 : flz ():System.Net.IPAddress
-        254e1e12538 : fma (a: System.Net.IPAddress):System.Void
-        254e1e12590 : fmb ():System.String
-        254e1e125e8 : fmc (a: System.String):System.Void
-        254e1e12640 : fmd ():System.Int32
-        254e1e12698 : fme (a: System.Int32):System.Void
-        254e1e126f0 : fmf ():System.Boolean
-        254e1e12748 : fmg ():System.Boolean
-        254e1e127a0 : fmh ():System.Boolean
-        254e1e127f8 : fmi ():System.Single
-        254e1e12850 : fmj (a: System.Single):System.Void
-        254e1e12958 : fmk (a: System.String):System.Void
-        254e1e129b0 : fml ():System.Void
-        254e1e12a08 : fmm (a: System.String):System.Void
-        254e1e12a60 : fmn ():System.Void
-        254e1e12ab8 : fmo (a: System.Threading.CancellationToken):Cysharp.Threading.Tasks.crn
-        254e1e12b10 : fmp (a: System.Collections.Generic.IReadOnlyList<Utils.vi>; b: System.Threading.CancellationToken):Cysharp.Threading.Tasks.crn
-        254e1e12b68 : fmq (a: System.Threading.CancellationToken):Cysharp.Threading.Tasks.crn
-        254e1e12dd0 : fmr (a: System.String; b: System.Int32):Cysharp.Threading.Tasks.crn
-        254e1e12e28 : fms (a: System.String; b: System.String):System.Void
-        254e1e12e80 : fmt ():System.Void
-        254e1e12ed8 : fmu (a: System.Threading.CancellationTokenSource):Cysharp.Threading.Tasks.crn
-        254e1e12f30 : fmv (a: System.Threading.CancellationTokenSource):Cysharp.Threading.Tasks.crn
-        254e1e12f88 : fmw ():Cysharp.Threading.Tasks.crn
-        254e1e13038 : fmx (a: System.TimeSpan):System.Void
-        254e1e13090 : fmy (a: System.String; b: DSSockNetwork.jm; c: System.Threading.CancellationToken):Cysharp.Threading.Tasks.crs<System.String>
-        254e1e130e8 : fmz (a: System.String; b: System.String; c: DSSockNetwork.jm):System.Void
-        254e1e13140 : fna ():System.Void
-        254e1e13198 : fnb (a: System.Net.IPAddress; b: System.Int32; c: System.Threading.CancellationToken):Cysharp.Threading.Tasks.crn
-        254e1e131f0 : fnc (a: System.Threading.CancellationTokenSource):Cysharp.Threading.Tasks.crn
-        254e1e13248 : fnd (a: System.Span<System.Byte>; b: System.ReadOnlySpan<System.Byte>):System.Int32
-        254e1e132a0 : fne ():System.Void
-        254e1e132f8 : fnf (a: System.Single; b: System.String):System.Void
-        254e1e13350 : fng (a: System.ReadOnlySpan<System.Byte>):System.Boolean
-        254e1e13400 : fnh (a: System.Int32):System.Void
-        254e1e13458 : fni (a: System.String; b: System.Text.Encoding):System.Void
-        254e1e134b0 : fnj (a: System.Byte[]; b: System.Int32; c: System.Text.Encoding):System.String
-        254e1e13508 : fnk (a: System.String):System.String
-        254e1e13560 : fnl (a: System.ReadOnlySpan<System.Byte>; b: System.Text.Encoding):System.Void
-        254e1e135b8 : fnm (a: System.String):System.Void
-        254e1e13610 : fnn (a: System.Byte[]; b: System.Int32):System.Void
-        254e1e13668 : fno ():System.Void
-        254e1e136c0 : fnp ():System.Void
-        254e1e13718 : fnq ():System.Void
-        254e1e13820 : fnr (a: System.String):System.Void
-        254e1e13878 : fns (a: System.UInt64; b: System.Single):System.Void
-        254e1e138d0 : fnt (a: System.Int32):System.Int32
-        254e1e13928 : fnu (a: System.UInt64):System.Void
-        254e1e13980 : fnv ():System.Void
-        254e1e13a88 : fnw ():System.Boolean
-        254e1e13ae0 : fnx ():System.Boolean
-        254e1e13b38 : fny ():System.Void
-    base class
-25561184030 : DSSockNetwork.<>c
-    static fields
-        0 : <>9 (type: DSSockNetwork.<>c)
-        8 : <>9__72_0 (type: System.Func<Utils.vi,System.String>)
-        10 : <>9__116_0 (type: System.Func<System.Int32,System.Collections.Generic.Dictionary<System.String,Cysharp.Threading.Tasks.ctb<System.String>>>)
-    fields
-    methods
-        2556117ab00 : .cctor ():System.Void
-        2556117ab58 : .ctor ():System.Void
-        2556117abb0 : flp (a: Utils.vi):System.String
-        2556117ac08 : flq (a: System.Int32):System.Collections.Generic.Dictionary<System.String,Cysharp.Threading.Tasks.ctb<System.String>>
-    base class
-2556113f9a0 : DSSockNetwork.jl
-    static fields
-    fields
-        10 : value__ (type: System.Int32)
-    methods
-    base class
-2556113fc50 : DSSockNetwork.jm
-    static fields
-    fields
-        10 : value__ (type: System.Int32)
-    methods
-    base class
-255611841b0 : DSSockNetwork.jn
-    static fields
-    fields
-        10 : pna (type: System.Collections.Generic.Dictionary<System.String,Cysharp.Threading.Tasks.ctb<System.String>>)
-        18 : pnb (type: System.String)
-        20 : pnc (type: Cysharp.Threading.Tasks.ctb<System.String>)
-        28 : pnd (type: System.Threading.CancellationToken)
-    methods
-        254e58b56b0 : .ctor ():System.Void
-        254e58b5708 : flr ? - (System.ValueTuple<System.Boolean,System.String>):System.Boolean
-        254e58b5760 : fls ():System.Void
-    base class
-25561184330 : DSSockNetwork.jo
-    static fields
-    fields
-        10 : pne (type: System.Net.Sockets.TcpClient)
-        18 : pnf (type: System.Action)
-    methods
-        254e58a2a58 : .ctor ():System.Void
-        254e58a2ab0 : flt ():System.Void
-        254e58a2b08 : flu ():System.Void
-    base class
-255611844b0 : DSSockNetwork.jp
-    static fields
-    fields
-        10 : png (type: DSSockNetwork)
-        18 : pnh (type: System.String)
-    methods
-        255619b4610 : .ctor ():System.Void
-        255619b4668 : flv ():System.Void
-    base class
-25561184630 : DSSockNetwork.jr
-    static fields
-    fields
-        10 : pnm (type: DSSockNetwork)
-        18 : pnn (type: Utils.uz)
-    methods
-        255619b4798 : .ctor ():System.Void
-        255619b47f0 : flw ():Cysharp.Threading.Tasks.crn
-    base class
-25561a24370 : DSSockNetwork.jr.jq
-    static fields
-    fields
-        10 : pni (type: System.Int32)
-        18 : pnj (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : pnk (type: DSSockNetwork.jr)
-        30 : pnl (type: Cysharp.Threading.Tasks.cry.crx)
-    methods
-        255619b46d0 : MoveNext ():System.Void
-        255619b4728 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-255611847b0 : DSSockNetwork.js
-    static fields
-    fields
-        10 : pno (type: DSSockNetwork)
-        18 : pnp (type: System.Int32)
-    methods
-        255619b4858 : .ctor ():System.Void
-        255619b48b0 : flx ():System.Void
-    base class
-25561184930 : DSSockNetwork.jt
-    static fields
-    fields
-        10 : pnq (type: System.Int32)
-        18 : pnr (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : pns (type: System.Threading.CancellationTokenSource)
-        30 : pnt (type: DSSockNetwork)
-        38 : pnu (type: System.Byte[])
-        40 : pnv (type: System.Int32)
-        48 : pnw (type: System.Byte[])
-        50 : pnx (type: Cysharp.Threading.Tasks.coa)
-        58 : pny (type: System.Threading.CancellationToken)
-        60 : pnz (type: Cysharp.Threading.Tasks.crn.cok)
-        70 : poa (type: System.Runtime.CompilerServices.TaskAwaiter<System.Int32>)
-    methods
-        254e58de9e0 : MoveNext ():System.Void
-        254e58dea38 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-25561184ad0 : DSSockNetwork.ju
-    static fields
-    fields
-        10 : pob (type: System.Int32)
-        18 : poc (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : pod (type: DSSockNetwork)
-        30 : poe (type: System.Threading.CancellationToken)
-        38 : pof (type: Cysharp.Threading.Tasks.crs.crr<System.Collections.Generic.IReadOnlyList<Utils.vi>>)
-        50 : pog (type: Cysharp.Threading.Tasks.crn.cok)
-    methods
-        254e5885120 : MoveNext ():System.Void
-        254e5885178 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-25561184c70 : DSSockNetwork.jv
-    static fields
-    fields
-        10 : poh (type: System.Int32)
-        18 : poi (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : poj (type: DSSockNetwork)
-        30 : pok (type: System.Collections.Generic.IReadOnlyList<Utils.vi>)
-        38 : pol (type: System.Threading.CancellationToken)
-        40 : pom (type: System.Int32)
-        48 : pon (type: System.Collections.Generic.IEnumerator<Utils.vi>)
-        50 : poo (type: System.Threading.CancellationTokenSource)
-        58 : pop (type: System.IDisposable)
-        60 : poq (type: System.Boolean)
-        68 : por (type: Cysharp.Threading.Tasks.crn.cok)
-    methods
-        254e588ad20 : MoveNext ():System.Void
-        254e588ad78 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-25561184e10 : DSSockNetwork.jw
-    static fields
-    fields
-        10 : pot (type: System.Int32)
-        18 : pou (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : pov (type: System.Net.IPAddress)
-        30 : pow (type: System.Threading.CancellationToken)
-        38 : pox (type: System.Int32)
-        40 : poy (type: DSSockNetwork.jo)
-        48 : poz (type: DSSockNetwork)
-        50 : ppa (type: System.Net.Sockets.NetworkStream)
-        58 : ppb (type: System.Byte[])
-        60 : ppc (type: System.Int32)
-        68 : ppd (type: System.Runtime.CompilerServices.TaskAwaiter)
-        70 : ppe (type: System.Runtime.CompilerServices.TaskAwaiter<System.Int32>)
-        78 : ppf (type: DSSock)
-        80 : ppg (type: Cysharp.Threading.Tasks.crs.crr<UnityEngine.Texture2D>)
-    methods
-        254e58a0d90 : MoveNext ():System.Void
-        254e58a0de8 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-25561184fb0 : DSSockNetwork.jx
-    static fields
-    fields
-        10 : pph (type: System.Int32)
-        18 : ppi (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : ppj (type: System.Int32)
-        30 : ppk (type: DSSockNetwork)
-        38 : ppl (type: System.String)
-        40 : ppm (type: System.String)
-        48 : ppn (type: System.String)
-        50 : ppo (type: System.Threading.CancellationToken)
-        58 : ppp (type: System.Object)
-        60 : ppq (type: System.Int32)
-        68 : ppr (type: Cysharp.Threading.Tasks.crn.cok)
-        78 : pps (type: Cysharp.Threading.Tasks.crs.crr<System.Boolean>)
-    methods
-        254e58842f0 : MoveNext ():System.Void
-        254e5884348 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-25561185150 : DSSockNetwork.jy
-    static fields
-    fields
-        10 : ppt (type: System.Int32)
-        18 : ppu (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : ppv (type: DSSockNetwork)
-        30 : ppw (type: System.Threading.CancellationTokenSource)
-        38 : ppx (type: Cysharp.Threading.Tasks.crs.crr<System.ValueTuple<System.Boolean,System.ValueTuple<System.Int32,System.String,System.String>>>)
-    methods
-        254e58ae4f0 : MoveNext ():System.Void
-        254e58ae548 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-255611852f0 : DSSockNetwork.jz
-    static fields
-    fields
-        10 : ppy (type: System.Int32)
-        18 : ppz (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : pqa (type: System.Threading.CancellationToken)
-        30 : pqb (type: DSSockNetwork)
-        38 : pqc (type: Cysharp.Threading.Tasks.crn.cok)
-        48 : pqd (type: Cysharp.Threading.Tasks.crs.crr<System.Collections.Generic.IReadOnlyList<Utils.vi>>)
-    methods
-        254e2aad238 : MoveNext ():System.Void
-        254e2aad290 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-25561185490 : DSSockNetwork.ka
-    static fields
-    fields
-        10 : pqe (type: System.Int32)
-        18 : pqf (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : pqg (type: DSSockNetwork)
-        30 : pqh (type: System.Threading.CancellationTokenSource)
-        38 : pqi (type: Cysharp.Threading.Tasks.crs.crr<System.ValueTuple<System.Boolean,System.String>>)
-    methods
-        255619b4918 : MoveNext ():System.Void
-        255619b4970 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-25561185630 : DSSockNetwork.kb
-    static fields
-    fields
-        10 : pqj (type: System.Int32)
-        18 : pqk (type: Cysharp.Threading.Tasks.CompilerServices.czw)
-        28 : pql (type: DSSockNetwork)
-        30 : pqm (type: Cysharp.Threading.Tasks.crs.crr<System.Boolean>)
-    methods
-        255619b49e0 : MoveNext ():System.Void
-        255619b4a38 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
-255611857d0 : DSSockNetwork.kc
-    static fields
-    fields
-        10 : pqn (type: System.Int32)
-        18 : pqo (type: Cysharp.Threading.Tasks.CompilerServices.czx<System.String>)
-        30 : pqp (type: System.String)
-        38 : pqq (type: System.Threading.CancellationToken)
-        40 : pqr (type: DSSockNetwork)
-        48 : pqs (type: DSSockNetwork.jm)
-        50 : pqt (type: Cysharp.Threading.Tasks.crs.crr<System.String>)
-    methods
-        254e58b2be0 : MoveNext ():System.Void
-        254e58b2c38 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
-    base class
+2a7b1e7f470 : DSSock
+	static fields
+		0 : <pjv>k__BackingField (type: DSSock)
+		8 : RndInst (type: System.Random)
+		10 : pkh (type: System.Int32[][])
+		18 : pln (type: System.Single)
+	fields
+		20 : Version (type: System.String)
+		28 : VersionLabel (type: UILabel)
+		30 : DevSuffix (type: System.String)
+		38 : BattleTitleIcon (type: UISprite)
+		40 : TimeScale (type: System.Single)
+		44 : MaxDialogueSpeed (type: System.Int32)
+		48 : MinDialogueSpeed (type: System.Int32)
+		50 : Currencies (type: UILabel)
+		58 : StaffRole (type: pw)
+		60 : mailHandler (type: MailHandling.MailHandler)
+		68 : Inspect (type: PlayerInspect)
+		70 : Hazards (type: UnityEngine.GameObject[])
+		78 : isGirl (type: System.Boolean)
+		80 : ContextIconHandler (type: ContextIconHandler)
+		88 : GLM (type: GuildLogo.GuildLogoManager)
+		90 : HandleCoinShop (type: CoinShopHandler)
+		98 : MoveRelearner (type: MoveRelearn)
+		a0 : KeyManager (type: KeyToLabel)
+		a8 : Enc (type: System.Text.Encoding)
+		b0 : PvpWindowHandler (type: PVPWindowHandler)
+		b8 : LootBoxOpenPanel (type: LootBoxOpenPanel)
+		c0 : GMOTD (type: UILabel)
+		c8 : GINFO (type: UILabel)
+		d0 : GLog (type: UITexture)
+		d8 : ShinySparkle (type: UnityEngine.GameObject)
+		e0 : XmasSparkle (type: UnityEngine.GameObject)
+		e8 : OnStatus (type: UILabel)
+		f0 : PlayerEmote (type: ShowEmote)
+		f8 : TrainerCardBody (type: UITexture[])
+		100 : Wearables (type: UITexture[])
+		108 : Pokedex (type: Pokedex)
+		110 : PokeCard (type: PokemonInfo)
+		118 : ChatLinkPoke (type: PokemonInfo)
+		120 : CaughtPokePreview (type: PokemonInfo)
+		128 : PokePreviewDelete (type: UnityEngine.GameObject)
+		130 : SelectPokePrefab (type: NPCDialogueSystem.PokeSelect)
+		138 : SelectMovePrefab (type: NPCDialogueSystem.PokeMoveSelect)
+		140 : IVAdder (type: IVAdder)
+		148 : StartScreen (type: StartScreenHandler)
+		150 : MusicPlayer (type: MusicPlayer)
+		158 : Network (type: DSSockNetwork)
+		160 : Load (type: LoadingScreenHandler)
+		168 : Pokemons (type: System.Collections.Generic.List<cPokemon>)
+		170 : Items (type: System.Collections.Generic.List<DSSock.hd>)
+		178 : OnItemUpdate (type: System.Collections.Generic.List<EventDelegate>)
+		180 : PlayerObjects (type: System.Collections.Generic.List<UnityEngine.GameObject>)
+		188 : MessageText (type: System.String)
+		190 : MessageTimer (type: System.Single)
+		198 : NameplateHolder (type: UnityEngine.Transform)
+		1a0 : Standing (type: System.Boolean)
+		1a1 : PlayerDir (type: System.Byte)
+		1a4 : TargetPos (type: UnityEngine.Vector3)
+		1b0 : ViewDistance (type: System.Int32)
+		1b8 : pjw (type: System.String)
+		1c0 : pjx (type: System.Threading.CancellationTokenSource)
+		1c8 : CurrentPokeTimeHour (type: System.Int32)
+		1d0 : GameCamera (type: UnityEngine.Camera)
+		1d8 : GuiCamera (type: UnityEngine.Camera)
+		1e0 : Settings (type: GameSettings)
+		1e8 : MapCreator (type: MapCreator)
+		1f0 : LoadingMap (type: System.Boolean)
+		1f8 : SpawnHandler (type: SpawnListHandler)
+		200 : TrainerStats (type: UILabel)
+		208 : HairColors (type: UnityEngine.Color[])
+		210 : pjy (type: System.Collections.Generic.Dictionary<System.UInt64,System.Int32>)
+		218 : OnGround (type: System.Boolean)
+		220 : Style (type: CharStyle)
+		228 : MagicMirror (type: CharDesigner)
+		230 : FollowPoke (type: FPoke)
+		238 : Players (type: DSSock.he)
+		280 : Player (type: UnityEngine.Transform)
+		288 : PlayerPrefab (type: UnityEngine.GameObject)
+		290 : PokeFollowerPrefab (type: FPoke)
+		298 : TimeLabel (type: UILabel)
+		2a0 : pjz (type: DSSock.hf)
+		2a8 : DestroyOnLogout (type: System.Collections.Generic.List<UnityEngine.GameObject>)
+		2b0 : pka (type: System.Int32)
+		2b8 : GameMenuSprite (type: UISprite)
+		2c0 : LoginStatusText (type: FadeTextAfter)
+		2c8 : User (type: UIInput)
+		2d0 : Pass (type: UIInput)
+		2d8 : Uname (type: System.String)
+		2e0 : UnameC (type: System.String)
+		2e8 : LoggedIn (type: System.Boolean)
+		2f0 : CurrentServer (type: System.String)
+		2f8 : Blank (type: UnityEngine.Texture2D)
+		300 : pkb (type: UnityEngine.Vector2)
+		308 : pkc (type: ha)
+		30c : pkd (type: System.Int32)
+		310 : pke (type: System.Int32[])
+		318 : pkf (type: SwearFilter)
+		320 : pkg (type: System.Int32)
+		328 : FootstepAniVals (type: System.Int32[])
+		330 : pki (type: System.Collections.Generic.HashSet<System.UInt32>)
+		338 : pkj (type: System.Collections.Generic.HashSet<System.UInt32>)
+		340 : LightSource (type: UnityEngine.Light)
+		348 : MorningColor (type: UnityEngine.Color)
+		358 : NightColor (type: UnityEngine.Color)
+		368 : AfternoonColor (type: UnityEngine.Color)
+		378 : AfternoonColor2 (type: UnityEngine.Color)
+		388 : MText (type: UILabel)
+		390 : TouchMove (type: gz)
+		398 : AF (type: AnimationFramePickerSystem)
+		3a0 : pkk (type: System.Single)
+		3a4 : pkl (type: System.Int32)
+		3a8 : pkm (type: System.UInt32)
+		3ac : pkn (type: System.Single)
+		3b0 : pko (type: System.String)
+		3b8 : pkp (type: System.Int32)
+		3bc : pkq (type: System.Int32)
+		3c0 : pkr (type: System.Boolean)
+		3c8 : GrassObject (type: UnityEngine.GameObject)
+		3d0 : pks (type: System.UInt32[])
+		3d8 : pkt (type: System.UInt32[])
+		3e0 : pku (type: System.UInt32[])
+		3e8 : pkv (type: System.UInt32[])
+		3f0 : pkw (type: System.UInt32[])
+		3f8 : pkx (type: System.UInt32[])
+		400 : pky (type: System.UInt32[])
+		408 : pkz (type: UnityEngine.Color)
+		418 : pla (type: UnityEngine.Color)
+		428 : plb (type: UnityEngine.Color)
+		438 : plc (type: UnityEngine.Color)
+		448 : pld (type: System.Single)
+		450 : TeamPreview (type: TeamPreview)
+		458 : Console (type: ChatInput)
+		460 : Chat (type: ChatInput)
+		468 : ConSongName (type: UILabel)
+		470 : RebindingKey (type: System.Boolean)
+		471 : ScriptMusic (type: System.Boolean)
+		472 : IgnoreEnterNextFrame (type: System.Boolean)
+		478 : IgnoreEnterWhenFocussed (type: System.Collections.Generic.List<UnityEngine.GameObject>)
+		480 : ple (type: System.Single)
+		484 : plf (type: System.Single)
+		488 : UniqueMsgBoxes (type: System.Collections.Generic.HashSet<System.String>)
+		490 : plg (type: System.Collections.Generic.List<UIWindow>)
+		498 : ScriptHandler (type: NPCDialogueSystem.ScriptHandler)
+		4a0 : NPCsTriggeredOnCurrentSquare (type: System.Collections.Generic.HashSet<System.UInt32>)
+		4a8 : MoveSpeed (type: Utils.va)
+		4b0 : SaySpeed (type: Utils.va)
+		4b8 : plh (type: Mount)
+		4c0 : pli (type: na)
+		4c8 : Badges (type: UnityEngine.GameObject)
+		4d0 : plj (type: Badge[])
+		4d8 : plk (type: System.Collections.Generic.HashSet<System.String>)
+		4e0 : Day (type: UnityEngine.GameObject)
+		4e8 : Night (type: UnityEngine.GameObject)
+		4f0 : Morning (type: UnityEngine.GameObject)
+		4f8 : Afternoon (type: UnityEngine.GameObject)
+		500 : Money (type: UILabel)
+		508 : MessageBox (type: UnityEngine.GameObject)
+		510 : NewMessageBox (type: UnityEngine.GameObject)
+		518 : InputBox (type: UnityEngine.GameObject)
+		520 : PmObject (type: UnityEngine.GameObject)
+		528 : LinkConfirmBox (type: UnityEngine.GameObject)
+		530 : PMs (type: System.Collections.Generic.Dictionary<System.Collections.Generic.HashSet<System.String>,UnityEngine.GameObject>)
+		538 : QueuedSteps (type: System.Collections.Generic.Queue<System.String>)
+		540 : EvoScreen (type: Evolution)
+		548 : LevelUpEventHandler (type: mn)
+		550 : Trade (type: TradeHandling.TradeManager)
+		558 : ChatGlobalTabButton (type: UIButton)
+		560 : pll (type: System.String)
+		568 : plm (type: cPokemon)
+		570 : NPCs (type: System.Collections.Generic.Dictionary<System.UInt32,cNPC>)
+		578 : NPCObject (type: UnityEngine.GameObject)
+		580 : NPCHolder (type: UnityEngine.GameObject)
+		588 : ShowNpcIDs (type: System.Boolean)
+		590 : GameGUI (type: UnityEngine.GameObject)
+		598 : loginGUI (type: UnityEngine.GameObject)
+		5a0 : optionsGUI (type: UnityEngine.GameObject)
+		5a8 : menuGUI (type: UnityEngine.GameObject)
+		5b0 : RememberPass (type: UIToggle)
+		5b8 : ChatBox (type: UIInput)
+		5c0 : ChatOpen (type: System.Boolean)
+		5c1 : ShortcutHotKeyOverride (type: System.Boolean)
+		5c8 : Lighting (type: UnityEngine.Light)
+		5d0 : Darkness (type: FlashDarkBg)
+		5d8 : plo (type: System.Single)
+		5dc : plp (type: System.Single)
+		5e0 : plq (type: System.Boolean)
+		5e1 : plr (type: System.Byte)
+		5e8 : pls (type: UnityEngine.Material)
+		5f0 : plt (type: System.Int32)
+		5f4 : SFXVolume (type: System.Single)
+		5f8 : OpenConsoleButton (type: UnityEngine.GameObject)
+		600 : bagGUI (type: UnityEngine.GameObject)
+		608 : PokeBoxManager (type: PokeBox.PokeBoxManager)
+		610 : trainerGUI (type: UnityEngine.GameObject)
+		618 : ShortcutTexture (type: UITexture[])
+		620 : ShortcutIDs (type: System.Int32[])
+		628 : ShortcutLockButton (type: UnityEngine.GameObject)
+		630 : plu (type: System.Boolean)
+		638 : plv (type: System.Collections.Generic.Dictionary<System.Int32,System.Single>)
+		640 : LastUsedRepel (type: System.Int32)
+		648 : plw (type: System.Int32[])
+		650 : plx (type: System.Int32)
+		658 : emotes (type: UnityEngine.Transform)
+		660 : BattleItemPrefab (type: InventoryButton)
+		668 : InvItemPrefab (type: InventoryButton)
+		670 : BagLabel (type: UILabel)
+		678 : BagButtons (type: UnityEngine.GameObject)
+		680 : InvSearchInput (type: UIInput)
+		688 : InvItemGrid (type: UIGrid)
+		690 : InvLoadLabel (type: UnityEngine.GameObject)
+		698 : ply (type: UIButton)
+		6a0 : plz (type: UIButton)
+		6a8 : pma (type: UIButton)
+		6b0 : pmb (type: System.Threading.CancellationTokenSource)
+		6b8 : pmd (type: System.Collections.Generic.List<DSSock.hd>)
+		6c0 : pme (type: System.Collections.Generic.List<DSSock.hd>)
+		6c8 : SocialHandler (type: SocialHandler)
+		6d0 : friendsGUI (type: UnityEngine.GameObject)
+		6d8 : FriendsScroll (type: UnityEngine.GameObject)
+		6e0 : RosterList (type: UITextList)
+		6e8 : Roster (type: System.Collections.Generic.Dictionary<System.String,la>)
+		6f0 : ChatPrefab (type: UnityEngine.GameObject)
+		6f8 : ChannelButtons (type: System.Collections.Generic.List<UnityEngine.GameObject>)
+		700 : TabParent (type: UnityEngine.Transform)
+		708 : ChannelPrefab (type: UnityEngine.GameObject)
+		710 : ChannelManagerObject (type: UnityEngine.GameObject)
+		718 : ChannelManagerPanel (type: UnityEngine.GameObject)
+		720 : ChannelHandler (type: JoinChannel)
+		728 : pmf (type: System.Int32)
+		730 : SavedChat (type: System.Collections.Generic.Queue<System.ValueTuple<System.String,System.String>>)
+		738 : pmg (type: System.Collections.Generic.List<System.ValueTuple<System.String,System.String>>)
+		740 : FSObject (type: FootStep)
+		748 : BikeStepObject (type: FootStep)
+		750 : pmh (type: System.Boolean)
+		758 : pmi (type: System.Threading.CancellationTokenSource)
+		760 : InTrade (type: System.Boolean)
+		768 : ShopManager (type: ShopManager)
+		770 : BattleType (type: hb)
+		774 : InBattleReplay (type: System.Boolean)
+		778 : PlayerBattleSide (type: System.Int32)
+		780 : ReplayHandler (type: ReplayHandler)
+		788 : ReplayListManager (type: ReplaySystem.ReplayListManager)
+		790 : TagManager (type: PokeBox.TagManager)
+		798 : BattleTitle (type: UILabel)
+		7a0 : BattleLog (type: BattleLog)
+		7a8 : BattleExpBar (type: ExpBarAni)
+		7b0 : UserHpBar (type: HpBarAni)
+		7b8 : FoeHpBar (type: HpBarAni)
+		7c0 : RunButtonText (type: UILabel)
+		7c8 : pmj (type: System.Int32)
+		7cc : pmk (type: System.Int32)
+		7d0 : OtherPoke (type: gw)
+		808 : pml (type: System.Single)
+		80c : pmm (type: System.Single)
+		810 : FoePoke (type: UITexture)
+		818 : FoePokeAlt (type: UITexture)
+		820 : UserPoke (type: UITexture)
+		828 : UserPokeAlt (type: UITexture)
+		830 : BattleBack (type: UITexture)
+		838 : BattleBackAni (type: SheetAni)
+		840 : Backgrounds (type: UnityEngine.Texture2D[])
+		848 : ActiveTerrain (type: UITexture)
+		850 : Terrains (type: UnityEngine.Texture2D[])
+		858 : BlockBattleOptions (type: UIWidget)
+		860 : MegaToggle (type: ToggleUIButton)
+		868 : ZMoveToggle (type: ToggleUIButton)
+		870 : BaseZBlink (type: TweenColor)
+		878 : ChooseAttackText (type: UILabel)
+		880 : CancelMoveButton (type: UIButton)
+		888 : EnemyTeamBar (type: BattleEnemyTeamSideBar)
+		890 : pmn (type: YesNoBox)
+		898 : pmo (type: Utils.va)
+		8a0 : pmp (type: System.Boolean)
+		8a8 : UserBattleAni (type: UnityEngine.Animator)
+		8b0 : FoeBattleAni (type: UnityEngine.Animator)
+		8b8 : pmq (type: System.Boolean)
+		8bc : pmr (type: System.Int32)
+		8c0 : pms (type: System.Boolean)
+		8c8 : PokeBalls (type: UnityEngine.GameObject[])
+		8d0 : CaughtBall (type: UnityEngine.GameObject)
+		8d8 : BattlePanel (type: UnityEngine.GameObject)
+		8e0 : BattleBlanker (type: UISprite)
+		8e8 : UserStats (type: UIWidget)
+		8f0 : FoeStats (type: UIWidget)
+		8f8 : UserPokeName (type: UILabel)
+		900 : FoePokeName (type: UILabel)
+		908 : UserPokeLvl (type: UILabel)
+		910 : FoePokeLvl (type: UILabel)
+		918 : BattleButtons (type: UIButton[])
+		920 : AttackButtons (type: UIButton[])
+		928 : ReplayNavigation (type: UnityEngine.GameObject)
+		930 : PvPTimer (type: PvPBattleTimer)
+		938 : pmt (type: System.Int32)
+		93c : pmu (type: System.Int32)
+		940 : AIVisualizer (type: BattleAIVisualizer.BattleAIVisualizer)
+		948 : LendingTradeListing (type: ActiveLendingTradeListing)
+		950 : PokeStatus (type: UISprite[])
+		958 : CurrentBattleWeather (type: hc)
+		960 : BattleWeatherTex (type: SheetAni)
+		968 : BattleWeatherRoundCountLabel (type: UILabel)
+		970 : pmv (type: System.Int32)
+		978 : HitSound (type: System.String)
+		980 : RunningBattleStep (type: Cysharp.Threading.Tasks.crq)
+		990 : LastBattleItemId (type: System.Int32)
+		998 : ThrowHandSpr (type: UISprite)
+		9a0 : CatchThrowHandSpr (type: UISprite)
+		9a8 : UserBallType (type: UnityEngine.Renderer)
+		9b0 : FoeBallType (type: UnityEngine.Renderer)
+		9b8 : Pokeball (type: Pokeball)
+		9c0 : BattleEnding (type: System.Boolean)
+		9c1 : BattlePending (type: System.Boolean)
+		9c2 : pmw (type: System.Nullable<System.Boolean>)
+		9c8 : AttackObject (type: UnityEngine.GameObject)
+		9d0 : PokemonObject (type: UnityEngine.GameObject)
+		9d8 : BattleInventory (type: UnityEngine.GameObject)
+		9e0 : BattleItemParent (type: UnityEngine.Transform)
+		9e8 : AttackNames (type: UILabel[])
+		9f0 : AttackElement (type: UISprite[])
+		9f8 : AttackType (type: UISprite[])
+		a00 : AttackAcc (type: UILabel[])
+		a08 : AttackPwr (type: UILabel[])
+		a10 : AttackDesc (type: UILabel[])
+		a18 : AttackDisabledTooltip (type: UILabel[])
+		a20 : AttackPP (type: UILabel[])
+		a28 : PokemonNames (type: UITexture[])
+		a30 : pmx (type: UIButton[])
+		a38 : pmy (type: System.Boolean)
+		a40 : IsZ (type: System.Boolean[])
+		a48 : pmz (type: System.Boolean)
+		a50 : pna (type: Attack[])
+		a58 : pnb (type: System.String[])
+		a60 : LearnMove (type: LearnMove)
+		a68 : MoveEffect (type: UnityEngine.GameObject)
+		a70 : ShowBattleFoeLevel (type: System.Boolean)
+	methods
+		2a7b1e88060 : .cctor ():System.Void
+		2a7b1e88008 : .ctor ():System.Void
+		2a7b1e83d58 : Awake ():System.Void
+		2a7b1e87c40 : BattlePokeSelect (index: System.Int32):System.Void
+		2a7b1e87be8 : CancelMovePvP ():System.Void
+		2a7b1e85f08 : CloseBag ():System.Void
+		2a7b1e86c18 : CreateChannel ():System.Void
+		2a7b1e87fb0 : DeleteRecentlyCaught ():System.Void
+		2a7b1e86698 : FilterItems (input: UIInput):System.Void
+		2a7b1e86a60 : GetTags (uname: System.String):System.String
+		2a7b1e86d20 : HideChatManager ():System.Void
+		2a7b1e83ba0 : HideMessage (obj: UnityEngine.GameObject):System.Void
+		2a7b1e86010 : LockUnlockShortcutBar ():System.Void
+		2a7b1e83e60 : Logout ():System.Void
+		2a7b1e85b40 : OnApplicationQuit ():System.Void
+		2a7b1e85eb0 : OpenBag ():System.Void
+		2a7b1e87458 : PlayCry (id: System.Int32; delay: System.Single):System.Void
+		2a7b1e85b98 : Quit ():System.Void
+		2a7b1e84750 : RemoveClothe ():System.Void
+		2a7b1e846a0 : RemoveFace ():System.Void
+		2a7b1e84648 : RemoveHat ():System.Void
+		2a7b1e846f8 : RemoveWings ():System.Void
+		2a7b1e866f0 : ResetInvFilter (input: UIInput):System.Void
+		2a7b1e87b38 : RunAway ():System.Void
+		2a7b1e86538 : SetBag (sender: UIButton):System.Void
+		2a7b1e86328 : SetShortcut (shortcut: System.Int32; itemName: System.String):System.Void
+		2a7b1e87a30 : ShowAttacks ():System.Void
+		2a7b1e87980 : ShowBattleItems ():System.Void
+		2a7b1e86d78 : ShowChatManager ():System.Void
+		2a7b1e87a88 : ShowPokemon ():System.Void
+		2a7b1e83db0 : Start ():System.Void
+		2a7b1e871f0 : ThrowBall ():Cysharp.Threading.Tasks.crq
+		2a7b1e847a8 : ToggleConsole ():System.Void
+		2a7b1e868a8 : ToggleSocial ():System.Void
+		2a7b1e84800 : Update ():System.Void
+		2a7b1e85e00 : UpdateDynamicWeather ():System.Void
+		2a7b1e85fb8 : UseShortcut (ele: UnityEngine.GameObject):System.Void
+		2a7b1e85cf8 : closeMenu ():System.Void
+		2a7b1e83a40 : fez ():DSSock
+		2a7b1e83a98 : ffa (a: DSSock):System.Void
+		2a7b1e83af0 : ffb ():DiscordScript
+		2a7b1e83b48 : ffc ():System.Boolean
+		2a7b1e83bf8 : ffd (a: DSSock.hf):System.Void
+		2a7b1e83c50 : ffe (a: DSSock.hf):System.Void
+		2a7b1e83ca8 : fff ():System.Boolean
+		2a7b1e83d00 : ffg (a: System.Boolean):System.Void
+		2a7b1e83e08 : ffh ():System.ValueTuple<System.String,System.String>
+		2a7b1e83eb8 : ffi ():System.Void
+		2a7b1e83f10 : ffj ():UnityEngine.Vector2
+		2a7b1e83f68 : ffk (a: UnityEngine.Vector2):System.Void
+		2a7b1e83fc0 : ffl ():ha
+		2a7b1e84018 : ffm (a: ha):System.Void
+		2a7b1e84070 : ffn (a: UnityEngine.Vector2):System.Boolean
+		2a7b1e840c8 : ffo (a: UnityEngine.Vector2):System.Boolean
+		2a7b1e84120 : ffp (a: UnityEngine.Vector2):UnityEngine.Vector2
+		2a7b1e84178 : ffq ():System.Void
+		2a7b1e841d0 : ffr (a: System.Int32):System.Int32
+		2a7b1e84228 : ffs (a: System.String; b: System.Int32):System.Void
+		2a7b1e84280 : fft (a: UnityEngine.Vector3; b: System.Int32; c: System.Int32):System.Void
+		2a7b1e842d8 : ffu (a: UnityEngine.Vector2):System.Int32
+		2a7b1e84330 : ffv (a: UnityEngine.Vector3; b: UnityEngine.Vector2; c: UnityEngine.Vector2):System.Void
+		2a7b1e84388 : ffw (a: UnityEngine.Vector2):System.Boolean
+		2a7b1e843e0 : ffx (a: System.UInt32):System.Boolean
+		2a7b1e84438 : ffy (a: System.String):System.String
+		2a7b1e84490 : ffz (a: System.String):System.Void
+		2a7b1e844e8 : fga ():System.Void
+		2a7b1e84540 : fgb ():System.Void
+		2a7b1e84598 : fgc ():System.Void
+		2a7b1e845f0 : fgd (a: UnityEngine.Vector3):System.Boolean
+		2a7b1e84858 : fge (a: UnityEngine.Vector2):UnityEngine.Vector2
+		2a7b1e848b0 : fgf ():System.Void
+		2a7b1e84908 : fgg ():System.Void
+		2a7b1e84960 : fgh ():System.Boolean
+		2a7b1e849b8 : fgi ():System.Boolean
+		2a7b1e84a10 : fgj ():System.Boolean
+		2a7b1e84a68 : fgk ():System.Boolean
+		2a7b1e84ac0 : fgl (a: System.Int32):System.String
+		2a7b1e84b18 : fgm (a: System.Int32):System.String
+		2a7b1e84b70 : fgn (a: System.String):System.Byte
+		2a7b1e84bc8 : fgo ():UnityEngine.Vector3
+		2a7b1e84c20 : fgp (a: System.Int32):UnityEngine.Vector3
+		2a7b1e84c78 : fgq (a: System.Int32):UnityEngine.Vector3
+		2a7b1e84cd0 : fgr ():UnityEngine.Vector3
+		2a7b1e84d28 : fgs (a: UnityEngine.Vector3; b: UnityEngine.Vector3):UnityEngine.Vector3
+		2a7b1e84d80 : fgt (a: UnityEngine.Vector2):System.Byte
+		2a7b1e84dd8 : fgu (a: System.String):UnityEngine.Vector3
+		2a7b1e84e30 : fgv (a: UnityEngine.Vector2):System.Boolean
+		2a7b1e84e88 : fgw (a: UnityEngine.Vector3; b: System.Boolean):System.Boolean
+		2a7b1e84ee0 : fgx ():System.Void
+		2a7b1e84f38 : fgy (a: cNPC):System.Void
+		2a7b1e84f90 : fgz ():System.Boolean
+		2a7b1e84fe8 : fha ():System.Void
+		2a7b1e85040 : fhb (a: System.String):Cysharp.Threading.Tasks.crq
+		2a7b1e85098 : fhc (a: System.String):Cysharp.Threading.Tasks.crq
+		2a7b1e850f0 : fhd (a: System.String; b: System.Int32; c: System.Int32; d: System.Boolean):System.Void
+		2a7b1e85148 : fhe (a: System.String; b: System.Int32; c: System.Int32; d: System.Boolean; e: System.Boolean):System.Void
+		2a7b1e851a0 : fhf ():System.Void
+		2a7b1e851f8 : fhg (a: UnityEngine.Vector3; b: System.Int32; c: System.Boolean):UnityEngine.Vector3
+		2a7b1e85250 : fhh (a: System.String; b: System.Int32; c: System.Int32; d: System.String; e: CharStyle; f: System.Byte; g: System.Byte; h: System.Int32; i: System.Boolean; j: System.Byte; k: System.Boolean; l: System.Int32; m: System.Int32; n: System.String):System.Void
+		2a7b1e852a8 : fhi (a: System.String):System.Void
+		2a7b1e85300 : fhj ():System.Void
+		2a7b1e85358 : fhk (a: System.String):System.Void
+		2a7b1e853b0 : fhl (a: System.Int32; b: System.Int32; c: ln):System.Void
+		2a7b1e85408 : fhm (a: System.String):System.Void
+		2a7b1e85460 : fhn (a: System.String):System.Void
+		2a7b1e854b8 : fho (a: System.Single; b: System.Single):System.Int32
+		2a7b1e85510 : fhp ():System.Void
+		2a7b1e85568 : fhq ():System.Void
+		2a7b1e855c0 : fhr (a: System.Int32):System.String
+		2a7b1e85618 : fhs (a: System.Int32; b: System.Boolean):System.String
+		2a7b1e85670 : fht ():System.Void
+		2a7b1e856c8 : fhu ():System.Void
+		2a7b1e85720 : fhv (a: System.String):System.Void
+		2a7b1e85778 : fhw (a: System.String):System.Void
+		2a7b1e857d0 : fhx (a: UnityEngine.Vector2):System.Boolean
+		2a7b1e85828 : fhy ():System.Collections.Generic.IEnumerable<cNPC>
+		2a7b1e85880 : fhz (a: UnityEngine.Vector2; b: UnityEngine.Vector2):System.Boolean
+		2a7b1e858d8 : fia ():System.Void
+		2a7b1e85930 : fib (a: System.UInt32):System.Void
+		2a7b1e85988 : fic ():System.Void
+		2a7b1e859e0 : fid ():System.Void
+		2a7b1e85a38 : fie ():System.Void
+		2a7b1e85a90 : fif (a: System.String):NpcData
+		2a7b1e85ae8 : fig (a: NpcData):System.Void
+		2a7b1e85bf0 : fih ():System.Void
+		2a7b1e85c48 : fii ():System.Boolean
+		2a7b1e85ca0 : fij ():System.Boolean
+		2a7b1e85da8 : fik ():System.Void
+		2a7b1e85e58 : fil (a: cPokemon):System.Boolean
+		2a7b1e85f60 : fim (a: System.Int32):System.Void
+		2a7b1e86068 : fin (a: System.Int32):System.Void
+		2a7b1e860c0 : fio (a: System.Int32):System.Boolean
+		2a7b1e86118 : fip (a: System.Int32; b: System.Int32):System.Boolean
+		2a7b1e86170 : fiq (a: DSSock.hd; b: System.Int32):System.Boolean
+		2a7b1e861c8 : fir (a: System.UInt64; b: System.Int32):System.Void
+		2a7b1e86220 : fis (a: System.UInt64):System.Void
+		2a7b1e86278 : fit ():System.Void
+		2a7b1e862d0 : fiu (a: System.Int32; b: System.Int32):System.Void
+		2a7b1e86380 : fiv (a: System.Int32):System.Void
+		2a7b1e863d8 : fiw ():System.Void
+		2a7b1e86430 : fix (a: System.Int32):System.Int32
+		2a7b1e86488 : fiy (a: System.String; b: System.Int32; c: System.Boolean):Cysharp.Threading.Tasks.crq
+		2a7b1e864e0 : fiz (a: System.String; b: System.Int32; c: System.UInt64):Cysharp.Threading.Tasks.crq
+		2a7b1e86590 : fja ():System.Void
+		2a7b1e865e8 : fjb (a: System.Collections.Generic.IEnumerable<DSSock.hd>):Cysharp.Threading.Tasks.crq
+		2a7b1e86640 : fjc (a: System.Collections.Generic.IEnumerable<DSSock.hd>; b: System.Threading.CancellationToken):Cysharp.Threading.Tasks.crq
+		2a7b1e86748 : fjd ():System.Boolean
+		2a7b1e867a0 : fje (a: System.UInt64; b: System.UInt64):System.Void
+		2a7b1e867f8 : fjf (a: System.Int32; b: System.Int32):System.Void
+		2a7b1e86900 : fjg (a: System.String):System.Void
+		2a7b1e86958 : fjh ():System.Void
+		2a7b1e869b0 : fji (a: System.String):System.String
+		2a7b1e86a08 : fjj (a: System.String; b: System.String; c: System.String):System.String
+		2a7b1e86ab8 : fjk ():System.Int32
+		2a7b1e86b10 : fjl (a: System.Int32):System.Void
+		2a7b1e86b68 : fjm (a: System.String; b: System.String):System.Void
+		2a7b1e86bc0 : fjn ():System.Void
+		2a7b1e86c70 : fjo ():System.Void
+		2a7b1e86cc8 : fjp (a: System.String):Cysharp.Threading.Tasks.cux
+		2a7b1e86dd0 : fjq ():System.Boolean
+		2a7b1e86e28 : fjr (a: System.Boolean):System.Void
+		2a7b1e86e80 : fjs ():cPokemon
+		2a7b1e86ed8 : fjt (a: System.String; b: System.Int32):System.Int32
+		2a7b1e86f30 : fju (a: System.ReadOnlySpan<System.Char>):System.Int32
+		2a7b1e86f88 : fjv ():System.Single
+		2a7b1e86fe0 : fjw (a: System.Single):System.Void
+		2a7b1e87038 : fjx (a: System.String):Cysharp.Threading.Tasks.crq
+		2a7b1e87090 : fjy (a: System.String):System.Void
+		2a7b1e870e8 : fjz ():System.Void
+		2a7b1e87140 : fka (a: System.String; b: System.Single):Cysharp.Threading.Tasks.crq
+		2a7b1e87198 : fkb (a: System.String; b: System.Single):Cysharp.Threading.Tasks.crq
+		2a7b1e87248 : fkc (a: System.Boolean):System.Void
+		2a7b1e872a0 : fkd ():System.Void
+		2a7b1e872f8 : fke (a: System.Boolean):System.Void
+		2a7b1e87350 : fkf ():Cysharp.Threading.Tasks.crq
+		2a7b1e873a8 : fkg ():Cysharp.Threading.Tasks.crq
+		2a7b1e87400 : fkh ():System.Void
+		2a7b1e874b0 : fki (a: System.Int32; b: System.Single):System.Collections.IEnumerator
+		2a7b1e87508 : fkj (a: UnityEngine.Transform; b: UnityEngine.Vector3; c: System.Single; d: System.Boolean):System.Void
+		2a7b1e87560 : fkk ():Cysharp.Threading.Tasks.crq
+		2a7b1e875b8 : fkl ():Cysharp.Threading.Tasks.crq
+		2a7b1e87610 : fkm ():System.Void
+		2a7b1e87668 : fkn (a: System.Threading.CancellationToken):Cysharp.Threading.Tasks.crq
+		2a7b1e876c0 : fko ():System.Void
+		2a7b1e87718 : fkp (a: System.Int32; b: System.String):System.Void
+		2a7b1e87770 : fkq (a: System.Func<Cysharp.Threading.Tasks.crq>):System.Void
+		2a7b1e877c8 : fkr (a: System.Action):System.Void
+		2a7b1e87820 : fks ():System.Void
+		2a7b1e87878 : fkt (a: System.String):Cysharp.Threading.Tasks.crq
+		2a7b1e878d0 : fku (a: System.String; b: System.Boolean; c: System.Threading.CancellationToken):Cysharp.Threading.Tasks.crv<System.Boolean>
+		2a7b1e87928 : fkv (a: System.Int32; b: System.Int32):System.Boolean
+		2a7b1e879d8 : fkw ():System.Boolean
+		2a7b1e87ae0 : fkx (a: System.Collections.Generic.IReadOnlyList<System.Boolean>):System.Void
+		2a7b1e87b90 : fky (a: System.Int32; b: System.Boolean):System.Void
+		2a7b1e87c98 : fkz (a: System.Int32; b: System.String):System.Void
+		2a7b1e87cf0 : fla (a: System.String):PMBox
+		2a7b1e87d48 : flb (a: System.Collections.Generic.HashSet<System.String>):PMBox
+		2a7b1e87da0 : flc (a: System.String; b: System.String; c: System.Boolean; d: System.Boolean; e: UIWindow):System.ValueTuple<Cysharp.Threading.Tasks.crq,UnityEngine.GameObject>
+		2a7b1e87df8 : fld (a: System.String):System.Boolean
+		2a7b1e87e50 : fle (a: ShowEmote; b: System.String):System.Boolean
+		2a7b1e87ea8 : flf (a: System.UInt64):System.Void
+		2a7b1e87f00 : flg (a: System.Collections.Generic.IEnumerable<System.UInt64>):System.Void
+		2a7b1e87f58 : flh ():System.Void
+		2a7b1e880b8 : fli (a: YesNoBox; b: System.Boolean):System.Void
+		2a7b1e88110 : flj (a: YesNoBox):System.Void
+		2a7b1e88168 : flk ():System.Boolean
+		2a7b1e881c0 : fll ():System.String
+		2a7b1e88218 : flm ? - (System.ValueTuple<System.String,System.String>):System.Boolean
+		2a7b1e88270 : fln ():System.Boolean
+		2a7b1e882c8 : flo ():System.Boolean
+		2a7b1e88320 : flp ():Cysharp.Threading.Tasks.crq
+		2a7b1e88378 : flq (a: System.String):DSSock.hd
+		2a7b1e883d0 : flr (a: cPokemon):System.Boolean
+		2a7b1e85d50 : openMenu ():System.Void
+		2a7b1e86850 : openTrainer ():System.Void
+	base class
+2a851131040 : DSSock.<>c
+	static fields
+		0 : <>9 (type: DSSock.<>c)
+		8 : <>9__185_0 (type: System.Func<System.ValueTuple<System.Single,UnityEngine.Vector2>,System.Single>)
+		10 : <>9__189_0 (type: System.Func<DSSock.hd,System.Boolean>)
+		18 : <>9__189_1 (type: System.Func<DSSock.hd,System.Boolean>)
+		20 : <>9__189_2 (type: System.Func<cPokemon,System.Collections.Generic.IEnumerable<Attack>>)
+		28 : <>9__189_3 (type: System.Func<Attack,System.Boolean>)
+		30 : <>9__190_0 (type: System.Func<DSSock.hd,System.Boolean>)
+		38 : <>9__190_1 (type: System.Func<cPokemon,System.Collections.Generic.IEnumerable<Attack>>)
+		40 : <>9__190_2 (type: System.Func<Attack,System.Boolean>)
+		48 : <>9__191_0 (type: System.Func<cPokemon,System.Collections.Generic.IEnumerable<Attack>>)
+		50 : <>9__191_1 (type: System.Func<Attack,System.Boolean>)
+		58 : <>9__192_0 (type: System.Func<DSSock.hd,System.Boolean>)
+		60 : <>9__192_1 (type: System.Func<DSSock.hd,System.Boolean>)
+		68 : <>9__192_2 (type: System.Func<cPokemon,System.Collections.Generic.IEnumerable<Attack>>)
+		70 : <>9__192_3 (type: System.Func<Attack,System.Boolean>)
+		78 : <>9__208_2 (type: System.Func<cNPC,System.Boolean>)
+		80 : <>9__230_0 (type: System.Func<DSSock.hd,System.Boolean>)
+		88 : <>9__230_1 (type: System.Func<DSSock.hd,System.String>)
+		90 : <>9__247_0 (type: System.Func<UnityEngine.GameObject,System.Boolean>)
+		98 : <>9__261_5 (type: System.Func<System.String,System.Boolean>)
+		a0 : <>9__261_6 (type: System.Func<System.String,System.ValueTuple<System.String,System.String,System.String>>)
+		a8 : <>9__261_7 (type: System.Func<DSSock.hd,System.Boolean>)
+		b0 : <>9__270_0 (type: System.Func<cNPC,System.Boolean>)
+		b8 : <>9__319_1 (type: System.Func<UITexture,DragNDropHandling.Draggables.DragShortcut>)
+		c0 : <>9__348_0 (type: System.Func<DSSock.hd,System.Boolean>)
+		c8 : <>9__350_0 (type: System.Comparison<UnityEngine.Transform>)
+		d0 : <>9__394_0 (type: System.Func<UnityEngine.GameObject,Channel>)
+		d8 : <>9__446_2 (type: System.Func<cPokemon,System.Boolean>)
+		e0 : <>9__510_0 (type: System.Func<System.Char,System.Boolean>)
+		e8 : <>9__510_5 (type: System.Func<System.String,System.Boolean>)
+		f0 : <>9__517_1 (type: System.Func<DSSock.hd,System.Boolean>)
+		f8 : <>9__517_2 (type: System.Func<DSSock.hd,System.Boolean>)
+		100 : <>9__517_3 (type: System.Func<DSSock.hd,System.String>)
+		108 : <>9__535_0 (type: System.Func<Attack,System.Boolean>)
+		110 : <>9__538_0 (type: System.Func<UIButton,UIButtonColor.bh>)
+		118 : <>9__538_2 (type: System.Func<UIButton,UIButtonColor.bh,System.ValueTuple<UIButton,UIButtonColor.bh>>)
+	fields
+	methods
+		2a7b2aa3988 : .cctor ():System.Void
+		2a7b2aa39e0 : .ctor ():System.Void
+		2a7b2aa3a38 : fbr ? - (System.ValueTuple<System.Single,UnityEngine.Vector2>):System.Single
+		2a7b2aa3a90 : fbs (a: DSSock.hd):System.Boolean
+		2a7b2aa3ae8 : fbt (a: DSSock.hd):System.Boolean
+		2a7b2aa3b40 : fbu (a: cPokemon):System.Collections.Generic.IEnumerable<Attack>
+		2a7b2aa3b98 : fbv (a: Attack):System.Boolean
+		2a7b2aa3bf0 : fbw (a: DSSock.hd):System.Boolean
+		2a7b2aa3c48 : fbx (a: cPokemon):System.Collections.Generic.IEnumerable<Attack>
+		2a7b2aa3ca0 : fby (a: Attack):System.Boolean
+		2a7b2aa3cf8 : fbz (a: cPokemon):System.Collections.Generic.IEnumerable<Attack>
+		2a7b2aa3d50 : fca (a: Attack):System.Boolean
+		2a7b2aa3da8 : fcb (a: DSSock.hd):System.Boolean
+		2a7b2aa3e00 : fcc (a: DSSock.hd):System.Boolean
+		2a7b2aa3e58 : fcd (a: cPokemon):System.Collections.Generic.IEnumerable<Attack>
+		2a7b2aa3eb0 : fce (a: Attack):System.Boolean
+		2a7b2aa3f08 : fcf (a: cNPC):System.Boolean
+		2a7b2aa3f60 : fcg (a: DSSock.hd):System.Boolean
+		2a7b2aa3fb8 : fch (a: DSSock.hd):System.String
+		2a7b2aa4010 : fci (a: UnityEngine.GameObject):System.Boolean
+		2a7b2aa4068 : fcj (a: System.String):System.Boolean
+		2a7b2aa40c0 : fck (a: System.String):System.ValueTuple<System.String,System.String,System.String>
+		2a7b2aa4118 : fcl (a: DSSock.hd):System.Boolean
+		2a7b2aa4170 : fcm (a: cNPC):System.Boolean
+		2a7b2aa41c8 : fcn (a: UITexture):DragNDropHandling.Draggables.DragShortcut
+		2a7b2aa4220 : fco (a: DSSock.hd):System.Boolean
+		2a7b2aa4278 : fcp (a: UnityEngine.Transform; b: UnityEngine.Transform):System.Int32
+		2a7b2aa42d0 : fcq (a: UnityEngine.GameObject):Channel
+		2a7b2aa4328 : fcr (a: cPokemon):System.Boolean
+		2a7b2aa4380 : fcs (a: System.Char):System.Boolean
+		2a7b2aa43d8 : fct (a: System.String):System.Boolean
+		2a7b2aa4430 : fcu (a: DSSock.hd):System.Boolean
+		2a7b2aa4488 : fcv (a: DSSock.hd):System.Boolean
+		2a7b2aa44e0 : fcw (a: DSSock.hd):System.String
+		2a7b2aa4538 : fcx (a: Attack):System.Boolean
+		2a7b2aa4590 : fcy (a: UIButton):UIButtonColor.bh
+		2a7b2aa45e8 : fcz (a: UIButton; b: UIButtonColor.bh):System.ValueTuple<UIButton,UIButtonColor.bh>
+	base class
+2a851130d30 : DSSock.SlideStateStorage
+	static fields
+	fields
+		10 : Type (type: ha)
+		14 : Dir (type: System.ValueTuple<System.Int32,System.Int32>)
+		1c : Pos (type: System.ValueTuple<System.Int32,System.Int32>)
+		28 : MapName (type: System.String)
+	methods
+	base class
+2a8511309c0 : DSSock.hd
+	static fields
+	fields
+		10 : pbd (type: System.String)
+		18 : pbe (type: System.String)
+		20 : pbf (type: System.Int32)
+		24 : pbg (type: ln)
+		28 : pbh (type: System.Int32)
+	methods
+		2a851169140 : .ctor ():System.Void
+	base class
+2a851107b80 : DSSock.he
+	static fields
+	fields
+		10 : pbi (type: System.Int32)
+		14 : pbj (type: System.Int32)
+		18 : pbk (type: System.Int32)
+		1c : pbl (type: System.Int32)
+		20 : pbm (type: System.Int32)
+		24 : pbn (type: System.Int32)
+		28 : pbo (type: System.Int32)
+		2c : pbp (type: System.Int32)
+		30 : pbq (type: System.String)
+		38 : pbr (type: System.Int32)
+		40 : pbs (type: System.String)
+		48 : pbt (type: System.Int32)
+		4c : pbu (type: System.Int32)
+		50 : pbv (type: System.Int32)
+	methods
+	base class
+2a851130b40 : DSSock.hf
+	static fields
+	fields
+	methods
+		2a8519ad218 : .ctor (a: System.Object; b: System.IntPtr):System.Void
+		2a8519ad270 : Invoke ():System.Void
+	base class
+2a851130eb0 : DSSock.hg
+	static fields
+	fields
+	methods
+		2a8519ad340 : .ctor ():System.Void
+		2a8519ad2e8 : Compare (a: DSSock.hd; b: DSSock.hd):System.Int32
+	base class
+2a8511311c0 : DSSock.hh
+	static fields
+	fields
+		10 : pbw (type: System.Int32)
+	methods
+		2a8519ad3b8 : .ctor ():System.Void
+		2a8519ad410 : fda (a: DSSock.hd):System.Boolean
+	base class
+2a851131340 : DSSock.hk
+	static fields
+	fields
+		10 : pcf (type: DSSock)
+		18 : pcg (type: System.String[])
+		20 : pch (type: System.String)
+	methods
+		2a7b4078c70 : .ctor ():System.Void
+		2a7b4078cc8 : fdb (a: YesNoBox; b: System.Boolean):System.Void
+		2a7b4078d20 : fdc ():System.Void
+		2a7b4078d78 : fdd ():System.Boolean
+		2a7b4078dd0 : fde ():System.Void
+		2a7b4078e28 : fdf ():Cysharp.Threading.Tasks.crq
+		2a7b4078e80 : fdg ():Cysharp.Threading.Tasks.crq
+		2a7b4078ed8 : fdh (a: DSSock.hd):System.Boolean
+		2a7b4078f30 : fdi (a: YesNoBox; b: System.Boolean):System.Void
+		2a7b4078f88 : fdj (a: System.String):System.Boolean
+		2a7b4078fe0 : fdk (a: System.Boolean):System.Void
+	base class
+2a851ab0510 : DSSock.hk.hi
+	static fields
+	fields
+		10 : pbx (type: System.Int32)
+		18 : pby (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pbz (type: DSSock.hk)
+		30 : pca (type: Cysharp.Threading.Tasks.crq.con)
+	methods
+		2a8519ad480 : MoveNext ():System.Void
+		2a8519ad4d8 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a851ab06b0 : DSSock.hk.hj
+	static fields
+	fields
+		10 : pcb (type: System.Int32)
+		18 : pcc (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pcd (type: DSSock.hk)
+		30 : pce (type: Cysharp.Threading.Tasks.crq.con)
+	methods
+		2a8519ad548 : MoveNext ():System.Void
+		2a8519ad5a0 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a8511314c0 : DSSock.hl
+	static fields
+	fields
+		10 : pci (type: System.String)
+	methods
+		2a7b4079100 : .ctor ():System.Void
+		2a7b4079158 : fdl (a: UnityEngine.GameObject):System.Boolean
+	base class
+2a851131640 : DSSock.hm
+	static fields
+	fields
+		10 : pcj (type: System.String)
+	methods
+		2a7b40791f8 : .ctor ():System.Void
+		2a7b4079250 : fdm (a: UnityEngine.GameObject):System.Boolean
+	base class
+2a8511317c0 : DSSock.hn
+	static fields
+	fields
+		10 : pck (type: UnityEngine.Vector2)
+	methods
+		2a8519ad610 : .ctor ():System.Void
+		2a8519ad668 : fdn (a: cNPC):System.Boolean
+	base class
+2a851131940 : DSSock.ho
+	static fields
+	fields
+		10 : pcl (type: DSSock)
+		18 : pcm (type: UnityEngine.Vector3)
+	methods
+		2a8519ad6d8 : .ctor ():System.Void
+		2a8519ad730 : fdo (a: cNPC):System.Boolean
+	base class
+2a851131ac0 : DSSock.hq
+	static fields
+	fields
+		10 : pcn (type: cPokemon)
+		18 : pco (type: DSSock)
+	methods
+		2a8519ad7a8 : .ctor ():System.Void
+		2a8519ad800 : fdp (a: Badge):System.Boolean
+		2a8519ad858 : fdq (a: Badge):System.Boolean
+	base class
+2a851131c40 : DSSock.hr
+	static fields
+	fields
+		10 : pcp (type: System.Int32)
+		18 : pcq (type: DSSock)
+		20 : pcr (type: DSSock.hd)
+	methods
+		2a8519ad8d8 : .ctor ():System.Void
+		2a8519ad930 : fdr (a: DSSock.hd):System.Boolean
+		2a8519ad988 : fds (a: YesNoBox; b: System.Boolean):System.Void
+	base class
+2a851131dc0 : DSSock.hs
+	static fields
+	fields
+		10 : pcs (type: DSSock)
+		18 : pct (type: DSSock.hd)
+		20 : pcu (type: System.Int32)
+	methods
+		2a8519ada18 : .ctor ():System.Void
+		2a8519ada70 : fdt (a: YesNoBox):System.Void
+		2a8519adac8 : fdu ():System.Boolean
+		2a8519adb20 : fdv ? - (System.ValueTuple<System.Boolean,CharStyle>):System.Void
+	base class
+2a851131f40 : DSSock.ht
+	static fields
+	fields
+		10 : pcv (type: System.String)
+		18 : pcw (type: System.Func<DSSock.hd,System.Boolean>)
+	methods
+		2a8519adb98 : .ctor ():System.Void
+		2a8519adbf0 : fdw (a: DSSock.hd):System.Boolean
+	base class
+2a8511320c0 : DSSock.hu
+	static fields
+	fields
+		10 : pcx (type: System.UInt64)
+	methods
+		2a8519adc60 : .ctor ():System.Void
+		2a8519adcb8 : fdx (a: cPokemon):System.Boolean
+	base class
+2a851132240 : DSSock.hv
+	static fields
+	fields
+		10 : pcy (type: ln[])
+	methods
+		2a8519add28 : .ctor ():System.Void
+		2a8519add80 : fdy (a: DSSock.hd):System.Boolean
+	base class
+2a8511323c0 : DSSock.hw
+	static fields
+	fields
+		10 : pcz (type: UIInput)
+		18 : pda (type: DSSock)
+		20 : pdb (type: System.Func<DSSock.hd,System.Boolean>)
+		28 : pdc (type: System.Func<DSSock.hd,System.Boolean>)
+	methods
+		2a8519addf8 : .ctor ():System.Void
+		2a8519ade50 : fdz (a: DSSock.hd):System.Boolean
+		2a8519adea8 : fea (a: DSSock.hd):System.Boolean
+	base class
+2a851132540 : DSSock.hx
+	static fields
+	fields
+		10 : pdd (type: System.String)
+	methods
+		2a8519adf20 : .ctor ():System.Void
+		2a8519adf78 : feb (a: System.Char):System.Int32
+	base class
+2a8511326c0 : DSSock.hy
+	static fields
+	fields
+		10 : pde (type: System.UInt64)
+		18 : pdf (type: System.String)
+		20 : pdg (type: DSSock)
+	methods
+		2a8519adff0 : .ctor ():System.Void
+		2a8519ae048 : fec (a: cPokemon):System.Boolean
+		2a8519ae0a0 : fed ():System.Void
+	base class
+2a851132840 : DSSock.hz
+	static fields
+	fields
+		10 : pdh (type: DSSock)
+		18 : pdi (type: UnityEngine.GameObject)
+	methods
+		2a8519ae110 : .ctor ():System.Void
+		2a8519ae168 : fee (a: System.Int32):System.Void
+	base class
+2a8511329c0 : DSSock.ia
+	static fields
+	fields
+		10 : pdj (type: DSSock)
+		18 : pdk (type: System.Int32)
+	methods
+		2a8519ae1e0 : .ctor ():System.Void
+		2a8519ae238 : fef ():System.Boolean
+		2a8519ae290 : feg ():System.Boolean
+	base class
+2a851132b40 : DSSock.ib
+	static fields
+	fields
+		10 : pdl (type: System.UInt64)
+		18 : pdm (type: System.Int32)
+	methods
+		2a8519ae300 : .ctor ():System.Void
+		2a8519ae358 : feh (a: cPokemon):System.Boolean
+		2a8519ae3b0 : fei (a: DSSock.hd):System.Boolean
+	base class
+2a851132cc0 : DSSock.ie
+	static fields
+	fields
+		10 : pds (type: System.Func<Cysharp.Threading.Tasks.crq>)
+	methods
+		2a8519ae4f0 : .ctor ():System.Void
+		2a8519ae548 : fej ():Cysharp.Threading.Tasks.crq
+	base class
+2a851ab0850 : DSSock.ie.ic
+	static fields
+	fields
+		10 : pdn (type: System.Int32)
+		18 : pdo (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pdp (type: DSSock.ie)
+		30 : pdq (type: Cysharp.Threading.Tasks.cry.crx)
+		38 : pdr (type: Cysharp.Threading.Tasks.crq.con)
+	methods
+		2a8519ae428 : MoveNext ():System.Void
+		2a8519ae480 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a851132e40 : DSSock.ig
+	static fields
+	fields
+		10 : pdx (type: System.Action)
+	methods
+		2a8519ae678 : .ctor ():System.Void
+		2a8519ae6d0 : fek ():Cysharp.Threading.Tasks.crq
+	base class
+2a851ab09f0 : DSSock.ig.if
+	static fields
+	fields
+		10 : pdt (type: System.Int32)
+		18 : pdu (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pdv (type: DSSock.ig)
+		30 : pdw (type: Cysharp.Threading.Tasks.cry.crx)
+	methods
+		2a8519ae5b0 : MoveNext ():System.Void
+		2a8519ae608 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a851132fc0 : DSSock.ih
+	static fields
+	fields
+		10 : pdy (type: System.String[])
+		18 : pdz (type: DSSock)
+	methods
+		2a8519ae738 : .ctor ():System.Void
+		2a8519ae790 : fel (a: DSSock.ii&):System.String
+	base class
+2a851133140 : DSSock.ii
+	static fields
+	fields
+		10 : pea (type: System.Int32)
+	methods
+	base class
+2a8511332c0 : DSSock.ij
+	static fields
+	fields
+		10 : peb (type: System.UInt64)
+		18 : pec (type: cPokemon)
+	methods
+		2a8519ae808 : .ctor ():System.Void
+		2a8519ae860 : fem (a: cPokemon):System.Boolean
+		2a8519ae8b8 : fen ():System.Int32
+	base class
+2a851133440 : DSSock.ik
+	static fields
+	fields
+		10 : ped (type: cPokemon)
+	methods
+		2a8519ae928 : .ctor ():System.Void
+		2a8519ae980 : feo (a: cPokemon):System.Boolean
+	base class
+2a8511335c0 : DSSock.il
+	static fields
+	fields
+		10 : pee (type: System.UInt64)
+	methods
+		2a8519ae9f0 : .ctor ():System.Void
+		2a8519aea48 : fep (a: cPokemon):System.Boolean
+	base class
+2a851133740 : DSSock.im
+	static fields
+	fields
+		10 : pef (type: System.Single)
+		14 : peg (type: System.Boolean)
+		15 : peh (type: System.Boolean)
+		16 : pei (type: System.Boolean)
+		18 : pej (type: DSSock.ih)
+	methods
+		2a8519aeab8 : .ctor ():System.Void
+		2a8519aeb10 : feq ():System.Void
+	base class
+2a8511338c0 : DSSock.in
+	static fields
+	fields
+		10 : pek (type: System.String)
+	methods
+		2a8519aeb78 : .ctor ():System.Void
+		2a8519aebd0 : fer (a: DSSock.hd):System.Boolean
+	base class
+2a851133a40 : DSSock.io
+	static fields
+	fields
+		10 : pel (type: DSSock)
+		18 : pem (type: UIButtonColor.bh[])
+	methods
+		2a8519aec40 : .ctor ():System.Void
+		2a8519aec98 : fes (a: YesNoBox; b: System.Boolean):System.Void
+	base class
+2a851133bc0 : DSSock.iq
+	static fields
+	fields
+		10 : pen (type: DSSock)
+		18 : peo (type: System.String)
+	methods
+		2a8519aed10 : .ctor ():System.Void
+		2a8519aed68 : fet ():System.Boolean
+	base class
+2a851133d40 : DSSock.ir
+	static fields
+	fields
+		10 : pep (type: System.Int32)
+		18 : peq (type: DSSock)
+	methods
+		2a7b299fdc0 : .ctor ():System.Void
+		2a7b299fe18 : feu ():System.Void
+	base class
+2a851138030 : DSSock.is
+	static fields
+	fields
+		10 : per (type: System.Int32)
+		18 : pes (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pet (type: DSSock)
+		30 : peu (type: UIPanel)
+		38 : pev (type: System.Single)
+		3c : pew (type: Cysharp.Threading.Tasks.cry.crx)
+	methods
+		2a8519aedd0 : MoveNext ():System.Void
+		2a8519aee28 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a8511381d0 : DSSock.it
+	static fields
+	fields
+		10 : pex (type: System.Int32)
+		18 : pey (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pez (type: DSSock)
+		30 : pfa (type: UIPanel)
+		38 : pfb (type: System.Single)
+		3c : pfc (type: Cysharp.Threading.Tasks.cry.crx)
+	methods
+		2a8519aee98 : MoveNext ():System.Void
+		2a8519aeef0 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a851138370 : DSSock.iu
+	static fields
+	fields
+		10 : pfd (type: System.Int32)
+		18 : pfe (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pff (type: DSSock)
+		30 : pfg (type: System.String)
+		38 : pfh (type: DSSock.ih)
+		40 : pfi (type: DSSock.ii)
+		48 : pfj (type: DSSock.ij)
+		50 : pfk (type: DSSock.il)
+		58 : pfl (type: System.Boolean)
+		59 : pfm (type: System.Boolean)
+		5a : pfn (type: System.Boolean)
+		60 : pfo (type: Cysharp.Threading.Tasks.crq.con)
+		70 : pfp (type: UnityEngine.Transform)
+		78 : pfq (type: System.String[])
+		80 : pfr (type: System.Int32)
+		84 : pfs (type: System.Int32)
+		88 : pft (type: Cysharp.Threading.Tasks.crv.cru<System.Threading.CancellationTokenSource>)
+		a0 : pfu (type: Cysharp.Threading.Tasks.crv.cru<System.Boolean>)
+	methods
+		2a8519aef60 : MoveNext ():System.Void
+		2a8519aefb8 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a851138510 : DSSock.iv
+	static fields
+	fields
+		10 : pfv (type: System.Int32)
+		18 : pfw (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pfx (type: DSSock)
+		30 : pfy (type: Cysharp.Threading.Tasks.crq.con)
+	methods
+		2a8519af028 : MoveNext ():System.Void
+		2a8519af080 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a8511386b0 : DSSock.iw
+	static fields
+	fields
+		10 : pfz (type: System.Int32)
+		18 : pga (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pgb (type: DSSock)
+		30 : pgc (type: System.String)
+		38 : pgd (type: Cysharp.Threading.Tasks.crq.con)
+	methods
+		2a7b7af8a98 : MoveNext ():System.Void
+		2a7b7af8af0 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a851138850 : DSSock.ix
+	static fields
+	fields
+		10 : pge (type: System.Int32)
+		18 : pgf (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pgg (type: DSSock)
+		30 : pgh (type: System.String)
+		38 : pgi (type: Cysharp.Threading.Tasks.crq.con)
+		48 : pgj (type: Cysharp.Threading.Tasks.crv.cru<System.String>)
+	methods
+		2a7b7af9048 : MoveNext ():System.Void
+		2a7b7af90a0 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a8511389f0 : DSSock.iy
+	static fields
+	fields
+		10 : pgk (type: System.Int32)
+		18 : pgl (type: Cysharp.Threading.Tasks.CompilerServices.dab)
+		20 : pgm (type: System.String)
+		28 : pgn (type: DSSock)
+		30 : pgo (type: UIScrollView)
+		38 : pgp (type: UIGrid)
+		40 : pgq (type: Cysharp.Threading.Tasks.cry.crx)
+	methods
+		2a7b7af6e68 : MoveNext ():System.Void
+		2a7b7af6ec0 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a851138b90 : DSSock.iz
+	static fields
+	fields
+		10 : pgr (type: System.Int32)
+		18 : pgs (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pgt (type: DSSock)
+		30 : pgu (type: System.String)
+		38 : pgv (type: System.Single)
+		40 : pgw (type: Cysharp.Threading.Tasks.crq.con)
+		50 : pgx (type: Cysharp.Threading.Tasks.cry.crx)
+	methods
+		2a8519af0f0 : MoveNext ():System.Void
+		2a8519af148 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a851138d30 : DSSock.ja
+	static fields
+	fields
+		10 : pgy (type: System.Int32)
+		18 : pgz (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pha (type: DSSock)
+		30 : phb (type: DSSock.ia)
+		38 : phc (type: System.String)
+		40 : phd (type: System.Single)
+		48 : phe (type: Cysharp.Threading.Tasks.crq.con)
+		58 : phf (type: Cysharp.Threading.Tasks.cry.crx)
+	methods
+		2a8519af1b8 : MoveNext ():System.Void
+		2a8519af210 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a851138ed0 : DSSock.jb
+	static fields
+	fields
+		10 : phg (type: System.Int32)
+		18 : phh (type: System.Object)
+		20 : phi (type: System.Single)
+		28 : phj (type: DSSock)
+		30 : phk (type: System.Int32)
+	methods
+		2a8519af298 : .ctor (a: System.Int32):System.Void
+		2a8519af348 : MoveNext ():System.Boolean
+		2a8519af2f0 : fev ():System.Void
+		2a8519af3a0 : few ():System.Object
+		2a8519af3f8 : fey ():System.Object
+	base class
+2a851139090 : DSSock.jc
+	static fields
+	fields
+		10 : phl (type: System.Int32)
+		18 : phm (type: Cysharp.Threading.Tasks.CompilerServices.daa<System.Boolean>)
+		30 : phn (type: DSSock)
+		38 : pho (type: System.String)
+		40 : php (type: System.Boolean)
+		48 : phq (type: System.Threading.CancellationToken)
+		50 : phr (type: Cysharp.Threading.Tasks.crv.cru<System.Boolean>)
+	methods
+		2a8519af468 : MoveNext ():System.Void
+		2a8519af4c0 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a851139230 : DSSock.jd
+	static fields
+	fields
+		10 : phs (type: System.Int32)
+		18 : pht (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : phu (type: DSSock)
+		30 : phv (type: System.Collections.Generic.List<System.String>)
+		38 : phw (type: System.Collections.Generic.Dictionary.Enumerator<System.UInt64,System.Int32>)
+		60 : phx (type: Cysharp.Threading.Tasks.crq.con)
+	methods
+		2a8519af530 : MoveNext ():System.Void
+		2a8519af588 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a8511393d0 : DSSock.je
+	static fields
+	fields
+		10 : phy (type: System.Int32)
+		18 : phz (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pia (type: DSSock)
+		30 : pib (type: System.Threading.CancellationToken)
+		38 : pic (type: Cysharp.Threading.Tasks.crv.cru<System.String>)
+	methods
+		2a8519af5f8 : MoveNext ():System.Void
+		2a8519af650 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a851139570 : DSSock.jf
+	static fields
+	fields
+		10 : pid (type: System.Int32)
+		18 : pie (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pif (type: DSSock)
+		30 : pig (type: System.String)
+		38 : pih (type: DSSock.hy)
+		40 : pii (type: System.String[])
+		48 : pij (type: Cysharp.Threading.Tasks.crq.con)
+	methods
+		2a8519af6c0 : MoveNext ():System.Void
+		2a8519af718 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a851139710 : DSSock.jg
+	static fields
+	fields
+		10 : pik (type: System.Int32)
+		18 : pil (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pim (type: DSSock)
+		30 : pin (type: Cysharp.Threading.Tasks.crq.con)
+	methods
+		2a8519af788 : MoveNext ():System.Void
+		2a8519af7e0 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a8511398b0 : DSSock.jh
+	static fields
+	fields
+		10 : pio (type: System.Int32)
+		18 : pip (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : piq (type: DSSock)
+		30 : pir (type: System.Collections.Generic.IEnumerable<DSSock.hd>)
+		38 : pis (type: System.Threading.CancellationToken)
+		40 : pit (type: DSSock.hd[])
+		48 : piu (type: System.Int32)
+		50 : piv (type: UIScrollView)
+		58 : piw (type: System.Int32)
+		60 : pix (type: Cysharp.Threading.Tasks.crq.con)
+	methods
+		2a8519af850 : MoveNext ():System.Void
+		2a8519af8a8 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a851139a50 : DSSock.ji
+	static fields
+	fields
+		10 : piy (type: System.Int32)
+		18 : piz (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pja (type: DSSock)
+		30 : pjb (type: System.Collections.Generic.IEnumerable<DSSock.hd>)
+		38 : pjc (type: Cysharp.Threading.Tasks.crq.con)
+	methods
+		2a8519af918 : MoveNext ():System.Void
+		2a8519af970 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a851139bf0 : DSSock.jj
+	static fields
+	fields
+		10 : pjd (type: System.Int32)
+		18 : pje (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pjf (type: System.UInt64)
+		30 : pjg (type: DSSock)
+		38 : pjh (type: System.String)
+		40 : pji (type: System.Int32)
+		48 : pjj (type: DSSock.hu)
+		50 : pjk (type: Cysharp.Threading.Tasks.crv.cru<System.Nullable<System.Int32>>)
+		68 : pjl (type: Cysharp.Threading.Tasks.crv.cru<System.String>)
+		80 : pjm (type: Cysharp.Threading.Tasks.crq.con)
+	methods
+		2a8519af9e0 : MoveNext ():System.Void
+		2a8519afa38 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a851139d90 : DSSock.jk
+	static fields
+	fields
+		10 : pjn (type: System.Int32)
+		18 : pjo (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pjp (type: DSSock)
+		30 : pjq (type: System.String)
+		38 : pjr (type: System.Boolean)
+		3c : pjs (type: System.Int32)
+		40 : pjt (type: Cysharp.Threading.Tasks.crv.cru<System.Nullable<System.UInt64>>)
+		60 : pju (type: Cysharp.Threading.Tasks.crq.con)
+	methods
+		2a8519afaa8 : MoveNext ():System.Void
+		2a8519afb00 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a7b0612ae0 : DSSockNetwork
+	static fields
+		0 : psf (type: System.TimeSpan)
+		8 : psg (type: System.TimeSpan)
+		10 : psh (type: System.Byte[])
+		18 : ptj (type: System.Single)
+	fields
+		20 : LoginProgress (type: UnityEngine.GameObject)
+		28 : LoginProgressTxt (type: UILabel)
+		30 : LoginProgressLog (type: UILabel)
+		38 : LoginRetryButton (type: UnityEngine.GameObject)
+		40 : LoginCancelButton (type: UnityEngine.GameObject)
+		48 : LoginCloseButton (type: UnityEngine.GameObject)
+		50 : ReconnectIconHandler (type: ReconnectIconHandler)
+		58 : FakeDcInput (type: UIInput)
+		60 : <psi>k__BackingField (type: System.Net.IPAddress)
+		68 : <psj>k__BackingField (type: System.String)
+		70 : <psk>k__BackingField (type: System.Int32)
+		78 : psl (type: System.Net.Sockets.TcpClient)
+		80 : psm (type: System.Net.Sockets.NetworkStream)
+		88 : psn (type: System.Threading.CancellationTokenSource)
+		90 : pso (type: Utils.vk)
+		98 : psp (type: System.Threading.CancellationTokenSource)
+		a0 : psq (type: System.String)
+		a8 : psr (type: System.Single)
+		b0 : pss (type: System.Collections.Generic.Queue<System.ValueTuple<System.UInt64,System.Single,System.Byte[],System.Int32>>)
+		b8 : pst (type: System.UInt64)
+		c0 : psu (type: System.UInt64)
+		c8 : psv (type: System.UInt64)
+		d0 : psw (type: System.Single)
+		d8 : psx (type: System.Collections.Generic.List<System.String>)
+		e0 : psy (type: DSSockNetwork.jl)
+		e8 : psz (type: System.Threading.CancellationTokenSource)
+		f0 : pta (type: System.Int32)
+		f4 : ptb (type: System.Boolean)
+		f8 : ptc (type: System.Text.RegularExpressions.Regex)
+		100 : ptd (type: System.Diagnostics.Stopwatch)
+		108 : pte (type: Cysharp.Threading.Tasks.crq)
+		118 : ptf (type: System.Threading.CancellationTokenSource)
+		120 : ptg (type: System.Threading.CancellationTokenSource)
+		128 : pth (type: System.Collections.Generic.Dictionary<System.String,Cysharp.Threading.Tasks.cte<System.String>>[])
+		130 : Chunk (type: mo)
+		138 : <pti>k__BackingField (type: System.Boolean)
+	methods
+		2a7b02be428 : .cctor ():System.Void
+		2a7b02be3d0 : .ctor ():System.Void
+		2a7b02bd0e8 : Awake ():System.Void
+		2a7b02be110 : CancelLoginButton ():System.Void
+		2a7b02be168 : CloseLoginWindow ():System.Void
+		2a7b02bd820 : FakeDC_NGUI ():System.Void
+		2a7b02bd458 : LoginGold ():System.Void
+		2a7b02bd560 : LoginLocal ():System.Void
+		2a7b02bd5b8 : LoginRetry ():System.Void
+		2a7b02bd400 : LoginSilver ():System.Void
+		2a7b02bd4b0 : LoginTest ():System.Void
+		2a7b02bd508 : LoginTest2 ():System.Void
+		2a7b02bdcf0 : SendPacket (str: Utils.vc):System.Void
+		2a7b02bd140 : Start ():System.Void
+		2a7b02bcc70 : fmb ():DSSock
+		2a7b02bccc8 : fmc ():System.Net.IPAddress
+		2a7b02bcd20 : fmd (a: System.Net.IPAddress):System.Void
+		2a7b02bcd78 : fme ():System.String
+		2a7b02bcdd0 : fmf (a: System.String):System.Void
+		2a7b02bce28 : fmg ():System.Int32
+		2a7b02bce80 : fmh (a: System.Int32):System.Void
+		2a7b02bced8 : fmi ():System.Boolean
+		2a7b02bcf30 : fmj ():System.Boolean
+		2a7b02bcf88 : fmk ():System.Boolean
+		2a7b02bcfe0 : fml ():System.Boolean
+		2a7b02bd038 : fmm ():System.Boolean
+		2a7b02bd090 : fmn (a: System.Boolean):System.Void
+		2a7b02bd198 : fmo (a: System.String):System.Void
+		2a7b02bd1f0 : fmp ():System.Void
+		2a7b02bd248 : fmq (a: System.String):System.Void
+		2a7b02bd2a0 : fmr ():System.Void
+		2a7b02bd2f8 : fms (a: System.Threading.CancellationToken):Cysharp.Threading.Tasks.crq
+		2a7b02bd350 : fmt (a: System.Collections.Generic.IReadOnlyList<Utils.vl>; b: System.Threading.CancellationToken):Cysharp.Threading.Tasks.crq
+		2a7b02bd3a8 : fmu (a: System.Threading.CancellationToken):Cysharp.Threading.Tasks.crq
+		2a7b02bd610 : fmv (a: System.String; b: System.Int32):Cysharp.Threading.Tasks.crq
+		2a7b02bd668 : fmw (a: System.String; b: System.String):System.Void
+		2a7b02bd6c0 : fmx ():System.Void
+		2a7b02bd718 : fmy (a: System.Threading.CancellationTokenSource):Cysharp.Threading.Tasks.crq
+		2a7b02bd770 : fmz (a: System.Threading.CancellationTokenSource):Cysharp.Threading.Tasks.crq
+		2a7b02bd7c8 : fna (a: System.Threading.CancellationToken):Cysharp.Threading.Tasks.crq
+		2a7b02bd878 : fnb (a: System.TimeSpan):System.Void
+		2a7b02bd8d0 : fnc (a: System.String; b: DSSockNetwork.jm; c: System.Threading.CancellationToken):Cysharp.Threading.Tasks.crv<System.String>
+		2a7b02bd928 : fnd (a: Cysharp.Threading.Tasks.crq; b: System.TimeSpan; c: System.Threading.CancellationToken):Cysharp.Threading.Tasks.crq
+		2a7b02bd980 : fne (a: Cysharp.Threading.Tasks.crv<a>; b: System.TimeSpan; c: System.Threading.CancellationToken):Cysharp.Threading.Tasks.crv<a>
+		2a7b02bd9d8 : fnf (a: System.TimeSpan; b: System.Threading.CancellationToken):Cysharp.Threading.Tasks.crq
+		2a7b02bda30 : fng (a: System.String; b: System.String; c: DSSockNetwork.jm):System.Void
+		2a7b02bda88 : fnh ():System.Void
+		2a7b02bdae0 : fni (a: System.Net.IPAddress; b: System.Int32; c: System.Threading.CancellationToken):Cysharp.Threading.Tasks.crq
+		2a7b02bdb38 : fnj (a: System.Threading.CancellationTokenSource):Cysharp.Threading.Tasks.crq
+		2a7b02bdb90 : fnk (a: System.Span<System.Byte>; b: System.ReadOnlySpan<System.Byte>):System.Int32
+		2a7b02bdbe8 : fnl ():System.Void
+		2a7b02bdc40 : fnm (a: System.Single; b: System.String):System.Void
+		2a7b02bdc98 : fnn (a: System.ReadOnlySpan<System.Byte>):System.Boolean
+		2a7b02bdd48 : fno (a: System.Int32):System.Void
+		2a7b02bdda0 : fnp (a: System.Byte[]; b: System.Int32):System.Void
+		2a7b02bddf8 : fnq (a: System.String; b: System.Text.Encoding):System.Void
+		2a7b02bde50 : fnr (a: System.Byte[]; b: System.Int32; c: System.Text.Encoding):System.String
+		2a7b02bdea8 : fns (a: System.String):System.String
+		2a7b02bdf00 : fnt (a: System.ReadOnlySpan<System.Byte>; b: System.Text.Encoding):System.Void
+		2a7b02bdf58 : fnu (a: System.String):System.Void
+		2a7b02bdfb0 : fnv (a: System.Byte[]; b: System.Int32):System.Void
+		2a7b02be008 : fnw ():System.Void
+		2a7b02be060 : fnx ():System.Void
+		2a7b02be0b8 : fny ():System.Void
+		2a7b02be1c0 : fnz (a: System.String):System.Void
+		2a7b02be218 : foa (a: System.UInt64; b: System.Single):System.Void
+		2a7b02be270 : fob (a: System.Int32; b: System.String):System.Void
+		2a7b02be2c8 : foc (a: System.UInt64):System.Void
+		2a7b02be320 : fod ():System.Void
+		2a7b02be378 : foe ():System.Void
+		2a7b02be480 : fof ():System.Boolean
+		2a7b02be4d8 : fog ():System.Boolean
+		2a7b02be530 : foh ():System.Void
+	base class
+2a851180a30 : DSSockNetwork.<>c
+	static fields
+		0 : <>9 (type: DSSockNetwork.<>c)
+		8 : <>9__75_0 (type: System.Func<Utils.vl,System.String>)
+		10 : <>9__124_0 (type: System.Func<System.Int32,System.Collections.Generic.Dictionary<System.String,Cysharp.Threading.Tasks.cte<System.String>>>)
+	fields
+	methods
+		2a851176b60 : .cctor ():System.Void
+		2a851176bb8 : .ctor ():System.Void
+		2a851176c10 : fls (a: Utils.vl):System.String
+		2a851176c68 : flt (a: System.Int32):System.Collections.Generic.Dictionary<System.String,Cysharp.Threading.Tasks.cte<System.String>>
+	base class
+2a8511804d0 : DSSockNetwork.jl
+	static fields
+	fields
+		10 : value__ (type: System.Int32)
+	methods
+	base class
+2a851180780 : DSSockNetwork.jm
+	static fields
+	fields
+		10 : value__ (type: System.Int32)
+	methods
+	base class
+2a851180bb0 : DSSockNetwork.jn
+	static fields
+	fields
+		10 : pnj (type: DSSockNetwork)
+		18 : pnk (type: System.String)
+	methods
+		2a8519afb70 : .ctor ():System.Void
+		2a8519afbc8 : flu ():System.Void
+	base class
+2a851180d30 : DSSockNetwork.jp
+	static fields
+	fields
+		10 : pnp (type: DSSockNetwork)
+		18 : pnq (type: Utils.vc)
+	methods
+		2a8519afcf8 : .ctor ():System.Void
+		2a8519afd50 : flv ():Cysharp.Threading.Tasks.crq
+	base class
+2a7b8295140 : DSSockNetwork.jp.jo
+	static fields
+	fields
+		10 : pnl (type: System.Int32)
+		18 : pnm (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pnn (type: DSSockNetwork.jp)
+		30 : pno (type: Cysharp.Threading.Tasks.csb.csa)
+	methods
+		2a8519afc30 : MoveNext ():System.Void
+		2a8519afc88 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a851180eb0 : DSSockNetwork.jq
+	static fields
+	fields
+		10 : pnr (type: DSSockNetwork)
+		18 : pns (type: System.Int32)
+	methods
+		2a8519afdb8 : .ctor ():System.Void
+		2a8519afe10 : flw ():System.Void
+	base class
+2a851181030 : DSSockNetwork.jr
+	static fields
+	fields
+		10 : pnt (type: System.Collections.Generic.Dictionary<System.String,Cysharp.Threading.Tasks.cte<System.String>>)
+		18 : pnu (type: System.String)
+		20 : pnv (type: Cysharp.Threading.Tasks.cte<System.String>)
+		28 : pnw (type: System.Threading.CancellationToken)
+	methods
+		2a7b4048a78 : .ctor ():System.Void
+		2a7b4048ad0 : flx ? - (System.ValueTuple<System.Boolean,System.String>):System.Boolean
+		2a7b4048b28 : fly ():System.Void
+	base class
+2a8511811b0 : DSSockNetwork.js
+	static fields
+	fields
+		10 : pnx (type: System.Net.Sockets.TcpClient)
+		18 : pny (type: System.Action)
+	methods
+		2a7b402de00 : .ctor ():System.Void
+		2a7b402de58 : flz ():System.Void
+		2a7b402deb0 : fma ():System.Void
+	base class
+2a851181330 : DSSockNetwork.jt
+	static fields
+	fields
+		10 : pnz (type: System.Int32)
+		18 : poa (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pob (type: System.Threading.CancellationTokenSource)
+		30 : poc (type: DSSockNetwork)
+		38 : pod (type: System.Byte[])
+		40 : poe (type: System.Int32)
+		48 : pof (type: System.Byte[])
+		50 : pog (type: Cysharp.Threading.Tasks.cod)
+		58 : poh (type: System.Threading.CancellationToken)
+		60 : poi (type: Cysharp.Threading.Tasks.crq.con)
+		70 : poj (type: System.Runtime.CompilerServices.TaskAwaiter<System.Int32>)
+	methods
+		2a7b4074b48 : MoveNext ():System.Void
+		2a7b4074ba0 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a8511814d0 : DSSockNetwork.ju
+	static fields
+	fields
+		10 : pok (type: System.Int32)
+		18 : pol (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pom (type: DSSockNetwork)
+		30 : pon (type: System.Threading.CancellationToken)
+		38 : poo (type: Cysharp.Threading.Tasks.crv.cru<System.Collections.Generic.IReadOnlyList<Utils.vl>>)
+		50 : pop (type: Cysharp.Threading.Tasks.crq.con)
+	methods
+		2a7b4020e58 : MoveNext ():System.Void
+		2a7b4020eb0 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a851181670 : DSSockNetwork.jv
+	static fields
+	fields
+		10 : poq (type: System.Int32)
+		18 : por (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pot (type: DSSockNetwork)
+		30 : pou (type: System.Collections.Generic.IReadOnlyList<Utils.vl>)
+		38 : pov (type: System.Threading.CancellationToken)
+		40 : pow (type: System.Int32)
+		48 : pox (type: System.Collections.Generic.IEnumerator<Utils.vl>)
+		50 : poy (type: System.Threading.CancellationTokenSource)
+		58 : poz (type: System.IDisposable)
+		60 : ppa (type: System.Boolean)
+		68 : ppb (type: Cysharp.Threading.Tasks.crq.con)
+	methods
+		2a7b4026a58 : MoveNext ():System.Void
+		2a7b4026ab0 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a851181810 : DSSockNetwork.jw
+	static fields
+	fields
+		10 : ppc (type: System.Int32)
+		18 : ppd (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : ppe (type: System.Net.IPAddress)
+		30 : ppf (type: System.Threading.CancellationToken)
+		38 : ppg (type: System.Int32)
+		40 : pph (type: DSSockNetwork.js)
+		48 : ppi (type: DSSockNetwork)
+		50 : ppj (type: System.Net.Sockets.NetworkStream)
+		58 : ppk (type: System.Byte[])
+		60 : ppl (type: System.Int32)
+		68 : ppm (type: System.Runtime.CompilerServices.TaskAwaiter)
+		70 : ppn (type: System.Runtime.CompilerServices.TaskAwaiter<System.Int32>)
+		78 : ppo (type: DSSock)
+		80 : ppp (type: Cysharp.Threading.Tasks.crv.cru<UnityEngine.Texture2D>)
+	methods
+		2a7b402c138 : MoveNext ():System.Void
+		2a7b402c190 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a8511819b0 : DSSockNetwork.jx
+	static fields
+	fields
+		10 : ppq (type: System.Int32)
+		18 : ppr (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pps (type: System.Int32)
+		30 : ppt (type: DSSockNetwork)
+		38 : ppu (type: System.String)
+		40 : ppv (type: System.String)
+		48 : ppw (type: System.String)
+		50 : ppx (type: System.Threading.CancellationToken)
+		58 : ppy (type: System.Object)
+		60 : ppz (type: System.Int32)
+		68 : pqa (type: Cysharp.Threading.Tasks.crq.con)
+		78 : pqb (type: Cysharp.Threading.Tasks.crv.cru<System.Boolean>)
+	methods
+		2a7b401f7d0 : MoveNext ():System.Void
+		2a7b401f828 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a851181b50 : DSSockNetwork.jy
+	static fields
+	fields
+		10 : pqc (type: System.Int32)
+		18 : pqd (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pqe (type: DSSockNetwork)
+		30 : pqf (type: System.Threading.CancellationTokenSource)
+		38 : pqg (type: Cysharp.Threading.Tasks.crv.cru<System.ValueTuple<System.Boolean,System.ValueTuple<System.Int32,System.String,System.String>>>)
+	methods
+		2a7b40418b8 : MoveNext ():System.Void
+		2a7b4041910 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a851181cf0 : DSSockNetwork.jz
+	static fields
+	fields
+		10 : pqh (type: System.Int32)
+		18 : pqi (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pqj (type: System.Threading.CancellationToken)
+		30 : pqk (type: DSSockNetwork)
+		38 : pql (type: Cysharp.Threading.Tasks.crq.con)
+		48 : pqm (type: Cysharp.Threading.Tasks.crv.cru<System.Collections.Generic.IReadOnlyList<Utils.vl>>)
+	methods
+		2a7b2ae16a8 : MoveNext ():System.Void
+		2a7b2ae1700 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a851181e90 : DSSockNetwork.ka
+	static fields
+	fields
+		10 : pqn (type: System.Int32)
+		18 : pqo (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pqp (type: DSSockNetwork)
+		30 : pqq (type: System.Threading.CancellationTokenSource)
+		38 : pqr (type: Cysharp.Threading.Tasks.crv.cru<System.ValueTuple<System.Boolean,System.String>>)
+	methods
+		2a8519afe78 : MoveNext ():System.Void
+		2a8519afed0 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a851182030 : DSSockNetwork.kb
+	static fields
+	fields
+		10 : pqs (type: System.Int32)
+		18 : pqt (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pqu (type: DSSockNetwork)
+		30 : pqv (type: System.Threading.CancellationToken)
+		38 : pqw (type: Cysharp.Threading.Tasks.crv.cru<System.Boolean>)
+	methods
+		2a8519aff40 : MoveNext ():System.Void
+		2a8519aff98 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a8511821d0 : DSSockNetwork.kc
+	static fields
+	fields
+		10 : pqx (type: System.Int32)
+		18 : pqy (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pqz (type: DSSockNetwork)
+		30 : pra (type: Cysharp.Threading.Tasks.crq)
+		40 : prb (type: System.TimeSpan)
+		48 : prc (type: System.Threading.CancellationToken)
+		50 : prd (type: Cysharp.Threading.Tasks.crv.cru<Cysharp.Threading.Tasks.ckt>)
+	methods
+		2a8519b0008 : MoveNext ():System.Void
+		2a8519b0060 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a7b0612940 : DSSockNetwork.kd<a>
+	static fields
+	fields
+		0 : pre (type: System.Int32)
+		0 : prf (type: Cysharp.Threading.Tasks.CompilerServices.daa<a>)
+		0 : prg (type: System.TimeSpan)
+		0 : prh (type: System.Threading.CancellationToken)
+		0 : pri (type: DSSockNetwork)
+		0 : prj (type: Cysharp.Threading.Tasks.crv<a>)
+		0 : prk (type: System.Threading.CancellationTokenSource)
+		0 : prl (type: Cysharp.Threading.Tasks.crv.cru<System.ValueTuple<System.Boolean,a>>)
+	methods
+		2a7b02b4b80 : MoveNext ():System.Void
+		2a7b02b4bd8 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a851182370 : DSSockNetwork.ke
+	static fields
+	fields
+		10 : prm (type: System.Int32)
+		18 : prn (type: Cysharp.Threading.Tasks.CompilerServices.czz)
+		28 : pro (type: DSSockNetwork)
+		30 : prp (type: System.Threading.CancellationToken)
+		38 : prq (type: System.TimeSpan)
+		40 : prr (type: System.Diagnostics.Stopwatch)
+		48 : prs (type: Cysharp.Threading.Tasks.crq.con)
+	methods
+		2a7b7ddac80 : MoveNext ():System.Void
+		2a7b7ddacd8 : SetStateMachine (stateMachine: System.Runtime.CompilerServices.IAsyncStateMachine):System.Void
+	base class
+2a851182510 : DSSockNetwork.kf
+	static fields
+	fields
+		10 : prt (type: System.Int32)
