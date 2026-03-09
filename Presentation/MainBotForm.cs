@@ -56,7 +56,22 @@ namespace Presentation
 
         private void LoadGame()
         {
-            UpdateGameLoaded(_proMemoryManager.LoadGame());
+            var (success, error) = _proMemoryManager.LoadGame();
+            if (!success)
+            {
+                var processList = string.Join(", ",
+                    Process.GetProcesses()
+                        .Select(p => p.ProcessName)
+                        .Distinct()
+                        .OrderBy(n => n));
+                string message = (error ?? "Game could not be loaded.") +
+                    $"\n\nRunning processes:\n{processList}";
+                UpdateGameLoaded(false, message);
+            }
+            else
+            {
+                UpdateGameLoaded(true);
+            }
         }
 
         private void HandleUncaughtException(object? sender, ThreadExceptionEventArgs e)

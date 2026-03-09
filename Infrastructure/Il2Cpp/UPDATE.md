@@ -139,11 +139,9 @@ These are the values `verify_layout.js` checks against. If they match, no update
 
 ### "The agent sends back `ok: false`"
 
-The agent script itself failed to find a class or field. Check the Frida log for the error
-string returned in `layout.error`. The class or field name changed — go to Step 2.
+The agent script itself failed to find a class or field. Check the Frida log for the error string returned in `layout.error`. The class or field name changed — go to Step 2.
 
 ### "Build fails after changing Il2CppRpcAgent.js"
 
-The `.js` file is not compiled by C#. A build failure after editing it means another C# file
-has an issue (e.g. you also changed `Il2CppLayout.cs`). Compile errors come from C#, not the JS.
+The `.js` file is not compiled by C#. A build failure after editing it means another C# file has an issue (e.g. you also changed `Il2CppLayout.cs`). Compile errors come from C#, not the JS.
 

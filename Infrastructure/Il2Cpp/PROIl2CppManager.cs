@@ -82,7 +82,10 @@ public sealed class PROIl2CppManager : IAsyncDisposable
     /// Synchronous wrapper around <see cref="LoadGameAsync"/> for call sites
     /// (e.g. WinForms event handlers) that cannot use <see langword="await"/>.
     /// </summary>
-    public bool LoadGame()
+    /// <returns>
+    ///   A tuple of success flag and an optional error message.
+    /// </returns>
+    public (bool success, string? error) LoadGame()
         => Task.Run(() => LoadGameAsync()).GetAwaiter().GetResult();
 
     /// <summary>
@@ -90,24 +93,24 @@ public sealed class PROIl2CppManager : IAsyncDisposable
     /// The agent stays resident until <see cref="DisposeAsync"/> is called.
     /// </summary>
     /// <returns>
-    ///   <see langword="true"/> on success;
-    ///   <see langword="false"/> if the game is not running or setup fails.
+    ///   A tuple: <see langword="true"/> and <see langword="null"/> on success;
+    ///   <see langword="false"/> and an error message if the game is not running or setup fails.
     /// </returns>
     /// <remarks>
     /// Safe to call repeatedly — re-uses the existing session if the game is
     /// still running and the channel is connected.
     /// </remarks>
-    public async Task<bool> LoadGameAsync(CancellationToken ct = default)
+    public async Task<(bool success, string? error)> LoadGameAsync(CancellationToken ct = default)
     {
-        if (IsGameOpened) return true;
+        if (IsGameOpened) return (true, null);
 
         await _initLock.WaitAsync(ct).ConfigureAwait(false);
         try
         {
-            if (IsGameOpened) return true; // double-checked
+            if (IsGameOpened) return (true, null); // double-checked
 
             Process? proc = Process.GetProcessesByName(ProcessName).FirstOrDefault();
-            if (proc is null) return false;
+            if (proc is null) return (false, $"Process '{ProcessName}' was not found.");
 
             // Dispose any stale channel from a previous session.
             if (_channel is not null)
@@ -121,11 +124,13 @@ public sealed class PROIl2CppManager : IAsyncDisposable
 
             _channel = channel;
             _process = proc;
-            return true;
+            _process.EnableRaisingEvents = true;
+            _process.Exited += (_, _) => _channel = null;
+            return (true, null);
         }
-        catch
+        catch (Exception ex)
         {
-            return false;
+            return (false, ex.Message);
         }
         finally
         {

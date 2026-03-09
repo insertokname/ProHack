@@ -83,7 +83,8 @@ internal sealed class FridaChannel : IAsyncDisposable
 
             string path = Path.Combine(FolderManager.LocalDownloads(), "Frida.dll");
 
-            if (!File.Exists(path))
+            bool sizeMatches = File.Exists(path) && new FileInfo(path).Length == src.Length;
+            if (!sizeMatches)
             {
                 using FileStream dst = File.Open(
                     path, FileMode.Create, FileAccess.Write, FileShare.ReadWrite);

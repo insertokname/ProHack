@@ -63,8 +63,7 @@
   </ItemGroup>
 
   <Target Name="CheckFridaDllEmbedded" BeforeTargets="Build">
-    <Warning Condition="'@(_FridaDllCandidates)' == ''"
-             Text="Frida.dll not found in the NuGet global cache ('$(_FridaDllGlob)'). Run 'dotnet restore'." />
+    <Warning Condition="'@(_FridaDllCandidates)' == ''" Text="Frida.dll not found in the NuGet global cache ('$(_FridaDllGlob)'). Run 'dotnet restore'." />
   </Target>
 
 </Project>

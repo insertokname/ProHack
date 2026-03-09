@@ -9,7 +9,7 @@ namespace Infrastructure
     {
         public static string LocalDownloads()
         {
-            var tmp = Path.Combine(Environment.CurrentDirectory, "LocalDownloads");
+            var tmp = Path.Combine(AppContext.BaseDirectory, "LocalDownloads");
             if (!Directory.Exists(tmp))
             {
                 Directory.CreateDirectory(tmp);
