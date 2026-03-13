@@ -776,6 +776,7 @@
             MainMenuStrip = menuStrip1;
             MaximizeBox = false;
             Name = "MainBotForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "PROHack";
             Load += Form1_Load;
             botStartLayoutPanel.ResumeLayout(false);

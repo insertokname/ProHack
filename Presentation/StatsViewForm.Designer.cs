@@ -275,6 +275,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "StatsViewForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Stats";
             Load += StatsView_Load;
             tableLayoutPanel5.ResumeLayout(false);

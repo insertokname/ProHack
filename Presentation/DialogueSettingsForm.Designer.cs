@@ -107,6 +107,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "DialogueSettingsForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Dialogue Settings";
             Load += DialogueSettings_Load;
             ((System.ComponentModel.ISupportInitialize)trackBar1).EndInit();

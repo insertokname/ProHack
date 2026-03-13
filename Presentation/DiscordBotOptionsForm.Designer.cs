@@ -256,6 +256,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "DiscordBotOptionsForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Discord Bot Settings";
             Load += DiscordBotOptions_Load;
             ResumeLayout(false);

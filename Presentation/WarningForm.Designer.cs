@@ -139,6 +139,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "WarningForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "WARNING";
             ResumeLayout(false);
             PerformLayout();

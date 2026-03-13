@@ -369,6 +369,7 @@
             MaximizeBox = false;
             MinimumSize = new Size(608, 521);
             Name = "PokemonSelectForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Pokemon Select";
             Load += PokemonSelect_Load;
             KeyDown += PokemonSelect_KeyDown;

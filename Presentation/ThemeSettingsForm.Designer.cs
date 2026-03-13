@@ -110,6 +110,7 @@
             Margin = new Padding(5);
             MaximizeBox = false;
             Name = "ThemeSettingsForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Theme Settings";
             Load += ThemeSettingsForm_Load;
             ResumeLayout(false);

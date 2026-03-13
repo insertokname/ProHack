@@ -179,6 +179,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "UpdateRequestForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Update Request";
             Load += UpdateRequestForm_Load;
             tableLayoutPanel1.ResumeLayout(false);

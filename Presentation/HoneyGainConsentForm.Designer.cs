@@ -202,6 +202,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "HoneyGainConsentForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Honeygain accept";
             Load += HoneyGainConsentForm_Load;
             ResumeLayout(false);

@@ -109,6 +109,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "PrivacyPolicyAcceptForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Privacy Policy";
             Load += PrivacyPolicyForm_Load;
             ResumeLayout(false);

@@ -90,6 +90,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "LoadingForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Loading";
             Load += Startup_Load;
             ResumeLayout(false);

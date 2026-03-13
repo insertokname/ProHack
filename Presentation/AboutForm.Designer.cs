@@ -118,6 +118,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "AboutForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "About";
             Load += AboutForm_Load;
             ResumeLayout(false);

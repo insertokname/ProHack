@@ -165,6 +165,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "UpdateSettingsForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Update Settings";
             Load += UpdateSettingsForm_Load;
             ResumeLayout(false);
