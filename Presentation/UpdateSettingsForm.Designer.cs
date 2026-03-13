@@ -150,7 +150,7 @@
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(326, 224);
+            ClientSize = new Size(326, 226);
             Controls.Add(button2);
             Controls.Add(greenLimeThemeComponent1);
             Controls.Add(progressBar1);

@@ -84,13 +84,15 @@ namespace Presentation
             var show = Database.Tables.ShowBuyMeACoffee && Database.Tables.LoginCount > 4;
             dontShowBuyMeACoffeeButton.Visible = show;
             dontShowBuyMeACoffeeButton.Enabled = show;
-            if (show)
+            pictureBox1.Visible = show;
+            dontShowBuyMeACoffeeButton.Visible = show;
+            label5.Visible = show;
+            if (!show)
             {
-                Size = new Size(554, 794);
-            }
-            else
-            {
-                Size = new Size(554, 741);
+                var dist = ClientSize.Height - retryButton.Location.Y - retryButton.Size.Height - 10;
+                var size = this.Size;
+                size.Height -= dist;
+                this.Size = size;
             }
         }
 

@@ -134,7 +134,7 @@
             retryButton.FlatStyle = FlatStyle.Flat;
             retryButton.Font = new Font("Cascadia Code", 18F, FontStyle.Bold);
             retryButton.ForeColor = Color.FromArgb(152, 151, 26);
-            retryButton.Location = new Point(12, 613);
+            retryButton.Location = new Point(10, 613);
             retryButton.Name = "retryButton";
             retryButton.Size = new Size(514, 77);
             retryButton.TabIndex = 4;

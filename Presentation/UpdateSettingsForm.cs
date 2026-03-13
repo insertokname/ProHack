@@ -19,6 +19,9 @@ namespace Presentation
 
         private async void button1_Click(object sender, EventArgs e)
         {
+            int dist;
+            Size size;
+
             if (isUpdating)
             {
                 return;
@@ -43,7 +46,11 @@ namespace Presentation
                     goto Cleanup;
                 }
             }
-            Size = new Size(342, 306);
+
+            dist = Math.Abs(ClientSize.Height - progressBar1.Location.Y - progressBar1.Size.Height - 10);
+            size = this.Size;
+            size.Height += dist;
+            this.Size = size;
             progressBar1.Value = 0;
             progressBar1.Style = ProgressBarStyle.Continuous;
             var progress = new Progress<double>(value =>
@@ -70,7 +77,11 @@ namespace Presentation
             await UpdateAndReboot(curVersionPath, newVersionPath);
 
         Cleanup:
-            Size = new Size(342, 263);
+            dist = Math.Abs(ClientSize.Height - progressBar1.Location.Y + 10);
+            size = this.Size;
+            size.Height -= dist;
+            this.Size = size;
+
             updateManager.Dispose();
             button1.Enabled = true;
             isUpdating = false;
