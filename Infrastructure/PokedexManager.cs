@@ -90,6 +90,11 @@ namespace Infrastructure
             var entries = JsonSerializer.Deserialize<List<PokedexModel.PokedexEntryModel>>(content, options)
                 ?? throw new Exception("Couldn't parse pokedex json!");
 
+            foreach (var entry in entries)
+            {
+                entry.Name = entry.DisplayName ?? entry.Name;
+            }
+
             return new PokedexModel { Entries = entries };
         }
 

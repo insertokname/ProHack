@@ -49,6 +49,8 @@ namespace Presentation
             IdNumeric.Visible = !CatchAnythingCheckbox.Checked;
             PokemonNameLabel.Visible = !CatchAnythingCheckbox.Checked;
             PokemonNameComboBox.Visible = !CatchAnythingCheckbox.Checked;
+            OtherFormsComboBox.Visible = !CatchAnythingCheckbox.Checked;
+            OtherFormsLabel.Visible = !CatchAnythingCheckbox.Checked;
             UpdateDisplay();
         }
 
@@ -90,6 +92,22 @@ namespace Presentation
                 if (tmp != null && IdNumeric.Value != tmp.ID)
                 {
                     IdNumeric.Value = tmp.ID;
+                }
+            }
+        }
+
+        private void OtherFormsComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            var item = OtherFormsComboBox.SelectedItem as dynamic;
+            if (DialogResult.Yes == MessageBox.Show(
+                $"Do you want to switch pokemon form to: {item?.Name}?",
+                "Switch form?",
+                MessageBoxButtons.YesNo))
+            {
+                var id = item?.ID;
+                if (id is int idInt)
+                {
+                    IdNumeric.Value = idInt;
                 }
             }
         }
@@ -186,7 +204,7 @@ namespace Presentation
             }
         }
 
-        private void sSaveTargetsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SaveTargetsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new()
             {
@@ -241,6 +259,24 @@ namespace Presentation
                 return;
             }
             PokemonNameComboBox.SelectedItem = entry;
+            var list = entry.LinkedDexEntries?
+                .Select(lde =>
+                {
+                    var linkedPkmn =
+                        _pokedexManager?
+                        .Pokedex?
+                        .Entries
+                        .FirstOrDefault(p => p.ID == lde);
+
+                    return new
+                    {
+                        Name = linkedPkmn?.Name ?? lde.ToString(),
+                        ID = lde
+                    };
+                })
+                .ToList();
+            OtherFormsComboBox.DisplayMember = "Name";
+            OtherFormsComboBox.DataSource = list;
 
             if (MustBeEventCheckbox.Checked || MustBeShinyCheckbox.Checked)
             {

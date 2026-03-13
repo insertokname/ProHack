@@ -48,6 +48,8 @@
             PokemonNameLabel = new Label();
             PokemonNameComboBox = new ComboBox();
             greenLimeThemeComponent1 = new Infrastructure.Theme.ThemeApplier();
+            OtherFormsLabel = new Label();
+            OtherFormsComboBox = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)IdNumeric).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             menuStrip1.SuspendLayout();
@@ -293,7 +295,7 @@
             saveTargetsToolStripMenuItem.Size = new Size(172, 22);
             saveTargetsToolStripMenuItem.Tag = "FontSize=S";
             saveTargetsToolStripMenuItem.Text = "Save targets";
-            saveTargetsToolStripMenuItem.Click += sSaveTargetsToolStripMenuItem_Click;
+            saveTargetsToolStripMenuItem.Click += SaveTargetsToolStripMenuItem_Click;
             // 
             // PokemonNameLabel
             // 
@@ -302,7 +304,7 @@
             PokemonNameLabel.BackColor = Color.FromArgb(40, 40, 40);
             PokemonNameLabel.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             PokemonNameLabel.ForeColor = Color.FromArgb(152, 151, 26);
-            PokemonNameLabel.Location = new Point(191, 155);
+            PokemonNameLabel.Location = new Point(191, 129);
             PokemonNameLabel.Name = "PokemonNameLabel";
             PokemonNameLabel.Size = new Size(112, 18);
             PokemonNameLabel.TabIndex = 31;
@@ -317,7 +319,7 @@
             PokemonNameComboBox.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             PokemonNameComboBox.ForeColor = Color.FromArgb(152, 151, 26);
             PokemonNameComboBox.FormattingEnabled = true;
-            PokemonNameComboBox.Location = new Point(345, 152);
+            PokemonNameComboBox.Location = new Point(345, 126);
             PokemonNameComboBox.Name = "PokemonNameComboBox";
             PokemonNameComboBox.Size = new Size(235, 25);
             PokemonNameComboBox.TabIndex = 32;
@@ -340,11 +342,44 @@
             greenLimeThemeComponent1.Text = "greenLimeThemeComponent1";
             greenLimeThemeComponent1.Visible = false;
             // 
+            // OtherFormsLabel
+            // 
+            OtherFormsLabel.Anchor = AnchorStyles.Bottom;
+            OtherFormsLabel.AutoSize = true;
+            OtherFormsLabel.BackColor = Color.FromArgb(40, 40, 40);
+            OtherFormsLabel.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            OtherFormsLabel.ForeColor = Color.FromArgb(152, 151, 26);
+            OtherFormsLabel.Location = new Point(191, 157);
+            OtherFormsLabel.Name = "OtherFormsLabel";
+            OtherFormsLabel.Size = new Size(104, 18);
+            OtherFormsLabel.TabIndex = 33;
+            OtherFormsLabel.Tag = "FontSize=S";
+            OtherFormsLabel.Text = "Other forms:";
+            OtherFormsLabel.Visible = false;
+            // 
+            // OtherFormsComboBox
+            // 
+            OtherFormsComboBox.BackColor = Color.FromArgb(40, 40, 40);
+            OtherFormsComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            OtherFormsComboBox.FlatStyle = FlatStyle.Flat;
+            OtherFormsComboBox.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            OtherFormsComboBox.ForeColor = Color.FromArgb(152, 151, 26);
+            OtherFormsComboBox.FormattingEnabled = true;
+            OtherFormsComboBox.Location = new Point(345, 154);
+            OtherFormsComboBox.Name = "OtherFormsComboBox";
+            OtherFormsComboBox.Size = new Size(235, 25);
+            OtherFormsComboBox.TabIndex = 34;
+            OtherFormsComboBox.Tag = "FontSize=S;";
+            OtherFormsComboBox.Visible = false;
+            OtherFormsComboBox.SelectionChangeCommitted += OtherFormsComboBox_SelectionChangeCommitted;
+            // 
             // PokemonSelectForm
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(592, 811);
+            Controls.Add(OtherFormsComboBox);
+            Controls.Add(OtherFormsLabel);
             Controls.Add(PokemonNameComboBox);
             Controls.Add(PokemonNameLabel);
             Controls.Add(greenLimeThemeComponent1);
@@ -402,5 +437,7 @@
         private Label PokemonNameLabel;
         private ComboBox PokemonNameComboBox;
         private Infrastructure.Theme.ThemeApplier greenLimeThemeComponent1;
+        private Label OtherFormsLabel;
+        private ComboBox OtherFormsComboBox;
     }
 }
