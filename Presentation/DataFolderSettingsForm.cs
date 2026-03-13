@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Presentation
 {
-    public partial class DataFolderSettings : Form
+    public partial class DataFolderSettingsForm : Form
     {
-        public DataFolderSettings()
+        public DataFolderSettingsForm()
         {
             InitializeComponent();
         }

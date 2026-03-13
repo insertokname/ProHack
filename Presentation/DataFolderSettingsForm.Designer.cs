@@ -1,6 +1,6 @@
 ﻿namespace Presentation
 {
-    partial class DataFolderSettings
+    partial class DataFolderSettingsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataFolderSettingsForm));
             label1 = new Label();
             textBox1 = new TextBox();
             button1 = new Button();
@@ -91,7 +92,7 @@
             themeApplier1.Text = "themeApplier1";
             themeApplier1.Visible = false;
             // 
-            // DataFolderSettings
+            // DataFolderSettingsForm
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -103,10 +104,12 @@
             Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
             ForeColor = Color.FromArgb(152, 151, 26);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(5);
             MaximizeBox = false;
-            Name = "DataFolderSettings";
-            Text = "DataFolderSettings";
+            Name = "DataFolderSettingsForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Data folder settings";
             Load += DataFolderSettings_Load;
             ResumeLayout(false);
             PerformLayout();

@@ -409,7 +409,7 @@ namespace Presentation
 
         private void dataFolderSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DataFolderSettings dataFolderSettings = new();
+            DataFolderSettingsForm dataFolderSettings = new();
             dataFolderSettings.ShowDialog();
         }
 
