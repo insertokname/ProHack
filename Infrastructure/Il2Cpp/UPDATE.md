@@ -4,14 +4,9 @@
 
 The agent uses a **hybrid offset strategy** to survive obfuscator name mangling:
 
-- **Stable fields** (`Console`, `OtherPoke`, `TargetPos`, `TextList`, `onChange`)
-  are discovered **by name** at runtime via the IL2CPP reflection API. These have
-  human-readable names that never change.
+- **Stable fields** (`Console`, `OtherPoke`, `TargetPos`, `TextList`, `onChange`) are discovered **by name** at runtime via the IL2CPP reflection API. These have human-readable names that never change.
 
-- **Obfuscated fields** (`IsBattling`, `CurrentEncounterId`, `ShinyForm`, `EventForm`)
-  use **hardcoded DSSock-relative offsets** in `HARDCODED_OFFSETS`. These offsets
-  are stable across patches even when the obfuscator renames the fields — so
-  **no code change is needed** when only names are mangled.
+- **Obfuscated fields** (`IsBattling`, `CurrentEncounterId`, `ShinyForm`, `EventForm`) use **hardcoded DSSock-relative offsets** in `HARDCODED_OFFSETS`. These offsets are stable across patches even when the obfuscator renames the fields — so **no code change is needed** when only names are mangled.
 
 ---
 
@@ -22,9 +17,9 @@ frida -p <PID> -l .\Infrastructure\Il2Cpp\Diagnostics\verify_layout.js
 ```
 
 The script:
+
 1. Verifies that stable class/field names still resolve correctly.
-2. Cross-references hardcoded offsets against actual fields to confirm the
-   struct layout hasn't shifted.
+2. Cross-references hardcoded offsets against actual fields to confirm the struct layout hasn't shifted.
 3. Does a live read of all values using the same offsets as the agent.
 
 ### All `[+]` lines → done
@@ -52,29 +47,27 @@ Update the value in `CLASS_NAMES` or `NAMED_FIELDS`:
 
 ```js
 const CLASS_NAMES = {
-    DSSock:    "DSSock",
+    DSSock: "DSSock",
     ChatInput: "ChatInput",
-    UIWidget:  "UIWidget",
+    UIWidget: "UIWidget",
 };
 
 const NAMED_FIELDS = {
-    console:   "Console",
+    console: "Console",
     otherPoke: "OtherPoke",
     targetPos: "TargetPos",
-    textList:  "TextList",
-    onChange:  "onChange",
+    textList: "TextList",
+    onChange: "onChange",
 };
 ```
 
-These field names are human-readable and have been stable across every observed
-game patch. If one does change, update the string value on the right-hand side.
+These field names are human-readable and have been stable across every observed game patch. If one does change, update the string value on the right-hand side.
 
 ---
 
 ## Step 3 — Fix shifted struct layout (very rare)
 
-If `verify_layout.js` reports `[-]` on a hardcoded offset, the struct layout
-itself changed (fields were added, removed, or reordered).
+If `verify_layout.js` reports `[-]` on a hardcoded offset, the struct layout itself changed (fields were added, removed, or reordered).
 
 ### How to find new offsets
 
@@ -88,26 +81,26 @@ Then look up the new offsets in the dumps and update `HARDCODED_OFFSETS`:
 
 ```js
 const HARDCODED_OFFSETS = {
-    isBattling:         0x750,  // System.Boolean — direct DSSock field
-    currentEncounterId: 0x7D0,  // System.Int32   — OtherPoke + gw.field - 0x10
-    shinyForm:          0x7E0,  // System.Boolean — OtherPoke + gw.field - 0x10
-    eventForm:          0x7E4,  // System.Int32   — OtherPoke + gw.field - 0x10
+    isBattling: 0x750, // System.Boolean — direct DSSock field
+    currentEncounterId: 0x7d0, // System.Int32   — OtherPoke + gw.field - 0x10
+    shinyForm: 0x7e0, // System.Boolean — OtherPoke + gw.field - 0x10
+    eventForm: 0x7e4, // System.Int32   — OtherPoke + gw.field - 0x10
 };
 ```
 
 Formula for gw (value-type) fields:
+
 ```
 effective DSSock offset = OtherPoke offset + gw field offset − 0x10 (IL2CPP object header)
 ```
 
 ---
 
-## Step 4 — Verify the delegate offset (*could theoretically* change)
+## Step 4 — Verify the delegate offset (_could theoretically_ change)
 
 `DELEGATE_SELECTED_MENU_OFFSET = 0xA8`
 
-This offset only changes very rarely (Unity major-version upgrade). If
-`SelectedMenu` always reads as an impossible value (e.g. −1, −2, large integer) run:
+This offset only changes very rarely (Unity major-version upgrade). If `SelectedMenu` always reads as an impossible value (e.g. −1, −2, large integer) run:
 
 ```powershell
 frida -p <PID> -l .\Infrastructure\Il2Cpp\Diagnostics\find_onChange_delegate_fields.js
@@ -139,34 +132,78 @@ No manual copy step is required.
 
 ### Stable fields (discovered by name)
 
-| Class       | Field      | Expected offset |
-|-------------|------------|-----------------|
-| `DSSock`    | `Console`  | `0x458`         |
-| `DSSock`    | `OtherPoke`| `0x7D0`         |
-| `DSSock`    | `TargetPos`| `0x1A4`         |
-| `ChatInput` | `TextList` | `0x30`          |
+| Class       | Field       | Expected offset |
+| ----------- | ----------- | --------------- |
+| `DSSock`    | `Console`   | `0x458`         |
+| `DSSock`    | `OtherPoke` | `0x7D0`         |
+| `DSSock`    | `TargetPos` | `0x1A4`         |
+| `ChatInput` | `TextList`  | `0x30`          |
 | `UIWidget`  | `onChange`  | `0xB0`          |
 
 ### Hardcoded offsets (obfuscated fields — immune to name mangling)
 
-| Value              | DSSock-relative offset | Notes                              |
-|--------------------|------------------------|------------------------------------|
-| IsBattling         | `0x750`                | Direct DSSock field (System.Boolean)|
-| CurrentEncounterId | `0x7D0`                | Effective: OtherPoke+0x10−0x10     |
-| ShinyForm          | `0x7E0`                | Effective: OtherPoke+0x20−0x10     |
-| EventForm          | `0x7E4`                | Effective: OtherPoke+0x24−0x10     |
-| SelectedMenu       | `0xA8`                 | Inside UIWidget.di delegate        |
+| Value              | DSSock-relative offset | Notes                                |
+| ------------------ | ---------------------- | ------------------------------------ |
+| IsBattling         | `0x750`                | Direct DSSock field (System.Boolean) |
+| CurrentEncounterId | `0x7D0`                | Effective: OtherPoke+0x10−0x10       |
+| ShinyForm          | `0x7E0`                | Effective: OtherPoke+0x20−0x10       |
+| EventForm          | `0x7E4`                | Effective: OtherPoke+0x24−0x10       |
+| SelectedMenu       | `0xA8`                 | Inside UIWidget.di delegate          |
 
 ---
 
 ## Adding a new readable value
 
 1. Find the IL2CPP chain with a diagnostic script (use `verify_layout.js` as a template).
-2. If the field has a stable name → add to `NAMED_FIELDS` and discover it in `_discoverLayout()`.
-   If the field has an obfuscated name → add to `HARDCODED_OFFSETS` and use the offset directly.
+2. If the field has a stable name → add to `NAMED_FIELDS` and discover it in `_discoverLayout()`. If the field has an obfuscated name → add to `HARDCODED_OFFSETS` and use the offset directly.
 3. Read the value in `_readGameState()` in the agent.
 4. Expose the value from `GameStateSnapshot.cs` and `PROIl2CppManager.cs`.
 5. Update this document with the new field.
+
+---
+
+## Map screenshot (`map_screenshot` / `screenshot` command)
+
+The agent supports a `map_screenshot` command that captures a fully-composited PNG image of the current in-game map, including all four tile layers, collision overlays (walls, water, grass, ledge arrows), and a player marker.
+
+### How it works
+
+1. **C# side** — `PROIl2CppManager.CaptureMapScreenshotAsync()` sends
+   `{cmd:"map_screenshot"}` via `FridaChannel.MapScreenshotAsync()`.
+   The agent also accepts legacy `{cmd:"screenshot"}` as an alias.
+2. **Agent side** — the request is deferred to the next `DSSock.Update()` frame (GPU work must run on Unity's main thread). On the next frame the agent:
+    - Discovers the `MapCreator` fields (lazy, cached).
+    - Reads map dimensions, tile IDs, colliders from `MapCreator` fields.
+    - Copies each GPU-only tile-sheet texture to a readable `Texture2D` using `RenderTexture` + `ReadPixels` + `GetPixels32` (bulk read).
+    - Composites all tile layers at 16×16 px per tile.
+    - Draws collision/ledge/water/grass overlays and a player marker.
+    - Encodes to PNG and sends the result via `send(metadata, pngArrayBuffer)`.
+3. **C# side** — `FridaChannel.OnMessage` receives the JSON metadata plus the binary PNG attachment (`ScriptMessageEventArgs.Data`). The result is returned as a `MapScreenshot` record struct.
+
+### Performance
+
+The previous diagnostic script (`read_map_v2.js`) made ~800 K individual `GetPixel` il2cpp_runtime_invoke calls, freezing the game for ~5 seconds. The integrated version uses `GetPixels32` for bulk reads (~20 calls total), reducing the freeze to ~300-600 ms.
+
+### Map screenshot offsets (offset-first for reliability)
+
+Map screenshot now uses hardcoded offsets in `MAP_HARDCODED_OFFSETS` for all MapCreator internals that are likely to be obfuscated. This avoids breakage when field names are mangled by updates.
+
+| Value                      | Offset  | Notes                                    |
+| -------------------------- | ------- | ---------------------------------------- |
+| `DSSock.MapCreator`        | `0x1E8` | Pointer to current `MapCreator` instance |
+| `MapCreator.Width`         | `0x140` | Map width in tiles                       |
+| `MapCreator.Height`        | `0x144` | Map height in tiles                      |
+| `MapCreator.Tiles`         | `0x150` | Tile layer 0 (ground)                    |
+| `MapCreator.Tiles2`        | `0x158` | Tile layer 1                             |
+| `MapCreator.Tiles3`        | `0x160` | Tile layer 2                             |
+| `MapCreator.Tiles4`        | `0x168` | Tile layer 3 (top)                       |
+| `MapCreator.Colliders`     | `0x170` | Collision grid                           |
+| `MapCreator.Links`         | `0x178` | Warp/link grid                           |
+| `MapCreator.MapName`       | `0x180` | Map name string                          |
+| `MapCreator.MaxTileSheets` | `0x198` | Number of tile sheets                    |
+| `MapCreator.Material[]`    | `0x1A8` | Tile material array                      |
+
+If `verify_layout.js` reports that any of these offsets no longer map to a field, the struct layout shifted and `MAP_HARDCODED_OFFSETS` must be updated.
 
 ---
 
@@ -174,15 +211,10 @@ No manual copy step is required.
 
 ### "The agent sends back `ok: false`"
 
-The agent script itself failed to find a class or field. Check the Frida log for
-the error string returned in `layout.error`. A stable field name changed — go to Step 2.
+The agent script itself failed to find a class or field. Check the Frida log for the error string returned in `layout.error`. A stable field name changed — go to Step 2.
 
-**Note:** Obfuscated field renames can no longer cause this error since those
-fields use hardcoded offsets. This error now only occurs if a stable class or
-field name (DSSock, Console, OtherPoke, etc.) is renamed.
+**Note:** Obfuscated field renames can no longer cause this error since those fields use hardcoded offsets. This error now only occurs if a stable class or field name (DSSock, Console, OtherPoke, etc.) is renamed.
 
 ### "Build fails after changing Il2CppRpcAgent.js"
 
-The `.js` file is not compiled by C#. A build failure after editing it means
-another C# file has an issue. Compile errors come from C#, not the JS.
-
+The `.js` file is not compiled by C#. A build failure after editing it means another C# file has an issue. Compile errors come from C#, not the JS.

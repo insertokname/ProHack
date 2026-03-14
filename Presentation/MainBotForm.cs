@@ -105,6 +105,8 @@ namespace Presentation
                 gameLabel.ForeColor = Constants.GameStatus.FOUND_COLOR;
                 UpdateRegisteredPoints();
                 selectPokemonButton.Visible = true;
+                takeScreenshotOfMapToolStripMenuItem.Visible = true;
+                pathingToolStripMenuItem.Visible = true;
             }
             else
             {
@@ -115,6 +117,8 @@ namespace Presentation
                 UpdateRegisteredPoints();
                 registerPositionButton.Visible = false;
                 selectPokemonButton.Visible = false;
+                takeScreenshotOfMapToolStripMenuItem.Visible = false;
+                pathingToolStripMenuItem.Visible = false;
             }
 
             if (errorMessage != null)
@@ -341,12 +345,7 @@ namespace Presentation
 
         private void test1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (statsView == null)
-            {
-                statsView = new StatsViewForm();
-                statsView.Show();
-                statsView.FormClosed += (s, e) => { statsView = null; };
-            }
+
         }
 
         private void timeSinceStartedTimer_Tick(object sender, EventArgs e)
@@ -423,6 +422,32 @@ namespace Presentation
         {
             AboutForm aboutForm = new();
             aboutForm.ShowDialog();
+        }
+
+        private void viewStatsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (statsView == null)
+            {
+                statsView = new StatsViewForm();
+                statsView.Show();
+                statsView.FormClosed += (s, e) => { statsView = null; };
+            }
+        }
+
+        private void takeScreenshotOfMapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MapScreenshotForm mapScreenshotForm = new MapScreenshotForm(_proMemoryManager);
+            Hide();
+            mapScreenshotForm.ShowDialog();
+            Show();
+        }
+
+        private void pathingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PathingForm pathingForm = new(_proMemoryManager);
+            Hide();
+            pathingForm.ShowDialog();
+            Show();
         }
     }
 }

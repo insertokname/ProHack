@@ -60,6 +60,9 @@
             selectPokemonButton = new Button();
             menuStrip1 = new MenuStrip();
             test1ToolStripMenuItem = new ToolStripMenuItem();
+            viewStatsToolStripMenuItem = new ToolStripMenuItem();
+            takeScreenshotOfMapToolStripMenuItem = new ToolStripMenuItem();
+            pathingToolStripMenuItem = new ToolStripMenuItem();
             dialogueSettingsToolStripMenuItem = new ToolStripMenuItem();
             dataFolderSettingsToolStripMenuItem = new ToolStripMenuItem();
             dialogueSettingsToolStripMenuItem1 = new ToolStripMenuItem();
@@ -548,13 +551,44 @@
             // test1ToolStripMenuItem
             // 
             test1ToolStripMenuItem.BackColor = Color.FromArgb(40, 40, 40);
+            test1ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { viewStatsToolStripMenuItem, takeScreenshotOfMapToolStripMenuItem, pathingToolStripMenuItem });
             test1ToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             test1ToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
             test1ToolStripMenuItem.Name = "test1ToolStripMenuItem";
-            test1ToolStripMenuItem.Size = new Size(100, 22);
+            test1ToolStripMenuItem.Size = new Size(60, 22);
             test1ToolStripMenuItem.Tag = "FontSize=S";
-            test1ToolStripMenuItem.Text = "View Stats";
+            test1ToolStripMenuItem.Text = "Tools";
             test1ToolStripMenuItem.Click += test1ToolStripMenuItem_Click;
+            // 
+            // viewStatsToolStripMenuItem
+            // 
+            viewStatsToolStripMenuItem.BackColor = Color.FromArgb(40, 40, 40);
+            viewStatsToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            viewStatsToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
+            viewStatsToolStripMenuItem.Name = "viewStatsToolStripMenuItem";
+            viewStatsToolStripMenuItem.Size = new Size(252, 22);
+            viewStatsToolStripMenuItem.Text = "View Stats";
+            viewStatsToolStripMenuItem.Click += viewStatsToolStripMenuItem_Click;
+            // 
+            // takeScreenshotOfMapToolStripMenuItem
+            // 
+            takeScreenshotOfMapToolStripMenuItem.BackColor = Color.FromArgb(40, 40, 40);
+            takeScreenshotOfMapToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            takeScreenshotOfMapToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
+            takeScreenshotOfMapToolStripMenuItem.Name = "takeScreenshotOfMapToolStripMenuItem";
+            takeScreenshotOfMapToolStripMenuItem.Size = new Size(252, 22);
+            takeScreenshotOfMapToolStripMenuItem.Text = "Take screenshot of map";
+            takeScreenshotOfMapToolStripMenuItem.Click += takeScreenshotOfMapToolStripMenuItem_Click;
+            // 
+            // pathingToolStripMenuItem
+            // 
+            pathingToolStripMenuItem.BackColor = Color.FromArgb(40, 40, 40);
+            pathingToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            pathingToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
+            pathingToolStripMenuItem.Name = "pathingToolStripMenuItem";
+            pathingToolStripMenuItem.Size = new Size(252, 22);
+            pathingToolStripMenuItem.Text = "Pathing";
+            pathingToolStripMenuItem.Click += pathingToolStripMenuItem_Click;
             // 
             // dialogueSettingsToolStripMenuItem
             // 
@@ -752,7 +786,7 @@
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(538, 755);
+            ClientSize = new Size(538, 754);
             Controls.Add(pictureBox1);
             Controls.Add(greenLimeThemeComponent1);
             Controls.Add(dontShowBuyMeACoffeeButton);
@@ -843,5 +877,8 @@
         private ToolStripMenuItem dataFolderSettingsToolStripMenuItem;
         private ToolStripMenuItem honeyGainSettings;
         private ToolStripMenuItem aboutMenuItem;
+        private ToolStripMenuItem viewStatsToolStripMenuItem;
+        private ToolStripMenuItem takeScreenshotOfMapToolStripMenuItem;
+        private ToolStripMenuItem pathingToolStripMenuItem;
     }
 }

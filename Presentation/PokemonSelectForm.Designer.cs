@@ -47,9 +47,9 @@
             saveTargetsToolStripMenuItem = new ToolStripMenuItem();
             PokemonNameLabel = new Label();
             PokemonNameComboBox = new ComboBox();
-            greenLimeThemeComponent1 = new Infrastructure.Theme.ThemeApplier();
             OtherFormsLabel = new Label();
             OtherFormsComboBox = new ComboBox();
+            greenLimeThemeComponent1 = new Infrastructure.Theme.ThemeApplier();
             ((System.ComponentModel.ISupportInitialize)IdNumeric).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             menuStrip1.SuspendLayout();
@@ -113,9 +113,10 @@
             pictureBox1.ForeColor = Color.FromArgb(152, 151, 26);
             pictureBox1.Image = Properties.Resources.any;
             pictureBox1.Location = new Point(12, 191);
+            pictureBox1.MaximumSize = new Size(568, 390);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(568, 390);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
             // 
@@ -242,7 +243,7 @@
             // 
             label1.Anchor = AnchorStyles.Bottom;
             label1.BackColor = Color.FromArgb(40, 40, 40);
-            label1.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
+            label1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
             label1.ForeColor = Color.FromArgb(152, 151, 26);
             label1.Location = new Point(12, 26);
             label1.Name = "label1";
@@ -281,7 +282,7 @@
             openFileToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             openFileToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
             openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            openFileToolStripMenuItem.Size = new Size(172, 22);
+            openFileToolStripMenuItem.Size = new Size(180, 22);
             openFileToolStripMenuItem.Tag = "FontSize=S";
             openFileToolStripMenuItem.Text = "Open targets";
             openFileToolStripMenuItem.Click += OpenFileToolStripMenuItem_Click;
@@ -292,7 +293,7 @@
             saveTargetsToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             saveTargetsToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
             saveTargetsToolStripMenuItem.Name = "saveTargetsToolStripMenuItem";
-            saveTargetsToolStripMenuItem.Size = new Size(172, 22);
+            saveTargetsToolStripMenuItem.Size = new Size(180, 22);
             saveTargetsToolStripMenuItem.Tag = "FontSize=S";
             saveTargetsToolStripMenuItem.Text = "Save targets";
             saveTargetsToolStripMenuItem.Click += SaveTargetsToolStripMenuItem_Click;
@@ -314,6 +315,7 @@
             // 
             // PokemonNameComboBox
             // 
+            PokemonNameComboBox.Anchor = AnchorStyles.Bottom;
             PokemonNameComboBox.BackColor = Color.FromArgb(40, 40, 40);
             PokemonNameComboBox.FlatStyle = FlatStyle.Flat;
             PokemonNameComboBox.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
@@ -327,20 +329,6 @@
             PokemonNameComboBox.Visible = false;
             PokemonNameComboBox.SelectedIndexChanged += PokemonNameComboBox_SelectedIndexChanged;
             PokemonNameComboBox.Click += PokemonNameComboBox_Click;
-            // 
-            // greenLimeThemeComponent1
-            // 
-            greenLimeThemeComponent1.BackColor = Color.FromArgb(40, 40, 40);
-            greenLimeThemeComponent1.Enabled = false;
-            greenLimeThemeComponent1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
-            greenLimeThemeComponent1.ForeColor = Color.FromArgb(152, 151, 26);
-            greenLimeThemeComponent1.Location = new Point(0, 0);
-            greenLimeThemeComponent1.Name = "greenLimeThemeComponent1";
-            greenLimeThemeComponent1.Size = new Size(10, 10);
-            greenLimeThemeComponent1.TabIndex = 30;
-            greenLimeThemeComponent1.TabStop = false;
-            greenLimeThemeComponent1.Text = "greenLimeThemeComponent1";
-            greenLimeThemeComponent1.Visible = false;
             // 
             // OtherFormsLabel
             // 
@@ -359,6 +347,7 @@
             // 
             // OtherFormsComboBox
             // 
+            OtherFormsComboBox.Anchor = AnchorStyles.Bottom;
             OtherFormsComboBox.BackColor = Color.FromArgb(40, 40, 40);
             OtherFormsComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             OtherFormsComboBox.FlatStyle = FlatStyle.Flat;
@@ -372,6 +361,20 @@
             OtherFormsComboBox.Tag = "FontSize=S;";
             OtherFormsComboBox.Visible = false;
             OtherFormsComboBox.SelectionChangeCommitted += OtherFormsComboBox_SelectionChangeCommitted;
+            // 
+            // greenLimeThemeComponent1
+            // 
+            greenLimeThemeComponent1.BackColor = Color.FromArgb(40, 40, 40);
+            greenLimeThemeComponent1.Enabled = false;
+            greenLimeThemeComponent1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            greenLimeThemeComponent1.ForeColor = Color.FromArgb(152, 151, 26);
+            greenLimeThemeComponent1.Location = new Point(0, 0);
+            greenLimeThemeComponent1.Name = "greenLimeThemeComponent1";
+            greenLimeThemeComponent1.Size = new Size(10, 10);
+            greenLimeThemeComponent1.TabIndex = 30;
+            greenLimeThemeComponent1.TabStop = false;
+            greenLimeThemeComponent1.Text = "greenLimeThemeComponent1";
+            greenLimeThemeComponent1.Visible = false;
             // 
             // PokemonSelectForm
             // 
@@ -436,8 +439,8 @@
         private ToolStripMenuItem saveTargetsToolStripMenuItem;
         private Label PokemonNameLabel;
         private ComboBox PokemonNameComboBox;
-        private Infrastructure.Theme.ThemeApplier greenLimeThemeComponent1;
         private Label OtherFormsLabel;
         private ComboBox OtherFormsComboBox;
+        private Infrastructure.Theme.ThemeApplier greenLimeThemeComponent1;
     }
 }

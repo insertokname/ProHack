@@ -38,6 +38,7 @@ public readonly record struct GameStateSnapshot(
     bool             IsBattling,
     int              ShinyForm,
     int              EventForm,
+    string           MapName,
     float            PlayerX,
     float            PlayerY)
 {
@@ -62,6 +63,7 @@ public readonly record struct GameStateSnapshot(
         int   isBattlingRaw,
         int   shinyForm,
         int   eventForm,
+        string mapName,
         float playerX,
         float playerY)
         => new(
@@ -70,10 +72,11 @@ public readonly record struct GameStateSnapshot(
             IsBattling:         isBattlingRaw != 0,
             ShinyForm:          shinyForm,
             EventForm:          eventForm,
+            MapName:            mapName,
             PlayerX:            playerX,
             PlayerY:            playerY);
 
     /// <inheritdoc/>
     public override string ToString()
-        => $"[Menu={SelectedMenu} Battling={IsBattling} EncId={CurrentEncounterId} Shiny={ShinyForm} Event={EventForm} Pos=({PlayerX},{PlayerY})]";
+        => $"[Map={MapName} Menu={SelectedMenu} Battling={IsBattling} EncId={CurrentEncounterId} Shiny={ShinyForm} Event={EventForm} Pos=({PlayerX},{PlayerY})]";
 }

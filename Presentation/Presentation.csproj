@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="PathingForm.cs" />
     <Compile Update="PrivacyPolicyForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -57,12 +58,9 @@
     is neither bundled a second time inside PROHack.exe (wasting 65 MB) nor copied as a
     loose file to the publish folder.
   -->
-  <Target Name="ExcludeFridaDllFromSingleFile"
-          BeforeTargets="_ComputeResolvedFilesToPublishTypes;_ComputeFilesToBundle"
-          Condition="'$(PublishSingleFile)' == 'true'">
+  <Target Name="ExcludeFridaDllFromSingleFile" BeforeTargets="_ComputeResolvedFilesToPublishTypes;_ComputeFilesToBundle" Condition="'$(PublishSingleFile)' == 'true'">
     <ItemGroup>
-      <ResolvedFileToPublish Remove="@(ResolvedFileToPublish)"
-                             Condition="'%(Filename)%(Extension)' == 'Frida.dll'" />
+      <ResolvedFileToPublish Remove="@(ResolvedFileToPublish)" Condition="'%(Filename)%(Extension)' == 'Frida.dll'" />
     </ItemGroup>
   </Target>
 

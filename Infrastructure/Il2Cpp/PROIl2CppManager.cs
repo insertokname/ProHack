@@ -203,6 +203,118 @@ public sealed class PROIl2CppManager : IAsyncDisposable
 
     /// <summary>Player tile position as a <see cref="PointF"/>.</summary>
     public PointF PlayerPos => new(PlayerXPos, PlayerYPos);
+
+    // ── Public API — map screenshot ──────────────────────────────────────────
+
+    /// <summary>
+    /// Captures a fully-composited PNG screenshot of the current in-game map.
+    /// </summary>
+    /// <remarks>
+    /// <para>
+    /// The agent reads tile-sheet textures directly from GPU memory using Unity's
+    /// <c>GetPixels32</c> (bulk read, ~20 calls instead of ~800 K individual
+    /// <c>GetPixel</c> calls), composites all four tile layers plus collision
+    /// and ledge overlays, encodes to PNG, and transfers the bytes over Frida's
+    /// binary data channel.
+    /// </para>
+    /// <para>
+    /// GPU work runs on the next <c>DSSock.Update()</c> frame so the game is
+    /// only blocked for ~300-600 ms instead of the previous ~5 s.
+    /// </para>
+    /// </remarks>
+    /// <summary>
+    /// Captures a fully-composited map screenshot.
+    /// </summary>
+    /// <param name="mode">
+    /// <see cref="ScreenshotMode.Normal"/> (default) reads tile-sheet textures from the GPU
+    /// and renders all tile layers with proper sprites.<br/>
+    /// <see cref="ScreenshotMode.LowRes"/> skips all GPU work and returns a flat gray image
+    /// with collision/water/grass/ledge/link overlays in under 100 ms.
+    /// </param>
+    /// <returns>
+    /// A <see cref="MapScreenshot"/> containing raw RGBA pixels, tile metadata, and a
+    /// <see cref="MapScreenshot.Colliders"/> grid ready for BFS pathfinding.
+    /// </returns>
+    /// <exception cref="Il2CppAccessException">
+    ///   Not connected, the agent reported an error, or the capture timed out.
+    /// </exception>
+    public async Task<MapScreenshot> CaptureMapScreenshotAsync(
+        ScreenshotMode mode = ScreenshotMode.Normal,
+        CancellationToken ct = default)
+    {
+        FridaChannel channel = GetChannel();
+
+        var (meta, imgData) = await channel.MapScreenshotAsync(mode, ct).ConfigureAwait(false);
+
+        string mapName  = meta.GetProperty("mapName").GetString() ?? "unknown";
+        int    width    = meta.GetProperty("width").GetInt32();
+        int    height   = meta.GetProperty("height").GetInt32();
+        int    imgWidth = meta.GetProperty("imgWidth").GetInt32();
+        int    imgHeight= meta.GetProperty("imgHeight").GetInt32();
+        float  px       = (float)meta.GetProperty("playerX").GetDouble();
+        float  py       = (float)meta.GetProperty("playerY").GetDouble();
+
+        // Map origin: world tile coordinate of the [0,0] tile.
+        // Falls back to 0 if the agent couldn't find the StartX/StartY fields.
+        int startX = meta.TryGetProperty("startX", out var sxEl) ? sxEl.GetInt32() : 0;
+        int startY = meta.TryGetProperty("startY", out var syEl) ? syEl.GetInt32() : 0;
+
+        System.Diagnostics.Debug.WriteLine(
+            $"[MapScreenshot] {mapName} {width}x{height}  " +
+            $"playerWorld=({px:F2},{py:F2})  startXY=({startX},{startY})  " +
+            $"playerLocal=({px - startX:F2},{startY - py:F2})");
+
+        // Log per-phase timing so we can see exactly where time is spent.
+        if (meta.TryGetProperty("timing", out var t))
+        {
+            System.Diagnostics.Debug.WriteLine(
+                $"[MapScreenshot] {mapName} " +
+                $"mode={t.GetProperty("pixelReadMode").GetString()} " +
+                $"| init={t.GetProperty("initMs").GetInt32()}ms " +
+                $"| blit={t.GetProperty("blitMs").GetInt32()}ms " +
+                $"({t.GetProperty("blitNew").GetInt32()} new GPU, {t.GetProperty("blitCached").GetInt32()} cached) " +
+                $"| read_first={t.GetProperty("readFirstMs").GetInt32()}ms " +
+                $"read_rest={t.GetProperty("readRestMs").GetInt32()}ms ({t.GetProperty("readCount").GetInt32()} sheets) " +
+                $"[readPixels={t.GetProperty("sumReadPixelsMs").GetInt32()}ms " +
+                $"pixels={t.GetProperty("sumGP32Ms").GetInt32()}ms] " +
+                $"| buildTile={t.GetProperty("buildTileMs").GetInt32()}ms " +
+                $"render={t.GetProperty("renderMs").GetInt32()}ms");
+        }
+
+        // Decode the per-tile collider and link grids from base64.
+        // The agent sends them column-major (index = x * height + y), matching the game's layout.
+        byte[,]? colliders = DecodeGrid(meta, "colliders", width, height);
+        byte[,]? links     = DecodeGrid(meta, "links",     width, height);
+
+        return new MapScreenshot(mapName, width, height, imgWidth, imgHeight, px, py, startX, startY, imgData, colliders, links);
+    }
+
+    /// <summary>
+    /// Decodes a base64-encoded, column-major byte grid from a JSON element into a
+    /// <c>byte[width, height]</c> array indexed <c>[x, y]</c>.
+    /// Returns <see langword="null"/> when the property is absent or not a string.
+    /// </summary>
+    private static byte[,]? DecodeGrid(
+        System.Text.Json.JsonElement meta, string propertyName, int width, int height)
+    {
+        if (!meta.TryGetProperty(propertyName, out var el)
+            || el.ValueKind != System.Text.Json.JsonValueKind.String)
+            return null;
+
+        byte[] raw = Convert.FromBase64String(el.GetString()!);
+        var grid   = new byte[width, height];
+        int limit  = raw.Length;
+
+        for (int x = 0; x < width; x++)
+            for (int y = 0; y < height; y++)
+            {
+                int i = x * height + y;
+                if (i < limit) grid[x, y] = raw[i];
+            }
+
+        return grid;
+    }
+
     // ── IAsyncDisposable ──────────────────────────────────────────────────────
 
     /// <inheritdoc/>

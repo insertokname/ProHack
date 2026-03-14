@@ -43,7 +43,6 @@ namespace Infrastructure.Il2Cpp;
 /// </remarks>
 internal sealed class FridaChannel : IAsyncDisposable
 {
-    // ── Mixed-mode assembly resolver ─────────────────────────────────────────
     // Frida.dll (FridaCLR 17.x) is a mixed-mode C++/CLI assembly: .NET loads it
     // as a managed assembly. In a single-file
     // publish it is not bundled in the exe (excluded by the Presentation.csproj
@@ -124,7 +123,6 @@ internal sealed class FridaChannel : IAsyncDisposable
     private static string PickScriptName()
         => _moduleNamePool[_rng.Next(_moduleNamePool.Length)];
 
-    // ── Agent resource ────────────────────────────────────────────────────────
 
     private const string AgentResourceSuffix = "Il2Cpp.Agent.Il2CppRpcAgent.js";
 
@@ -142,7 +140,6 @@ internal sealed class FridaChannel : IAsyncDisposable
         return sr.ReadToEnd();
     }
 
-    // ── Persistent session state ──────────────────────────────────────────────
 
     private DeviceManager? _deviceManager; // must stay alive — owns the GLib event loop
     private Session?       _session;
@@ -154,10 +151,12 @@ internal sealed class FridaChannel : IAsyncDisposable
     // Pending reads: requestId → completion source for the data JsonElement.
     private readonly ConcurrentDictionary<int, TaskCompletionSource<JsonElement>> _pending = new();
 
+    // Pending screenshot requests: requestId → completion source for (metadata, imgBytes).
+    private readonly ConcurrentDictionary<int, TaskCompletionSource<(JsonElement Data, byte[] Img)>> _pendingScreenshots = new();
+
     // Set once by the agent's {cmd:"ready"} startup message.
     private TaskCompletionSource<bool>? _readyTcs;
 
-    // ── Public API ────────────────────────────────────────────────────────────
 
     /// <summary>
     /// <see langword="true"/> after <see cref="ConnectAsync"/> succeeds and
@@ -188,7 +187,6 @@ internal sealed class FridaChannel : IAsyncDisposable
 
         try
         {
-            // ── Attach + load ─────────────────────────────────────────────────
             // DeviceManager is stored as a field — disposing it would stop the GLib
             // event loop that delivers Frida messages, so it must remain alive.
             await Task.Run(() =>
@@ -203,7 +201,6 @@ internal sealed class FridaChannel : IAsyncDisposable
 
             }, ct).ConfigureAwait(false);
 
-            // ── Wait for {cmd:"ready"} from the agent ─────────────────────────
             using var linked = CancellationTokenSource.CreateLinkedTokenSource(ct);
             linked.CancelAfter(TimeSpan.FromSeconds(30));
             try
@@ -275,7 +272,50 @@ internal sealed class FridaChannel : IAsyncDisposable
         }
     }
 
-    // ── IAsyncDisposable ──────────────────────────────────────────────────────
+    /// <summary>
+    /// Ask the in-process agent to capture a raw-RGBA screenshot of the current map.
+    /// The agent reads tile-sheet textures from GPU memory, composites all tile
+    /// layers with overlays, and returns raw RGBA bytes (no PNG encoding in JS).
+    /// </summary>
+    /// <remarks>
+    /// GPU work runs on Unity's main thread (next <c>DSSock.Update()</c> frame).
+    /// One sheet is read per frame so the game is never stalled for more than ~16 ms
+    /// at a time.  Timeout is 120 s to allow for large maps with many sheets.
+    /// </remarks>
+    /// <returns>
+    /// A tuple of (metadata JsonElement, raw RGBA byte array).
+    /// </returns>
+    /// <exception cref="Il2CppAccessException">
+    ///   Not connected, the agent reported an error, or the request timed out.
+    /// </exception>
+    internal async Task<(JsonElement Data, byte[] Img)> MapScreenshotAsync(
+        Core.ScreenshotMode mode = Core.ScreenshotMode.Normal,
+        CancellationToken ct = default)
+    {
+        if (_script is null)
+            throw new Il2CppAccessException(
+                "map_screenshot", "Not connected. Call ConnectAsync first.");
+
+        int id  = Interlocked.Increment(ref _nextId);
+        var tcs = new TaskCompletionSource<(JsonElement Data, byte[] Img)>(
+            TaskCreationOptions.RunContinuationsAsynchronously);
+
+        _pendingScreenshots.TryAdd(id, tcs);
+        try
+        {
+            string modeStr = mode == Core.ScreenshotMode.LowRes ? "low_res" : "normal";
+            _script.Post(JsonSerializer.Serialize(new { id, cmd = "map_screenshot", mode = modeStr }));
+
+            // Wait indefinitely (or until the caller's token fires).
+            return await tcs.Task.WaitAsync(ct).ConfigureAwait(false);
+        }
+        finally
+        {
+            _pendingScreenshots.TryRemove(id, out _);
+        }
+    }
+
+
 
     /// <inheritdoc/>
     public async ValueTask DisposeAsync()
@@ -285,6 +325,10 @@ internal sealed class FridaChannel : IAsyncDisposable
             tcs.TrySetCanceled();
         _pending.Clear();
 
+        foreach (var (_, tcs) in _pendingScreenshots)
+            tcs.TrySetCanceled();
+        _pendingScreenshots.Clear();
+
         Script?        script  = _script;
         Session?       session = _session;
         DeviceManager? mgr     = _deviceManager;
@@ -292,21 +336,42 @@ internal sealed class FridaChannel : IAsyncDisposable
         _session       = null;
         _deviceManager = null;
 
-        await Task.Run(() =>
+        // Give Frida up to 3 s to detach cleanly. If the game process is
+        // already dead the native calls can hang indefinitely, so we let the
+        // cleanup task continue in the background and move on.
+        Task cleanup = Task.Run(() =>
         {
             try { script?.Unload();  } catch { /* best-effort */ }
             try { session?.Detach(); } catch { /* best-effort */ }
             try { mgr?.Dispose();    } catch { /* best-effort */ }
-        }).ConfigureAwait(false);
+        });
+        try
+        {
+            await cleanup.WaitAsync(TimeSpan.FromSeconds(3)).ConfigureAwait(false);
+        }
+        catch (TimeoutException) { /* best-effort — cleanup runs on in background */ }
     }
 
-    // ── Message routing ───────────────────────────────────────────────────────
 
     /// <summary>
     /// Called on the Frida scheduler thread for every <c>send()</c> call in the agent.
     /// Frida wraps the payload as: <c>{"type":"send","payload":{...}}</c>.
     /// </summary>
     private void OnMessage(object? sender, ScriptMessageEventArgs e)
+    {
+        // Global try/catch: this runs on the Frida scheduler thread.
+        // An unhandled exception here would crash the entire process.
+        try
+        {
+            OnMessageCore(sender, e);
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"[FridaChannel] OnMessage error: {ex}");
+        }
+    }
+
+    private void OnMessageCore(object? sender, ScriptMessageEventArgs e)
     {
         JsonDocument outer;
         try { outer = JsonDocument.Parse(e.Message); }
@@ -318,7 +383,6 @@ internal sealed class FridaChannel : IAsyncDisposable
             if (!root.TryGetProperty("type",    out var typeEl)  || typeEl.GetString() != "send") return;
             if (!root.TryGetProperty("payload", out var payload))                                   return;
 
-            // ── Agent startup "ready" signal ──────────────────────────────────
             if (payload.TryGetProperty("cmd", out var cmdEl) && cmdEl.GetString() == "ready")
             {
                 bool ok = payload.TryGetProperty("ok", out var okEl) && okEl.GetBoolean();
@@ -336,12 +400,32 @@ internal sealed class FridaChannel : IAsyncDisposable
                 return;
             }
 
-            // ── Read responses (matched by id) ────────────────────────────────
             if (!payload.TryGetProperty("id", out var idEl)) return;
             int id = idEl.GetInt32();
-            if (!_pending.TryGetValue(id, out var tcs)) return;
 
             bool readOk = payload.TryGetProperty("ok", out var readOkEl) && readOkEl.GetBoolean();
+
+            // Try screenshot pending first (carries binary data).
+            if (_pendingScreenshots.TryGetValue(id, out var ssTcs))
+            {
+                if (readOk && payload.TryGetProperty("data", out var ssDataEl))
+                {
+                    byte[] imgBytes = e.Data ?? Array.Empty<byte>();
+                    ssTcs.TrySetResult((ssDataEl.Clone(), imgBytes));
+                }
+                else
+                {
+                    string err = payload.TryGetProperty("error", out var ssErrEl)
+                        ? ssErrEl.GetString() ?? "unknown screenshot error"
+                        : "agent returned ok=false for map_screenshot";
+                    ssTcs.TrySetException(new Il2CppAccessException("map_screenshot", err));
+                }
+                return;
+            }
+
+            // Regular read response.
+            if (!_pending.TryGetValue(id, out var tcs)) return;
+
             if (readOk && payload.TryGetProperty("data", out var dataEl))
             {
                 tcs.TrySetResult(dataEl.Clone());
@@ -356,7 +440,6 @@ internal sealed class FridaChannel : IAsyncDisposable
         }
     }
 
-    // ── Snapshot parsing ──────────────────────────────────────────────────────
 
     /// <summary>
     /// Parse the <c>data</c> JsonElement returned by the agent's read command
@@ -369,6 +452,9 @@ internal sealed class FridaChannel : IAsyncDisposable
         bool  isBattling         = data.GetProperty("isBattling").GetBoolean();
         int   shinyForm          = data.GetProperty("shinyForm").GetInt32();
         int   eventForm          = data.GetProperty("eventForm").GetInt32();
+        string mapName           = data.TryGetProperty("mapName", out var mapNameEl)
+            ? mapNameEl.GetString() ?? "unknown"
+            : "unknown";
         float playerX            = data.GetProperty("playerX").GetSingle();
         float playerY            = data.GetProperty("playerY").GetSingle();
 
@@ -378,6 +464,7 @@ internal sealed class FridaChannel : IAsyncDisposable
             isBattlingRaw:      isBattling ? 1 : 0,
             shinyForm:          shinyForm,
             eventForm:          eventForm,
+            mapName:            mapName,
             playerX:            playerX,
             playerY:            playerY);
     }

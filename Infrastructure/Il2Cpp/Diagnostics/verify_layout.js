@@ -30,10 +30,25 @@
 const EXPECTED = {
     // Stable fields (discovered by name, but we verify offsets haven't shifted)
     'DSSock.Console':   0x458,
+    'DSSock.MapCreator':0x1E8,
     'DSSock.OtherPoke': 0x7D0,
     'DSSock.TargetPos': 0x1A4,
     'ChatInput.TextList': 0x30,
     'UIWidget.onChange': 0xB0,
+
+    // Map screenshot offsets (hardcoded in Il2CppRpcAgent.js)
+    'MapCreator.Width':         0x140,
+    'MapCreator.Height':        0x144,
+    'MapCreator.Tiles':         0x150,
+    'MapCreator.Tiles2':        0x158,
+    'MapCreator.Tiles3':        0x160,
+    'MapCreator.Tiles4':        0x168,
+    'MapCreator.Colliders':     0x170,
+    'MapCreator.Links':         0x178,
+    'MapCreator.MapName':       0x180,
+    'MapCreator.MaxTileSheets': 0x198,
+    'MapCreator.TileMaterials': 0x1A8,
+
     // Hardcoded offsets for obfuscated fields (effective DSSock-relative)
     'DSSock+IsBattling':         0x750,
     'DSSock+CurrentEncounterId': 0x7D0,
@@ -111,6 +126,7 @@ const dsKlass        = _findClass('DSSock');    dsKlass        ? ok('DSSock     
 const gwKlass        = _findClass('gw');        gwKlass        ? ok('gw           found') : warn('gw not found (OK — agent uses hardcoded offsets, no gw lookup needed)');
 const chatInputKlass = _findClass('ChatInput'); chatInputKlass ? ok('ChatInput    found') : fail('ChatInput — UPDATE CLASS_NAMES.ChatInput');
 const uiWidgetKlass  = _findClass('UIWidget');  uiWidgetKlass  ? ok('UIWidget     found') : fail('UIWidget — UPDATE CLASS_NAMES.UIWidget');
+const mapCreatorKlass= _findClass('MapCreator');mapCreatorKlass? ok('MapCreator   found') : fail('MapCreator — UPDATE CLASS_NAMES.MapCreator');
 
 // ── Stable field checks (discovered by name at runtime) ───────────────────────
 
@@ -128,10 +144,37 @@ function checkNamedField(klass, className, fieldName, expectedOffset) {
 }
 
 const offsetConsole   = checkNamedField(dsKlass,        'DSSock',    'Console',   0x458);
+const offsetMapCreator= checkNamedField(dsKlass,        'DSSock',    'MapCreator',0x1E8);
 const offsetOtherPoke = checkNamedField(dsKlass,        'DSSock',    'OtherPoke', 0x7D0);
 const offsetTargetPos = checkNamedField(dsKlass,        'DSSock',    'TargetPos', 0x1A4);
 const offsetTextList  = checkNamedField(chatInputKlass, 'ChatInput', 'TextList',  0x30);
 const offsetOnChange  = checkNamedField(uiWidgetKlass,  'UIWidget',  'onChange',  0xB0);
+
+// ── Map screenshot hardcoded offset verification ─────────────────────────────
+
+hdr('Map screenshot offsets (hardcoded in agent)');
+
+function verifyMapOffset(expectedOffset, label) {
+    if (!mapCreatorKlass) {
+        warn(`MapCreator class not found — cannot verify ${label}`);
+        return;
+    }
+    const f = _findFieldByOffset(mapCreatorKlass, expectedOffset);
+    if (f) ok(`${label} @ ${hex(expectedOffset)}  ✓  (current name: "${f.name}")`);
+    else fail(`${label} @ ${hex(expectedOffset)} — NO FIELD AT THIS OFFSET → update MAP_HARDCODED_OFFSETS`);
+}
+
+verifyMapOffset(EXPECTED['MapCreator.Width'],         'MapCreator.Width');
+verifyMapOffset(EXPECTED['MapCreator.Height'],        'MapCreator.Height');
+verifyMapOffset(EXPECTED['MapCreator.Tiles'],         'MapCreator.Tiles');
+verifyMapOffset(EXPECTED['MapCreator.Tiles2'],        'MapCreator.Tiles2');
+verifyMapOffset(EXPECTED['MapCreator.Tiles3'],        'MapCreator.Tiles3');
+verifyMapOffset(EXPECTED['MapCreator.Tiles4'],        'MapCreator.Tiles4');
+verifyMapOffset(EXPECTED['MapCreator.Colliders'],     'MapCreator.Colliders');
+verifyMapOffset(EXPECTED['MapCreator.Links'],         'MapCreator.Links');
+verifyMapOffset(EXPECTED['MapCreator.MapName'],       'MapCreator.MapName');
+verifyMapOffset(EXPECTED['MapCreator.MaxTileSheets'], 'MapCreator.MaxTileSheets');
+verifyMapOffset(EXPECTED['MapCreator.TileMaterials'], 'MapCreator.MaterialArray');
 
 // ── Hardcoded offset verification (obfuscated fields) ─────────────────────────
 
@@ -214,6 +257,24 @@ try {
                 const px = ds.add(offsetTargetPos).readFloat();
                 const py = ds.add(offsetTargetPos + 4).readFloat();
                 console.log(`  PlayerPos          = (${px}, ${py})`);
+            }
+
+            if (offsetMapCreator != null) {
+                const mc = ds.add(offsetMapCreator).readPointer();
+                if (mc && !mc.isNull()) {
+                    const mw = mc.add(EXPECTED['MapCreator.Width']).readS32();
+                    const mh = mc.add(EXPECTED['MapCreator.Height']).readS32();
+                    const mnamePtr = mc.add(EXPECTED['MapCreator.MapName']).readPointer();
+                    let mname = '(null)';
+                    try {
+                        if (mnamePtr && !mnamePtr.isNull()) {
+                            const len = mnamePtr.add(0x10).readS32();
+                            if (len > 0 && len < 4096) mname = mnamePtr.add(0x14).readUtf16String(len);
+                        }
+                    } catch (_) {}
+                    console.log(`  MapName            = ${mname}`);
+                    console.log(`  MapSize            = ${mw}x${mh}`);
+                }
             }
 
             console.log('');
