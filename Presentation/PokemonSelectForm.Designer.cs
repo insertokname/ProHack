@@ -50,23 +50,29 @@
             OtherFormsLabel = new Label();
             OtherFormsComboBox = new ComboBox();
             greenLimeThemeComponent1 = new Infrastructure.Theme.ThemeApplier();
+            flowLayoutPanel2 = new FlowLayoutPanel();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            flowLayoutPanel3 = new FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)IdNumeric).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             menuStrip1.SuspendLayout();
+            flowLayoutPanel2.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
+            flowLayoutPanel3.SuspendLayout();
             SuspendLayout();
             // 
             // IdNumeric
             // 
             IdNumeric.AllowDrop = true;
-            IdNumeric.Anchor = AnchorStyles.Bottom;
+            IdNumeric.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             IdNumeric.BackColor = Color.FromArgb(40, 40, 40);
             IdNumeric.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             IdNumeric.ForeColor = Color.FromArgb(152, 151, 26);
-            IdNumeric.Location = new Point(345, 99);
+            IdNumeric.Location = new Point(379, 3);
             IdNumeric.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             IdNumeric.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             IdNumeric.Name = "IdNumeric";
-            IdNumeric.Size = new Size(80, 23);
+            IdNumeric.Size = new Size(183, 23);
             IdNumeric.TabIndex = 0;
             IdNumeric.Tag = "FontSize=S;";
             IdNumeric.Value = new decimal(new int[] { 1, 0, 0, 0 });
@@ -75,12 +81,12 @@
             // 
             // idLabel
             // 
-            idLabel.Anchor = AnchorStyles.Bottom;
+            idLabel.Anchor = AnchorStyles.Left;
             idLabel.AutoSize = true;
             idLabel.BackColor = Color.FromArgb(40, 40, 40);
             idLabel.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             idLabel.ForeColor = Color.FromArgb(152, 151, 26);
-            idLabel.Location = new Point(191, 99);
+            idLabel.Location = new Point(191, 6);
             idLabel.Name = "idLabel";
             idLabel.Size = new Size(32, 18);
             idLabel.TabIndex = 1;
@@ -90,15 +96,15 @@
             // 
             // AddTargetButton
             // 
-            AddTargetButton.Anchor = AnchorStyles.Bottom;
+            AddTargetButton.Anchor = AnchorStyles.Left;
             AddTargetButton.BackColor = Color.FromArgb(40, 40, 40);
             AddTargetButton.FlatAppearance.BorderSize = 3;
             AddTargetButton.FlatStyle = FlatStyle.Flat;
             AddTargetButton.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
             AddTargetButton.ForeColor = Color.FromArgb(152, 151, 26);
-            AddTargetButton.Location = new Point(12, 728);
+            AddTargetButton.Location = new Point(3, 3);
             AddTargetButton.Name = "AddTargetButton";
-            AddTargetButton.Size = new Size(282, 77);
+            AddTargetButton.Size = new Size(270, 77);
             AddTargetButton.TabIndex = 5;
             AddTargetButton.TabStop = false;
             AddTargetButton.Text = "Add target";
@@ -112,24 +118,24 @@
             pictureBox1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
             pictureBox1.ForeColor = Color.FromArgb(152, 151, 26);
             pictureBox1.Image = Properties.Resources.any;
-            pictureBox1.Location = new Point(12, 191);
+            pictureBox1.Location = new Point(3, 162);
             pictureBox1.MaximumSize = new Size(568, 390);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(568, 390);
-            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
             // 
             // CatchAnythingCheckbox
             // 
-            CatchAnythingCheckbox.Anchor = AnchorStyles.Bottom;
+            CatchAnythingCheckbox.Anchor = AnchorStyles.Left;
             CatchAnythingCheckbox.AutoSize = true;
             CatchAnythingCheckbox.BackColor = Color.FromArgb(40, 40, 40);
             CatchAnythingCheckbox.Checked = true;
             CatchAnythingCheckbox.CheckState = CheckState.Checked;
             CatchAnythingCheckbox.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             CatchAnythingCheckbox.ForeColor = Color.FromArgb(152, 151, 26);
-            CatchAnythingCheckbox.Location = new Point(12, 97);
+            CatchAnythingCheckbox.Location = new Point(3, 4);
             CatchAnythingCheckbox.Name = "CatchAnythingCheckbox";
             CatchAnythingCheckbox.Size = new Size(139, 22);
             CatchAnythingCheckbox.TabIndex = 7;
@@ -146,7 +152,7 @@
             flowLayoutPanel1.BackColor = Color.FromArgb(40, 40, 40);
             flowLayoutPanel1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
             flowLayoutPanel1.ForeColor = Color.FromArgb(152, 151, 26);
-            flowLayoutPanel1.Location = new Point(12, 587);
+            flowLayoutPanel1.Location = new Point(3, 558);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(568, 135);
             flowLayoutPanel1.TabIndex = 9;
@@ -154,12 +160,12 @@
             // 
             // MustBeShinyCheckbox
             // 
-            MustBeShinyCheckbox.Anchor = AnchorStyles.Bottom;
+            MustBeShinyCheckbox.Anchor = AnchorStyles.Left;
             MustBeShinyCheckbox.AutoSize = true;
             MustBeShinyCheckbox.BackColor = Color.FromArgb(40, 40, 40);
             MustBeShinyCheckbox.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             MustBeShinyCheckbox.ForeColor = Color.FromArgb(152, 151, 26);
-            MustBeShinyCheckbox.Location = new Point(12, 153);
+            MustBeShinyCheckbox.Location = new Point(3, 67);
             MustBeShinyCheckbox.Name = "MustBeShinyCheckbox";
             MustBeShinyCheckbox.Size = new Size(131, 22);
             MustBeShinyCheckbox.TabIndex = 10;
@@ -171,12 +177,12 @@
             // 
             // MustBeEventCheckbox
             // 
-            MustBeEventCheckbox.Anchor = AnchorStyles.Bottom;
+            MustBeEventCheckbox.Anchor = AnchorStyles.Left;
             MustBeEventCheckbox.AutoSize = true;
             MustBeEventCheckbox.BackColor = Color.FromArgb(40, 40, 40);
             MustBeEventCheckbox.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             MustBeEventCheckbox.ForeColor = Color.FromArgb(152, 151, 26);
-            MustBeEventCheckbox.Location = new Point(12, 125);
+            MustBeEventCheckbox.Location = new Point(3, 35);
             MustBeEventCheckbox.Name = "MustBeEventCheckbox";
             MustBeEventCheckbox.Size = new Size(131, 22);
             MustBeEventCheckbox.TabIndex = 11;
@@ -188,13 +194,13 @@
             // 
             // CloseButton
             // 
-            CloseButton.Anchor = AnchorStyles.Bottom;
+            CloseButton.Anchor = AnchorStyles.Right;
             CloseButton.BackColor = Color.FromArgb(40, 40, 40);
             CloseButton.FlatAppearance.BorderSize = 3;
             CloseButton.FlatStyle = FlatStyle.Flat;
             CloseButton.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
             CloseButton.ForeColor = Color.FromArgb(152, 151, 26);
-            CloseButton.Location = new Point(300, 728);
+            CloseButton.Location = new Point(279, 3);
             CloseButton.Name = "CloseButton";
             CloseButton.Size = new Size(280, 77);
             CloseButton.TabIndex = 12;
@@ -243,9 +249,9 @@
             // 
             label1.Anchor = AnchorStyles.Bottom;
             label1.BackColor = Color.FromArgb(40, 40, 40);
-            label1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            label1.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             label1.ForeColor = Color.FromArgb(152, 151, 26);
-            label1.Location = new Point(12, 26);
+            label1.Location = new Point(3, 0);
             label1.Name = "label1";
             label1.Size = new Size(568, 58);
             label1.TabIndex = 15;
@@ -282,7 +288,7 @@
             openFileToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             openFileToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
             openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            openFileToolStripMenuItem.Size = new Size(180, 22);
+            openFileToolStripMenuItem.Size = new Size(172, 22);
             openFileToolStripMenuItem.Tag = "FontSize=S";
             openFileToolStripMenuItem.Text = "Open targets";
             openFileToolStripMenuItem.Click += OpenFileToolStripMenuItem_Click;
@@ -293,19 +299,19 @@
             saveTargetsToolStripMenuItem.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             saveTargetsToolStripMenuItem.ForeColor = Color.FromArgb(152, 151, 26);
             saveTargetsToolStripMenuItem.Name = "saveTargetsToolStripMenuItem";
-            saveTargetsToolStripMenuItem.Size = new Size(180, 22);
+            saveTargetsToolStripMenuItem.Size = new Size(172, 22);
             saveTargetsToolStripMenuItem.Tag = "FontSize=S";
             saveTargetsToolStripMenuItem.Text = "Save targets";
             saveTargetsToolStripMenuItem.Click += SaveTargetsToolStripMenuItem_Click;
             // 
             // PokemonNameLabel
             // 
-            PokemonNameLabel.Anchor = AnchorStyles.Bottom;
+            PokemonNameLabel.Anchor = AnchorStyles.Left;
             PokemonNameLabel.AutoSize = true;
             PokemonNameLabel.BackColor = Color.FromArgb(40, 40, 40);
             PokemonNameLabel.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             PokemonNameLabel.ForeColor = Color.FromArgb(152, 151, 26);
-            PokemonNameLabel.Location = new Point(191, 129);
+            PokemonNameLabel.Location = new Point(191, 37);
             PokemonNameLabel.Name = "PokemonNameLabel";
             PokemonNameLabel.Size = new Size(112, 18);
             PokemonNameLabel.TabIndex = 31;
@@ -315,15 +321,15 @@
             // 
             // PokemonNameComboBox
             // 
-            PokemonNameComboBox.Anchor = AnchorStyles.Bottom;
+            PokemonNameComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             PokemonNameComboBox.BackColor = Color.FromArgb(40, 40, 40);
             PokemonNameComboBox.FlatStyle = FlatStyle.Flat;
             PokemonNameComboBox.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             PokemonNameComboBox.ForeColor = Color.FromArgb(152, 151, 26);
             PokemonNameComboBox.FormattingEnabled = true;
-            PokemonNameComboBox.Location = new Point(345, 126);
+            PokemonNameComboBox.Location = new Point(379, 34);
             PokemonNameComboBox.Name = "PokemonNameComboBox";
-            PokemonNameComboBox.Size = new Size(235, 25);
+            PokemonNameComboBox.Size = new Size(183, 25);
             PokemonNameComboBox.TabIndex = 32;
             PokemonNameComboBox.Tag = "FontSize=S;";
             PokemonNameComboBox.Visible = false;
@@ -332,12 +338,12 @@
             // 
             // OtherFormsLabel
             // 
-            OtherFormsLabel.Anchor = AnchorStyles.Bottom;
+            OtherFormsLabel.Anchor = AnchorStyles.Left;
             OtherFormsLabel.AutoSize = true;
             OtherFormsLabel.BackColor = Color.FromArgb(40, 40, 40);
             OtherFormsLabel.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             OtherFormsLabel.ForeColor = Color.FromArgb(152, 151, 26);
-            OtherFormsLabel.Location = new Point(191, 157);
+            OtherFormsLabel.Location = new Point(191, 69);
             OtherFormsLabel.Name = "OtherFormsLabel";
             OtherFormsLabel.Size = new Size(104, 18);
             OtherFormsLabel.TabIndex = 33;
@@ -347,16 +353,16 @@
             // 
             // OtherFormsComboBox
             // 
-            OtherFormsComboBox.Anchor = AnchorStyles.Bottom;
+            OtherFormsComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             OtherFormsComboBox.BackColor = Color.FromArgb(40, 40, 40);
             OtherFormsComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             OtherFormsComboBox.FlatStyle = FlatStyle.Flat;
             OtherFormsComboBox.Font = new Font("Cascadia Code", 10F, FontStyle.Bold);
             OtherFormsComboBox.ForeColor = Color.FromArgb(152, 151, 26);
             OtherFormsComboBox.FormattingEnabled = true;
-            OtherFormsComboBox.Location = new Point(345, 154);
+            OtherFormsComboBox.Location = new Point(379, 65);
             OtherFormsComboBox.Name = "OtherFormsComboBox";
-            OtherFormsComboBox.Size = new Size(235, 25);
+            OtherFormsComboBox.Size = new Size(183, 25);
             OtherFormsComboBox.TabIndex = 34;
             OtherFormsComboBox.Tag = "FontSize=S;";
             OtherFormsComboBox.Visible = false;
@@ -376,29 +382,77 @@
             greenLimeThemeComponent1.Text = "greenLimeThemeComponent1";
             greenLimeThemeComponent1.Visible = false;
             // 
+            // flowLayoutPanel2
+            // 
+            flowLayoutPanel2.BackColor = Color.FromArgb(40, 40, 40);
+            flowLayoutPanel2.Controls.Add(label1);
+            flowLayoutPanel2.Controls.Add(tableLayoutPanel1);
+            flowLayoutPanel2.Controls.Add(pictureBox1);
+            flowLayoutPanel2.Controls.Add(flowLayoutPanel1);
+            flowLayoutPanel2.Controls.Add(flowLayoutPanel3);
+            flowLayoutPanel2.FlowDirection = FlowDirection.TopDown;
+            flowLayoutPanel2.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            flowLayoutPanel2.ForeColor = Color.FromArgb(152, 151, 26);
+            flowLayoutPanel2.Location = new Point(12, 29);
+            flowLayoutPanel2.Margin = new Padding(0);
+            flowLayoutPanel2.Name = "flowLayoutPanel2";
+            flowLayoutPanel2.Size = new Size(568, 776);
+            flowLayoutPanel2.TabIndex = 35;
+            flowLayoutPanel2.WrapContents = false;
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.BackColor = Color.FromArgb(40, 40, 40);
+            tableLayoutPanel1.ColumnCount = 3;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
+            tableLayoutPanel1.Controls.Add(OtherFormsComboBox, 2, 2);
+            tableLayoutPanel1.Controls.Add(CatchAnythingCheckbox, 0, 0);
+            tableLayoutPanel1.Controls.Add(PokemonNameComboBox, 2, 1);
+            tableLayoutPanel1.Controls.Add(MustBeEventCheckbox, 0, 1);
+            tableLayoutPanel1.Controls.Add(MustBeShinyCheckbox, 0, 2);
+            tableLayoutPanel1.Controls.Add(PokemonNameLabel, 1, 1);
+            tableLayoutPanel1.Controls.Add(idLabel, 1, 0);
+            tableLayoutPanel1.Controls.Add(IdNumeric, 2, 0);
+            tableLayoutPanel1.Controls.Add(OtherFormsLabel, 1, 2);
+            tableLayoutPanel1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            tableLayoutPanel1.ForeColor = Color.FromArgb(152, 151, 26);
+            tableLayoutPanel1.Location = new Point(3, 61);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 3;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel1.Size = new Size(565, 95);
+            tableLayoutPanel1.TabIndex = 16;
+            // 
+            // flowLayoutPanel3
+            // 
+            flowLayoutPanel3.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            flowLayoutPanel3.AutoSize = true;
+            flowLayoutPanel3.BackColor = Color.FromArgb(40, 40, 40);
+            flowLayoutPanel3.Controls.Add(AddTargetButton);
+            flowLayoutPanel3.Controls.Add(CloseButton);
+            flowLayoutPanel3.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
+            flowLayoutPanel3.ForeColor = Color.FromArgb(152, 151, 26);
+            flowLayoutPanel3.Location = new Point(0, 696);
+            flowLayoutPanel3.Margin = new Padding(0);
+            flowLayoutPanel3.Name = "flowLayoutPanel3";
+            flowLayoutPanel3.Size = new Size(574, 83);
+            flowLayoutPanel3.TabIndex = 17;
+            flowLayoutPanel3.WrapContents = false;
+            // 
             // PokemonSelectForm
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(592, 811);
-            Controls.Add(OtherFormsComboBox);
-            Controls.Add(OtherFormsLabel);
-            Controls.Add(PokemonNameComboBox);
-            Controls.Add(PokemonNameLabel);
             Controls.Add(greenLimeThemeComponent1);
-            Controls.Add(label1);
             Controls.Add(LeftButton);
             Controls.Add(RightButton);
-            Controls.Add(CloseButton);
-            Controls.Add(MustBeEventCheckbox);
-            Controls.Add(MustBeShinyCheckbox);
-            Controls.Add(flowLayoutPanel1);
-            Controls.Add(CatchAnythingCheckbox);
-            Controls.Add(pictureBox1);
-            Controls.Add(AddTargetButton);
-            Controls.Add(idLabel);
-            Controls.Add(IdNumeric);
             Controls.Add(menuStrip1);
+            Controls.Add(flowLayoutPanel2);
             Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
             ForeColor = Color.FromArgb(152, 151, 26);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -415,6 +469,11 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            flowLayoutPanel2.ResumeLayout(false);
+            flowLayoutPanel2.PerformLayout();
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            flowLayoutPanel3.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -442,5 +501,8 @@
         private Label OtherFormsLabel;
         private ComboBox OtherFormsComboBox;
         private Infrastructure.Theme.ThemeApplier greenLimeThemeComponent1;
+        private FlowLayoutPanel flowLayoutPanel2;
+        private TableLayoutPanel tableLayoutPanel1;
+        private FlowLayoutPanel flowLayoutPanel3;
     }
 }
