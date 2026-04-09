@@ -354,8 +354,7 @@ internal sealed class FridaChannel : IAsyncDisposable
 
 
     /// <summary>
-    /// Called on the Frida scheduler thread for every <c>send()</c> call in the agent.
-    /// Frida wraps the payload as: <c>{"type":"send","payload":{...}}</c>.
+    /// Called on the Frida scheduler thread for every message emitted by the agent.
     /// </summary>
     private void OnMessage(object? sender, ScriptMessageEventArgs e)
     {
@@ -380,7 +379,27 @@ internal sealed class FridaChannel : IAsyncDisposable
         using (outer)
         {
             var root = outer.RootElement;
-            if (!root.TryGetProperty("type",    out var typeEl)  || typeEl.GetString() != "send") return;
+            if (!root.TryGetProperty("type", out var typeEl)) return;
+            string? type = typeEl.GetString();
+            if (type == "error")
+            {
+                string description = root.TryGetProperty("description", out var descEl)
+                    ? descEl.GetString() ?? "unknown agent script error"
+                    : "unknown agent script error";
+
+                string? stack = root.TryGetProperty("stack", out var stackEl)
+                    ? stackEl.GetString()
+                    : null;
+
+                string err = string.IsNullOrWhiteSpace(stack)
+                    ? description
+                    : $"{description}{Environment.NewLine}{stack}";
+
+                FailAllPendingFromScriptError(err);
+                return;
+            }
+
+            if (type != "send") return;
             if (!root.TryGetProperty("payload", out var payload))                                   return;
 
             if (payload.TryGetProperty("cmd", out var cmdEl) && cmdEl.GetString() == "ready")
@@ -438,6 +457,19 @@ internal sealed class FridaChannel : IAsyncDisposable
                 tcs.TrySetException(new Il2CppAccessException("read", err));
             }
         }
+    }
+
+    private void FailAllPendingFromScriptError(string error)
+    {
+        string message = $"Agent script error: {error}";
+
+        _readyTcs?.TrySetException(new Il2CppAccessException("connect", message));
+
+        foreach (var (_, tcs) in _pending)
+            tcs.TrySetException(new Il2CppAccessException("read", message));
+
+        foreach (var (_, tcs) in _pendingScreenshots)
+            tcs.TrySetException(new Il2CppAccessException("map_screenshot", message));
     }
 
 

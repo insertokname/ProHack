@@ -129,20 +129,40 @@ const DELEGATE_SELECTED_MENU_OFFSET = 0xA8;
 
 const _mod = Process.getModuleByName('GameAssembly.dll');
 
+// Some PRO builds expose valid IL2CPP symbols in enumerateExports(), but
+// Module.getExportByName() fails for a subset of them (e.g. il2cpp_domain_get).
+// Build a fallback map so startup does not fail on those builds.
+const _exportsByName = Object.create(null);
+for (const exp of _mod.enumerateExports()) {
+    if (exp.type === 'function' && _exportsByName[exp.name] === undefined) {
+        _exportsByName[exp.name] = exp.address;
+    }
+}
+
+function _resolveExport(name) {
+    try {
+        return _mod.getExportByName(name);
+    } catch (_) {
+        const addr = _exportsByName[name];
+        if (addr !== undefined) return addr;
+        throw new Error(`Required IL2CPP export not found: "${name}"`);
+    }
+}
+
 const _api = {
-    domainGet:           new NativeFunction(_mod.getExportByName('il2cpp_domain_get'),                  'pointer', []),
-    domainGetAssemblies: new NativeFunction(_mod.getExportByName('il2cpp_domain_get_assemblies'),       'pointer', ['pointer', 'pointer']),
-    assemblyGetImage:    new NativeFunction(_mod.getExportByName('il2cpp_assembly_get_image'),          'pointer', ['pointer']),
-    imageGetClassCount:  new NativeFunction(_mod.getExportByName('il2cpp_image_get_class_count'),       'uint',    ['pointer']),
-    imageGetClass:       new NativeFunction(_mod.getExportByName('il2cpp_image_get_class'),             'pointer', ['pointer', 'uint']),
-    classGetName:        new NativeFunction(_mod.getExportByName('il2cpp_class_get_name'),              'pointer', ['pointer']),
-    classGetFields:      new NativeFunction(_mod.getExportByName('il2cpp_class_get_fields'),            'pointer', ['pointer', 'pointer']),
-    fieldGetName:        new NativeFunction(_mod.getExportByName('il2cpp_field_get_name'),              'pointer', ['pointer']),
-    fieldGetOffset:      new NativeFunction(_mod.getExportByName('il2cpp_field_get_offset'),            'uint',    ['pointer']),
-    classGetStaticData:  new NativeFunction(_mod.getExportByName('il2cpp_class_get_static_field_data'), 'pointer', ['pointer']),
-    classGetMethodFromName: new NativeFunction(_mod.getExportByName('il2cpp_class_get_method_from_name'), 'pointer', ['pointer', 'pointer', 'int']),
-    runtimeInvoke:       new NativeFunction(_mod.getExportByName('il2cpp_runtime_invoke'),              'pointer', ['pointer', 'pointer', 'pointer', 'pointer']),
-    objectNew:           new NativeFunction(_mod.getExportByName('il2cpp_object_new'),                  'pointer', ['pointer']),
+    domainGet:           new NativeFunction(_resolveExport('il2cpp_domain_get'),                  'pointer', []),
+    domainGetAssemblies: new NativeFunction(_resolveExport('il2cpp_domain_get_assemblies'),       'pointer', ['pointer', 'pointer']),
+    assemblyGetImage:    new NativeFunction(_resolveExport('il2cpp_assembly_get_image'),          'pointer', ['pointer']),
+    imageGetClassCount:  new NativeFunction(_resolveExport('il2cpp_image_get_class_count'),       'uint',    ['pointer']),
+    imageGetClass:       new NativeFunction(_resolveExport('il2cpp_image_get_class'),             'pointer', ['pointer', 'uint']),
+    classGetName:        new NativeFunction(_resolveExport('il2cpp_class_get_name'),              'pointer', ['pointer']),
+    classGetFields:      new NativeFunction(_resolveExport('il2cpp_class_get_fields'),            'pointer', ['pointer', 'pointer']),
+    fieldGetName:        new NativeFunction(_resolveExport('il2cpp_field_get_name'),              'pointer', ['pointer']),
+    fieldGetOffset:      new NativeFunction(_resolveExport('il2cpp_field_get_offset'),            'uint',    ['pointer']),
+    classGetStaticData:  new NativeFunction(_resolveExport('il2cpp_class_get_static_field_data'), 'pointer', ['pointer']),
+    classGetMethodFromName: new NativeFunction(_resolveExport('il2cpp_class_get_method_from_name'), 'pointer', ['pointer', 'pointer', 'int']),
+    runtimeInvoke:       new NativeFunction(_resolveExport('il2cpp_runtime_invoke'),              'pointer', ['pointer', 'pointer', 'pointer', 'pointer']),
+    objectNew:           new NativeFunction(_resolveExport('il2cpp_object_new'),                  'pointer', ['pointer']),
 };
 
 

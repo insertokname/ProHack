@@ -61,17 +61,36 @@ const EXPECTED = {
 const _mod  = Process.getModuleByName('GameAssembly.dll');
 const _IL2CPP_OBJECT_HEADER_SIZE = 0x10;
 
+// Some builds expose these symbols in enumerateExports() but getExportByName()
+// may fail for specific names. Keep a fallback map for reliable diagnostics.
+const _exportsByName = Object.create(null);
+for (const exp of _mod.enumerateExports()) {
+    if (exp.type === 'function' && _exportsByName[exp.name] === undefined) {
+        _exportsByName[exp.name] = exp.address;
+    }
+}
+
+function _resolveExport(name) {
+    try {
+        return _mod.getExportByName(name);
+    } catch (_) {
+        const addr = _exportsByName[name];
+        if (addr !== undefined) return addr;
+        throw new Error(`Required IL2CPP export not found: "${name}"`);
+    }
+}
+
 const _api = {
-    domainGet:           new NativeFunction(_mod.getExportByName('il2cpp_domain_get'),                  'pointer', []),
-    domainGetAssemblies: new NativeFunction(_mod.getExportByName('il2cpp_domain_get_assemblies'),       'pointer', ['pointer', 'pointer']),
-    assemblyGetImage:    new NativeFunction(_mod.getExportByName('il2cpp_assembly_get_image'),          'pointer', ['pointer']),
-    imageGetClassCount:  new NativeFunction(_mod.getExportByName('il2cpp_image_get_class_count'),       'uint',    ['pointer']),
-    imageGetClass:       new NativeFunction(_mod.getExportByName('il2cpp_image_get_class'),             'pointer', ['pointer', 'uint']),
-    classGetName:        new NativeFunction(_mod.getExportByName('il2cpp_class_get_name'),              'pointer', ['pointer']),
-    classGetFields:      new NativeFunction(_mod.getExportByName('il2cpp_class_get_fields'),            'pointer', ['pointer', 'pointer']),
-    fieldGetName:        new NativeFunction(_mod.getExportByName('il2cpp_field_get_name'),              'pointer', ['pointer']),
-    fieldGetOffset:      new NativeFunction(_mod.getExportByName('il2cpp_field_get_offset'),            'uint',    ['pointer']),
-    classGetStaticData:  new NativeFunction(_mod.getExportByName('il2cpp_class_get_static_field_data'), 'pointer', ['pointer']),
+    domainGet:           new NativeFunction(_resolveExport('il2cpp_domain_get'),                  'pointer', []),
+    domainGetAssemblies: new NativeFunction(_resolveExport('il2cpp_domain_get_assemblies'),       'pointer', ['pointer', 'pointer']),
+    assemblyGetImage:    new NativeFunction(_resolveExport('il2cpp_assembly_get_image'),          'pointer', ['pointer']),
+    imageGetClassCount:  new NativeFunction(_resolveExport('il2cpp_image_get_class_count'),       'uint',    ['pointer']),
+    imageGetClass:       new NativeFunction(_resolveExport('il2cpp_image_get_class'),             'pointer', ['pointer', 'uint']),
+    classGetName:        new NativeFunction(_resolveExport('il2cpp_class_get_name'),              'pointer', ['pointer']),
+    classGetFields:      new NativeFunction(_resolveExport('il2cpp_class_get_fields'),            'pointer', ['pointer', 'pointer']),
+    fieldGetName:        new NativeFunction(_resolveExport('il2cpp_field_get_name'),              'pointer', ['pointer']),
+    fieldGetOffset:      new NativeFunction(_resolveExport('il2cpp_field_get_offset'),            'uint',    ['pointer']),
+    classGetStaticData:  new NativeFunction(_resolveExport('il2cpp_class_get_static_field_data'), 'pointer', ['pointer']),
 };
 
 function _utf8(p) { try { return (p&&!p.isNull())?p.readUtf8String():null; } catch(_){return null;} }
